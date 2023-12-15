@@ -5,7 +5,7 @@
     
 <mapper namespace="com.itwill.project.repository.SettingDao">
 
-<select id="selectBySettingUser" resultType="User">
+<select id="selectBySettingUser" resultType="SettingUser">
 	 	 select * from users where user_id = #{user_id}
 	 </select>
 	 
