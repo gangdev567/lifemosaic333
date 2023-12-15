@@ -60,8 +60,10 @@
                 </div>
                     <div class="outerDiv">
                         <div class="container">
-                            <div style="background-color: gray;"class="item">Side Bar A</div>
-                            <div style="background-color:silver;"class="item">베스트 게시글</div>
+                            <div class="item">
+                            	<%@include file="./fragments/topwriter.jspf"  %>
+                            </div>
+                            <div class="item">베스트 게시글</div>
                             <div style="background-color:silver;""class="item">CCCCCC</div>
                             <div style="background-color: gray;"class="item">Side Bar B</div>
                             <div style="background-color: gray;"class="item">EEEEEE</div>
