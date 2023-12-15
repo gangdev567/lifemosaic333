@@ -3,7 +3,24 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
-
+	<style>
+		.img-box {
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+	</style>
 	<head>
  		<meta charset="UTF-8">
 		<title>lifeMosaic</title>
@@ -24,14 +41,26 @@
 					 <div class="col-6">
 					  나의 정보 영역
 						 <div>
-						 <label class="form-label" for="user_id">id</label>
+						 <label class="form-label" for="user_id">아이디</label>
 						 <input class="form-control" id="user_id" type="text" value="${user.user_id }">
 						 </div>
+						 <div>
+						 <label class="form-label" for="user_id">이메일</label>
+						 <input class="form-control" id="user_id" type="text" value="${user.email }">
+						 </div>
+						 <div>
+						 <label class="form-label" for="user_id">닉네임</label>
+						 <input class="form-control" id="user_id" type="text" value="${user.nickname }">
+						 </div>
 					 </div>
-					 <div class="col-3">
-					 프로필 사진 영역
+					 <div class="col-3 ">
+					 <div class="img-box" >
+						  <img src="${user.profile_url }"  alt="...">
+						  <div class="card-body">
+						    <a href="#" class="btn btn-primary">프로필 사진 변경</a>
+						  </div>
+						</div>
 					 </div>
-					 
 				</div>
 			</div>
 
