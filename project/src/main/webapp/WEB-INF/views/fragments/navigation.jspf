@@ -37,10 +37,21 @@
                     <c:url var="homePage" value="/"/>
                     <a href="${homePage}">6</a>
                 </div>
+
               <div>
                     <c:url var="userProfilePage" value="/setting/userProfile"/>
                     <a href="${userProfilePage}">프로필</a>
                 </div> 
+
+
+			 	<div class= "nav-item">
+			 		<c:url var = "signInPage" value="/user/signin" />
+        			<a class="nav-link" href="${signInPage}">로그인</a>
+				</div>
+				<div class= "nav-item">
+			 		<c:url var="signUpPage" value="/user/signup" />
+        			<a class="nav-link" href="${signUpPage}">회원가입</a>
+				</div>
 
         </header>
 	<body>

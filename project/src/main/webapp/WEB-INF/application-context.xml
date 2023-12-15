@@ -42,5 +42,6 @@
     검색할 기본 패키지를 설정
     -->
     <context:component-scan base-package="com.itwill.project.service" />
+    <context:component-scan base-package="com.itwill.project.web" />
 
 </beans>
