@@ -3,50 +3,63 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+    <head>
+        <meta charset="UTF-8">
+        <title>Insert title here</title>
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
-	</head>
-        <header class="gridHeader">
-                <div>
+    </head>
+        <div>
+            <div class="gridHeader navbar">
+                <div class="navitem">
                     <c:url var="homePage" value="/"/>
                     <a href="${homePage}">Life mosaic</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="totallist" value="/post/totallist"/>
+                    <a href="${totallist}">전체게시판(임시)</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="fault" value="/post/11"/>
+                    <a href="${fault}">이거 내 잘못이야?</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="idiot" value="/post/21"/>
+                    <a href="${idiot}">나 호구냐?</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="envy" value="/post/31"/>
+                    <a href="${envy}">부럽지?</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="carAccident" value="/post/41"/>
+                    <a href="${carAccident}">차사고</a>
                 </div>
-                <div>
-                    <c:url var="homePage" value="/"/>
-                    <a href="${homePage}">Life mosaic</a>
+                <div class="navitem">
+                    <c:url var="gameAccident" value="/post/42"/>
+                    <a href="${gameAccident}">게임</a>
                 </div>
-
-        </header>
-	<body>
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+                <div class="navitem">
+                    <c:url var="etcAccident" value="/post/43"/>
+                    <a href="${etcAccident}">기타</a>
+                </div>
+                <div class="navitem">
+                    <c:url var="freeBoard" value="/post51"/>
+                    <a href="${freeBoard}">자유게시판</a>
+                </div>
+                <div class="navitem">
+                    <c:url var="singIn" value="/singIn"/>
+                    <a href="${singIn}">로그인</a>
+                </div>
+            </div>
+        </div>
+    <body>
+        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
-	</body>
+    </body>
 </html>
