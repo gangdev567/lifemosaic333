@@ -13,7 +13,7 @@
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <!-- hikariConfig.setDriverClassName(""); -->
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.20.26:1521:xe" />
         <property name="username" value="scott" />
         <property name="password" value="tiger" />
     </bean>
@@ -42,5 +42,6 @@
     검색할 기본 패키지를 설정
     -->
     <context:component-scan base-package="com.itwill.project.service" />
+    <context:component-scan base-package="com.itwill.project.web" />
 
 </beans>
