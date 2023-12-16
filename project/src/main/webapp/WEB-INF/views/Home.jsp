@@ -50,13 +50,12 @@
             crossorigin="anonymous">
 	</head>
     <header>
-        <h1>Life mosaic</h1>
     </header>
-    <main>
 
              <body>
-                 <div class="container-fluid">
-                    <%@ include file="fragments/navigation.jspf" %>
+   		 	 <main>
+                 <div class="container-fluid d-flex justify-content-center">
+                    <%@ include file="./fragments/navigation.jspf" %>
                 </div>
                     <div class="outerDiv">
                         <div class="container">
@@ -64,7 +63,7 @@
                             	<%@include file="./fragments/topwriter.jspf"  %>
                             </div>
                             <div class="item">베스트 게시글</div>
-                            <div style="background-color:silver;""class="item">CCCCCC</div>
+                            <div style="background-color:silver;"class="item">CCCCCC</div>
                             <div style="background-color: gray;"class="item">Side Bar B</div>
                             <div style="background-color: gray;"class="item">EEEEEE</div>
                             <div style="background-color:silver;"class="item">FFFFFF</div>
@@ -74,9 +73,9 @@
                             <div style="background-color:rgb(100, 150, 100);"class="item">Footer</div>
                         </div>
                     </div>
+				    </main>
             </body>
 
-    </main>
 
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
