@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class User {
-    private String userid; // 로그인 아이디(unique, not null)
+    private String user_id; // 로그인 아이디(unique, not null)
     private String nickname; // 
     private String password; // 비밀번호(not null)
     private String email; // 이메일(not null)
     private Long point;
-    private String profileurl;
+    private String profile_url;
 
 }

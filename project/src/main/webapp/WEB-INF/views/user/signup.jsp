@@ -23,10 +23,10 @@
                 <form action="${signUpPage}" method="post">
                     <div class="my-2">
                         <input type="text" class="form-control"
-                            id="userid" name="userid" placeholder="userid" required autofocus />
+                            id="user_id" name="user_id" placeholder="user_id" required autofocus />
                     </div>
                     <div id="checkIdResult">
-                        <!-- userid 중복체크 결과 표시 -->
+                        <!-- user_id 중복체크 결과 표시 -->
                     </div>
                     <div class="my-2">
                         <input type="text" class="form-control"
