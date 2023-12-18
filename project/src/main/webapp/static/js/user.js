@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const btnRegister = document.querySelector('button#btnRegister');
         
-    const inputUserid = document.querySelector('input#userid');
+    const inputUserid = document.querySelector('input#user_id');
     inputUserid.addEventListener('change', checkUserid);
     
     const inputNickname = document.querySelector('input#nickname');
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
     async function checkUserid(e) {
 		
-        const userid = e.target.value; // 먼저 nickname 변수를 정의
-    	console.log("checkUserid called", userid); // 그 후에 console.log에서 사용
+        const user_id = e.target.value; // 먼저 nickname 변수를 정의
+    	console.log("checkUserid called", user_id); // 그 후에 console.log에서 사용
         
-        const uri = `checkid?userid=${userid}`;
+        const uri = `checkid?user_id=${user_id}`;
         const response = await axios.get(uri);
         
         const checkIdResult = document.querySelector('div#checkIdResult');

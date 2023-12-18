@@ -6,14 +6,12 @@ import lombok.Data;
 
 @Data
 public class UserSignInDto {
-	private String userid;
-	private String nickname;
+	private String user_id;
 	private String password;
 	
 	public User toEntity() {
 		return User.builder()
-				.userid(userid)
-				.nickname(nickname)
+				.user_id(user_id)
 				.password(password)
 				.build();
 	}
