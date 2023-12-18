@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itwill.project.repository.BestTopicDao">
+	<!-- 전체 게시글 베스트 10개 출력 -->
+	<select id="selectAllBestTopic" resultType="com.itwill.project.domain.BestTopic">
+		select s.sub_category_id, s.sub_category_name, p.post_id, p.title, to_number(nvl(pl.like_point,0)) as "like_point" ,count(c.post_id) as "comment_cnt"
+		from posts p
+		left join sub_category s on p.sub_category_id = s.sub_category_id
+		left join post_like pl on p.post_id = pl.post_id
+		left join comments c on p.post_id = c.post_id
+		where p.post_id in (select post_id from POSTS where created_time >= to_char(systimestamp-5, 'yyyymmdd'))
+		group by s.sub_category_id, s.sub_category_name, p.post_id, title, to_number(nvl(like_point,0))
+		order by "like_point" desc fetch first 10 rows only
+	</select>
+	
+		<select id="selectCategoryBestTopic" resultType="com.itwill.project.domain.BestTopic">
+		select s.sub_category_id, s.sub_category_name, p.post_id, p.title, to_number(nvl(pl.like_point,0)) as "like_point" ,count(c.post_id) as "comment_cnt"
+		from posts p
+		left join sub_category s on p.sub_category_id = s.sub_category_id
+		left join post_like pl on p.post_id = pl.post_id
+		left join comments c on p.post_id = c.post_id
+		where p.post_id in (select post_id from POSTS where created_time >= to_char(systimestamp-5, 'yyyymmdd'))
+		and p.sub_category_id = #{sub_category_id}
+		group by s.sub_category_id, s.sub_category_name, p.post_id, title, to_number(nvl(like_point,0))
+		order by "like_point" desc fetch first 5 rows only
+		</select>
+
+</mapper>

@@ -62,14 +62,28 @@
                             <div class="item">
                             	<%@include file="./fragments/topwriter.jspf"  %>
                             </div>
-                            <div class="item">베스트 게시글</div>
-                            <div style="background-color:silver;"class="item">CCCCCC</div>
-                            <div style="background-color: gray;"class="item">Side Bar B</div>
-                            <div style="background-color: gray;"class="item">EEEEEE</div>
-                            <div style="background-color:silver;"class="item">FFFFFF</div>
-                            <div style="background-color: gray;"class="item">GGGGGG</div>
-                            <div style="background-color:silver;"class="item">HHHHHH</div>
-                            <div style="background-color: gray;"class="item">IIIIII</div>
+                            <div class="item">
+                            	<%@ include file="./fragments/main/maintopicbest.jspf" %>
+                            </div>
+                            <div class="item">
+                            	<%@ include file="./fragments/main/fault.jspf" %>
+                            </div>
+                            <div class="item"></div><%-- 오른쪽 사이드 바 : 사용 안함 --%>
+                            <div class="item">
+								<%@ include file="./fragments/main/idiot.jspf" %>
+							</div>
+                            <div class="item">
+								<%@ include file="./fragments/main/envy.jspf"  %>
+							</div>
+                            <div class="item">
+                            	<%@ include file="./fragments/main/caraccident.jspf" %>
+							</div>
+                            <div class="item">
+                            	<%@ include file="./fragments/main/gameaccident.jspf" %>
+                            </div>
+                            <div class="item">
+                            	<%@ include file="./fragments/main/etcaccident.jspf" %>
+                            </div>
                             <div style="background-color:rgb(100, 150, 100);"class="item">Footer</div>
                         </div>
                     </div>

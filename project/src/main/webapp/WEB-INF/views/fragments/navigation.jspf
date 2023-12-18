@@ -9,7 +9,8 @@
 <nav class="navbar navbar-expand-lg">
   	<!-- 로고 -->
   	<div class="navbar-brand" >
-	   <a href="/">
+  	   <c:url var="homePage" value="/" />
+	   <a href="${homePage }">
 	   		<img alt="라이프 모자이크 로고" src="./img/logo.png" style="width:130px; height:38px"/>
 	   </a>
   	</div>
@@ -46,7 +47,7 @@
         </li>
         <li class="nav-item">
       	  <c:url var="etcAccident" value="/post/43" />
-          <a class="nav-link active" href="${etcAccident }">게임</a>
+          <a class="nav-link active" href="${etcAccident }">기타</a>
         </li>
         <li class="nav-item">
    	      <c:url var="freeBoard" value="/post/51" />
