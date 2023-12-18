@@ -1,0 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
+<div class="card">
+
+	<div class="card-header">
+		차 사고
+	</div>
+	<div class="card-body">
+	<c:forEach var="car" items="${cars}">
+		<div class="row">
+			<div class="d-none">${car.post_id }</div>
+				<div class="col-5">${car.title }</div>
+			<div class="col row">
+				<div class="col"><span class="pe-2">♥️</span>${car.like_point }</div>
+				<div class="col"><span class="pe-2">🗨️</span>${car.comment_cnt }</div>
+			</div>
+		</div>
+	</c:forEach>
+	</div>
+
+</div>
