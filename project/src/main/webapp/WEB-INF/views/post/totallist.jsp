@@ -40,9 +40,46 @@
                         </c:forEach>
                     </tbody>
         </table>
+        <div class="pageInfo_wrap" >
+            <div class="pageInfo_area">
+                <ul id="pageInfo" class="pageInfo">
+                
+                    <!-- 이전페이지 버튼 -->
+                    <c:if test="${pageMaker.prev}">
+                        <li class="pageInfo_btn previous"><a href="totallist?pageNo=${pageMaker.startPage-1}">Previous</a></li>
+                    </c:if>
+                    
+                    <!-- 각 번호 페이지 버튼 -->
+                    <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+                        <li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? " active":"" }">
+                            <a href="totallist?pageNo=${num}">${num}</a>
+                        </li>
+                    </c:forEach>
+                    
+                    <!-- 다음페이지 버튼 -->
+                    <c:if test="${pageMaker.next}">
+                        <li class="pageInfo_btn next"><a href="totallist?pageNo=${pageMaker.endPage + 1 }">Next</a>
+                        </li>
+                    </c:if> 
+                    
+                </ul>
+            </div>
+        </div>
+    
+
+    
+    <form id="moveForm" method="get">   
+        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
+        <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
+        <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
+        <input type="hidden" name="type" value="${pageMaker.cri.type}">    
+    </form>
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
+                
+        <script src="../js/page.js"></script>
+        
 	</body>
 </html>

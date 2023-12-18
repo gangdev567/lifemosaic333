@@ -2,6 +2,7 @@ package com.itwill.project.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
@@ -19,11 +20,16 @@ public class PostService {
     
     private final PostDao postDao;
 
-    public List<PostListItemDto> read() {
-
-        List<Post> list = postDao.selectOrderByDesc();
+    public List<PostListItemDto> read(Long pageEnd, Long pageStart) {
+        
+        List<Post> list = postDao.selectOrderByDesc(pageEnd, pageStart);
         log.debug("전체포스트 목록 개수 = {}", list.size());
         
         return list.stream().map(PostListItemDto::fromEntity).toList();
+    }
+    
+    public Long getTotal() {
+        
+        return postDao.postCount();
     }
 }
