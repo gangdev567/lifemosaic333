@@ -1,0 +1,33 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@taglib prefix="c" uri="jakarta.tags.core" %>
+
+	<div class="m-4" style="width: 12rem;">
+		  <div class="px-2 my-2" style="height:35px;">
+		  <strong>Top Writers</strong>
+	  	  <hr class="my-2"/>
+	  	  </div>
+	  	  
+	  	  <!-- 아이디 리스트 div -->
+		  <div class="px-3">
+		  
+	  	<c:forEach var="writer" items="${writer }">
+		  
+		  <!-- 아이디 하나 div -->
+		    <div class="row row-cols-auto d-flex justify-content-between">
+		    	<input id="user_id" value="${writer.user_id }" class="d-none"/>
+		    	<div class="col">
+		    	<img src="${writer.profile_url }" style="border-radius:100%; witdh:25px; height:25px;"  />
+		    	<!-- ./images/${writer.profile_url} -->
+		    	<span  class="align-middle fw-bold" style="font-size:10px;">${writer.nickname }</span>
+		    	</div>
+		    	<div class="col">
+		    		<span class="align-middle">🌟</span>
+	    			<span class="text-secondary"  style="font-size:8px;">${writer.cnt }</span>
+    			</div>
+	    	</div>
+	    	
+   		</c:forEach>
+
+		  </div><!-- end of card-body -->		  
+	</div><!-- end of card -->
