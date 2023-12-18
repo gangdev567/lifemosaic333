@@ -35,7 +35,9 @@
                     <a href="${envy}">부럽지?</a>
                 </div>
                 <div class="navitem">
-                    <c:url var="carAccident" value="/post/41"/>
+                    <c:url var="carAccident" value="/post/category">
+                        <c:param name="sub_category_id" value="11"></c:param>
+                    </c:url>
                     <a href="${carAccident}">차사고</a>
                 </div>
                 <div class="navitem">
