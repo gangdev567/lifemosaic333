@@ -17,13 +17,13 @@ public class UserService {
     
     private final UserDao userDao;
     
-    public boolean checkUserid(String userid) {
-        log.debug("checkUserid(userid={})", userid);
+    public boolean checkUserid(String user_id) {
+        log.debug("checkUserid(user_id={})", user_id);
         
-        User user = userDao.selectByUserid(userid);
-        if (user == null) { // USERS 테이블에 userid가 없는 경우 -> 회원가입에서 사용가능한 아이디 
+        User user = userDao.selectByUserid(user_id);
+        if (user == null) { // USERS 테이블에 user_id가 없는 경우 -> 회원가입에서 사용가능한 아이디 
             return true;
-        } else { // USERS 테이블에 userid가 이미 있는 경우 -> 회원가입에서 사용 불가능한 아이디
+        } else { // USERS 테이블에 user_id가 이미 있는 경우 -> 회원가입에서 사용 불가능한 아이디
             return false;
         }
     }
