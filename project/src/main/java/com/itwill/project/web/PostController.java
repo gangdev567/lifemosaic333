@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.project.domain.Criteria;
 import com.itwill.project.domain.Post;
+import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
@@ -74,9 +75,6 @@ public class PostController {
         model.addAttribute("cId", sub_category_id);
     }
     
-<<<<<<< HEAD
-
-=======
     @GetMapping("/create/")
     public void create(Model model, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("create(sub_category_id = {})", sub_category_id);
@@ -92,5 +90,12 @@ public class PostController {
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
     }
     
->>>>>>> 176df4fc780cc99689204beba306929a1d129b77
+
+    @GetMapping("/detail")
+    public void detail(Model model, @RequestParam(name = "post_id") Long post_id) {
+        log.debug("게시글 입니다.");
+        
+        PostDetail post = postService.detail(post_id);
+        model.addAttribute("post", post);
+    }
 }

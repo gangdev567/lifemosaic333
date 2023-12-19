@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.Post;
+import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
 import com.itwill.project.repository.PostDao;
@@ -48,9 +49,7 @@ public class PostService {
         return postDao.postCountBySubCategoryId(subCategoryId);
     }
 
-<<<<<<< HEAD
 
-=======
     public int create(PostCreateDto dto) {
         
         int result = postDao.insert(dto.toEntity());
@@ -58,5 +57,11 @@ public class PostService {
         
         return result;
     }
->>>>>>> 176df4fc780cc99689204beba306929a1d129b77
+
+    
+    public PostDetail detail(Long post_id) {
+        log.debug("post_id = {}", post_id);
+        
+        return postDao.selectById(post_id);
+    }
 }
