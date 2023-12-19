@@ -100,12 +100,19 @@
             <artifactId>spring-context</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!-- Spring Web -->
+        <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>${spring.version}</version>
+    </dependency>
         <!-- Spring Web MVC-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
         <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -139,14 +146,23 @@
             <artifactId>mybatis</artifactId>
             <version>3.5.14</version>
         </dependency>
-
-        <!-- An easy-to-use Spring bridge for MyBatis sql mapping framework. -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-            <version>3.0.3</version>
-        </dependency>
-
+<!-- Mybatis Spring-->
+		<!-- An easy-to-use Spring bridge for MyBatis sql mapping framework.-->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<version>3.0.3</version>
+		</dependency>
+		
+		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+		<!-- 이미지 저장을 위한 메이븐 설정-->
+		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
     </dependencies>
 
     <build>

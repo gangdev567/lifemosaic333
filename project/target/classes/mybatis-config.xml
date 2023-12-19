@@ -15,5 +15,6 @@
         <typeAlias type="com.itwill.project.domain.User" alias="User" />
 		<typeAlias type="com.itwill.project.domain.SettingUser" alias="SettingUser" />
     </typeAliases>
-        
+    
+    
 </configuration>

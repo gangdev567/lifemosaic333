@@ -61,6 +61,7 @@ public class UserController {
     	if (user != null) { // 아이디와 비밀번호 모두 일치하는 사용자가 있는 경우 -> 로그인 성공
     		 // 세션에 로그인 사용자 정보를 저장
     		session.setAttribute("signedInUser", user.getUser_id());
+    		log.debug("signedInUser: {}", session.getAttribute("signedInUser"));
     		// 타겟 페이지로 이동
     		return (target.equals("")) ? "redirect:/" : "redirect:" + target;
     	} else { // 아이디와 비밀번호가 일치하는 사용자가 없는 경우 -> 로그인 실패
@@ -85,10 +86,10 @@ public class UserController {
     
     @GetMapping("/checkid")
     @ResponseBody
-    public ResponseEntity<String> checkId(@RequestParam(name = "userid") String userid) {
-        log.debug("checkId(userid={})", userid);
+    public ResponseEntity<String> checkId(@RequestParam(name = "user_id") String user_id) {
+        log.debug("checkId(user_id={})", user_id);
         
-        boolean result = userService.checkUserid(userid);
+        boolean result = userService.checkUserid(user_id);
         if (result) {
             return ResponseEntity.ok("Y");
         } else {
