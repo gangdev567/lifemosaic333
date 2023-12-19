@@ -6,11 +6,15 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwill.project.domain.Criteria;
+import com.itwill.project.domain.Post;
 import com.itwill.project.dto.post.PageMakerDto;
+import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
 import com.itwill.project.service.PostService;
 
@@ -70,5 +74,23 @@ public class PostController {
         model.addAttribute("cId", sub_category_id);
     }
     
+<<<<<<< HEAD
 
+=======
+    @GetMapping("/create/")
+    public void create(Model model, @RequestParam(name = "sub_category_id") Long sub_category_id) {
+        log.debug("create(sub_category_id = {})", sub_category_id);
+        model.addAttribute("cId", sub_category_id);
+    }
+    
+    @PostMapping("/create/")
+    public String create(@ModelAttribute PostCreateDto dto, @RequestParam(name = "sub_category_id") Long sub_category_id) {
+        log.debug("게시글 작성이에용");
+        
+        postService.create(dto);
+        
+        return "redirect:/post/list/?sub_category_id=" + sub_category_id;
+    }
+    
+>>>>>>> 176df4fc780cc99689204beba306929a1d129b77
 }

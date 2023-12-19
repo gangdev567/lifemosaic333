@@ -92,15 +92,15 @@
  <!-- 로그인 회원가입 -->
 		<div>
 		<%-- 로그인/회원 가입 링크 --%>
-		<c:if test="${empty signedInUser }">
+		<c:if test="${empty signedInUser}">
 			<ul  class="navbar-nav mb-2 mb-lg-0">
 		    	<li  class="nav-item">
 		    		<c:url var="signInPage" value="/user/signin" />
-		    		<a class="nav-link active" href="${signInPage }">로그인</a>
+		    		<a class="nav-link active" href="${signInPage}">로그인</a>
 		    	</li>
 		    	<li  class="nav-item">
 		    		<c:url var="signUpPage" value="/user/signup" />
-			   		<a class="nav-link active" href="${signUpPage }">회원가입</a>
+			   		<a class="nav-link active" href="${signUpPage}">회원가입</a>
 				</li>
 			</ul>
 		</c:if>
