@@ -9,6 +9,7 @@ import lombok.Data;
 @Builder
 public class Post {
 
+    private Long rnum;
     private String user_id;
     private Long post_id;
     private String title;
