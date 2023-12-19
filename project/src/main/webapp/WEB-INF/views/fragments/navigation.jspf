@@ -87,7 +87,7 @@
 				</li>
 			</ul>
 		</c:if>
-		<%-- 로그아웃 --%>
+		<%-- 로그아웃/회원 탈퇴 --%>
 		<c:if test="${not empty signedInUser}">
            <li class="nav-item">
            		<span class="text-primary fw-bold">${signedInUser}</span>
@@ -95,6 +95,10 @@
                <a class="nav-link" href="${signOutPage}">
                    <span>로그아웃</span>
                </a>
+           </li>
+           <%-- TODO: 회원탈퇴 나중에 DB 거의 완성되면 작성 --%>
+           <li class="nav-item">
+           		<span class="text-danger fw-bold">회원탈퇴</span>
            </li>
        </c:if>
 		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
