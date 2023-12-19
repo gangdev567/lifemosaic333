@@ -48,9 +48,7 @@ public class PostService {
         return postDao.postCountBySubCategoryId(subCategoryId);
     }
 
-<<<<<<< HEAD
 
-=======
     public int create(PostCreateDto dto) {
         
         int result = postDao.insert(dto.toEntity());
@@ -58,5 +56,5 @@ public class PostService {
         
         return result;
     }
->>>>>>> 176df4fc780cc99689204beba306929a1d129b77
+
 }

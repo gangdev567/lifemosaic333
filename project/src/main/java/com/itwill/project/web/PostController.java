@@ -74,9 +74,7 @@ public class PostController {
         model.addAttribute("cId", sub_category_id);
     }
     
-<<<<<<< HEAD
 
-=======
     @GetMapping("/create/")
     public void create(Model model, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("create(sub_category_id = {})", sub_category_id);
@@ -92,5 +90,5 @@ public class PostController {
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
     }
     
->>>>>>> 176df4fc780cc99689204beba306929a1d129b77
+
 }
