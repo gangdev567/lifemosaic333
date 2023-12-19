@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.Post;
+import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
 import com.itwill.project.repository.PostDao;
@@ -57,4 +58,13 @@ public class PostService {
         return result;
     }
 
+<<<<<<< HEAD
+=======
+    
+    public PostDetail detail(Long post_id) {
+        log.debug("post_id = {}", post_id);
+        
+        return postDao.selectById(post_id);
+    }
+>>>>>>> 36a8fcfb87a46c7484fc0dfe11ad34995039f046
 }

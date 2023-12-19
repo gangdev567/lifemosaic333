@@ -8,6 +8,26 @@
         http://mybatis.org/schema/mybatis-spring https://mybatis.org/schema/mybatis-spring.xsd">
 
     <!-- bean definitions here -->
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+    	<property name="host" value="smtp.gmail.com" />
+    	<property name="port" value="587" />
+    	<!-- 나중에 테스트 + 실사용할 때 아이디와 비밀번호 채워서 하기 -->
+    	<property name="username" value="이메일" />
+    	<property name="password" value="앱 비밀번호" />
+    	<property name="javaMailProperties">
+    		<props>
+    			<prop key="mail.transport.protocol">smtp</prop> <!-- 프로토콜로 smtp 사용 -->
+    			<prop key="mail.smtp.auth">true</prop> <!-- smtp 서버에 인증이 필요 -->
+    			<!-- gmail의 경우 보안문제 업데이트로 인해 SSLSocketFactory를 추가해야 smtp 사용 가능. -->
+    			<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop> <!-- StARTTLS(TLS를 시작하는 명령)를 사용하여 암호화된 통신을 활성 -->
+                <prop key="mail.debug">true</prop> <!-- 디버깅 정보 출력 -->
+                <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop> <!-- smtp 서버의 ssl 인증서를 신뢰 -->
+				<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop> <!-- 사용할 ssl 프로토콜 버전 -->
+    		</props>
+    	</property>
+    </bean>
+    
     <!-- HikariConfig 객체(bean) 생성을 위한 설정 -->
     <!-- HikariConfig hikariConfig = new HikariConfig() -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
