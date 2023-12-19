@@ -11,6 +11,7 @@ import lombok.Data;
 @Builder
 public class PostListItemDto {
 
+    private Long rnum;
     private String user_id;
     private Long post_id;
     private String title;
