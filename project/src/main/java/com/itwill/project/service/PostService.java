@@ -58,13 +58,12 @@ public class PostService {
         return result;
     }
 
-<<<<<<< HEAD
-=======
+
     
     public PostDetail detail(Long post_id) {
         log.debug("post_id = {}", post_id);
         
         return postDao.selectById(post_id);
     }
->>>>>>> 36a8fcfb87a46c7484fc0dfe11ad34995039f046
+
 }

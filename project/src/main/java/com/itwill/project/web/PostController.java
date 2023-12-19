@@ -75,10 +75,7 @@ public class PostController {
         model.addAttribute("cId", sub_category_id);
     }
     
-<<<<<<< HEAD
 
-=======
->>>>>>> 36a8fcfb87a46c7484fc0dfe11ad34995039f046
     @GetMapping("/create/")
     public void create(Model model, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("create(sub_category_id = {})", sub_category_id);
@@ -95,8 +92,7 @@ public class PostController {
     }
     
 
-<<<<<<< HEAD
-=======
+
     @GetMapping("/detail")
     public void detail(Model model, @RequestParam(name = "post_id") Long post_id) {
         log.debug("게시글 입니다.");
@@ -104,5 +100,5 @@ public class PostController {
         PostDetail post = postService.detail(post_id);
         model.addAttribute("post", post);
     }
->>>>>>> 36a8fcfb87a46c7484fc0dfe11ad34995039f046
+
 }
