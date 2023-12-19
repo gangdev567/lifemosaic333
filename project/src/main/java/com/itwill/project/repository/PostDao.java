@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.itwill.project.domain.Post;
+import com.itwill.project.domain.PostDetail;
 
 public interface PostDao {
     
@@ -16,7 +17,7 @@ public interface PostDao {
     
     Long postCountBySubCategoryId(@Param("subCategoryId") Long subCategoryId);
     
-    Post selectById(long id);
+    PostDetail selectById(Long post_id);
     
     int insert(Post post);
     
