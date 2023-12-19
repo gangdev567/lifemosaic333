@@ -70,11 +70,11 @@
         update POSTS set TITLE = #{title},
                     CONTENT = #{content},  
                     MODIFIED_TIME = systimestamp 
-                    where ID = #{post_id}
+                    where POST_ID = #{post_id}
     </update>
     
     <delete id="delete">
-        delete from POSTS where ID = #{post_id}
+        delete from POSTS where POST_ID = #{post_id}
     </delete>
     
      <!-- POSTS 테이블에서 제목, 내용, 제목 또는 내용, 작성자로 검색하기 
