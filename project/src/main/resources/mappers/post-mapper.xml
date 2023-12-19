@@ -8,16 +8,51 @@
     
     <!-- POSTS 테이블 전체 검색, 아이디 내림차순 정렬 -->
     <select id="selectOrderByDesc" resultType="Post">
-        SELECT posts.*, users.NICKNAME FROM posts INNER JOIN users ON posts.user_id = users.user_id order by post_id desc
+        SELECT *
+        FROM
+        (
+        SELECT rownum as rnum, sub_query.*
+        FROM
+        (
+        SELECT posts.*, users.NICKNAME
+        FROM posts
+        INNER JOIN users ON posts.user_id = users.user_id
+        ORDER BY post_id DESC
+        ) sub_query
+        WHERE rownum <![CDATA[ <= ]]> #{pageEnd}
+        )
+        WHERE rnum <![CDATA[ >= ]]> #{pageStart}
     </select>
     
-    <select id="postCount" resultType="Long">
-        SELECT COUNT(*) FROM posts;
+    <select id="selectBySubCategoryIdOrderByDesc" resultType="Post">
+        SELECT *
+        FROM
+        (
+        SELECT rownum as rnum, sub_query.*
+        FROM
+        (
+        SELECT posts.*, users.NICKNAME
+        FROM posts
+        INNER JOIN users ON posts.user_id = users.user_id
+        where sub_category_id = #{subCategoryId}
+        ORDER BY post_id DESC
+        ) sub_query
+        WHERE rownum <![CDATA[ <= ]]> #{pageEnd}
+        )
+        WHERE rnum <![CDATA[ >= ]]> #{pageStart}
+    </select>
+    
+    <select id="postCount" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM posts
+    </select>
+    
+    <select id="postCountBySubCategoryId" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM posts where sub_category_id = #{subCategoryId}
     </select>
             
 
     <!-- POSTS 테이블에서 아이디(PK)로 검색 -->
-    <select id="selectById" resultType="Post">
+    <select id="selectById" resultType="PostDetail">
         SELECT posts.*, users.NICKNAME FROM posts
         INNER JOIN users ON
         posts.user_id = users.user_id
@@ -27,12 +62,12 @@
     <!-- POSTS 테이블에 새 포스트 삽입 -->
     <insert id="insert">
         INSERT INTO POSTS (USER_ID, TITLE, CONTENT, sub_category_id) 
-        VALUES (#{user_id}, #{title}, #{content}, #{sub_categoru_id})
+        VALUES (#{user_id}, #{title}, #{content}, #{sub_category_id})
     </insert>
     
     <!--POSTS 테이블에서 해당 아이디의 제목, 내용, 수정시간을 업데이트 -->
     <update id="update">
-        update POSTS set TITLE = #{title}, 
+        update POSTS set TITLE = #{title},
                     CONTENT = #{content},  
                     MODIFIED_TIME = systimestamp 
                     where ID = #{post_id}

@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 @Builder
-public class Post {
+public class PostDetail {
 
-    private Long rnum;
+    
     private String user_id;
     private Long post_id;
     private String title;
@@ -20,5 +20,5 @@ public class Post {
     private String image_path;
     private Long view_count;
     private String nickname;
-
+    
 }

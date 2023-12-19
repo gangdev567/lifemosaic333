@@ -21,4 +21,18 @@ public class SettingService {
 		log.debug("SettingService : user={}",user);
 		return user;
 	}
+	
+	public boolean checkNickname(String nickname) {
+		log.debug("checkNickname(nickname={})",nickname);
+		
+		SettingUser user = settingDao.selectNickname(nickname);
+		
+		log.debug("User={}",user);
+		
+		if(user == null) {
+			return false;
+		}else {
+			return true;
+		}
+	}
 }

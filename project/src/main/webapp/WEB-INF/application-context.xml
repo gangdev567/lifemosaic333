@@ -50,11 +50,7 @@
         <property name="mapperLocations" value="classpath:/mappers/**/*.xml" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
     </bean>
-    
-    <!-- Mybatis 프레임워크에서 생성하고 관리하는 빈(bean)들을 base-package와
-        그 하위 패키지에서 찾음.
-        PostDao, UserDao 인터페이스들을 작성하는 패키지.
-     -->
+  
     <mybatis:scan base-package="com.itwill.project.repository"/>
     
     <!-- 스프링 컨테이너에서 컴포넌트 빈(예: @Service, 또는 @Component, ...)들을
