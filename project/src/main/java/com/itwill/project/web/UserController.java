@@ -60,7 +60,7 @@ public class UserController {
     	User user = userService.read(dto);
     	if (user != null) { // 아이디와 비밀번호 모두 일치하는 사용자가 있는 경우 -> 로그인 성공
     		 // 세션에 로그인 사용자 정보를 저장
-    		session.setAttribute("signedInUser", user.getUserid());
+    		session.setAttribute("signedInUser", user.getUser_id());
     		// 타겟 페이지로 이동
     		return (target.equals("")) ? "redirect:/" : "redirect:" + target;
     	} else { // 아이디와 비밀번호가 일치하는 사용자가 없는 경우 -> 로그인 실패

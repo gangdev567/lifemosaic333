@@ -41,6 +41,13 @@
                         </c:forEach>
                     </tbody>
         </table>
+            <div>
+                <c:url var="createPage" value="/post/create/" >
+                    <c:param name="sub_category_id" value="${cId}"></c:param>
+                </c:url>
+                <a class="btn btn-primary fs-5 fw-bold" href="${createPage}">글 쓰기</a>
+            </div>
+        
         <div class="pageInfo_wrap" >
             <div class="pageInfo_area">
                 <ul id="pageInfo" class="pageInfo">

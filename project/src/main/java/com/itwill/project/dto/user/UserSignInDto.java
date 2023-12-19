@@ -12,7 +12,7 @@ public class UserSignInDto {
 	
 	public User toEntity() {
 		return User.builder()
-				.userid(userid)
+				.user_id(userid)
 				.nickname(nickname)
 				.password(password)
 				.build();
