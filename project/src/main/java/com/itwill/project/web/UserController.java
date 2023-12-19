@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwill.project.domain.User;
 import com.itwill.project.dto.user.UserRegisterDto;
 import com.itwill.project.dto.user.UserSignInDto;
+import com.itwill.project.service.MailSendService;
 import com.itwill.project.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -29,6 +30,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserController {
     
     private final UserService userService;
+    private final MailSendService mailService;
     
     @GetMapping("/signup")
     public void signup() {
@@ -109,5 +111,14 @@ public class UserController {
             return ResponseEntity.ok("N");
         }
     }
-
+    
+	// 이메일 인증
+	@GetMapping("/mailCheck")
+	@ResponseBody
+	public String mailCheck(@RequestParam(name = "email") String email) {
+		log.debug("이메일 인증 요청이 들어옴!");
+		log.debug("이메일 인증 이메일 : {}", email);
+		return mailService.joinEmail(email);
+	}
+    
 }

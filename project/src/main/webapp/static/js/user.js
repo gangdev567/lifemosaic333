@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let pwdChecked = false;
     let emailChecked = false;
     let nicknameChecked = false;
-    
+    let code = "";
     const btnRegister = document.querySelector('button#btnRegister');
         
     const inputUserid = document.querySelector('input#user_id');
@@ -20,9 +20,61 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputPassword = document.querySelector('input#password');
     inputPassword.addEventListener('change', checkPassword);
     
-    const inputEmail = document.querySelector('input#email');
-    inputEmail.addEventListener('change', checkEmail);
-    
+    const inputEmail = document.getElementById('mail-Check-Btn');
+    inputEmail.addEventListener('click', sendEmail);
+	
+	// 이메일 인증
+	function sendEmail(e){
+		const email = document.getElementById('userEmail1').value + document.getElementById('userEmail2').value;
+		console.log('완성된 이메일 : ' + email);
+    const checkInput = document.querySelector('.mail-check-input');
+
+    axios.get(baseUrl = 'mailCheck?email=' + email)
+        .then(function(response) {
+            console.log("data : " + response.data);
+            checkInput.disabled = false;
+            code = response.data;
+            alert('인증번호가 전송되었습니다.');
+        })
+        .catch(function(error) {
+            console.log('Error on request:', error);
+        });
+        
+	}
+	
+	// 인증번호 비교 
+	// blur -> focus가 벗어나는 경우 발생
+	document.querySelector('.mail-check-input').addEventListener('blur', function() {
+		const inputCode = this.value.trim();
+		const codeAsString = code.toString().trim();
+		
+		console.log("code: " + codeAsString, " Type of code: " + typeof codeAsString);
+		console.log("inputCode:" + inputCode + " Type of inputCode: " + typeof inputCode);
+		console.log("inputCode === code: " + (inputCode === codeAsString));
+		
+		const resultMsg = document.getElementById('mail-check-warn');
+
+		if (inputCode === codeAsString) {
+			emailChecked = true;
+			resultMsg.innerHTML = '인증번호가 일치합니다.';
+			resultMsg.style.color = 'green';
+			document.getElementById('mail-Check-Btn').disabled = true;
+			document.getElementById('userEmail1').readOnly = true;
+			document.getElementById('userEmail2').readOnly = true;
+			document.getElementById('userEmail2').onfocus = function() { this.initialSelect = this.selectedIndex; };
+			document.getElementById('userEmail2').onchange = function() { this.selectedIndex = this.initialSelect; };
+		} else {
+			resultMsg.innerHTML = '인증번호가 불일치 합니다. 다시 확인해주세요!.';
+			resultMsg.style.color = 'red';
+		}
+		
+		if (idChecked && nicknameChecked && pwdChecked && emailChecked) {
+            btnRegister.classList.remove('disabled');
+        } else {
+            btnRegister.classList.add('disabled');
+        }
+	});
+
     async function checkUserid(e) {
 		
         const user_id = e.target.value; // 먼저 nickname 변수를 정의
@@ -85,20 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
             pwdChecked = false;
         } else {
             pwdChecked = true;
-        }
-        
-        if (idChecked && pwdChecked && emailChecked) {
-            btnRegister.classList.remove('disabled');
-        } else {
-            btnRegister.classList.add('disabled');
-        }
-    }
-    
-    function checkEmail(e) {
-        if (e.target.value === '') {
-            emailChecked = false;
-        } else {
-            emailChecked = true;
         }
         
         if (idChecked && pwdChecked && emailChecked) {

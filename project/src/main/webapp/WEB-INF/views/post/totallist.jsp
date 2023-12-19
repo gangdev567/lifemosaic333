@@ -15,6 +15,7 @@
 	<body>
         <%@ include file="../fragments/navigation.jspf" %>
         
+
         <table class="table table-striped table-hover card-body my-2">
                     <thead>
                         <tr>
@@ -74,6 +75,7 @@
         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
         <input type="hidden" name="type" value="${pageMaker.cri.type}">    
     </form>
+
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 

@@ -9,6 +9,7 @@ import com.itwill.project.domain.PostDetail;
 
 public interface PostDao {
     
+
     List<Post> selectOrderByDesc(@Param("pageEnd") Long pageEnd,@Param("pageStart") Long pageStart);
     
     List<Post> selectBySubCategoryIdOrderByDesc (@Param("subCategoryId") Long subCategoryId, @Param("pageEnd") Long pageEnd,@Param("pageStart") Long pageStart);
@@ -24,5 +25,6 @@ public interface PostDao {
     int update(Post post);
     
     int delete(Long id);
+
     
 }

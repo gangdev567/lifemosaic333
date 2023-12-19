@@ -23,6 +23,7 @@ public class PostService {
     
     private final PostDao postDao;
 
+
     public List<PostListItemDto> read(Long pageEnd, Long pageStart) {
         
         List<Post> list = postDao.selectOrderByDesc(pageEnd, pageStart);
@@ -49,6 +50,7 @@ public class PostService {
         return postDao.postCountBySubCategoryId(subCategoryId);
     }
 
+
     public int create(PostCreateDto dto) {
         
         int result = postDao.insert(dto.toEntity());
@@ -56,6 +58,7 @@ public class PostService {
         
         return result;
     }
+
     
     public PostDetail detail(Long post_id) {
         log.debug("post_id = {}", post_id);
