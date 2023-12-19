@@ -104,6 +104,16 @@
 				</li>
 			</ul>
 		</c:if>
+		<%-- 로그아웃 --%>
+		<c:if test="${not empty signedInUser}">
+           <li class="nav-item">
+           		<span class="text-primary fw-bold">${signedInUser}</span>
+               <c:url var="signOutPage" value="/user/signout" />
+               <a class="nav-link" href="${signOutPage}">
+                   <span>로그아웃</span>
+               </a>
+           </li>
+       </c:if>
 		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
 		<c:if test="${not empty signedInUser }">
 			<ul class="navbar-nav">
