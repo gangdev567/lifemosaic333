@@ -7,10 +7,17 @@
 	<meta charset="UTF-8">
 	<title>Project22</title>
 	
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+
+<!-- user.js에서 이메일 인증 url의 앞부분 -->
+<script>
+	var baseUrl = "<c:url value='/project/user/'/>";
+</script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
         crossorigin="anonymous">
+
 </head>
 <body>
 	<div class="container-fluid">
@@ -20,13 +27,13 @@
         <main class="my-2">
             <div class="mhy-2 card card-body">
                 <c:url var="signUpPage" value="/user/signup" />
-                <form action="${signUpPage}" method="post">
+                <form action="${signUpPage}" method="post" onsubmit="combineEmail()">
                     <div class="my-2">
                         <input type="text" class="form-control"
-                            id="userid" name="userid" placeholder="userid" required autofocus />
+                            id="user_id" name="user_id" placeholder="user_id" required autofocus />
                     </div>
                     <div id="checkIdResult">
-                        <!-- userid 중복체크 결과 표시 -->
+                        <!-- user_id 중복체크 결과 표시 -->
                     </div>
                     <div class="my-2">
                         <input type="text" class="form-control"
@@ -39,16 +46,47 @@
                         <input type="password" class="form-control"
                             id="password" name="password" placeholder="password" required />
                     </div>
-                    
-                    <div class="my-2">
-                        <input type="email" class="form-control"
-                            id="email" name="email" placeholder="email" required />
-                    </div>
-                    <div>
+
+					<div class="form-group email-form">
+						<label for="email">이메일</label>
+						<div class="input-group">
+							<input type="text" class="form-control" name="userEmail1"
+								id="userEmail1" placeholder="이메일"> <select
+								class="form-control" name="userEmail2" id="userEmail2">
+								<option>@naver.com</option>
+								<option>@daum.net</option>
+								<option>@gmail.com</option>
+							</select>
+						</div>
+						<div class="input-group-addon">
+							<button type="button" class="btn btn-primary" id="mail-Check-Btn">본인인증</button>
+						</div>
+						<div class="mail-check-box">
+							<input class="form-control mail-check-input"
+								placeholder="인증번호 6자리를 입력해주세요!" disabled="disabled"
+								maxlength="6">
+						</div>
+						<span id="mail-check-warn"></span>
+					</div>
+
+					<div>
                         <button type="submit" id="btnRegister" 
                             class="form-control btn btn-success disabled">회원가입</button>
                     </div>
-                </form>
+
+					<input type="hidden" name="email" id="combinedEmail">
+
+					<script>
+						function combineEmail() {
+							var emailPart1 = document
+									.getElementById('userEmail1').value;
+							var emailPart2 = document
+									.getElementById('userEmail2').value;
+							document.getElementById('combinedEmail').value = emailPart1
+									+ emailPart2;
+						}
+					</script>
+				</form>
             </div>
         </main>
     </div>

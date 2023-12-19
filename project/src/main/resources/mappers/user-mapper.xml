@@ -5,7 +5,7 @@
 <mapper namespace="com.itwill.project.repository.UserDao">
 	<!--  아이디 중복 체크 -->
 	<select id="selectByUserid" resultType="User">
-		select * from USERS where USER_ID = #{userid}
+		select * from USERS where USER_ID = #{user_id}
 	</select>
 	
 	<!--  닉네임 중복 체크 -->
@@ -16,11 +16,11 @@
 	<!--  회원 가입 -->
 	<insert id="insert">
 		insert into USERS (USER_ID, NICKNAME, PASSWORD, EMAIL)
-		values (#{userid}, #{nickname}, #{password}, #{email}) <!-- user.getUserid, user.getPassword, user.getEmail -->
+		values (#{user_id}, #{nickname}, #{password}, #{email}) <!-- user.getUserid, user.getPassword, user.getEmail -->
 	</insert>
 	
 	<!-- 로그인 -->
 	<select id="selectByUseridAndPassword" resultType="User">
-		select * from USERS where USER_ID = #{userid} and PASSWORD = #{password}
+		select * from USERS where USER_ID = #{user_id} and PASSWORD = #{password}
 	</select>
 </mapper>
