@@ -27,7 +27,7 @@
                 	</c:if>
                     <div class="my-2">
                         <input type="text" class="form-control" 
-                            name="userid" placeholder="아이디" required autofocus />
+                            name="user_id" placeholder="아이디" required autofocus />
                     </div>
                     <div class="my-2">
                         <input type="password" class="form-control"

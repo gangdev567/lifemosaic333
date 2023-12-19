@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>life mosaic</title>
+		<title>Insert title here</title>
 		
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -14,9 +14,8 @@
 	</head>
 	<body>
         <%@ include file="../fragments/navigation.jspf" %>
-        
-
-        <table class="table table-striped table-hover card-body my-2">
+    
+		<table class="table table-striped table-hover card-body my-2">
                     <thead>
                         <tr>
                             <th>번호</th>
@@ -31,6 +30,7 @@
                                 <td>${p.post_id}</td>
                                 <td>
                                     <c:url var="postDetails" value="/post/details">
+                                        
                                         <c:param name="id" value="${p.post_id}" />
                                     </c:url>
                                     <a href="${postDetails}">${p.title}</a>
@@ -47,19 +47,19 @@
                 
                     <!-- 이전페이지 버튼 -->
                     <c:if test="${pageMaker.prev}">
-                        <li class="pageInfo_btn previous"><a href="totallist?pageNo=${pageMaker.startPage-1}">Previous</a></li>
+                        <li class="pageInfo_btn previous"><a href="?sub_category_id=${cId}&pageNo=${pageMaker.startPage-1}">Previous</a></li>
                     </c:if>
                     
                     <!-- 각 번호 페이지 버튼 -->
                     <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
                         <li class="pageInfo_btn ${pageMaker.cri.pageNum == num ? " active":"" }">
-                            <a href="totallist?pageNo=${num}">${num}</a>
+                            <a href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
                         </li>
                     </c:forEach>
                     
                     <!-- 다음페이지 버튼 -->
                     <c:if test="${pageMaker.next}">
-                        <li class="pageInfo_btn next"><a href="totallist?pageNo=${pageMaker.endPage + 1 }">Next</a>
+                        <li class="pageInfo_btn next"><a href="?sub_category_id=${cId}&pageNo=${pageMaker.endPage + 1 }">Next</a>
                         </li>
                     </c:if> 
                     
@@ -75,13 +75,11 @@
         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
         <input type="hidden" name="type" value="${pageMaker.cri.type}">    
     </form>
-
-		
+        
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
                 
         <script src="../js/page.js"></script>
-        
 	</body>
 </html>
