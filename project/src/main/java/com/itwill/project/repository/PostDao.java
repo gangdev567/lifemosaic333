@@ -24,7 +24,7 @@ public interface PostDao {
     
     int update(Post post);
     
-    int delete(long id);
+    int delete(Long id);
 
     
 }
