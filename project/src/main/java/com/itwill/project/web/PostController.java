@@ -1,8 +1,8 @@
 package com.itwill.project.web;
 
+
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping("/post")
 public class PostController {
+	
 
     private final PostService postService;
     
@@ -89,6 +90,7 @@ public class PostController {
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
     }
     
+
     @GetMapping("/detail")
     public void detail(Model model, @RequestParam(name = "post_id") Long post_id) {
         log.debug("게시글 입니다.");
@@ -96,5 +98,4 @@ public class PostController {
         PostDetail post = postService.detail(post_id);
         model.addAttribute("post", post);
     }
-    
 }
