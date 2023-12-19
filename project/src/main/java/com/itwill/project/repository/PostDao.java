@@ -10,7 +10,11 @@ public interface PostDao {
     
     List<Post> selectOrderByDesc(@Param("pageEnd") Long pageEnd,@Param("pageStart") Long pageStart);
     
+    List<Post> selectBySubCategoryIdOrderByDesc (@Param("subCategoryId") Long subCategoryId, @Param("pageEnd") Long pageEnd,@Param("pageStart") Long pageStart);
+    
     Long postCount();
+    
+    Long postCountBySubCategoryId(@Param("subCategoryId") Long subCategoryId);
     
     Post selectById(long id);
     

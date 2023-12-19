@@ -46,4 +46,27 @@ public class PostController {
         model.addAttribute("pageMaker", pageMake);
     }
     
+    @GetMapping("/list/")
+    public void listBySubCategoryId(Model model, Criteria cri, @RequestParam(name = "sub_category_id") Long sub_category_id, @RequestParam(value = "pageNo", defaultValue = "1") Long pageNum) {
+        log.debug("listBySubCategoryId (sub_category_id = {})", sub_category_id);
+        
+        Long pageEnd = pageNum * 10;
+        Long pageStart = ((pageNum-1)*10)+1;
+        
+        List<PostListItemDto> list = postService.readBySubCategoryId(sub_category_id, pageEnd, pageStart);  
+        
+        model.addAttribute("posts", list);
+        
+        Long total = postService.getTotal(sub_category_id);
+        
+        cri.setAmount(10);
+        cri.setPageNum(pageNum);
+        
+        PageMakerDto pageMake = new PageMakerDto(cri, total);
+
+        
+        model.addAttribute("pageMaker", pageMake);
+        model.addAttribute("cId", sub_category_id);
+    }
+    
 }

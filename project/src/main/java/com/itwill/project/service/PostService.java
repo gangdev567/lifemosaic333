@@ -28,8 +28,22 @@ public class PostService {
         return list.stream().map(PostListItemDto::fromEntity).toList();
     }
     
+    public List<PostListItemDto> readBySubCategoryId(Long subCategoryId, Long pageEnd, Long pageStart) {
+        
+        List<Post> list = postDao.selectBySubCategoryIdOrderByDesc(subCategoryId, pageEnd, pageStart);
+        log.debug("전체포스트 목록 개수 = {}", list.size());
+        
+        return list.stream().map(PostListItemDto::fromEntity).toList();
+    }
+    
     public Long getTotal() {
         
         return postDao.postCount();
     }
+    
+    public Long getTotal(Long subCategoryId) {
+        
+        return postDao.postCountBySubCategoryId(subCategoryId);
+    }
+
 }

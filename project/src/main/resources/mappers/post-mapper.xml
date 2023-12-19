@@ -24,8 +24,30 @@
         WHERE rnum <![CDATA[ >= ]]> #{pageStart}
     </select>
     
+    <select id="selectBySubCategoryIdOrderByDesc" resultType="Post">
+        SELECT *
+        FROM
+        (
+        SELECT rownum as rnum, sub_query.*
+        FROM
+        (
+        SELECT posts.*, users.NICKNAME
+        FROM posts
+        INNER JOIN users ON posts.user_id = users.user_id
+        where sub_category_id = #{subCategoryId}
+        ORDER BY post_id DESC
+        ) sub_query
+        WHERE rownum <![CDATA[ <= ]]> #{pageEnd}
+        )
+        WHERE rnum <![CDATA[ >= ]]> #{pageStart}
+    </select>
+    
     <select id="postCount" resultType="java.lang.Long">
         SELECT COUNT(*) FROM posts
+    </select>
+    
+    <select id="postCountBySubCategoryId" resultType="java.lang.Long">
+        SELECT COUNT(*) FROM posts where sub_category_id = #{subCategoryId}
     </select>
             
 

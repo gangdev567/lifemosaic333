@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+
 <!DOCTYPE html>
 <div class="my-4">
 <nav class="navbar navbar-expand-lg">
@@ -23,32 +24,50 @@
       <%-- 카테고리 --%>
       <ul class="navbar-nav  align-items-center">
         <li class="nav-item">
-          <c:url var="fault" value="/post/11" />
-          <a class="nav-link active" href="${fault }">이거 내 잘못?</a>
+          <c:url var="fault" value="/post/list/" >
+            <c:param name="sub_category_id" value="11"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${fault}">이거 내 잘못?</a>
         </li>
         <li class="nav-item">
-       	  <c:url var="idiot" value="/post/21" />
-          <a class="nav-link active" href="${idiot }">나 호구냐?</a>
+       	  <c:url var="idiot" value="/post/list/">
+            <c:param name="sub_category_id" value="21"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${idiot}">나 호구냐?</a>
         </li>
         <li class="nav-item">
-          <c:url var="envy" value="/post/31" />
-          <a class="nav-link active"  href="${envy }">부럽지?</a>
+          <c:url var="envy" value="/post/list/" >
+            <c:param name="sub_category_id" value="31"></c:param>
+          </c:url>
+          <a class="nav-link active"  href="${envy}">부럽지?</a>
         </li>
         <li class="nav-item">
-      	  <c:url var="carAccident" value="/post/41" />
-          <a class="nav-link active" href="${carAccident }">차사고</a>
+      	  <c:url var="carAccident" value="/post/list/" >
+            <c:param name="sub_category_id" value="41"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${carAccident}">차사고</a>
         </li>
         <li class="nav-item">
-      	  <c:url var="gameAccident" value="/post/43" />
-          <a class="nav-link active" href="${gameAccident }">게임</a>
+      	  <c:url var="gameAccident" value="/post/list/" >
+            <c:param name="sub_category_id" value="42"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${gameAccident}">게임</a>
         </li>
         <li class="nav-item">
-      	  <c:url var="etcAccident" value="/post/43" />
-          <a class="nav-link active" href="${etcAccident }">기타</a>
+      	  <c:url var="etcAccident" value="/post/list/">
+            <c:param name="sub_category_id" value="43"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${etcAccident}">기타</a>
         </li>
         <li class="nav-item">
-   	      <c:url var="freeBoard" value="/post/51" />
-          <a class="nav-link active" href="${freeBoard }">자유게시판</a>
+   	      <c:url var="freeBoard" value="/post/list/" >
+            <c:param name="sub_category_id" value="51"></c:param>
+          </c:url>
+          <a class="nav-link active" href="${freeBoard}">자유게시판</a>
+        </li>
+        <li>
+            <c:url var="totallist" value="/post/totallist"/>
+            <a class="nav-link active" href="${totallist}">전체게시판(임시, 차후삭제)</a>
         </li>
       </ul>
 	
