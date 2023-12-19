@@ -15,7 +15,7 @@ public class UserRegisterDto {
     // DTO의 필드 값들을 사용해서 엔터티 객체를 생성하고 리턴.
     public User toEntity() {
         return User.builder()
-                .userid(userid)
+                .user_id(userid)
                 .nickname(nickname)
                 .password(password)
                 .email(email)

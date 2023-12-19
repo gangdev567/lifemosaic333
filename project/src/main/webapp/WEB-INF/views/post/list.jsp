@@ -29,9 +29,9 @@
                             <tr>
                                 <td>${p.post_id}</td>
                                 <td>
-                                    <c:url var="postDetails" value="/post/details">
+                                    <c:url var="postDetails" value="/post/detail">
                                         
-                                        <c:param name="id" value="${p.post_id}" />
+                                        <c:param name="post_id" value="${p.post_id}" />
                                     </c:url>
                                     <a href="${postDetails}">${p.title}</a>
                                 </td>

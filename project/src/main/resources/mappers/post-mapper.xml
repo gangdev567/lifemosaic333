@@ -52,7 +52,7 @@
             
 
     <!-- POSTS 테이블에서 아이디(PK)로 검색 -->
-    <select id="selectById" resultType="Post">
+    <select id="selectById" resultType="PostDetail">
         SELECT posts.*, users.NICKNAME FROM posts
         INNER JOIN users ON
         posts.user_id = users.user_id
