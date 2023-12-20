@@ -8,8 +8,8 @@
   	<!-- 로고 -->
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
-	   <a href="${homePage }">
-	   		<img alt="라이프 모자이크 로고" src="${imgPath }" style="width:130px; height:38px"/>
+	   <a href="${homePage}">
+	   		<img alt="라이프 모자이크 로고" src="${imgPath}" style="width:130px; height:38px"/>
 	   </a>
   	</div>
     

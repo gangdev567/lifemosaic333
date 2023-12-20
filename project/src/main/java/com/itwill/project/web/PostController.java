@@ -31,6 +31,11 @@ public class PostController {
 
     private final PostService postService;
     
+    @GetMapping("/HallOfFame") 
+    public void HallOfFame() {
+        log.debug("HallOfFame()");
+    }
+    
     @GetMapping("/totallist")
     public void totalList(Model model, Criteria cri, @RequestParam(value = "pageNo", defaultValue = "1") Long pageNum) {
         log.debug("totallist()");
