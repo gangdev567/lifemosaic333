@@ -17,4 +17,14 @@
 	 	update users set profile_url =#{profile_url} where user_id = #{user_id}
 	 </update>
 	 
+	 <update id="updateBasicProfileImg">
+	 	update users set profile_url ='default.png' where user_id = #{user_id}
+	 </update>
+	 
+	 <update id="updateNickname">
+	 	update users set nickname = #{nickname} where user_id = #{user_id} 
+	 </update>
+
+	
+	 	
 	 </mapper>
