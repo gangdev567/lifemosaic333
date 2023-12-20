@@ -11,7 +11,14 @@
 	<c:forEach var="etc" items="${etcs}">
 		<div class="row">
 			<div class="d-none">${etc.post_id }</div>
-				<div class="col-5">${etc.title }</div>
+				<c:url var="postDetails" value="/post/detail" >
+					<c:param name="post_id" value="${etc.post_id }" />
+				</c:url>
+				<div class="col-5">
+					<a class="nav-link" href="${postDetails }">
+						${etc.title }
+					</a>
+				</div>
 			<div class="col row">
 				<div class="col"><span class="pe-2">♥️</span>${etc.like_point }</div>
 				<div class="col"><span class="pe-2">🗨️</span>${etc.comment_cnt }</div>

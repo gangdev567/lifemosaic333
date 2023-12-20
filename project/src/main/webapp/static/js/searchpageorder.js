@@ -9,13 +9,12 @@ document.addEventListener('DOMContentLoaded', function(){
 	let  subcategory=0;
 
 	const keyword = document.querySelector('strong#keyword').innerHTML;
-	console.log(keyword)
 	const category = document.querySelector('div#category').innerHTML;
 
 	
 	
 	// 정렬 버튼 이벤트 리스너 등록하기
-	const btnOrder = document.querySelector('button#orderSearchList');
+	const btnOrder = document.querySelector('span#orderSearchList');
 	btnOrder.addEventListener('click', function(){
 		if(btnOrder.innerHTML === '좋아요순'){
 			
@@ -36,6 +35,11 @@ document.addEventListener('DOMContentLoaded', function(){
 	ulSubCatogoryList.addEventListener('click', selectByCategory);
 	function selectByCategory(e){
 		subcategory = e.target.name;
+		
+		let btnSelectCategory = document.querySelector('button#btnSelectCategory');
+		
+		btnSelectCategory.innerHTML = e.target.innerHTML;
+		
 		work();		
 	};
 	
@@ -75,10 +79,19 @@ document.addEventListener('DOMContentLoaded', function(){
 				
 				<div>
 					<div class="mb-4">
-						<h5><strong>${post.title }</strong></h5>
+						<h5><strong>
+							<a class="nav-link" href="detail?post_id=${post.post_id}">							
+								${post.title }
+							</a>
+						</strong></h5>
 					</div>
-					<div class="mb-4" style="font-size:15px">${post.content }</div>
+					<div class="mb-4" style="font-size:15px">
+						<a class="nav-link" href="detail?post_id=${post.post_id}">
+							${post.content }
+						</a>
+					</div>
 				</div>
+				
 				<div>
 					<p class="fw-bold" style="margin-bottom: 8px;font-size:12px">${post.nickname }</p>
 				</div>
