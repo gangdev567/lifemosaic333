@@ -13,8 +13,10 @@
             crossorigin="anonymous">
 	</head>
 	<body>
-        <%@ include file="../fragments/navigation.jspf" %>
-        
+        <div class="container-fluid d-flex justify-content-center">
+            <c:url var="imgPath" value="/img/logo.png" />
+            <%@ include file="../fragments/navigation.jspf" %>
+        </div>
 
         <table class="table table-striped table-hover card-body my-2">
                     <thead>
