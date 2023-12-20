@@ -13,8 +13,11 @@
             crossorigin="anonymous">
 	</head>
 	<body>
-        <%@ include file="../fragments/navigation.jspf" %>
-        
+        <div class="container-fluid d-flex justify-content-center">
+            <c:url var="imgPath" value="/img/logo.png" />
+            <%@ include file="../fragments/navigation.jspf" %>
+        </div>
+
         <table class="table table-striped table-hover card-body my-2">
                     <thead>
                         <tr>
@@ -29,8 +32,8 @@
                             <tr>
                                 <td>${p.post_id}</td>
                                 <td>
-                                    <c:url var="postDetails" value="/post/details">
-                                        <c:param name="id" value="${p.post_id}" />
+                                    <c:url var="postDetails" value="/post/detail">
+                                        <c:param name="post_id" value="${p.post_id}" />
                                     </c:url>
                                     <a href="${postDetails}">${p.title}</a>
                                 </td>
@@ -74,6 +77,7 @@
         <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
         <input type="hidden" name="type" value="${pageMaker.cri.type}">    
     </form>
+
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 

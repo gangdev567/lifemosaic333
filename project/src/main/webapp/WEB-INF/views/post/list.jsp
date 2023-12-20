@@ -13,7 +13,10 @@
             crossorigin="anonymous">
 	</head>
 	<body>
-        <%@ include file="../fragments/navigation.jspf" %>
+        <div class="container-fluid d-flex justify-content-center">
+            <c:url var="imgPath" value="/img/logo.png" />
+            <%@ include file="../fragments/navigation.jspf" %>
+        </div>
     
 		<table class="table table-striped table-hover card-body my-2">
                     <thead>
@@ -29,9 +32,9 @@
                             <tr>
                                 <td>${p.post_id}</td>
                                 <td>
-                                    <c:url var="postDetails" value="/post/details">
+                                    <c:url var="postDetails" value="/post/detail">
                                         
-                                        <c:param name="id" value="${p.post_id}" />
+                                        <c:param name="post_id" value="${p.post_id}" />
                                     </c:url>
                                     <a href="${postDetails}">${p.title}</a>
                                 </td>
@@ -41,6 +44,13 @@
                         </c:forEach>
                     </tbody>
         </table>
+            <div>
+                <c:url var="createPage" value="/post/create/" >
+                    <c:param name="sub_category_id" value="${cId}"></c:param>
+                </c:url>
+                <a class="btn btn-primary fs-5 fw-bold" href="${createPage}">글 쓰기</a>
+            </div>
+        
         <div class="pageInfo_wrap" >
             <div class="pageInfo_area">
                 <ul id="pageInfo" class="pageInfo">

@@ -52,7 +52,7 @@
             
 
     <!-- POSTS 테이블에서 아이디(PK)로 검색 -->
-    <select id="selectById" resultType="Post">
+    <select id="selectById" resultType="PostDetail">
         SELECT posts.*, users.NICKNAME FROM posts
         INNER JOIN users ON
         posts.user_id = users.user_id
@@ -67,14 +67,14 @@
     
     <!--POSTS 테이블에서 해당 아이디의 제목, 내용, 수정시간을 업데이트 -->
     <update id="update">
-        update POSTS set TITLE = #{title}, 
+        update POSTS set TITLE = #{title},
                     CONTENT = #{content},  
                     MODIFIED_TIME = systimestamp 
-                    where ID = #{post_id}
+                    where POST_ID = #{post_id}
     </update>
     
     <delete id="delete">
-        delete from POSTS where ID = #{post_id}
+        delete from POSTS where POST_ID = #{post_id}
     </delete>
     
      <!-- POSTS 테이블에서 제목, 내용, 제목 또는 내용, 작성자로 검색하기 
