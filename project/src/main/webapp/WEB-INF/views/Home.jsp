@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -55,6 +56,7 @@
              <body>
    		 	 <main>
                  <div class="container-fluid d-flex justify-content-center">
+                 	<c:url var="imgPath" value="./img/logo.png" />
                     <%@ include file="./fragments/navigation.jspf" %>
                 </div>
                     <div class="outerDiv">

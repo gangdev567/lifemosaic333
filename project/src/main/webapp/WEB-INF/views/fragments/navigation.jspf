@@ -8,8 +8,8 @@
   	<!-- 로고 -->
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
-	   <a href="${homePage }">
-	   		<img alt="라이프 모자이크 로고" src="C:\workspace\lab_web\lifemosaic333\project\src\main\webapp\static\img\logo.png" style="width:130px; height:38px"/>
+	   <a href="${homePage}">
+	   		<img alt="라이프 모자이크 로고" src="${imgPath}" style="width:130px; height:38px"/>
 	   </a>
   	</div>
     
@@ -72,10 +72,11 @@
       </ul>
 	
       <!-- 검색 -->
-     <form>
+      <c:url var="searchPage" value="/post/searchlist" />
+     <form method="get" action="${searchPage }">
 	              <div class="row">
 	                  <div class="col-5 pe-1 ps-5">
-	                      <select class="form-select" style="font-size:14px;">
+	                      <select name="search_category" class="form-select" style="font-size:14px;">
 	                          <option value="t">제목</option>
 	                          <option value="c">내용</option>
 	                          <option value="tc">제목+내용</option>
@@ -83,7 +84,7 @@
 	                      </select>
 	                  </div>
 	                  <div class="col-6 ps-1">
-	                      <input style="font-size:14px" class="form-control" type="text" 
+	                      <input name="keyword" style="font-size:14px" class="form-control" type="text" 
 	                          name="keyword" placeholder="검색어" required />
 	                  </div>
 	              </div>
