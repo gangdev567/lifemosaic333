@@ -10,8 +10,14 @@
 	<div class="card-body">
 	<c:forEach var="game" items="${games}">
 		<div class="row">
-			<div class="d-none">${game.post_id }</div>
-				<div class="col-5">${game.title }</div>
+				<c:url var="postDetails" value="/post/detail" >
+					<c:param name="post_id" value="${game.post_id }" />
+				</c:url>
+				<div class="col-5">
+					<a class="nav-link" href="${postDetails }">
+						${game.title }
+					</a>
+				</div>
 			<div class="col row">
 				<div class="col"><span class="pe-2">♥️</span>${game.like_point }</div>
 				<div class="col"><span class="pe-2">🗨️</span>${game.comment_cnt }</div>
