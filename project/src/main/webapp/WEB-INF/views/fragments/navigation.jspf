@@ -8,8 +8,8 @@
   	<!-- 로고 -->
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
-	   <a href="${homePage }">
-	   		<img alt="라이프 모자이크 로고" src="./img/logo.png" style="width:130px; height:38px"/>
+	   <a href="${homePage}">
+	   		<img alt="라이프 모자이크 로고" src="${imgPath}" style="width:130px; height:38px"/>
 	   </a>
   	</div>
     
@@ -72,10 +72,11 @@
       </ul>
 	
       <!-- 검색 -->
-     <form>
+      <c:url var="searchPage" value="/post/searchlist" />
+     <form method="get" action="${searchPage }">
 	              <div class="row">
 	                  <div class="col-5 pe-1 ps-5">
-	                      <select class="form-select" style="font-size:14px;">
+	                      <select name="search_category" class="form-select" style="font-size:14px;">
 	                          <option value="t">제목</option>
 	                          <option value="c">내용</option>
 	                          <option value="tc">제목+내용</option>
@@ -83,7 +84,7 @@
 	                      </select>
 	                  </div>
 	                  <div class="col-6 ps-1">
-	                      <input style="font-size:14px" class="form-control" type="text" 
+	                      <input name="keyword" style="font-size:14px" class="form-control" type="text" 
 	                          name="keyword" placeholder="검색어" required />
 	                  </div>
 	              </div>
@@ -92,19 +93,19 @@
  <!-- 로그인 회원가입 -->
 		<div>
 		<%-- 로그인/회원 가입 링크 --%>
-		<c:if test="${empty signedInUser }">
+		<c:if test="${empty signedInUser}">
 			<ul  class="navbar-nav mb-2 mb-lg-0">
 		    	<li  class="nav-item">
 		    		<c:url var="signInPage" value="/user/signin" />
-		    		<a class="nav-link active" href="${signInPage }">로그인</a>
+		    		<a class="nav-link active" href="${signInPage}">로그인</a>
 		    	</li>
 		    	<li  class="nav-item">
 		    		<c:url var="signUpPage" value="/user/signup" />
-			   		<a class="nav-link active" href="${signUpPage }">회원가입</a>
+			   		<a class="nav-link active" href="${signUpPage}">회원가입</a>
 				</li>
 			</ul>
 		</c:if>
-		<%-- 로그아웃 --%>
+		<%-- 로그아웃/회원 탈퇴 --%>
 		<c:if test="${not empty signedInUser}">
            <li class="nav-item">
            		<span class="text-primary fw-bold">${signedInUser}</span>
@@ -112,6 +113,10 @@
                <a class="nav-link" href="${signOutPage}">
                    <span>로그아웃</span>
                </a>
+           </li>
+           <%-- TODO: 회원탈퇴 나중에 DB 거의 완성되면 작성 --%>
+           <li class="nav-item">
+           		<span class="text-danger fw-bold">회원탈퇴</span>
            </li>
        </c:if>
 		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
