@@ -128,7 +128,9 @@
 					<img src="./img/default.png" style="border-radius:100%; witdh:40px; height:40px;"  />
 					</div>
 			        <ul class="dropdown-menu dropdown-menu-end" style="font-size:12px">
-			           <li><a class="dropdown-item" href="#">프로필</a></li>
+			           <li>
+			           <c:url var="settingProfilePage" value="/setting/userProfile"/>
+			           <a class="dropdown-item" href="${settingProfilePage}">프로필</a></li>
 			           <li><a class="dropdown-item" href="#">계정 관리</a></li>
     			       <li><a class="dropdown-item" href="#">내가 쓴 댓글</a></li>
     			       <li><a class="dropdown-item" href="#">내가 쓴 게시글</a></li>

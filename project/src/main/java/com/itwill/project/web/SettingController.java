@@ -1,11 +1,15 @@
 package com.itwill.project.web;
 
+import java.awt.PageAttributes.MediaType;
+import java.io.File;
+import java.io.IOException;
+import java.net.http.HttpHeaders;
+import java.nio.file.Files;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +17,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.project.domain.SettingUser;
-import com.itwill.project.helper.FileHelper;
+import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.service.SettingService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,12 +57,23 @@ public class SettingController {
 			return ResponseEntity.ok("NNN");
 		}
 	}
-	@PostMapping("/registerProfileImg")
-	public String create(@ModelAttribute SettingUser user, @RequestParam MultipartFile file, HttpServletRequest request) {
-	    String fileUrl = FileHelper.upload("/uploads", file, request);
-	    user.setProfile_url(fileUrl);
-	    
-	    return "redirect:/userProfile";
+	
+	@PostMapping("/updateImg")
+	public String updateImg(@RequestParam("profile") MultipartFile file, HttpSession session, String user_id)
+	        throws Exception {
+	    log.debug("updateImg(!!!!!!!!!!!!!!!!!!!!)");
+	    FileUtil fileUtil = new FileUtil();
+	    log.debug(file.toString());
+        String profile_url = fileUtil.updateImg(file);
+        log.debug("profile_url={}",profile_url);
+
+     settingService.updateImg(user_id.toString(), profile_url);
+     
+    
+	    return "redirect:/setting/userProfile";
 	}
+
+	
+
 	
 }

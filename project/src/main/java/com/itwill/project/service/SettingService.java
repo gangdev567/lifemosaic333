@@ -3,6 +3,7 @@ package com.itwill.project.service;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.SettingUser;
+import com.itwill.project.dto.setting.SettingUserDto;
 import com.itwill.project.repository.SettingDao;
 
 import lombok.RequiredArgsConstructor;
@@ -34,5 +35,13 @@ public class SettingService {
 		}else {
 			return true;
 		}
+	}
+	
+	public void updateImg(String user_id,String profile_url) {
+		log.debug("updateImg=(user_id={}, profile_url={})",user_id, profile_url );
+		
+		int result =settingDao.updateProfileUrl(SettingUserDto.builder().user_id(user_id).profile_url(profile_url).build());
+		
+		log.debug("SettingService(updateImg result={}",result);
 	}
 }
