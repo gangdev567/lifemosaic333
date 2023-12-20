@@ -13,6 +13,13 @@
             crossorigin="anonymous">
 	</head>
 	<body>
+    
+        <div class="my-2">
+            <c:url var="returnList" value="/post/list/" >
+                <c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
+            </c:url>
+            <a class="btn btn-primary fs-5 fw-bold" href="${returnList}">게시판 돌아가기</a>
+        </div>
         <div>
         <main class="my-2">
             <div class="card">

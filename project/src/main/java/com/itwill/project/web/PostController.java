@@ -1,8 +1,8 @@
 package com.itwill.project.web;
 
-
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +17,7 @@ import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
+import com.itwill.project.dto.post.PostModifyDto;
 import com.itwill.project.service.PostService;
 
 import lombok.RequiredArgsConstructor;
@@ -27,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @RequestMapping("/post")
 public class PostController {
-	
 
     private final PostService postService;
     
@@ -93,12 +93,36 @@ public class PostController {
     
 
 
-    @GetMapping("/detail")
+   
+
+    @GetMapping({"/detail", "/modify"})
+
     public void detail(Model model, @RequestParam(name = "post_id") Long post_id) {
         log.debug("게시글 입니다.");
         
         PostDetail post = postService.detail(post_id);
         model.addAttribute("post", post);
     }
+
+    
+    @PostMapping("/update")
+    public String modify(@ModelAttribute PostModifyDto dto) {
+        log.debug("dto = {}", dto);
+        
+        Long post_id = dto.getPost_id();
+        
+        postService.update(dto);
+        
+        return "redirect:/post/detail?post_id=" + post_id;
+    }
+    
+    @GetMapping("/delete")
+    public String delete(@RequestParam(name = "post_id") Long post_id, @RequestParam(name = "sub_category_id") Long sub_category_id) {
+        log.debug("delete(post_id = {})", post_id);
+        postService.delete(post_id);
+        
+        return "redirect:/post/list/?sub_category_id=" + sub_category_id;
+    }
+    
 
 }

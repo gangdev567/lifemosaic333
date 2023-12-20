@@ -10,6 +10,7 @@ import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
+import com.itwill.project.dto.post.PostModifyDto;
 import com.itwill.project.repository.PostDao;
 
 import lombok.RequiredArgsConstructor;
@@ -64,6 +65,23 @@ public class PostService {
         log.debug("post_id = {}", post_id);
         
         return postDao.selectById(post_id);
+    }
+
+
+    public int update(PostModifyDto dto) {
+        
+        int result = postDao.update(dto.ToPost());
+        log.debug("update result = {}", result);
+        
+        return result;
+    }
+
+    public int delete(Long post_id) {
+        
+        int result = postDao.delete(post_id);
+        log.debug("delete result = {}", result);
+        
+        return result;
     }
 
 }
