@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class SettingUserDto {
-	
+public class SettingNicknameDto {
 	private String user_id;
-	private String profile_url;
-
+	private String nickname;
+	
 }

@@ -16,7 +16,7 @@ import java.util.UUID;
 public class FileUtil {
     
     public static String updateImg(MultipartFile file) throws IOException {
-        String uploadDirectoryPath = "C:\\workspace\\lab_web\\lifemosaic333\\project\\src\\main\\webapp\\static\\img";
+        String uploadDirectoryPath = "C:\\uploads";
         
         String originalFileName = file.getOriginalFilename();
         log.debug("@@@@@@@@@@@@@@@@@@@@originalFileName={}",originalFileName);
