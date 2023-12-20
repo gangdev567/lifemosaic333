@@ -1,7 +1,5 @@
 package com.itwill.project.domain;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

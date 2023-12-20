@@ -10,8 +10,14 @@
 	<div class="card-body">
 	<c:forEach var="envy" items="${envies}">
 		<div class="row">
-			<div class="d-none">${envy.post_id }</div>
-				<div class="col-5">${envy.title }</div>
+				<c:url var="postDetails" value="/post/detail" >
+					<c:param name="post_id" value="${envy.post_id }" />
+				</c:url>
+				<div class="col-5">
+				<a class="nav-link" href="${postDetails }">
+						${envy.title }
+					</a>
+				</div>
 			<div class="col row">
 				<div class="col"><span class="pe-2">♥️</span>${envy.like_point }</div>
 				<div class="col"><span class="pe-2">🗨️</span>${envy.comment_cnt }</div>
