@@ -12,18 +12,33 @@
 	 
 	 const profile = document.querySelector('input#profile_url');
 	 
-	 const inputProfileImg = document.querySelector('input#profileImg');
+	 const inputProfileImg = document.querySelector('input#profile');
 	 
-	 
-
-	 
-	 console.log(btnCheckNickname);
+	const inputUserId = document.querySelector('input#user_id');
+	
+	const inputEmail = document.querySelector('input#email');
+	
+	const limitUserId = document.querySelector('div#limitUserId');
+	
+	const limitEmail = document.querySelector('div#limitEmail');
+	inputUserId.addEventListener('click', ()=> {
+	
+		       limitUserId.innerHTML = '아이디는 변경하실 수 없습니다.';
+            limitUserId.classList.add('text-danger');
+            
+	});
+	inputEmail.addEventListener('click', ()=>{
+		limitEmail.innerHTML = '이메일은 변경하실 수 없습니다.';
+		limitEmail.classList.add('text-danger');
+		
+	});
 	 
 	 btnCheckNickname.addEventListener('click', checkNickname);//end btnNicknameModify
 	 
 	async function checkNickname(e){
 		console.log("click");
-		const nickname = e.target.value;
+		
+		const nickname = inputNickname.value;
 		console.log(nickname);
 		 const uri = `checkNickname?nickname=${nickname}`;
 		 
