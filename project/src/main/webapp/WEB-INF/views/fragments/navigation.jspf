@@ -9,7 +9,7 @@
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
 	   <a href="${homePage }">
-	   		<img alt="라이프 모자이크 로고" src="./img/logo.png" style="width:130px; height:38px"/>
+	   		<img alt="라이프 모자이크 로고" src="C:\workspace\lab_web\lifemosaic333\project\src\main\webapp\static\img\logo.png" style="width:130px; height:38px"/>
 	   </a>
   	</div>
     
