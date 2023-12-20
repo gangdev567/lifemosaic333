@@ -62,9 +62,14 @@
  	   		
  	   		<hr/>
  	   		
+ 	   		<c:if test="${empty searchList }">
+ 	   			<div class="my-3 ms-2">
+ 	   				<h4>검색되는 결과가 없습니다.</h4>
+ 	   			</div>
+ 	   		</c:if>
  	   		
- 	   		<div id="postTemplate">
- 	   		
+ 	   		<c:if test="${not empty searchList }">
+ 	   		<div id="postTemplate"> 	   		
  	   		<c:forEach var="post" items="${searchList }">
  	   		
  	   		<%-- div 3. 게시글 하나--%>
@@ -134,10 +139,25 @@
  	   		</c:forEach>
 			  
 		</div>
+			  </c:if>
+			  
 			  
  	   </div>	
  	   </div>
+ 	   
+ 	   <!-- 페이지네이션 -->
+ 	   <div class="d-flex justify-content-center mt-5">
+			<nav>
+			  <ul class="pagination pagination-sm">
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item"><a class="page-link" href="#">2</a></li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			  </ul>
+			</nav>
+ 	   </div>
+			
        </main>
+       
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
