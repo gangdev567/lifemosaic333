@@ -83,17 +83,17 @@ public class SettingController {
 	public ResponseEntity<?> changePassword(HttpSession session, @RequestBody Map<String, String> payload) {
 	    String currentPassword = payload.get("currentPassword");
 	    String newPassword = payload.get("newPassword");
-	    String userId = (String) session.getAttribute("signedInUser"); // 세션에서 사용자 ID 가져오기
+	    String user_id = (String) session.getAttribute("signedInUser"); // 세션에서 사용자 ID 가져오기
 
 	    // 현재 비밀번호가 맞는지 검증
-	    boolean isPasswordCorrect = changePasswordService.verifyCurrentPassword(userId, currentPassword);
+	    boolean isPasswordCorrect = changePasswordService.verifyCurrentPassword(user_id, currentPassword);
 	    if (!isPasswordCorrect) {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("현재 비밀번호가 올바르지 않습니다.");
 	    }
 
 	    // 새 비밀번호로 변경
 	    PasswordChangeDto passwordChangeDto = new PasswordChangeDto();
-	    passwordChangeDto.setUser_id(userId);
+	    passwordChangeDto.setUser_id(user_id);
 	    passwordChangeDto.setCurrentPassword(currentPassword);
 	    passwordChangeDto.setNewPassword(newPassword);
 
