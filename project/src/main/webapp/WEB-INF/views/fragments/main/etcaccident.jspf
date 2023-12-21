@@ -8,19 +8,19 @@
 		기타
 	</div>
 	<div class="card-body">
-	<c:forEach var="car" items="${cars}">
+	<c:forEach var="etc" items="${etcs}">
 		<div class="row">
 				<c:url var="postDetails" value="/post/detail" >
-					<c:param name="post_id" value="${car.post_id }" />
+					<c:param name="post_id" value="${etc.post_id }" />
 				</c:url>
 				<div class="col-5">
 					<a class="nav-link" href="${postDetails }">
-						${car.title }
+						${etc.title }
 					</a>
 				</div>
 			<div class="col row">
-				<div class="col"><span class="pe-2">♥️</span>${car.like_point }</div>
-				<div class="col"><span class="pe-2">🗨️</span>${car.comment_cnt }</div>
+				<div class="col"><span class="pe-2">♥️</span>${etc.like_point }</div>
+				<div class="col"><span class="pe-2">🗨️</span>${etc.comment_cnt }</div>
 			</div>
 		</div>
 	</c:forEach>
