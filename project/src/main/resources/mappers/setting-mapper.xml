@@ -16,5 +16,5 @@
 	 <update id="updateProfileUrl">
 	 	update users set profile_url =#{profile_url} where user_id = #{user_id}
 	 </update>
-	 
+    
 	 </mapper>
