@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="font-size:14px;font-weight:bold;">    
       
       <%-- 카테고리 --%>
-      <ul class="navbar-nav  align-items-center">
+      <ul class="nav navbar-nav  align-items-center">
         <li class="nav-item">
           <c:url var="fault" value="/post/list/" >
             <c:param name="sub_category_id" value="11"></c:param>
@@ -94,7 +94,7 @@
 		<div>
 		<%-- 로그인/회원 가입 링크 --%>
 		<c:if test="${empty signedInUser}">
-			<ul  class="navbar-nav mb-2 mb-lg-0">
+			<ul  class="nav navbar-nav mb-2 mb-lg-0">
 		    	<li  class="nav-item">
 		    		<c:url var="signInPage" value="/user/signin" />
 		    		<a class="nav-link active" href="${signInPage}">로그인</a>
@@ -125,7 +125,8 @@
 				<li class="nav-item dropdown">
 					<div class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
 					<%-- TODO : 로그인 사용자의 이미지로 변경하기 --%>
-					<img src="./img/default.png" style="border-radius:100%; witdh:40px; height:40px;"  />
+					<c:url var="settingImgPage" value="/setting/settingImg" />
+					<img class="profileUserImg" src="${settingImgPage}?fileName=${userProfileImgPath }" />
 					</div>
 			        <ul class="dropdown-menu dropdown-menu-end" style="font-size:12px">
 			           <li>
