@@ -20,7 +20,8 @@
 		    <div class="row row-cols-auto d-flex justify-content-between">
 		    	<input id="user_id" value="${writer.user_id }" class="d-none"/>
 		    	<div class="col">
-		    	<img src="${writer.profile_url }" style="border-radius:100%; witdh:25px; height:25px;"  />
+		    	<c:url var="settingImgPage" value="/setting/settingImg" />
+		    	<img src="${settingImgPage}?fileName=${writer.profile_url }" style="border-radius:100%; witdh:25px; height:25px;"  />
 		    	<!-- ./images/${writer.profile_url} -->
 		    	<span  class="align-middle fw-bold" style="font-size:10px;">${writer.nickname }</span>
 		    	</div>
