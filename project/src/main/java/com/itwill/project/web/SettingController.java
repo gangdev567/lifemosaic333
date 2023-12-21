@@ -1,11 +1,20 @@
 package com.itwill.project.web;
 
+import java.awt.PageAttributes.MediaType;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.http.HttpHeaders;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.project.domain.SettingUser;
-import com.itwill.project.helper.FileHelper;
+import com.itwill.project.dto.setting.FileUtil;
+import com.itwill.project.dto.setting.SettingNicknameDto;
 import com.itwill.project.service.SettingService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -53,12 +63,55 @@ public class SettingController {
 			return ResponseEntity.ok("NNN");
 		}
 	}
-	@PostMapping("/registerProfileImg")
-	public String create(@ModelAttribute SettingUser user, @RequestParam MultipartFile file, HttpServletRequest request) {
-	    String fileUrl = FileHelper.upload("/uploads", file, request);
-	    user.setProfile_url(fileUrl);
-	    
-	    return "redirect:/userProfile";
+	
+	@PostMapping("/updateImg")
+	public String updateImg(@RequestParam("profile") MultipartFile file, HttpSession session, String user_id)
+	        throws Exception {
+	    log.debug("updateImg(!!!!!!!!!!!!!!!!!!!!)");
+	    FileUtil fileUtil = new FileUtil();
+	    log.debug(file.toString());
+        String profile_url = fileUtil.updateImg(file);
+        log.debug("profile_url={}",profile_url);
+
+     settingService.updateImg(user_id, profile_url);
+     
+    
+	    return "redirect:/setting/userProfile";
 	}
+	@PostMapping("/updateNickname")
+	public String updateNickname(SettingNicknameDto dto, String nickname) {
+		log.debug("updateNickname=(dto={})",dto);
+		settingService.updateNickname(dto);
+		
+		return "redirect:/setting/userProfile";
+	}
+	 @GetMapping("/settingImg")
+	    @ResponseBody
+	    public ResponseEntity<Resource> getSettingImage(@RequestParam("fileName") String fileName) throws IOException {
+	        // 파일 경로
+	        String filePath = "C:\\uploads\\" + fileName;
+	        
+	        // 파일을 읽어오기 위한 Resource 객체 생성
+	        Resource resource = new UrlResource(Paths.get(filePath).toUri());
+	        
+	        if (resource.exists()) {
+	            // 파일이 존재하면 해당 파일을 반환
+	            return ResponseEntity.ok()
+	                .header(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.IMAGE_PNG_VALUE)
+	                .body(resource);
+	        } else {
+	            // 파일이 존재하지 않으면 404 에러 반환
+	            return ResponseEntity.notFound().build();
+	        }
+	    }
+	 @GetMapping("/settingBasicImg")
+	 public String settingBasicImg( String user_id) {
+		 log.debug("@@@@@@@@@@@@@@   SettingController(settingBasicImg(user_id={}))",user_id);
+		 
+		 settingService.updateBasicImg(user_id);
+		 
+		 return "redirect:/setting/userProfile";
+	 }
+  
 	
 }
