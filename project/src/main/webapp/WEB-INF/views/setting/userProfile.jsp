@@ -141,8 +141,6 @@
 
 
 				<!-- 닉네임 변경 -->
-				<c:url var="updateNickname" value="/setting/updateNickname" />
-				<form action="${updateNickname}" method="post">
 					<div class="input-group mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-default">닉네임</span>
 						<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">

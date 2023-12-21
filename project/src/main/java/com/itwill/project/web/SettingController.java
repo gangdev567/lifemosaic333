@@ -79,12 +79,13 @@ public class SettingController {
 	    return "redirect:/setting/userProfile";
 	}
 	@PostMapping("/updateNickname")
-	public String updateNickname(SettingNicknameDto dto, String nickname) {
+	public String updateNickname(SettingNicknameDto dto) {
 		log.debug("updateNickname=(dto={})",dto);
-		settingService.updateNickname(dto);
-		
+		int result = settingService.updateNickname(dto);
+		 
 		return "redirect:/setting/userProfile";
 	}
+	
 	 @GetMapping("/settingImg")
 	    @ResponseBody
 	    public ResponseEntity<Resource> getSettingImage(@RequestParam("fileName") String fileName) throws IOException {

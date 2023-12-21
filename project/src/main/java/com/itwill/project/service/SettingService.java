@@ -46,12 +46,14 @@ public class SettingService {
 		log.debug("SettingService(updateImg result={}",result);
 	}
 	
-	public void updateNickname(SettingNicknameDto dto) {
+	public int updateNickname(SettingNicknameDto dto) {
 		log.debug("@@@@@@@@@@@@@   updateNickname={}",dto);
 		
 		int result = settingDao.updateNickname(dto);
 		
 		log.debug("@@@@@@@@@@@@@2SettingService(updateNickname result={}",result);
+		
+		return result;
 	}
 	
 	public void updateBasicImg(String user_id) {

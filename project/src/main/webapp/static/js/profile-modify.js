@@ -25,6 +25,25 @@
 	const btnUpdateNickname = document.querySelector('button#btnUpdateNickname');
 	
 	
+	btnUpdateNickname.addEventListener('click', (e) =>{
+		
+		const user_id = inputUserId.value;
+		
+		const nickname = inputNickname.value;
+		
+		try{
+		const data ={user_id,nickname};
+		const response = await axios.put(`../api/setting/updateNickname`);
+		
+		}catch(error){
+			console.log(error);
+		}
+		
+		
+		
+		
+	});
+	 
 	inputUserId.addEventListener('click', ()=> {
 	
 		       limitUserId.innerHTML = '* 아이디는 변경하실 수 없습니다.';
