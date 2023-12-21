@@ -2,12 +2,19 @@ package com.itwill.project.web;
 
 import java.awt.PageAttributes.MediaType;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.http.HttpHeaders;
 import java.nio.file.Files;
+
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +30,7 @@ import com.itwill.project.domain.SettingUser;
 import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.dto.setting.PasswordChangeDto;
 import com.itwill.project.service.ChangePasswordServiceImpl;
+import com.itwill.project.dto.setting.SettingNicknameDto;
 import com.itwill.project.service.SettingService;
 
 import jakarta.servlet.http.HttpSession;
@@ -126,8 +134,40 @@ public class SettingController {
     
 	    return "redirect:/setting/userProfile";
 	}
-
-	
-
+	@PostMapping("/updateNickname")
+	public String updateNickname(SettingNicknameDto dto, String nickname) {
+		log.debug("updateNickname=(dto={})",dto);
+		settingService.updateNickname(dto);
+		
+		return "redirect:/setting/userProfile";
+	}
+	 @GetMapping("/settingImg")
+	    @ResponseBody
+	    public ResponseEntity<Resource> getSettingImage(@RequestParam("fileName") String fileName) throws IOException {
+	        // 파일 경로
+	        String filePath = "C:\\uploads\\" + fileName;
+	        
+	        // 파일을 읽어오기 위한 Resource 객체 생성
+	        Resource resource = new UrlResource(Paths.get(filePath).toUri());
+	        
+	        if (resource.exists()) {
+	            // 파일이 존재하면 해당 파일을 반환
+	            return ResponseEntity.ok()
+	                .header(org.springframework.http.HttpHeaders.CONTENT_TYPE, org.springframework.http.MediaType.IMAGE_PNG_VALUE)
+	                .body(resource);
+	        } else {
+	            // 파일이 존재하지 않으면 404 에러 반환
+	            return ResponseEntity.notFound().build();
+	        }
+	    }
+	 @GetMapping("/settingBasicImg")
+	 public String settingBasicImg( String user_id) {
+		 log.debug("@@@@@@@@@@@@@@   SettingController(settingBasicImg(user_id={}))",user_id);
+		 
+		 settingService.updateBasicImg(user_id);
+		 
+		 return "redirect:/setting/userProfile";
+	 }
+  
 	
 }

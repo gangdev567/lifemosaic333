@@ -3,7 +3,8 @@ package com.itwill.project.service;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.SettingUser;
-import com.itwill.project.dto.setting.SettingUserDto;
+import com.itwill.project.dto.setting.SettingNicknameDto;
+import com.itwill.project.dto.setting.SettingProfileImgDto;
 import com.itwill.project.repository.SettingDao;
 
 import lombok.RequiredArgsConstructor;
@@ -40,8 +41,21 @@ public class SettingService {
 	public void updateImg(String user_id,String profile_url) {
 		log.debug("updateImg=(user_id={}, profile_url={})",user_id, profile_url );
 		
-		int result =settingDao.updateProfileUrl(SettingUserDto.builder().user_id(user_id).profile_url(profile_url).build());
+		int result =settingDao.updateProfileUrl(SettingProfileImgDto.builder().user_id(user_id).profile_url(profile_url).build());
 		
 		log.debug("SettingService(updateImg result={}",result);
+	}
+	
+	public void updateNickname(SettingNicknameDto dto) {
+		log.debug("@@@@@@@@@@@@@   updateNickname={}",dto);
+		
+		int result = settingDao.updateNickname(dto);
+		
+		log.debug("@@@@@@@@@@@@@2SettingService(updateNickname result={}",result);
+	}
+	
+	public void updateBasicImg(String user_id) {
+		int result = settingDao.updateBasicProfileImg(user_id);
+		
 	}
 }
