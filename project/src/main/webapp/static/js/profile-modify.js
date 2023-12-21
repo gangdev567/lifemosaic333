@@ -24,7 +24,7 @@
 	
 	const btnUpdateNickname = document.querySelector('button#btnUpdateNickname');
 	
-	btnUpdateNickname.
+	
 	inputUserId.addEventListener('click', ()=> {
 	
 		       limitUserId.innerHTML = '* 아이디는 변경하실 수 없습니다.';

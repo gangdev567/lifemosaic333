@@ -78,6 +78,7 @@
   object-fit: cover;
   
 }
+ 
 	</style>
 	<head>
  		<meta charset="UTF-8">
@@ -118,7 +119,7 @@
 				<hr>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">아이디</span>
-					<input type="text" class="form-control" id="user_id"
+					<input type="text" class="form-control" id="user_id" name="user_id"
 						value="${user.user_id }" aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-default">
 				</div>
@@ -128,7 +129,7 @@
 				<hr>
 				<div class="input-group mb-3">
 					<span class="input-group-text" id="inputGroup-sizing-default">이메일</span>
-					<input class="form-control" id="email" type="text"
+					<input class="form-control" id="email" type="text" name="email"
 						value="${user.email }" aria-label="Sizing example input"
 						aria-describedby="inputGroup-sizing-default">
 
@@ -144,18 +145,12 @@
 				<form action="${updateNickname}" method="post">
 					<div class="input-group mb-3">
 						<span class="input-group-text" id="inputGroup-sizing-default">닉네임</span>
-						<input type="hidden" name="user_id" id="user_id"
-							value="${user.user_id}"> <input class="form-control"
-							name="nickname" id="nickname" type="text"
-							value="${user.nickname }" required
-							aria-label="Sizing example input"
-							aria-describedby="inputGroup-sizing-default">
-						<button type="button" class="btn btn-secondary"
-							name="btnCheckNickname" id="btnCheckNickname">중복 확인</button>
+						<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
+						 <input class="form-control"name="nickname" id="nickname" type="text"	value="${user.nickname }" required aria-label="Sizing example input"aria-describedby="inputGroup-sizing-default">
+						<button type="button" class="btn btn-secondary"	name="btnCheckNickname" id="btnCheckNickname">중복 확인</button>
 					</div>
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-dark" name="btnUpdateNickname"
-							id="btnUpdateNickname" type="submit">저장</button>
+						<button class="btn btn-dark" name="btnUpdateNickname" id="btnUpdateNickname" type="submit">저장</button>
 					</div>
 				</form>
 			</div>
@@ -163,36 +158,31 @@
 
 			<!-- 프로필 이미지 변경 영역 -->
 			<div id="right">
-				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
 				<p class="text-center" style="font-size: 20px; font-weight: bold;">
 					프로필 사진</p>
-				<form action="${updateImgPage}" method="post"
-					enctype="multipart/form-data">
 					<div class="my-2 card">
 						<div class="my-2 img-box mx-auto">
 							<c:url var="settingImgPage" value="/setting/settingImg" />
 							<img class="profileImg mx-auto" src="${settingImgPage}?fileName=${user.profile_url}" name="profileImg" id="profileImg" alt="프로필 사진">
 						</div>
-						<input type="file" id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);" />
-						<div
-							class="card-body d-grid gap-2 d-md-flex justify-content-md-end">
-							<input type="hidden" name="user_id" id="user_id" value="${user.user_id}"> 
+				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
+				<form action="${updateImgPage}" method="post" enctype="multipart/form-data" >
+						 <input type="file" id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);" />
+						
 							<input type="hidden" name="profile_url" id="profile_url" value="${user.profile_url}">
-							<button type="submit" class="btn btn-secondary">변경</button>
-						</div>
-					</div>
-
+							<div  class="d-flex justify-content-md-end">
+							<button type="submit" class="btn btn-secondary" style="margin-left: auto;">변경</button>
+						 	</div>
 				</form>
-
-				<br>
-				<form action="profile"></form>
-				<br>
 				<c:url var="settingBasicImg" value="/setting/settingBasicImg" />
-				<form action="${settingBasicImg}">
+				<form action="${settingBasicImg}"  >
+					
 					<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-					<button type="submit" class="btn btn-secondary">기본 이미지로 변경</button>
-
+					<button type="submit" class="btn btn-secondary"  style="margin-left: 10px;">기본 이미지로 변경</button>
+					
 				</form>
+
+					</div>
 			</div>
 		</div>
 	</div>
