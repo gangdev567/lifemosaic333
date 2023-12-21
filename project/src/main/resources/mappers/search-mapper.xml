@@ -18,7 +18,7 @@
 					<when test='dto.search_category.equals("t")'>
 							upper(p.TITLE) like upper(#{searchKeyword})
 					</when>
-					<when test='dto.search_category eq "t"'>
+					<when test='dto.search_category eq "c"'>
 							upper(p.CONTENT) like upper(#{searchKeyword})
 					</when>
 					<when test='dto.search_category eq "tc"'>
