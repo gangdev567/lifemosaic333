@@ -95,8 +95,18 @@ public class PostController {
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
     }
     
-    @GetMapping({"/detail", "/modify"})
+    @GetMapping("/detail")
     public void detail(Model model, @RequestParam(name = "post_id") Long post_id) {
+        log.debug("게시글 입니다.");
+        
+        postService.viewCountIncrease(post_id);
+        
+        PostDetail post = postService.detail(post_id);
+        model.addAttribute("post", post);
+    }
+    
+    @GetMapping("/modify")
+    public void modify(Model model, @RequestParam(name = "post_id") Long post_id) {
         log.debug("게시글 입니다.");
         
         PostDetail post = postService.detail(post_id);

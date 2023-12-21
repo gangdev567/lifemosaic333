@@ -81,4 +81,11 @@ public class PostService {
         
         return result;
     }
+
+    public void viewCountIncrease(Long post_id) {
+        
+        int result = postDao.viewCountIncrease(post_id);
+        log.debug("post_id = {}, viewCount + {}", post_id, result);
+        
+    }
 }
