@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.itwill.project.domain.Criteria;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
+import com.itwill.project.domain.SearchOrderList;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
@@ -130,6 +131,17 @@ public class PostController {
         postService.delete(post_id);
         
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
+    }
+    
+    
+    @GetMapping("/searchlist")
+    public void search(SearchOrderList dto, Model model) {
+		if(dto.getOrderStatus() == null && dto.getSubcategory() == null) {
+			dto.setOrderStatus("upto");
+			dto.setSubcategory(0L);
+		}
+		
+		model.addAttribute("searchKeyword", dto);
     }
     
 }

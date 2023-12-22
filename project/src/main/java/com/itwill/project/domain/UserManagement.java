@@ -4,14 +4,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//데이터베이스 USERS 테이블 모델(엔터티).
 @Data
-public class Search {
-	private String search_category;
-	private String keyword;
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class UserManagement {
+    private String user_id;
+    private String password;
 }

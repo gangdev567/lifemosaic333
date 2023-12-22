@@ -10,7 +10,7 @@
 		from POSTS p, USERS u
 		where p.user_id = u.user_id
 		group by p.USER_ID, u.NICKNAME, u.profile_url
-		order by USER_ID desc fetch first 5 rows only
+		order by "cnt" desc fetch first 5 rows only
 	</select>
 
 </mapper>

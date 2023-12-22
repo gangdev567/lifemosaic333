@@ -180,10 +180,44 @@
         
         
         const htmlStr = `
-            <span>좋아요 : ${data.like_point}</span>
-            <span>싫어요 : ${data.dislike_point}</span>`;
+            <span id="like"value=${data.like_point}>좋아요 : ${data.like_point}</span>
+            <span id="dislike"value=${data.dislike_point}>싫어요 : ${data.dislike_point}</span>`;
             
         likeDiv.innerHTML = htmlStr;
+        
+        const like = data.like_point;
+        const dislike = data.dislike_point;
+        console.log(like, dislike);
+        var dataToChart = {
+            labels: ['좋아요', '싫어요'],
+            datasets: [
+                {
+                    data: [like, dislike], // 좋아요 수와 싫어요 수에 따른 비율
+                    backgroundColor: ['#36A2EB', '#FF6384'] // 좋아요는 파란색, 싫어요는 빨간색
+                }
+            ]
+        };
+
+        // 차트 옵션
+        var options = {
+            responsive: true,
+            cutout: '70%', // 도넛의 두께를 조정합니다.
+            maintainAspectRatio: false, // 캔버스 크기를 유지하지 않도록 설정합니다.
+            legend: {
+                position: 'bottom'
+            },
+            title: {
+                display: true,
+                text: '좋아요 vs 싫어요'
+            }
+        };
+
+        // 도넛 차트 생성
+        var donutChart = new Chart(document.getElementById('donutChart'), {
+            type: 'doughnut',
+            data: dataToChart,
+            options: options
+        });
     } //makeLikeElement end
     
     // POST_ID와 USER_ID를 보내서 GET방식으로 POST_LIKE_CHECK의 데이터를 가져오는 함수
@@ -339,6 +373,7 @@
         dislikeBtn.addEventListener('click', postDislike);
         
     }
+    
     
     
     
