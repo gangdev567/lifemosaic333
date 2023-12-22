@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.itwill.project.domain.BestTopic;
 import com.itwill.project.domain.TopWriter;
-import com.itwill.project.domain.User;
-import com.itwill.project.repository.UserDao;
 import com.itwill.project.service.BestTopicService;
 import com.itwill.project.service.WriterService;
 
-import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,20 +21,9 @@ public class TestController {
 
 	private final WriterService writerService;
 	private final BestTopicService bestTopicService;
-	private final UserDao userDao;
     
     @GetMapping("/")
-    public String home(Model model, HttpSession session) {
-    	
-
-    	if(session.getAttribute("signedInUser") != null) {    		
-	    	//유저 정보 가져오기
-    		String user_id = session.getAttribute("signedInUser").toString();
-	    	log.debug(user_id);
-	    	User user = userDao.selectByUserid(user_id);
-	    	
-	    	model.addAttribute("userProfileImgPath", user.getProfile_url());
-    	}
+    public String home(Model model) {
     	
         // 최대 게시글 작성 회원 랭크
         List<TopWriter> writerList = writerService.readTopWriter();

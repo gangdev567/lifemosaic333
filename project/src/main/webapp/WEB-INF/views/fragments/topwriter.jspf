@@ -2,6 +2,20 @@
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@taglib prefix="c" uri="jakarta.tags.core" %>
 
+<style>
+img.topProfileUserImg {
+	box-sizing: inherit;
+	display: inline-block;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+	border: 1px solid lightgray
+}
+</style>
+
+
 	<div class="m-4" style="width: 12rem;">
 		  <div class="px-2 my-2" style="height:35px; text-align: center;">
               <c:url var="HallOfFame" value="/post/HallOfFame" ></c:url>

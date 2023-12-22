@@ -27,11 +27,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwill.project.domain.SettingUser;
+import com.itwill.project.domain.User;
 import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.dto.setting.PasswordChangeDto;
 import com.itwill.project.service.ChangePasswordServiceImpl;
 import com.itwill.project.dto.setting.SettingNicknameDto;
+import com.itwill.project.dto.user.UserSignInDto;
+import com.itwill.project.repository.UserDao;
 import com.itwill.project.service.SettingService;
+import com.itwill.project.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +49,7 @@ public class SettingController {
 	
 	private final SettingService settingService;
 	private final ChangePasswordServiceImpl changePasswordService;
+	private final UserDao userDao;
 	
 	@GetMapping("/userProfile")
 	public void userProfile(Model model, HttpSession session) {
@@ -131,7 +136,14 @@ public class SettingController {
 
      settingService.updateImg(user_id, profile_url);
      
-    
+     
+		// 연수가 코드 추가함 - 이미지 변경 시, 기존 세션 정보에 저장된 이미지 경로를 새로운 경로로 덮어쓰기 함
+		// 1. user_id로 모든 유저 정보 가져옴
+		User user = userDao.selectByUserid(user_id);
+		// 2. 가져온 유저 정보 중, 프로필 경로를 세션에 저장
+		session.setAttribute("userProfileUrl", user.getProfile_url());
+		
+		
 	    return "redirect:/setting/userProfile";
 	}
 	@PostMapping("/updateNickname")

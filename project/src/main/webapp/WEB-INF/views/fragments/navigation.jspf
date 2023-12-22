@@ -1,157 +1,151 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
 <!DOCTYPE html>
+<style>
+img.profileUserImg {
+	box-sizing: inherit;
+	display: block;
+	width: 3rem;
+	height: 3rem;
+	border-radius: 50%;
+	object-fit: cover;
+	box-shadow: rgba(0, 0, 0, 0.06) 0px 0px 4px 0px;
+	border: 1px solid lightgray
+}
+</style>
+
 
 <nav class="navbar navbar-expand-lg">
-<div class="container-fluid fixed-top bg-body border-bottom py-3 px-5">
-	
-  	<!-- 로고 -->
-  	<div class="navbar-brand" >
-  	   <c:url var="homePage" value="/" />
-	   <a href="${homePage}">
-	   		<img alt="라이프 모자이크 로고" src="${imgPath}" 
-	   										style="width:130px; height:38px"/>
-	   </a>
-  	</div>
-    
-    <!-- 콜랩스 버튼(반응형) -->
-    <button class="navbar-toggler" type="button" 
-    				 data-bs-toggle="collapse" 
-    				 data-bs-target="#navbarSupportedContent" 
-    				 aria-controls="navbarSupportedContent" 
-    				 aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    
-      <!-- 메뉴 -->
-    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">    
-      
-      <%-- 카테고리 --%>
-      <ul class="nav navbar-nav align-items-center">
-        <li class="nav-item">
-          <c:url var="fault" value="/post/list/" >
-            <c:param name="sub_category_id" value="11"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${fault}">이거 내 잘못?</a>
-        </li>
-        <li class="nav-item">
-       	  <c:url var="idiot" value="/post/list/">
-            <c:param name="sub_category_id" value="21"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${idiot}">나 호구냐?</a>
-        </li>
-        <li class="nav-item">
-          <c:url var="envy" value="/post/list/" >
-            <c:param name="sub_category_id" value="31"></c:param>
-          </c:url>
-          <a class="nav-link active"  href="${envy}">부럽지?</a>
-        </li>
-        <li class="nav-item">
-      	  <c:url var="carAccident" value="/post/list/" >
-            <c:param name="sub_category_id" value="41"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${carAccident}">차사고</a>
-        </li>
-        <li class="nav-item">
-      	  <c:url var="gameAccident" value="/post/list/" >
-            <c:param name="sub_category_id" value="42"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${gameAccident}">게임</a>
-        </li>
-        <li class="nav-item">
-      	  <c:url var="etcAccident" value="/post/list/">
-            <c:param name="sub_category_id" value="43"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${etcAccident}">기타</a>
-        </li>
-        <li class="nav-item">
-   	      <c:url var="freeBoard" value="/post/list/" >
-            <c:param name="sub_category_id" value="51"></c:param>
-          </c:url>
-          <a class="nav-link active" href="${freeBoard}">자유게시판</a>
-        </li>
-        <li>
-            <c:url var="totallist" value="/post/totallist"/>
-            <a class="nav-link active" href="${totallist}">전체게시판(임시, 차후삭제)</a>
-        </li>
-      </ul>
-	
-	
-	
-      <!-- 검색 -->
-      <div class="mx-4"	>
-      <c:url var="searchPage" value="/post/searchlist" />
-      <form method="get" action="${searchPage }">
-     			
-     			<div class="mx-4">
-	              <div class="input-group">
-	                      <select name="search_category" 
-	                      class="search-form form-select px-4 text-start"
-	                      style="width: 120px;">
-	                      
-	                          <option value="t">제목</option>
-	                          <option value="c">내용</option>
-	                          <option value="tc">제목+내용</option>
-	                          <option value="a">작성자</option>
-	                      </select>
-	                      <input name="keyword" class="search-form form-control w-auto" type="text" 
-	                          name="keyword" placeholder="검색" required />
-	              </div>
-     </form>
-      </div>
-     			</div>
+	<div
+		class="container-fluid fixed-top bg-body border-bottom py-3 d-flex justify-content-between"
+		style="padding-right: 150px; padding-left: 150px">
 
- <!-- 로그인 회원가입 -->
-		<div>
-		<%-- 로그인/회원 가입 링크 --%>
-		<c:if test="${empty signedInUser}">
-			<ul  class="nav navbar-nav align-items-center">
-		    	<li  class="nav-item">
-		    		<c:url var="signInPage" value="/user/signin" />
-		    		<a class="nav-link active" href="${signInPage}">로그인</a>
-		    	</li>
-		    	<li  class="nav-item">
-		    		<c:url var="signUpPage" value="/user/signup" />
-			   		<a class="nav-link active" href="${signUpPage}">회원가입</a>
-				</li>
-			</ul>
-		</c:if>
-		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
-		<c:if test="${not empty signedInUser }">
+		<!-- 로고 -->
+		<div class="navbar-brand">
+			<c:url var="homePage" value="/" />
+			<a href="${homePage}"> <img alt="라이프 모자이크 로고" src="${imgPath}"
+				style="width: 130px; height: 38px" />
+			</a>
+		</div>
+
+		<!-- 콜랩스 버튼(반응형) -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<!-- 메뉴 -->
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<%-- 카테고리 --%>
 			<ul class="nav navbar-nav align-items-center">
-				<li class="nav-item dropdown">
-					<div class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
-					<%-- TODO : 로그인 사용자의 이미지로 변경하기 --%>
-					<c:url var="settingImgPage" value="/setting/settingImg" />
-					<img class="profileUserImg" src="${settingImgPage}?fileName=${userProfileImgPath }" />
-					</div>
-			        <ul class="dropdown-menu dropdown-menu-end" style="font-size:12px">
-			           <li>
-			           <c:url var="settingProfilePage" value="/setting/userProfile"/>
-			           <a class="dropdown-item" href="${settingProfilePage}">프로필</a></li>
-			           
-			           <c:url var="settingPasswordPage" value="/setting/userManagement"/>
-			           <li><a class="dropdown-item" href="${settingPasswordPage}">계정 관리</a></li>
-			           
-    			       <li><a class="dropdown-item" href="#">내가 쓴 댓글</a></li>
-    			       
-    			       <c:url var="settingmyPostListPage" value="/setting/myPostList"/>
-    			       <li><a class="dropdown-item" href="${settingmyPostListPage}">내가 쓴 게시글</a></li>
-    			       
-    			       <li><a class="dropdown-item" href="#">내가 참여한 게시글</a></li>
-			           <li><hr class="dropdown-divider"></li>
-			           <li>
-			           <c:url var="signOutPage" value="/user/signout" />
-			           <a class="dropdown-item" href="${signOutPage}">로그아웃</a></li>
-       				</ul>
-				</li>
+				<li class="nav-item"><c:url var="fault" value="/post/list/">
+						<c:param name="sub_category_id" value="11"></c:param>
+					</c:url> <a class="nav-link active" href="${fault}">이거 내 잘못?</a></li>
+				<li class="nav-item"><c:url var="idiot" value="/post/list/">
+						<c:param name="sub_category_id" value="21"></c:param>
+					</c:url> <a class="nav-link active" href="${idiot}">나 호구냐?</a></li>
+				<li class="nav-item"><c:url var="envy" value="/post/list/">
+						<c:param name="sub_category_id" value="31"></c:param>
+					</c:url> <a class="nav-link active" href="${envy}">부럽지?</a></li>
+				<li class="nav-item"><c:url var="carAccident"
+						value="/post/list/">
+						<c:param name="sub_category_id" value="41"></c:param>
+					</c:url> <a class="nav-link active" href="${carAccident}">차사고</a></li>
+				<li class="nav-item"><c:url var="gameAccident"
+						value="/post/list/">
+						<c:param name="sub_category_id" value="42"></c:param>
+					</c:url> <a class="nav-link active" href="${gameAccident}">게임</a></li>
+				<li class="nav-item"><c:url var="etcAccident"
+						value="/post/list/">
+						<c:param name="sub_category_id" value="43"></c:param>
+					</c:url> <a class="nav-link active" href="${etcAccident}">기타</a></li>
+				<li class="nav-item"><c:url var="freeBoard" value="/post/list/">
+						<c:param name="sub_category_id" value="51"></c:param>
+					</c:url> <a class="nav-link active" href="${freeBoard}">자유게시판</a></li>
+				<li><c:url var="totallist" value="/post/totallist" /> <a
+					class="nav-link active" href="${totallist}">전체게시판(임시, 차후삭제)</a></li>
 			</ul>
-		</c:if>
-		</div><%-- end of signin/singou --%>
-		
-    </div><%-- end of menu bar --%>
 
-</div>
+
+
+			<!-- 검색 -->
+			<div class="mx-4">
+				<c:url var="searchPage" value="/post/searchlist" />
+				<form method="get" action="${searchPage }">
+
+					<div class="mx-3 input-group">
+						<select name="search_category"
+							class="search-form form-select px-4 text-start"
+							style="width: 110px;">
+							<option value="t">제목</option>
+							<option value="c">내용</option>
+							<option value="tc">제목+내용</option>
+							<option value="a">작성자</option>
+						</select> <input name="keyword" class="search-form form-control"
+							type="text" name="keyword" placeholder="검색" required
+							style="width: 120px" />
+					</div>
+				</form>
+			</div>
+
+			<!-- 계정 관련 메뉴 -->
+			<div>
+				<%-- 로그인/회원 가입 링크 --%>
+				<c:if test="${empty signedInUser}">
+					<ul class="nav navbar-nav align-items-center">
+						<li class="nav-item"><c:url var="signInPage"
+								value="/user/signin" /> <a class="nav-link active"
+							href="${signInPage}">로그인</a></li>
+						<li class="nav-item"><c:url var="signUpPage"
+								value="/user/signup" /> <a class="nav-link active"
+							href="${signUpPage}">회원가입</a></li>
+					</ul>
+				</c:if>
+				<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
+				<c:if test="${not empty signedInUser }">
+					<ul class="nav navbar-nav align-items-center">
+						<li class="nav-item dropdown">
+							<div class="nav-link" data-bs-toggle="dropdown"
+								aria-expanded="false">
+								<c:url var="settingImgPage" value="/setting/settingImg" />
+								<img class="profileUserImg"
+									src="${settingImgPage}?fileName=${userProfileUrl }" />
+							</div>
+							<ul class="dropdown-menu dropdown-menu-end"
+								style="font-size: 12px">
+								<li><c:url var="settingProfilePage"
+										value="/setting/userProfile" /> <a class="dropdown-item"
+									href="${settingProfilePage}">프로필</a></li>
+
+								<c:url var="settingPasswordPage" value="/setting/userManagement" />
+								<li><a class="dropdown-item" href="${settingPasswordPage}">계정
+										관리</a></li>
+
+								<li><a class="dropdown-item" href="#">내가 쓴 댓글</a></li>
+
+								<c:url var="settingmyPostListPage" value="/setting/myPostList" />
+								<li><a class="dropdown-item"
+									href="${settingmyPostListPage}">내가 쓴 게시글</a></li>
+
+								<li><a class="dropdown-item" href="#">내가 참여한 게시글</a></li>
+								<li><hr class="dropdown-divider"></li>
+								<li><c:url var="signOutPage" value="/user/signout" /> <a
+									class="dropdown-item" href="${signOutPage}">로그아웃</a></li>
+							</ul>
+						</li>
+					</ul>
+				</c:if>
+			</div>
+			<%-- end of signin/singou --%>
+
+		</div>
+		<%-- end of menu bar --%>
+
+	</div>
+
 </nav>

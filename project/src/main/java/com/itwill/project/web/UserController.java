@@ -63,6 +63,11 @@ public class UserController {
     	if (user != null) { // 아이디와 비밀번호 모두 일치하는 사용자가 있는 경우 -> 로그인 성공
     		 // 세션에 로그인 사용자 정보를 저장
     		session.setAttribute("signedInUser", user.getUser_id());
+    		
+    		// 연수가 코드 추가함 - 로그인 시 유저 프로필 경로 저장함.
+    		session.setAttribute("userProfileUrl", user.getProfile_url());
+    		
+  
     		log.debug("signedInUser: {}", session.getAttribute("signedInUser"));
     		// 타겟 페이지로 이동
     		return (target.equals("")) ? "redirect:/" : "redirect:" + target;
