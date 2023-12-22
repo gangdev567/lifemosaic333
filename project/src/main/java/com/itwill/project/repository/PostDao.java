@@ -26,5 +26,7 @@ public interface PostDao {
     
     int delete(Long id);
 
+    int viewCountIncrease(Long post_id);
+
     
 }

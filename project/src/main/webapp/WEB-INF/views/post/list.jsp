@@ -25,6 +25,7 @@
                             <th>제목</th>
                             <th>작성자</th>
                             <th>작성시간</th>
+                            <th>조회수</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -33,13 +34,13 @@
                                 <td>${p.post_id}</td>
                                 <td>
                                     <c:url var="postDetails" value="/post/detail">
-                                        
                                         <c:param name="post_id" value="${p.post_id}" />
                                     </c:url>
                                     <a href="${postDetails}">${p.title}</a>
                                 </td>
                                 <td>${p.nickname}</td>
                                 <td>${p.modified_time}</td>  
+                                <td>${p.view_count}</td>
                             </tr>
                         </c:forEach>
                     </tbody>

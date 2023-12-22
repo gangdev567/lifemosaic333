@@ -59,6 +59,10 @@
         where post_id = #{post_id}
     </select>
     
+    <update id="viewCountIncrease">
+        UPDATE posts SET view_count = view_count + 1 WHERE post_id = #{post_id}
+    </update>
+    
     <!-- POSTS 테이블에 새 포스트 삽입 -->
     <insert id="insert">
         INSERT INTO POSTS (USER_ID, TITLE, CONTENT, sub_category_id) 
