@@ -74,19 +74,15 @@
       <!-- 검색 -->
       <c:url var="searchPage" value="/post/searchlist" />
      <form method="get" action="${searchPage }">
-	              <div class="row">
-	                  <div class="col-5 pe-1 ps-5">
-	                      <select name="search_category" class="form-select" style="font-size:14px;">
+	              <div class="input-group mb-3 align-center">
+	                      <select name="search_category" class="search-form form-select">
 	                          <option value="t">제목</option>
 	                          <option value="c">내용</option>
 	                          <option value="tc">제목+내용</option>
 	                          <option value="a">작성자</option>
 	                      </select>
-	                  </div>
-	                  <div class="col-6 ps-1">
-	                      <input name="keyword" style="font-size:14px" class="form-control" type="text" 
-	                          name="keyword" placeholder="검색어" required />
-	                  </div>
+	                      <input name="keyword" class="search-form form-control" type="text" 
+	                          name="keyword" placeholder="검색" required />
 	              </div>
      </form>
 

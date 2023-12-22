@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function(){
 				htmlStr +=`
 				<div class="my-3 ms-2">
 					<div class="my-2">
-						<span class="d-inline-flex py-1 fw-semibold text-secondary" style="font-size:13px">
+						<span class="badge text-bg-light text-secondary">
 						${searchData[i-1].sub_category_name }
 						</span>
 					</div>

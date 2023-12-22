@@ -50,6 +50,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="./css/profile_image.css" />
+        <link rel="stylesheet" href="./css/main_navigation.css" />
 	</head>
     <header>
     </header>
