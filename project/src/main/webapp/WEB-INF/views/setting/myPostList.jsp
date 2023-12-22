@@ -24,7 +24,7 @@
                 <c:when test="${not empty posts}">
                     <div class="list-group">
                         <c:forEach items="${posts}" var="post">
-                            <a href="/post/${post.post_id}" class="list-group-item list-group-item-action">
+                            <a href="/project/post/detail?post_id=${post.post_id}" class="list-group-item list-group-item-action">
                                 <h5 class="mb-1">${post.title} <small>(조회수: ${post.view_count}, 댓글 수: ${post.comment_count})</small></h5>
                                 <p class="mb-1">${post.content}</p>
                                 <small>작성일: ${post.created_time}</small>
