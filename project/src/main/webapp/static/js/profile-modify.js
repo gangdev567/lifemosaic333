@@ -25,19 +25,30 @@
 	const btnUpdateNickname = document.querySelector('button#btnUpdateNickname');
 	
 	
-	btnUpdateNickname.addEventListener('click', (e) =>{
+	btnUpdateNickname.addEventListener('click', () =>{
 		
 		const user_id = inputUserId.value;
 		
 		const nickname = inputNickname.value;
 		
-		try{
+	
 		const data ={user_id,nickname};
-		const response = await axios.put(`../api/setting/updateNickname`);
+		const response =  axios.post(`../setting/updateNickname`, data)
+								.then((response) => {
+									console.log(response);
+									if(response.data === 1){
+										//"닉네임 변경 성공!"이란 모달 창을 보여줌.
+										alert('변경 성공');
+									}else{
+										//
+										alert('변경 실패');
+									}
+								})
+								.catch((error) =>{
+									console.log(error);
+								} );
+								
 		
-		}catch(error){
-			console.log(error);
-		}
 		
 		
 		

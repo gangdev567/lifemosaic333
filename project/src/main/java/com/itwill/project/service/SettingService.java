@@ -1,7 +1,10 @@
 package com.itwill.project.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
+import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.dto.setting.SettingNicknameDto;
 import com.itwill.project.dto.setting.SettingProfileImgDto;
@@ -59,5 +62,8 @@ public class SettingService {
 	public void updateBasicImg(String user_id) {
 		int result = settingDao.updateBasicProfileImg(user_id);
 		
+	}
+	public List<MyCommentListItem> selectMyComment(String user_id){
+		return settingDao.selectMyComment(user_id);
 	}
 }

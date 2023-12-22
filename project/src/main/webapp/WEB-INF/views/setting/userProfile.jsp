@@ -18,10 +18,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
-       
-
-
         #content {
             display: flex;
             justify-content: space-around;
@@ -163,20 +159,19 @@
 							<c:url var="settingImgPage" value="/setting/settingImg" />
 							<img class="profileImg mx-auto" src="${settingImgPage}?fileName=${user.profile_url}" name="profileImg" id="profileImg" alt="프로필 사진">
 						</div>
+							
 				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
 				<form action="${updateImgPage}" method="post" enctype="multipart/form-data" >
 						 <input type="file" id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);" />
-						
 							<input type="hidden" name="profile_url" id="profile_url" value="${user.profile_url}">
-							<div  class="d-flex justify-content-md-end">
+							<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
 							<button type="submit" class="btn btn-secondary" style="margin-left: auto;">변경</button>
-						 	</div>
 				</form>
 				<c:url var="settingBasicImg" value="/setting/settingBasicImg" />
 				<form action="${settingBasicImg}"  >
 					
 					<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-					<button type="submit" class="btn btn-secondary"  style="margin-left: 10px;">기본 이미지로 변경</button>
+					<button type="submit" class="btn btn-secondary"  style="margin-left: 10px;">기본 변경</button>
 					
 				</form>
 
