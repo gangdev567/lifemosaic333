@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 
 <!DOCTYPE html>
-<div class="my-4">
-<nav class="navbar navbar-expand-lg">
+
+<nav class="navbar navbar-expand-md bg-body-tertiary d-flex justify-content-center ">
+<div class="container-fluid fixed-top">
+
   	<!-- 로고 -->
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
@@ -22,7 +24,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="font-size:14px;font-weight:bold;">    
       
       <%-- 카테고리 --%>
-      <ul class="nav navbar-nav  align-items-center">
+      <ul class="nav navbar-nav align-items-center">
         <li class="nav-item">
           <c:url var="fault" value="/post/list/" >
             <c:param name="sub_category_id" value="11"></c:param>
@@ -71,10 +73,14 @@
         </li>
       </ul>
 	
+	
+	
       <!-- 검색 -->
+      <div class="mx-4"	>
       <c:url var="searchPage" value="/post/searchlist" />
      <form method="get" action="${searchPage }">
-	              <div class="input-group mb-3 align-center">
+     			
+	              <div class="input-group">
 	                      <select name="search_category" class="search-form form-select">
 	                          <option value="t">제목</option>
 	                          <option value="c">내용</option>
@@ -85,12 +91,13 @@
 	                          name="keyword" placeholder="검색" required />
 	              </div>
      </form>
+      </div>
 
  <!-- 로그인 회원가입 -->
 		<div>
 		<%-- 로그인/회원 가입 링크 --%>
 		<c:if test="${empty signedInUser}">
-			<ul  class="nav navbar-nav mb-2 mb-lg-0">
+			<ul  class="nav navbar-nav align-items-center">
 		    	<li  class="nav-item">
 		    		<c:url var="signInPage" value="/user/signin" />
 		    		<a class="nav-link active" href="${signInPage}">로그인</a>
@@ -103,7 +110,7 @@
 		</c:if>
 		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
 		<c:if test="${not empty signedInUser }">
-			<ul class="navbar-nav">
+			<ul class="nav navbar-nav align-items-center">
 				<li class="nav-item dropdown">
 					<div class="nav-link" data-bs-toggle="dropdown" aria-expanded="false">
 					<%-- TODO : 로그인 사용자의 이미지로 변경하기 --%>
@@ -136,5 +143,5 @@
 		
     </div><%-- end of menu bar --%>
 
-</nav>
 </div>
+</nav>

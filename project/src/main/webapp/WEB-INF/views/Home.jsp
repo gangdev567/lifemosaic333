@@ -52,15 +52,11 @@
         <link rel="stylesheet" href="./css/profile_image.css" />
         <link rel="stylesheet" href="./css/main_navigation.css" />
 	</head>
-    <header>
-    </header>
-
-             <body>
+	 <body>
+              	<c:url var="imgPath" value="./img/logo.png" />
+                 <%@ include file="./fragments/navigation.jspf" %>
+             
    		 	 <main>
-                 <div class="container-fluid d-flex justify-content-center">
-                 	<c:url var="imgPath" value="./img/logo.png" />
-                    <%@ include file="./fragments/navigation.jspf" %>
-                </div>
                     <div class="outerDiv">
                         <div class="container">
                             <div class="item">
