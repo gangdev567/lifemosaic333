@@ -53,8 +53,12 @@
         <link rel="stylesheet" href="./css/main_navigation.css" />
 	</head>
 	 <body>
+	 		<header>
               	<c:url var="imgPath" value="./img/logo.png" />
                  <%@ include file="./fragments/navigation.jspf" %>
+            </header> 
+            
+            <div style="margin:100px"></div>
              
    		 	 <main>
                     <div class="outerDiv">

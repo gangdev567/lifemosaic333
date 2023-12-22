@@ -4,24 +4,29 @@
 
 <!DOCTYPE html>
 
-<nav class="navbar navbar-expand-md bg-body-tertiary d-flex justify-content-center ">
-<div class="container-fluid fixed-top">
-
+<nav class="navbar navbar-expand-lg">
+<div class="container-fluid fixed-top bg-body border-bottom py-3 px-5">
+	
   	<!-- 로고 -->
   	<div class="navbar-brand" >
   	   <c:url var="homePage" value="/" />
 	   <a href="${homePage}">
-	   		<img alt="라이프 모자이크 로고" src="${imgPath}" style="width:130px; height:38px"/>
+	   		<img alt="라이프 모자이크 로고" src="${imgPath}" 
+	   										style="width:130px; height:38px"/>
 	   </a>
   	</div>
     
     <!-- 콜랩스 버튼(반응형) -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" 
+    				 data-bs-toggle="collapse" 
+    				 data-bs-target="#navbarSupportedContent" 
+    				 aria-controls="navbarSupportedContent" 
+    				 aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     
       <!-- 메뉴 -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent"  style="font-size:14px;font-weight:bold;">    
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">    
       
       <%-- 카테고리 --%>
       <ul class="nav navbar-nav align-items-center">
@@ -78,20 +83,25 @@
       <!-- 검색 -->
       <div class="mx-4"	>
       <c:url var="searchPage" value="/post/searchlist" />
-     <form method="get" action="${searchPage }">
+      <form method="get" action="${searchPage }">
      			
+     			<div class="mx-4">
 	              <div class="input-group">
-	                      <select name="search_category" class="search-form form-select">
+	                      <select name="search_category" 
+	                      class="search-form form-select px-4 text-start"
+	                      style="width: 120px;">
+	                      
 	                          <option value="t">제목</option>
 	                          <option value="c">내용</option>
 	                          <option value="tc">제목+내용</option>
 	                          <option value="a">작성자</option>
 	                      </select>
-	                      <input name="keyword" class="search-form form-control" type="text" 
+	                      <input name="keyword" class="search-form form-control w-auto" type="text" 
 	                          name="keyword" placeholder="검색" required />
 	              </div>
      </form>
       </div>
+     			</div>
 
  <!-- 로그인 회원가입 -->
 		<div>

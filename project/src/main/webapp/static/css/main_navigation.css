@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+div.container-fluid {
+	text-shadow: #e5e7eb 5px;
+}
+
 li {
     font-family: Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,
     Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,
