@@ -218,6 +218,7 @@
             data: dataToChart,
             options: options
         });
+
     } //makeLikeElement end
     
     // POST_ID와 USER_ID를 보내서 GET방식으로 POST_LIKE_CHECK의 데이터를 가져오는 함수
@@ -373,8 +374,5 @@
         dislikeBtn.addEventListener('click', postDislike);
         
     }
-    
-    
-    
     
  });
