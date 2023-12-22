@@ -90,7 +90,7 @@ public class LikeRestController {
     }
     
     @PostMapping("/make/check")
-    ResponseEntity<Integer> makePostLikeCheck(@RequestBody PostLikeDto dto) {
+    public ResponseEntity<Integer> makePostLikeCheck(@RequestBody PostLikeDto dto) {
         log.debug("PostLikeDto = {}", dto);
         
         int result = likeService.makePostLikeCheck(dto);
