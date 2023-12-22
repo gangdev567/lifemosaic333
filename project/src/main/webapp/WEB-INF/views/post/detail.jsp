@@ -74,6 +74,7 @@
                 <div>
                     <canvas id="donutChart"></canvas>
                 </div>
+
                 
                 <div class="card-footer">
                 <%-- 작성자 아이디와 로그인 사용자 아이디가 같을 때만 [수정하기] 버튼을 보여줌. --%>
@@ -152,6 +153,7 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
         <script src="../js/like.js"></script>
         <script src="../js/bookmark.js"></script>
 	</body>
