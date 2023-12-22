@@ -25,7 +25,9 @@
                 <c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
             </c:url>
             <a class="btn btn-primary fs-5 fw-bold" href="${returnList}">게시판 돌아가기</a>
+            <a id="bookmark" class="fs-5 fw-bold btn btn-secondary">북마크</a>
         </div>
+        
         <div>
         <main class="my-2">
             <div class="card">
@@ -153,6 +155,6 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
         <script src="../js/like.js"></script>
-        <script src="../js/like-chart.js"></script>
+        <script src="../js/bookmark.js"></script>
 	</body>
 </html>
