@@ -101,20 +101,6 @@
 				</li>
 			</ul>
 		</c:if>
-		<%-- 로그아웃/회원 탈퇴 --%>
-		<c:if test="${not empty signedInUser}">
-           <li class="nav-item">
-           		<span class="text-primary fw-bold">${signedInUser}</span>
-               <c:url var="signOutPage" value="/user/signout" />
-               <a class="nav-link" href="${signOutPage}">
-                   <span>로그아웃</span>
-               </a>
-           </li>
-           <%-- TODO: 회원탈퇴 나중에 DB 거의 완성되면 작성 --%>
-           <li class="nav-item">
-           		<span class="text-danger fw-bold">회원탈퇴</span>
-           </li>
-       </c:if>
 		<%-- 로그인 사용자 페이지 dropdown 버튼 --%>
 		<c:if test="${not empty signedInUser }">
 			<ul class="navbar-nav">
@@ -128,12 +114,20 @@
 			           <li>
 			           <c:url var="settingProfilePage" value="/setting/userProfile"/>
 			           <a class="dropdown-item" href="${settingProfilePage}">프로필</a></li>
-			           <li><a class="dropdown-item" href="#">계정 관리</a></li>
+			           
+			           <c:url var="settingPasswordPage" value="/setting/userManagement"/>
+			           <li><a class="dropdown-item" href="${settingPasswordPage}">계정 관리</a></li>
+			           
     			       <li><a class="dropdown-item" href="#">내가 쓴 댓글</a></li>
-    			       <li><a class="dropdown-item" href="#">내가 쓴 게시글</a></li>
+    			       
+    			       <c:url var="settingmyPostListPage" value="/setting/myPostList"/>
+    			       <li><a class="dropdown-item" href="${settingmyPostListPage}">내가 쓴 게시글</a></li>
+    			       
     			       <li><a class="dropdown-item" href="#">내가 참여한 게시글</a></li>
 			           <li><hr class="dropdown-divider"></li>
-			           <li><a class="dropdown-item" href="#">로그아웃</a></li>
+			           <li>
+			           <c:url var="signOutPage" value="/user/signout" />
+			           <a class="dropdown-item" href="${signOutPage}">로그아웃</a></li>
        				</ul>
 				</li>
 			</ul>
