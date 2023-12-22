@@ -30,7 +30,7 @@ public class PostListItemDto {
                 .post_id(post.getPost_id())
                 .title(post.getTitle())
                 .content(post.getContent())
-                .modified_time(post.getModified_time())
+                .created_time(post.getCreated_time())
                 .sub_category_id(post.getSub_category_id())
                 .image_path(post.getImage_path())
                 .view_count(post.getView_count())
