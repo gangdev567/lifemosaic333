@@ -144,7 +144,7 @@
 						<button type="button" class="btn btn-secondary"	name="btnCheckNickname" id="btnCheckNickname">중복 확인</button>
 					</div>
 					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-dark" name="btnUpdateNickname" id="btnUpdateNickname" type="submit">저장</button>
+						<button class="btn btn-dark " name="btnUpdateNickname" id="btnUpdateNickname" type="submit">저장</button>
 					</div>
 				</form>
 			</div>

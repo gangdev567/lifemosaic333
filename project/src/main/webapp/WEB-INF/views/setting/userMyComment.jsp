@@ -103,11 +103,8 @@
 					${post.post_subcategory}
 					</span>
 				  </div>
-				    <h5 class="card-title">${post.post_title }</h5>
-				    <p class="card-text">
-				    <div>
-				    <!-- 작성자(프로필 이미지), 작성시간 ,좋아요수, 댓글수,조회수 -->
-					    <div class="my-2 img-box">
+					<a href="/project/post/detail?post_id=${post.post_id}" class="list-group-item list-group-item-action">
+						  <	 class="my-2 img-box">
 					    <c:url var="settingImgPage" value="/setting/settingImg" />
 								<img class="profileImg mx-auto" src="${settingImgPage}?fileName=${post.post_user_profile_url}" name="profileImg" id="profileImg" alt="프로필 사진">    		
 					    </div>
@@ -117,9 +114,15 @@
 				   			작성 시간 : ${post.post_created_time } 좋아요: ${post.post_like_count } 댓글: ${post.comment_count } 조회수: ${post.post_view_count }
 				   		</div>
 				   		</div>
+					
+					</a>
+				    <p class="card-text">
+				    <div>
+				    <!-- 작성자(프로필 이미지), 작성시간 ,좋아요수, 댓글수,조회수 -->
+					  
 				    </div>
 				    
-				    </p>
+				
 				  </div>
 				</div>
 			</div>
