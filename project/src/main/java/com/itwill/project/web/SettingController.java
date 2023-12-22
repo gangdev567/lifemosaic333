@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.http.HttpHeaders;
 import java.nio.file.Files;
-
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.domain.User;
 import com.itwill.project.dto.setting.FileUtil;
@@ -126,7 +127,7 @@ public class SettingController {
 	}
 	
 	@PostMapping("/updateImg")
-	public String updateImg(@RequestParam("profile") MultipartFile file, HttpSession session, String user_id)
+	public String updateImg(@RequestParam("profile") MultipartFile file, String user_id)
 	        throws Exception {
 	    log.debug("updateImg(!!!!!!!!!!!!!!!!!!!!)");
 	    FileUtil fileUtil = new FileUtil();
@@ -147,12 +148,13 @@ public class SettingController {
 	    return "redirect:/setting/userProfile";
 	}
 	@PostMapping("/updateNickname")
-	public String updateNickname(SettingNicknameDto dto, String nickname) {
+	public ResponseEntity<Integer> updateNickname(@RequestBody SettingNicknameDto dto) {
 		log.debug("updateNickname=(dto={})",dto);
-		settingService.updateNickname(dto);
-		
-		return "redirect:/setting/userProfile";
+		int result = settingService.updateNickname(dto);
+		 
+		return ResponseEntity.ok(result);
 	}
+	
 	 @GetMapping("/settingImg")
 	    @ResponseBody
 	    public ResponseEntity<Resource> getSettingImage(@RequestParam("fileName") String fileName) throws IOException {
@@ -179,6 +181,20 @@ public class SettingController {
 		 settingService.updateBasicImg(user_id);
 		 
 		 return "redirect:/setting/userProfile";
+	 }
+	 
+	 /*
+	  * <내가 쓴 댓글> 페이지 
+	  * -> user_id의 값을 받아 댓글 목록을 보여줌 
+	  */
+	 @GetMapping("/userMyComment")
+	 public void showMyComment(Model model, HttpSession session) {
+		 String user_id = (String) session.getAttribute("signedInUser");
+			SettingUser user = settingService.read(user_id);
+			
+			List<MyCommentListItem> myCommentList = settingService.selectMyComment(user_id);
+			model.addAttribute("user",user);
+			model.addAttribute("comment",myCommentList);
 	 }
   
 	
