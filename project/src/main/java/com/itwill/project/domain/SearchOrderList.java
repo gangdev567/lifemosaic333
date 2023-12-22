@@ -13,5 +13,5 @@ public class SearchOrderList {
 	private String orderStatus;
 	private Long subcategory;
 	private String keyword;
-	private String category;
+	private String search_category;
 }

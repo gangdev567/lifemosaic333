@@ -12,7 +12,7 @@
 		<div class="row">
 			<div class="d-none">${idiot.post_id }</div>
 				<c:url var="postDetails" value="/post/detail" >
-					<c:param name="post_id" value="${etc.post_id }" />
+					<c:param name="post_id" value="${idiot.post_id }" />
 				</c:url>
 				<div class="col-5">
 					<a class="nav-link" href="${postDetails }">

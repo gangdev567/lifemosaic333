@@ -6,11 +6,17 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>life mosaic</title>
-		
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
+            
+        <style>
+            canvas {
+            max-width: 400px;
+        }
+    </style>
 	</head>
 	<body>
     
@@ -26,7 +32,7 @@
                 <form class="card-body">
                     <div class="my-2">
                         <label for="id" class="form-label">번호</label> <input
-                            class="form-control" id="id" type="number"
+                            class="form-control" id="post_id" type="number"
                             value="${post.post_id}" readonly />
                     </div>
                     <div class="my-2">
@@ -57,6 +63,17 @@
                             readonly />
                     </div>
                 </form>
+                <div>
+                    <button class="btn btn-success" id="likeBtn" name="likeBtn">좋아요</button>
+                    <button class="btn btn-danger" id="dislikeBtn" name="dislikeBtn">싫어요</button>
+                </div>
+                <div id="like">
+                </div>
+                <div>
+                    <canvas id="donutChart"></canvas>
+                </div>
+
+                
                 <div class="card-footer">
                 <%-- 작성자 아이디와 로그인 사용자 아이디가 같을 때만 [수정하기] 버튼을 보여줌. --%>
                 <c:if test="${signedInUser eq post.user_id}">
@@ -128,9 +145,14 @@
             </div> <%-- end modal --%>
         </main>
     </div>
+  
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script src="../js/like.js"></script>
+        <script src="../js/like-chart.js"></script>
 	</body>
 </html>

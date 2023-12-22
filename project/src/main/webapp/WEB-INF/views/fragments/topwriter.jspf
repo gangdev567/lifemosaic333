@@ -17,11 +17,11 @@
 	  	<c:forEach var="writer" items="${writer }">
 		  
 		  <!-- 아이디 하나 div -->
-		    <div class="row row-cols-auto d-flex justify-content-between">
+		    <div class="row row-cols-auto d-flex justify-content-between my-2">
 		    	<input id="user_id" value="${writer.user_id }" class="d-none"/>
 		    	<div class="col">
 		    	<c:url var="settingImgPage" value="/setting/settingImg" />
-		    	<img src="${settingImgPage}?fileName=${writer.profile_url }" style="border-radius:100%; witdh:25px; height:25px;"  />
+		    	<img class ="topProfileUserImg" src="${settingImgPage}?fileName=${writer.profile_url }" />
 		    	<!-- ./images/${writer.profile_url} -->
 		    	<span  class="align-middle fw-bold" style="font-size:10px;">${writer.nickname }</span>
 		    	</div>
