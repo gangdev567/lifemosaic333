@@ -6,6 +6,7 @@
 			<aside class="lg:col-span-3 lg:pr-16">
 					<p class="text-center" style="font-size: 25px; font-weight:bold;"> 내 계정</p>
 					<hr>
+						<!-- 프로필 -->
 						 <c:url var="settingProfilePage" value="/setting/userProfile"/>
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="${settingProfilePage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -15,6 +16,7 @@
 							프로필
 						</a></p>
 						
+						<!--  계정관리 -->
 						<c:url var="settingPasswordPage" value="/setting/userManagement"/>
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="${settingPasswordPage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear" viewBox="0 0 16 16">
@@ -24,6 +26,7 @@
 						계정 관리
 						</a></p>
 						
+						<!-- 내가 쓴 댓글 -->
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
 						  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H4.414A2 2 0 0 0 3 11.586l-2 2V2a1 1 0 0 1 1-1zM2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
@@ -31,6 +34,7 @@
 						내가 쓴 댓글
 						</a></p>
 						
+						<!--  내가 쓴 게시글 -->
 						<c:url var="settingmyPostListPage" value="/setting/myPostList"/>
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="${settingmyPostListPage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-post" viewBox="0 0 16 16">
@@ -39,6 +43,8 @@
 						</svg>
 						내가 쓴 게시글
 						</a></p>
+						
+						<!-- 내가 참여한 게시물 -->
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-check" viewBox="0 0 16 16">
 						  <path fill-rule="evenodd" d="M10.854 6.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 8.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
@@ -47,6 +53,8 @@
 						</svg>
 						내가 참여한 게시물
 						</a></p>
+						
+						<!-- 북마크 -->
 						<p style="font-size: 15px; margin: 10px; padding: 10px;"><a href="#" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-journal-album" viewBox="0 0 16 16">
 							  <path d="M5.5 4a.5.5 0 0 0-.5.5v5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 .5-.5v-5a.5.5 0 0 0-.5-.5zm1 7a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1z"/>
