@@ -7,4 +7,5 @@ public class PostLikeDto {
     
     private Long post_id;
     private String user_id;
+
 }
