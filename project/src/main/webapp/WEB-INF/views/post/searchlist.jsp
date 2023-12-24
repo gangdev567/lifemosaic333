@@ -23,7 +23,7 @@
 	   		<c:url var="imgPath" value="../img/logo.png" />
 	         <%@ include file="../fragments/navigation.jspf" %>
 	   </div>
-	   <div style="margin:100px"></div>
+	   <div style="margin:110px"></div>
  	   
  	   
  	   <!-- 메인 시작 -->

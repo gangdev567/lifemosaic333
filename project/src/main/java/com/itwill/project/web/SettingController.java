@@ -127,7 +127,7 @@ public class SettingController {
 	}
 	
 	@PostMapping("/updateImg")
-	public String updateImg(@RequestParam("profile") MultipartFile file, String user_id)
+	public String updateImg(@RequestParam("profile") MultipartFile file, String user_id, HttpSession session)
 	        throws Exception {
 	    log.debug("updateImg(!!!!!!!!!!!!!!!!!!!!)");
 	    FileUtil fileUtil = new FileUtil();

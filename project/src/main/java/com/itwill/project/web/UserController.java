@@ -84,6 +84,9 @@ public class UserController {
     	// 세션에 저장된 "signedInUser" 정보를 삭제.
     	session.removeAttribute("signedInUser");
     	
+    	// 연수 추가 - 세션에 저장된 프로필 이미지도 삭제함.
+    	session.removeAttribute("userProfileUrl");
+    	
     	// 세션을 만료시킴.
     	session.invalidate();
     	
