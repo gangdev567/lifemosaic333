@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	const count_per_page = 10;
 	let currentPage = 1;
-	let searchData ='';
+	let searchData = '';
 
 	//맨 처음 검색될 시 화면에 띄워줌
 	workPost();
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
 
 
 // 비동기 데이터 전송 함수 ---------------------------------------------------------------------------
+// 검색된 키워드와 기본 정렬 방식을 가지고 모든 데이터 가져옴
 	async function workPost(){
 		try{
 			const uri = `../api/sort/category`;
@@ -85,22 +86,27 @@ document.addEventListener('DOMContentLoaded', function(){
 		
 		//한 페이지 당 보여줄 포스트 개수
 		const totalPageCount = Math.ceil(searchData.length/count_per_page);
-		console.log("totalPageCount = " ,totalPageCount);
 		
 		//페이지 번호 동적으로 생성
 		htmlStrPage += `<nav><ul class="pagination pagination-sm">`;
 		for(let num=1; num<=totalPageCount ; num++){
-			htmlStrPage += 
-			`<li class="page-item"  >
-	    	<span class="liPageSelect page-link text-secondary" data-id="${num}">${num}</span>
-		</li>`;
+			if(num === parseInt(currentPage)){
+					htmlStrPage += 
+					`<li class="page-item"  >
+			    	<span class="liPageSelect page-link text-white bg-secondary" data-id="${num}">${num}</span>
+				</li>`;				
+			}else{
+					htmlStrPage += 
+					`<li class="page-item"  >
+			    	<span class="liPageSelect page-link text-secondary" data-id="${num}">${num}</span>
+				</li>`;				
+			}
 		}
 		
 		divPage.innerHTML=htmlStrPage;
 		
 		//페이지에 클릭 이벤트 리스너 등록
 		const selectPage = document.querySelectorAll('span.liPageSelect');
-		console.log("selectPage : ", selectPage);
 		for(let pageSelect of selectPage){
 			pageSelect.addEventListener('click', changecurrentPage);
 		}	
@@ -108,14 +114,13 @@ document.addEventListener('DOMContentLoaded', function(){
 	
 	function changecurrentPage(e){
 				const aPage = e.target.getAttribute('data-id');
+				currentPage = aPage
 				makePostHtmlTemplet(aPage);
+				makePageHtmlTemplet();
 	}
 	
 	
 	function makePostHtmlTemplet(pageNumber){
-		console.log("makePostHtmlTemplet 실행");
-		console.log("현재 선택된 페이지는?" , pageNumber);
-
 		//검색 결과 템플릿
 		const divPost = document.querySelector('div#postTemplate')
 
@@ -123,12 +128,11 @@ document.addEventListener('DOMContentLoaded', function(){
 		
 		let htmlStr ='';
 		
-		if(searchData === null){
-			console.log("데이터가 널임");
+		if(searchData.length == 0){
 			htmlStr += `<div class="my-3 ms-2">
-			<h4>검색되는 결과가 없습니다.</h4></div>`;
+			<div class="my-2">
+			<h4>검색되는 결과가 없습니다.</h4></div></div>`;
 		}else{
-			console.log("데이터가 널 아님");
 			for(
 					let i = count_per_page * (pageNumber -1) +1;
 					i<=count_per_page * (pageNumber -1) + count_per_page && i<= searchData.length;
@@ -138,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function(){
 				htmlStr +=`
 				<div class="my-3 ms-2">
 					<div class="my-2">
-						<span class="d-inline-flex py-1 fw-semibold text-secondary" style="font-size:13px">
+						<span class="badge text-bg-light text-secondary">
 						${searchData[i-1].sub_category_name }
 						</span>
 					</div>

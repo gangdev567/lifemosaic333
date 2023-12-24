@@ -8,10 +8,10 @@
 		<title>Life mosaic</title>
 		
           <style>
-                .container{
+                .mainBorderBox{
                     display: grid;
                     grid-template-columns: 1fr 2.5fr 2.5fr 1fr;
-                    grid-template-rows: 500px 250px 250px 250px 150px;
+                    grid-template-rows: 550px 400px 400px 400px 150px;
                     row-gap: 10px;
                     column-gap: 10px;
                  }
@@ -49,19 +49,22 @@
             rel="stylesheet" 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
-        <link rel="stylesheet" href="./css/profile_image.css" />
+        <link rel="stylesheet" href="./css/main_navigation.css" />
 	</head>
-    <header>
-    </header>
-
-             <body>
+	 <body>
+			
+			<!-- 메뉴바 -->
+			<c:url var="imgPath" value="./img/logo.png" />
+			<%@ include file="./fragments/navigation.jspf" %>
+            
+            <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
+            <div style="margin:110px"></div>
+             
+             
+             <!-- 베스트 게시글 및 TopWriter 보여주기 -->
    		 	 <main>
-                 <div class="container-fluid d-flex justify-content-center">
-                 	<c:url var="imgPath" value="./img/logo.png" />
-                    <%@ include file="./fragments/navigation.jspf" %>
-                </div>
                     <div class="outerDiv">
-                        <div class="container">
+                        <div class="container mainBorderBox">
                             <div class="item">
                             	<%@include file="./fragments/topwriter.jspf"  %>
                             </div>
@@ -87,10 +90,10 @@
                             <div class="item">
                             	<%@ include file="./fragments/main/etcaccident.jspf" %>
                             </div>
-                            <div style="background-color:rgb(100, 150, 100);"class="item">Footer</div>
+                            <div class="item"><%@include file="./fragments/footer.jspf" %></div>
                         </div>
                     </div>
-				    </main>
+				</main>
             </body>
 
 
