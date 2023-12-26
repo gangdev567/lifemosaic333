@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
+import com.itwill.project.domain.HashTag;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PostCreateDto;
@@ -56,6 +57,8 @@ public class PostService {
         int result = postDao.insert(dto.toEntity());
         log.debug("create result = {}", result);
         
+        
+        
         return result;
     }
 
@@ -87,5 +90,25 @@ public class PostService {
         int result = postDao.viewCountIncrease(post_id);
         log.debug("post_id = {}, viewCount + {}", post_id, result);
         
+    }
+    
+    public Integer readHashtagName(String tagName) {
+    	
+    	HashTag result = postDao.selectHashTag(tagName);
+    	if(result != null) {
+    		return 1;
+    	}
+    	else {
+    		return 0;    		
+    	}
+    }
+    
+    public int createtHashTag(String tagname) {
+    	int result = postDao.insertHashTag(tagname);
+    	return result;
+    }
+    
+    public int createsPostHashTag(HashTag tag) {
+    	return postDao.insertsPostHashTag(tag);
     }
 }

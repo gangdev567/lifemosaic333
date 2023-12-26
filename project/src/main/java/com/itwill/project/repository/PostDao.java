@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.itwill.project.domain.HashTag;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 
@@ -28,5 +29,9 @@ public interface PostDao {
 
     int viewCountIncrease(Long post_id);
 
+    HashTag selectHashTag(String tagname);
     
+    int insertHashTag(String tagname);
+    
+    int insertsPostHashTag(HashTag tag);
 }
