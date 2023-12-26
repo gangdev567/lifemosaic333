@@ -42,10 +42,10 @@
                     <div id="checkNicknameResult">
                         <!-- nickname 중복체크 결과 표시 -->
                     </div>
-                    <div class="my-2">
-                        <input type="password" class="form-control"
-                            id="password" name="password" placeholder="password" required />
-                    </div>
+					<div class="my-2">
+						<input type="password" class="form-control" id="password" name="password" placeholder="password" required />
+						<span id="passwordMessage"></span>
+					</div>
 
 					<div class="form-group email-form">
 						<label for="email">이메일</label>
