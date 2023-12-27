@@ -89,6 +89,7 @@
             <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
         </a>
     </div>
+</div>
 
  <div class="row justify-content-center">
     <div class="col-lg-10">
