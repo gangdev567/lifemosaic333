@@ -54,7 +54,15 @@
 		타입 데이터를 관리하고, 데이터 타입에 기반한 동작을 결정하는 데 사용됩니다.-->
 
 		<!-- 프로젝트 의존성(외부 라이브러리)들 설정 -->
-		<!-- Tomcat 10.1.x 에서 JSTL(Jakrta Standard Tag Library)를 사용하기 위한 설정 -->
+        <!-- https://mvnrepository.com/artifact/jakarta.validation/jakarta.validation-api -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+
+        <!-- Tomcat 10.1.x 에서 JSTL(Jakrta Standard Tag Library)를 사용하기 위한 설정 -->
         <dependency>
             <groupId>jakarta.servlet.jsp.jstl</groupId>
             <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
