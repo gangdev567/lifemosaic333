@@ -64,7 +64,7 @@
     </update>
     
     <!-- POSTS 테이블에 새 포스트 삽입 -->
-    <insert id="insert">
+    <insert id="insert" parameterType="Post"  useGeneratedKeys="true" keyColumn="post_id" keyProperty="post_id">
         INSERT INTO POSTS (USER_ID, TITLE, CONTENT, sub_category_id) 
         VALUES (#{user_id}, #{title}, #{content}, #{sub_category_id})
     </insert>
@@ -105,4 +105,24 @@
         order by ID desc
     </select>
     -->
+    
+    <select id="selectHashTag" resultType="com.itwill.project.domain.HashTag">
+    	select tag_id
+    	from hashtag
+    	where tag_name = #{tagname}
+    </select>
+    
+    <insert id="insertHashTag">
+    	insert into hashtag (tag_name) values (#{tagname})
+    </insert>
+    
+    <insert id="insertsPostHashTag">
+    	insert all into post_hash 
+    		<foreach >
+    			values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name})) 
+    		</foreach>
+    	select * from dual;
+    </insert>
+    
+    
 </mapper>

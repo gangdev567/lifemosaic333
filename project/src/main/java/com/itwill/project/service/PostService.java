@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
+import com.itwill.project.domain.HashTag;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.dto.post.PostCreateDto;
@@ -52,11 +53,30 @@ public class PostService {
 
 
     public int create(PostCreateDto dto) {
+    	log.debug("create 호출");
+    	
+    	//연수 코드 수정 - 생성된 post_id 사용하기 위해
+        Post post = dto.toEntity();
+        post.setPost_id(0L);
         
-        int result = postDao.insert(dto.toEntity());
-        log.debug("create result = {}", result);
+        int result = postDao.insert(post);
+        log.debug("해시태그 개수 : {}", post.getHashTag());
         
-        return result;
+        //해시태그가 존재하는지 체크
+        if(post.getHashTag() != null) {
+        	log.debug("null이 아님 : {}", post.getHashTag().length);
+        	
+            //생성된 post_id 가져오기
+        	Long newPostId = post.getPost_id();
+        	
+        	//HashTag 모델 설정 - 포스트 아이디, 태그이름들
+        	HashTag tag = HashTag.builder().post_id(newPostId).hashTag(post.getHashTag()).build();
+        	
+        	//HashTag를 파라미터로 postHashtag 테이블에 insert하기
+        	int cnt = postDao.insertsPostHashTag(tag);
+        }
+
+        return 0;
     }
 
     
@@ -87,5 +107,25 @@ public class PostService {
         int result = postDao.viewCountIncrease(post_id);
         log.debug("post_id = {}, viewCount + {}", post_id, result);
         
+    }
+    
+    public Integer readHashtagName(String tagName) {
+    	
+    	HashTag result = postDao.selectHashTag(tagName);
+    	if(result != null) {
+    		return 1;
+    	}
+    	else {
+    		return 0;    		
+    	}
+    }
+    
+    public int createtHashTag(String tagname) {
+    	int result = postDao.insertHashTag(tagname);
+    	return result;
+    }
+    
+    public int createsPostHashTag(HashTag tag) {
+    	return postDao.insertsPostHashTag(tag);
     }
 }
