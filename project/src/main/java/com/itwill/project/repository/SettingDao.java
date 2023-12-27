@@ -1,7 +1,12 @@
 
 package com.itwill.project.repository;
+import java.util.List;
+
+import com.itwill.project.domain.MyCommentListItem;
+import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.dto.setting.SettingNicknameDto;
+import com.itwill.project.dto.setting.SettingPageDto;
 import com.itwill.project.dto.setting.SettingProfileImgDto;
 
 public interface SettingDao {
@@ -14,4 +19,8 @@ public interface SettingDao {
 	int updateNickname(SettingNicknameDto dto);
 	
 	int updateBasicProfileImg(String user_id);
+	
+	List<MyCommentListItem> selectMyComment(String user_id);
+	
+	List<MyCommentListItemByPaging> selectByMyCommentByPaging(SettingPageDto dto);
 }

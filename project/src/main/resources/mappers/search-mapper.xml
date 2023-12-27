@@ -5,7 +5,8 @@
 <mapper namespace="com.itwill.project.repository.SearchDao">
 	<select id="searchKeywordCategory" resultType="com.itwill.project.domain.SearchListItem">
 	<bind name="searchKeyword" value="'%' + dto.keyword  + '%'" />
-			select s.sub_category_id, s.sub_category_name, p.post_id, p.title, case when length(p.content) > 20 then substr(p.content,0,20) || ' ...'
+			select s.sub_category_id, s.sub_category_name, p.post_id, p.title, 
+							case when length(p.content) > 20 then substr(p.content,0,20) || ' ...'
 			                else p.content end as "content", u.nickname, u.user_id, p.view_count, nvl(pl.like_point,0) as "like_point", count(c.post_id) as "comment_cnt", to_char(p.created_time,'MM.dd HH:mm') as "created_time"
 			from posts p
 			left join sub_category s on p.sub_category_id = s.sub_category_id

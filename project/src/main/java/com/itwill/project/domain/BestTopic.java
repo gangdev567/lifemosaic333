@@ -18,4 +18,7 @@ public class BestTopic {
 	private String title;
 	private Long like_point;
 	private Long comment_cnt;
+	private String user_id;
+	private String nickname;
+	private String profile_url;
 }

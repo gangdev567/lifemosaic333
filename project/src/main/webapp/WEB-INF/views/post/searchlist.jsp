@@ -11,17 +11,22 @@
             rel="stylesheet" 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
+        <link rel="stylesheet" href="./../css/main_navigation.css" />
 	</head>
 	
     <body>
 	   <header>
 	   </header>
 	    
+	    <!-- 내비게이션 include 시 경로 및 겹치는 div 만들어줘야 함 -->
 	   <div class="container-fluid d-flex justify-content-center">
 	   		<c:url var="imgPath" value="../img/logo.png" />
 	         <%@ include file="../fragments/navigation.jspf" %>
 	   </div>
+	   <div style="margin:110px"></div>
  	   
+ 	   
+ 	   <!-- 메인 시작 -->
  	   <main>
  	   <div class="mx-5">
  	   <div class="container-fluid w-50">
@@ -76,7 +81,6 @@
  	   <!-- 페이지네이션 -->
  	   <div class="d-flex justify-content-center mt-5">
  	   <div id="pageTemplate">
-			페이지 넘버
  	   </div>
  	   </div>
 			

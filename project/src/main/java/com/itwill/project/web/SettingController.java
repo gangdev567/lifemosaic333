@@ -1,12 +1,13 @@
 package com.itwill.project.web;
 
 import java.awt.PageAttributes.MediaType;
+import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.http.HttpHeaders;
 import java.nio.file.Files;
-
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.HttpStatus;
@@ -26,12 +27,20 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.project.domain.MyCommentListItem;
+import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
+import com.itwill.project.domain.User;
+import com.itwill.project.dto.setting.ArticlePage;
 import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.dto.setting.PasswordChangeDto;
 import com.itwill.project.service.ChangePasswordServiceImpl;
 import com.itwill.project.dto.setting.SettingNicknameDto;
+import com.itwill.project.dto.setting.SettingPageDto;
+import com.itwill.project.dto.user.UserSignInDto;
+import com.itwill.project.repository.UserDao;
 import com.itwill.project.service.SettingService;
+import com.itwill.project.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +54,7 @@ public class SettingController {
 	
 	private final SettingService settingService;
 	private final ChangePasswordServiceImpl changePasswordService;
+	private final UserDao userDao;
 	
 	@GetMapping("/userProfile")
 	public void userProfile(Model model, HttpSession session) {
@@ -121,7 +131,7 @@ public class SettingController {
 	}
 	
 	@PostMapping("/updateImg")
-	public String updateImg(@RequestParam("profile") MultipartFile file, HttpSession session, String user_id)
+	public String updateImg(@RequestParam("profile") MultipartFile file, String user_id, HttpSession session)
 	        throws Exception {
 	    log.debug("updateImg(!!!!!!!!!!!!!!!!!!!!)");
 	    FileUtil fileUtil = new FileUtil();
@@ -131,16 +141,24 @@ public class SettingController {
 
      settingService.updateImg(user_id, profile_url);
      
-    
+     
+		// 연수가 코드 추가함 - 이미지 변경 시, 기존 세션 정보에 저장된 이미지 경로를 새로운 경로로 덮어쓰기 함
+		// 1. user_id로 모든 유저 정보 가져옴
+		User user = userDao.selectByUserid(user_id);
+		// 2. 가져온 유저 정보 중, 프로필 경로를 세션에 저장
+		session.setAttribute("userProfileUrl", user.getProfile_url());
+		
+		
 	    return "redirect:/setting/userProfile";
 	}
 	@PostMapping("/updateNickname")
-	public String updateNickname(SettingNicknameDto dto, String nickname) {
+	public ResponseEntity<Integer> updateNickname(@RequestBody SettingNicknameDto dto) {
 		log.debug("updateNickname=(dto={})",dto);
-		settingService.updateNickname(dto);
-		
-		return "redirect:/setting/userProfile";
+		int result = settingService.updateNickname(dto);
+		 
+		return ResponseEntity.ok(result);
 	}
+	
 	 @GetMapping("/settingImg")
 	    @ResponseBody
 	    public ResponseEntity<Resource> getSettingImage(@RequestParam("fileName") String fileName) throws IOException {
@@ -161,12 +179,65 @@ public class SettingController {
 	        }
 	    }
 	 @GetMapping("/settingBasicImg")
-	 public String settingBasicImg( String user_id) {
+	 public String settingBasicImg( String user_id,  HttpSession session) {
 		 log.debug("@@@@@@@@@@@@@@   SettingController(settingBasicImg(user_id={}))",user_id);
 		 
 		 settingService.updateBasicImg(user_id);
 		 
+		// 연수가 코드 추가함 - 이미지 변경 시, 기존 세션 정보에 저장된 이미지 경로를 새로운 경로로 덮어쓰기 함
+			// 1. user_id로 모든 유저 정보 가져옴
+			User user = userDao.selectByUserid(user_id);
+			// 2. 가져온 유저 정보 중, 프로필 경로를 세션에 저장
+			session.setAttribute("userProfileUrl", user.getProfile_url());
+		 
 		 return "redirect:/setting/userProfile";
+	 }
+	 
+	 /*
+	  * <내가 쓴 댓글> 페이지 
+	  * -> user_id의 값을 받아 댓글 목록을 보여줌 
+	  */
+	 @GetMapping("/userMyComment")
+	 public void showMyComment(Model model, @RequestParam(defaultValue = "1")int currentPage,HttpSession session) {
+		 String user_id = (String) session.getAttribute("signedInUser");
+			SettingUser user = settingService.read(user_id);
+			//일단 게시물 전체를 가져옴.
+			List<MyCommentListItem> myCommentList = settingService.selectMyComment(user_id);
+			
+			if(myCommentList != null) {
+			//전체 게시물 수
+			log.debug("댓글 개수 = {}",myCommentList.size());
+			int total = myCommentList.size();
+			
+			// size : 한 화면에 보여질 게시물 수(일단 3개로 해보장,,)
+			 int size =3;
+			 
+			//전체 페이지 수
+			int totalPages = (int) (Math.ceil((total * 1.0)/size));
+			
+			log.debug("@@@@@@@@@@@@@totalPages={}",totalPages);
+			
+			//가져올 테이블 데이터의 시작 번호 
+			int startNum = (currentPage - 1) * 3 +1;
+			log.debug("게시물 시작 번호 : {}", startNum);
+			//가져올 테이블 데이터의 시작 번호 
+			int endNum = (currentPage -1) * 3 +3;
+			log.debug("게시물 끝 번호 : {}", endNum);
+			
+			SettingPageDto dto = SettingPageDto.builder().user_id(user_id).startNum(startNum).endNum(endNum).build();
+					
+			List<MyCommentListItemByPaging> list = settingService.selectMyCommentByPaging(dto);
+			
+			
+			//전체 페이지 수를 모델 객체에 추가해서 거기서 페이징 버튼 구현,,
+			model.addAttribute("pagesCount",totalPages);
+			model.addAttribute("currentPage",currentPage);
+			model.addAttribute("comment",list);
+			}	
+			
+			model.addAttribute("commentLength", myCommentList.size());
+			
+			model.addAttribute("user",user);
 	 }
   
 	

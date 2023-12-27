@@ -11,7 +11,7 @@
             rel="stylesheet" 
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
-            
+        <link rel="stylesheet" href="../../css/main_navigation.css" />
 <style>
 
 
@@ -72,13 +72,19 @@
         color: #777;
     }
 </style>
+
+
 	</head>
 	<body>
 	
+		    <!-- 내비게이션 include 시 경로 및 겹치는 div 만들어줘야 함 -->
         <div class="container-fluid d-flex justify-content-center">
             <c:url var="imgPath" value="/img/logo.png" />
             <%@ include file="../fragments/navigation.jspf" %>
         </div>
+        <div style="margin:100px"></div>
+        
+        
         
    <div class="container">
     <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->

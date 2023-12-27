@@ -24,4 +24,84 @@
 	 <update id="updateNickname">
 	 	update users set nickname = #{nickname} where user_id = #{user_id} 
 	 </update>
+	 
+	 <select id="selectMyComment" resultType="MyCommentListItem">
+  SELECT
+    p.title AS "post_title",
+    p.user_id AS "post_user_id",
+    TO_CHAR( p.created_time,'MM.dd HH:mm') AS "post_created_time",
+    p.view_count AS "post_view_count",
+    u.profile_url AS "post_user_profile_url",
+    u.nickname AS "post_nickname",
+    sc.sub_category_name AS "post_subcategory",
+    p.post_id,
+    CASE WHEN LENGTH(c.comment_content) > 20 THEN SUBSTR( c.comment_content ,0,20) || ' ...'ELSE  c.comment_content END AS "comment_content",
+    TO_CHAR( c.comment_created_time,'MM.dd HH:mm')  AS "comment_created_time",
+    COALESCE(pl.like_point,0) AS "post_like_count",
+	(
+	  SELECT COUNT(*) FROM COMMENTS WHERE POST_ID = P.POST_ID
+	    ) AS "comment_count"
+	FROM
+	    POSTS P
+	JOIN
+	    COMMENTS C ON C.POST_ID = P.POST_ID
+	LEFT JOIN
+	    POST_LIKE PL ON PL.POST_ID = P.POST_ID
+	LEFT JOIN
+	    USERS U ON P.USER_ID = U.USER_ID
+	left join
+    sub_category sc on p.sub_category_id = sc.sub_category_id
+	WHERE
+	    C.USER_ID = #{user_id}
+	ORDER BY
+	     C.COMMENT_CREATED_TIME desc
+	 </select>
+	 
+	 
+	  <select id="selectByMyCommentByPaging" resultType="MyCommentListItemByPaging">
+SELECT *
+FROM (
+    SELECT
+        rownum AS "row_num",
+        "post_title",
+        "post_user_id",
+        "post_created_time",
+        "post_view_count",
+        "post_user_profile_url",
+        "post_nickname",
+        "post_subcategory",
+        "post_id",
+        "comment_content",
+        "comment_created_time",
+        "post_like_count",
+        "comment_count"
+    FROM (
+        SELECT
+            p.title AS "post_title",
+            p.user_id AS "post_user_id",
+            TO_CHAR(p.created_time, 'YYYY.MM.dd HH:mm') AS "post_created_time",
+            p.view_count AS "post_view_count",
+            u.profile_url AS "post_user_profile_url",
+            u.nickname AS "post_nickname",
+            sc.sub_category_name AS "post_subcategory",
+            p.post_id AS "post_id",
+            CASE WHEN LENGTH(c.comment_content) > 20 THEN SUBSTR(c.comment_content, 0, 20) || ' ...' ELSE c.comment_content END AS "comment_content",
+            TO_CHAR(c.comment_created_time, 'YYYY.MM.dd HH:mm') AS "comment_created_time",
+            COALESCE(pl.like_point, 0) AS "post_like_count",
+            (SELECT COUNT(*) FROM COMMENTS WHERE POST_ID = p.POST_ID) AS "comment_count"
+        FROM
+            POSTS p
+            JOIN COMMENTS c ON c.POST_ID = p.POST_ID
+            LEFT JOIN POST_LIKE pl ON pl.POST_ID = p.POST_ID
+            LEFT JOIN USERS u ON p.USER_ID = u.USER_ID
+            LEFT JOIN sub_category sc ON p.sub_category_id = sc.sub_category_id
+        WHERE
+            c.USER_ID = #{user_id}
+        ORDER BY
+            c.COMMENT_CREATED_TIME DESC
+		    )
+		)
+		WHERE "row_num" BETWEEN #{startNum} AND #{endNum}
+	 
+	 </select>
 	 </mapper>

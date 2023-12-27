@@ -16,9 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     
     const inputNickname = document.querySelector('input#nickname');
     inputNickname.addEventListener('change', checkNickname);
-    
+
     const inputPassword = document.querySelector('input#password');
-    inputPassword.addEventListener('change', checkPassword);
+    inputPassword.addEventListener('blur', validatePassword);
     
     const inputEmail = document.getElementById('mail-Check-Btn');
     inputEmail.addEventListener('click', sendEmail);
@@ -131,15 +131,25 @@ document.addEventListener('DOMContentLoaded', () => {
             btnRegister.classList.add('disabled');
         }
     }
-    
-    function checkPassword(e) {
-        if (e.target.value === '') {
-            pwdChecked = false;
-        } else {
+
+
+
+    function validatePassword() {
+        const password = inputPassword.value;
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/;
+        const passwordMessage = document.getElementById('passwordMessage');
+
+        if (regex.test(password)) {
+            passwordMessage.textContent = "비밀번호 조건에 부합합니다";
+            passwordMessage.style.color = "blue";
             pwdChecked = true;
+        } else {
+            passwordMessage.textContent = "비밀번호는 8~16자의 영문 대/소문자, 숫자, 특수문자를 포함해야 합니다";
+            passwordMessage.style.color = "red";
+            pwdChecked = false;
         }
-        
-        if (idChecked && pwdChecked && emailChecked) {
+
+        if (idChecked && nicknameChecked && pwdChecked && emailChecked) {
             btnRegister.classList.remove('disabled');
         } else {
             btnRegister.classList.add('disabled');
