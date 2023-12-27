@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.MyCommentListItem;
+import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.dto.setting.SettingNicknameDto;
+import com.itwill.project.dto.setting.SettingPageDto;
 import com.itwill.project.dto.setting.SettingProfileImgDto;
 import com.itwill.project.repository.SettingDao;
 
@@ -65,5 +67,12 @@ public class SettingService {
 	}
 	public List<MyCommentListItem> selectMyComment(String user_id){
 		return settingDao.selectMyComment(user_id);
+	}
+	
+	public List<MyCommentListItemByPaging> selectMyCommentByPaging(SettingPageDto dto){
+		
+		log.debug("@@@@@@@@@@@@@@@2페이징 시작");
+		return settingDao.selectByMyCommentByPaging(dto);
+		
 	}
 }
