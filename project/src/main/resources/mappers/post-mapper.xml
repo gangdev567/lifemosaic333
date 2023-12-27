@@ -106,8 +106,6 @@
     </select>
     -->
     
-    
-    
     <!-- 해시 태그 관련 sql문  -->
     <!-- 동일한 해시태그가 있는지 검사 -->
     <select id="selectHashTag" resultType="com.itwill.project.domain.HashTag">
@@ -133,5 +131,12 @@
 	<delete id="deletePostHash">
 		delete from post_hash where post_id=#{post_id}
 	</delete>
+
+    <update id="insertsPostHashTag" parameterType="java.util.List">
+	<foreach item="arr" collection="hashTag" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+		INTO post_hash
+		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{arr}))
+	</foreach>
+</update>
     
 </mapper>
