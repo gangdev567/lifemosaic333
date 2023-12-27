@@ -162,8 +162,9 @@
 							
 				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
 				<form action="${updateImgPage}" method="post" enctype="multipart/form-data" >
-						 <input type="file" id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);" />
-							<input type="hidden" name="profile_url" id="profile_url" value="${user.profile_url}">
+				  		  <input class="form-control" type="file"  id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);">
+						 
+							<input  class="form-control" type="hidden" name="profile_url" id="profile_url"  value="${user.profile_url}">
 							<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
 							<button type="submit" class="btn btn-secondary" style="margin-left: auto;">변경</button>
 				</form>
