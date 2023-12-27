@@ -322,7 +322,8 @@ function switchLikeBtn() {
 
     if (!likeBtn.classList.contains('btn-secondary')) {
         likeBtn.classList.add('btn-secondary');
-        likeBtn.innerHTML = '<i class="far fa-heart fa-2x" style="color: pink;"></i> 좋아요';
+        likeBtn.style.backgroundColor = '#36A2EB'; // 좋아요 버튼 배경색
+        likeBtn.innerHTML = '<i class="fas fa-heart fa-2x" style="color: pink;"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일
         likeBtn.removeEventListener('click', postLike);
         likeBtn.addEventListener('click', postLikeCancel);
         
@@ -337,7 +338,8 @@ function switchDislikeBtn() {
 
     if (!dislikeBtn.classList.contains('btn-secondary')) {
         dislikeBtn.classList.add('btn-secondary');
-        dislikeBtn.innerHTML = '<i class="far fa-sad-tear fa-2x" style="color: red;"></i> 싫어요';
+        dislikeBtn.style.backgroundColor = '#FF6384'; // 싫어요 버튼 배경색
+        dislikeBtn.innerHTML = '<i class="fas fa-sad-tear fa-2x" style="color: red;"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일
         dislikeBtn.removeEventListener('click', postDislike);
         dislikeBtn.addEventListener('click', postDislikeCancel);
         
@@ -347,26 +349,28 @@ function switchDislikeBtn() {
 }
 
 function returnLikeBtn() {
-    const likeCancelBtn = document.querySelector('button#likeBtn');
+    const likeBtn = document.querySelector('button#likeBtn');
     const dislikeBtn = document.querySelector('button#dislikeBtn');
 
-    likeCancelBtn.classList.remove('btn-secondary');
-    likeCancelBtn.innerHTML = '<i class="far fa-heart fa-2x"></i> 좋아요';
-    likeCancelBtn.removeEventListener('click', postLikeCancel);
-    likeCancelBtn.addEventListener('click', postLike);
+    likeBtn.classList.remove('btn-secondary');
+    likeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
+    likeBtn.innerHTML = '<i class="far fa-heart fa-2x"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일 변경
+    likeBtn.removeEventListener('click', postLikeCancel);
+    likeBtn.addEventListener('click', postLike);
 
     // 다시 좋아요 버튼으로 돌아가면 싫어요 버튼 활성화
     dislikeBtn.disabled = false;
 }
 
 function returnDislikeBtn() {
-    const dislikeCancelBtn = document.querySelector('button#dislikeBtn');
+    const dislikeBtn = document.querySelector('button#dislikeBtn');
     const likeBtn = document.querySelector('button#likeBtn');
 
-    dislikeCancelBtn.classList.remove('btn-secondary');
-    dislikeCancelBtn.innerHTML = '<i class="far fa-sad-tear fa-2x"></i> 싫어요';
-    dislikeCancelBtn.removeEventListener('click', postDislikeCancel);
-    dislikeCancelBtn.addEventListener('click', postDislike);
+    dislikeBtn.classList.remove('btn-secondary');
+    dislikeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
+    dislikeBtn.innerHTML = '<i class="far fa-sad-tear fa-2x"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일 변경
+    dislikeBtn.removeEventListener('click', postDislikeCancel);
+    dislikeBtn.addEventListener('click', postDislike);
 
     // 다시 싫어요 버튼으로 돌아가면 좋아요 버튼 활성화
     likeBtn.disabled = false;
