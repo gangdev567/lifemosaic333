@@ -4,7 +4,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
+import java.io.File;
 import java.io.IOException;
+
 
 public class LoginFilter implements Filter {
 
@@ -18,8 +21,10 @@ public class LoginFilter implements Filter {
 
 		String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
 
-		// 정적 리소스 경로를 추가합니다.
-		if (path.equals("/") ||
+		// 파일이 uploads 디렉토리에 있거나, /setting/settingImg 경로에 대한 접근이면 필터링을 하지 않습니다.
+		if (isFileInUploadsDirectory(path) || path.startsWith("/setting/settingImg")) {
+			chain.doFilter(request, response);
+		} else if (path.equals("/") ||
 			path.startsWith("/user/signup") ||
 			path.startsWith("/user/signin") ||
 			path.startsWith("/img/") || // 이미지 폴더
@@ -36,7 +41,12 @@ public class LoginFilter implements Filter {
 		}
 	}
 
-	// init과 destroy 메소드는 필요에 따라 구현합니다.
+	private boolean isFileInUploadsDirectory(String path) {
+		// 절대 경로를 사용하여 파일의 존재 여부를 확인합니다.
+		File file = new File("C:\\uploads", path);
+		return file.exists() && !file.isDirectory(); // 파일이 존재하고 디렉토리가 아니어야 합니다.
+	}
+
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		// 필터 초기화 로직
