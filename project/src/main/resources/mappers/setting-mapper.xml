@@ -24,7 +24,7 @@
 	 <update id="updateNickname">
 	 	update users set nickname = #{nickname} where user_id = #{user_id} 
 	 </update>
-	 
+	 <!-- 전체 댓글 검색 -->
 	 <select id="selectMyComment" resultType="MyCommentListItem">
   SELECT
     p.title AS "post_title",
@@ -57,7 +57,7 @@
 	     C.COMMENT_CREATED_TIME desc
 	 </select>
 	 
-	 
+		<!-- 페이징 기능을 위한 댓글 검색 --> 
 	  <select id="selectByMyCommentByPaging" resultType="MyCommentListItemByPaging">
 SELECT *
 FROM (
