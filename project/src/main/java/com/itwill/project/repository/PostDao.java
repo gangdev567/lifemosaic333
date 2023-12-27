@@ -28,5 +28,13 @@ public interface PostDao {
 
     int viewCountIncrease(Long post_id);
 
+<<<<<<< HEAD
     
+=======
+    HashTag selectHashTag(String tagname);
+    
+    int insertHashTag(String tagname);
+    
+    int insertsPostHashTag(HashTag tag);
+>>>>>>> parent of 3d2f9e9 (포스트 삭제 수정할 것)
 }

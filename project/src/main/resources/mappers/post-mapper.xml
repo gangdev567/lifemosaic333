@@ -105,4 +105,23 @@
         order by ID desc
     </select>
     -->
+    
+    <select id="selectHashTag" resultType="com.itwill.project.domain.HashTag">
+    	select tag_id
+    	from hashtag
+    	where tag_name = #{tagname}
+    </select>
+    
+    <insert id="insertHashTag">
+    	insert into hashtag (tag_name) values (#{tagname})
+    </insert>
+    
+
+    <update id="insertsPostHashTag" parameterType="java.util.List">
+	<foreach item="arr" collection="hashTag" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+		INTO post_hash
+		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{arr}))
+	</foreach>
+</update>
+    
 </mapper>
