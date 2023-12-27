@@ -231,7 +231,11 @@ public class SettingController {
 			
 			//전체 페이지 수를 모델 객체에 추가해서 거기서 페이징 버튼 구현,,
 			model.addAttribute("pagesCount",totalPages);
+			
+			//현재 페이지에는 active 스타일을 넣기 위한 currentPage 객체 추가
 			model.addAttribute("currentPage",currentPage);
+			
+			//
 			model.addAttribute("comment",list);
 			}	
 			

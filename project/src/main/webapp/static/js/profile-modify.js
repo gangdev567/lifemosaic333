@@ -4,6 +4,8 @@
 	 
 	 let nicknameChecked = false;
 	 
+	 let profileImgchecked = false;
+	 
 	 const btnCheckNickname = document.querySelector('button#btnCheckNickname');
 	 
 	 const inputNickname = document.querySelector('input#nickname');
@@ -22,9 +24,9 @@
 	
 	const btnUpdateNickname = document.querySelector('button#btnUpdateNickname');
 	
-	
+	const btnUpdateImg = document.querySelector('button#btn')
 
-	 
+	 //아이디와 이메일은 변경 불가능.
 	inputUserId.addEventListener('click', ()=> {
 	
 		       limitUserId.innerHTML = '* 아이디는 변경하실 수 없습니다.';
@@ -66,7 +68,7 @@
 
 		
 	 }
-	    // 이 부분이 빠졌었습니다. 닉네임 저장 버튼 클릭 이벤트 핸들러를 추가합니다.
+	    //닉네임 변경 버튼 
   
         btnUpdateNickname.addEventListener('click', () => {
             if (!nicknameChecked) {
@@ -99,8 +101,15 @@
 									alert('변경 실패');
 								} );	
 			}
-            // 여기에 닉네임 저장 로직을 구현하면 됩니다.
         });
+        
+        //이미지 파일 변경 버튼
+        
+        /*btnUpdateImg.addEventListener('click',()=>{
+			const profileImg = inputProfileImg.value;
+			
+			console.log(profileImg);
+		});*/
     
 
 	 
