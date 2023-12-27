@@ -64,7 +64,7 @@
     </update>
     
     <!-- POSTS 테이블에 새 포스트 삽입 -->
-    <insert id="insert">
+    <insert id="insert" parameterType="Post"  useGeneratedKeys="true" keyColumn="post_id" keyProperty="post_id">
         INSERT INTO POSTS (USER_ID, TITLE, CONTENT, sub_category_id) 
         VALUES (#{user_id}, #{title}, #{content}, #{sub_category_id})
     </insert>
@@ -117,7 +117,9 @@
     </insert>
     
     <insert id="insertsPostHashTag">
-    	insert all into post_hash values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name})) select * from dual;
+    	insert all into post_hash 
+    		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name})) 
+    	select * from dual;
     </insert>
     
     

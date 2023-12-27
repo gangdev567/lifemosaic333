@@ -94,7 +94,7 @@ public class PostController {
     @PostMapping("/create")
     public String create(@ModelAttribute PostCreateDto dto, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("게시글 작성이에용");
-        
+
         postService.create(dto);
         
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;

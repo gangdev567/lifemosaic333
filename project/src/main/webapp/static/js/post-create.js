@@ -49,9 +49,9 @@
 			 }
 		 }
 
-//		 formCreate.action = 'create';
-//		 formCreate.method = 'post';
-//		 formCreate.submit();
+		 formCreate.action = 'create';
+		 formCreate.method = 'post';
+		 formCreate.submit();
 	 });
      
      
@@ -62,9 +62,10 @@
 	 	 
 	 	 //해시태그 <ul>에 출력함
 		 hashtagList.innerHTML += 
-		 `<li id=${tag} name="${tag} class="nav-item me-3 mt-1">
+		 `<li id=${tag} class="nav-item me-4 mt-1">
 		 		<span class="tagValue me-1">${tag}</span>
 		 		<span class="btnDel" data-id="${tag}">x</span>
+                <input class="d-none" name="hashTag" value="${tag}" />
 	 	  </li>`;
 	 	  
 	 	  //x에 클릭이벤트 리스너 등록하기

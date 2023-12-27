@@ -12,5 +12,7 @@ import lombok.NoArgsConstructor;
 public class HashTag {
 	private Long post_id;
 	private Long tag_id;
-	private String tag_name;
+	
+    //연수 코드 추가 - 해시태그 배열로 저장
+    private String[] hashTag;
 }
