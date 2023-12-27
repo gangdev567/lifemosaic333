@@ -12,8 +12,8 @@
     	<property name="host" value="smtp.gmail.com" />
     	<property name="port" value="587" />
     	<!-- 나중에 테스트 + 실사용할 때 아이디와 비밀번호 채워서 하기 -->
-    	<property name="username" value="이메일" />
-    	<property name="password" value="앱비밀번호" />
+    	<property name="username" value="구글이메일" />
+    	<property name="password" value="앱 비밀번호" />
     	<property name="javaMailProperties">
     		<props>
     			<prop key="mail.transport.protocol">smtp</prop> <!-- 프로토콜로 smtp 사용 -->
@@ -33,7 +33,7 @@
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
         <!-- hikariConfig.setDriverClassName(""); -->
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.20.26:1521:xe" />
         <property name="username" value="scott" />
         <property name="password" value="tiger" />
     </bean>

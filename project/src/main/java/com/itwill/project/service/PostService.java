@@ -65,6 +65,15 @@ public class PostService {
         //해시태그가 존재하는지 체크
         if(post.getHashTag() != null) {
         	log.debug("null이 아님 : {}", post.getHashTag().length);
+        	
+            //생성된 post_id 가져오기
+        	Long newPostId = post.getPost_id();
+        	
+        	//HashTag 모델 설정 - 포스트 아이디, 태그이름들
+        	HashTag tag = HashTag.builder().post_id(newPostId).hashTag(post.getHashTag()).build();
+        	
+        	//HashTag를 파라미터로 postHashtag 테이블에 insert하기
+        	int cnt = postDao.insertsPostHashTag(tag);
         }
 
         return 0;

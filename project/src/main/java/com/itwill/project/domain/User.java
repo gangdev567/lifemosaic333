@@ -1,5 +1,6 @@
 package com.itwill.project.domain;
 
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,11 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class User {
-    private String user_id; // 로그인 아이디(unique, not null)
-    private String nickname; // 
-    private String password; // 비밀번호(not null)
-    private String email; // 이메일(not null)
+    private String user_id;
+    private String nickname;
+
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,16}$")
+    private String password; // 업데이트된 정규 표현식
+
+    private String email;
     private Long point;
     private String profile_url;
-
 }

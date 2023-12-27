@@ -118,7 +118,7 @@
     
     <insert id="insertsPostHashTag">
     	insert all into post_hash 
-    		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name})) 
+    			values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name}))
     	select * from dual;
     </insert>
     
