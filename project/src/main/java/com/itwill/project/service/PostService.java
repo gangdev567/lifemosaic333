@@ -60,23 +60,25 @@ public class PostService {
         post.setPost_id(0L);
         
         int result = postDao.insert(post);
-        log.debug("해시태그 개수 : {}", post.getHashTag());
         
         //해시태그가 존재하는지 체크
         if(post.getHashTag() != null) {
-        	log.debug("null이 아님 : {}", post.getHashTag().length);
+        	log.debug("null이 아님 : {}", post.getHashTag().size());
         	
             //생성된 post_id 가져오기
         	Long newPostId = post.getPost_id();
         	
         	//HashTag 모델 설정 - 포스트 아이디, 태그이름들
         	HashTag tag = HashTag.builder().post_id(newPostId).hashTag(post.getHashTag()).build();
+        	for(String a :tag.getHashTag()) {
+        		log.debug("HashTag 의 해시태그 : {}",a);        		
+        	}
         	
         	//HashTag를 파라미터로 postHashtag 테이블에 insert하기
         	int cnt = postDao.insertsPostHashTag(tag);
         }
 
-        return 0;
+        return result;
     }
 
     
@@ -123,9 +125,5 @@ public class PostService {
     public int createtHashTag(String tagname) {
     	int result = postDao.insertHashTag(tagname);
     	return result;
-    }
-    
-    public int createsPostHashTag(HashTag tag) {
-    	return postDao.insertsPostHashTag(tag);
     }
 }

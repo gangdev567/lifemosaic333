@@ -1,5 +1,7 @@
 package com.itwill.project.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,5 +16,5 @@ public class HashTag {
 	private Long tag_id;
 	
     //연수 코드 추가 - 해시태그 배열로 저장
-    private String[] hashTag;
+    private List<String> hashTag;
 }

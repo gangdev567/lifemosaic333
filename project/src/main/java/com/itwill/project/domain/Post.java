@@ -1,6 +1,7 @@
 package com.itwill.project.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,6 @@ public class Post {
     private String nickname;
     
     //연수 코드 추가 - 해시태그 배열로 저장
-    private String[] hashTag;
+    private List<String> hashTag;
 
 }

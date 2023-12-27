@@ -1,5 +1,7 @@
 package com.itwill.project.dto.post;
 
+import java.util.List;
+
 import com.itwill.project.domain.Post;
 
 import lombok.Data;
@@ -13,7 +15,7 @@ public class PostCreateDto {
     private Long sub_category_id;
     
     //연수 코드 추가 - 해시태그 배열로 저장
-    private String[] hashTag;
+    private List<String> hashTag;
     
     public Post toEntity() {
         

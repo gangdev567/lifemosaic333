@@ -116,11 +116,12 @@
     	insert into hashtag (tag_name) values (#{tagname})
     </insert>
     
-    <insert id="insertsPostHashTag">
-    	insert all into post_hash 
-    			values ( #{post_id}, (select tag_id from hashtag where tag_name=#{tag_name}))
-    	select * from dual;
-    </insert>
-    
+
+    <update id="insertsPostHashTag" parameterType="java.util.List">
+	<foreach item="arr" collection="hashTag" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+		INTO post_hash
+		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{arr}))
+	</foreach>
+</update>
     
 </mapper>
