@@ -26,7 +26,7 @@
                     
                     <!-- 해시태그 입력 칸 -->
                     <div>
-                    	<input id="inputHashTag" class="form-control" type="text" placeholder="해시태그 입력" />
+                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외" />
                     </div>
                     
                     <div class="d-none">
@@ -38,7 +38,7 @@
                     
                     <!-- 해시태그 보여주는 창 -->
                     <div  class="my-2">
-                    	<ul id="hashtagList" class="p-0 nav"></ul>
+                    	<div id="hashtagList" pattern="[A-Za-z0-9\s]+" class="d-flex gap-2 justify-content-start"></div>
                     </div>
                 </form>
                 <button id="btnCreate" class="btn btn-success">작성 완료</button>
