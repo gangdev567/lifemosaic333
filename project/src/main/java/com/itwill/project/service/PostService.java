@@ -98,7 +98,7 @@ public class PostService {
 
     public int delete(Long post_id) {
     	// 연수 코드 추가 - 해시태그 먼저 삭제하기
-        int cnt = postDao.delete(post_id);
+        int cnt = postDao.deletePostHash(post_id);
     	log.debug("cnt : {}", cnt);
         
         int result = postDao.delete(post_id);
