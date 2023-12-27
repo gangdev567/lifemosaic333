@@ -16,28 +16,39 @@
     <main>
             <div class="card p-2">
                 <c:url var="postCreatePage" value="/post/create" />
-                <form class="card-body" action="${postCreatePage}" method="post">
+                <form id="createForm" class="card-body" action="${postCreatePage}" method="post">
                     <div class="my-2">
                         <input class="form-control" type="text" name="title" placeholder="제목" autofocus required />
                     </div>
                     <div class="my-2">
                         <textarea class="form-control" name="content" rows="5" required></textarea>
                     </div>
+                    
+                    <!-- 해시태그 입력 칸 -->
+                    <div>
+                    	<input id="inputHashTag" class="form-control" type="text" placeholder="해시태그 입력" />
+                    </div>
+                    
                     <div class="d-none">
                         <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly/>
                     </div>
                     <div class="d-none">
                         <input class="form-control" type="number" name="sub_category_id" value="${cId}" readonly/>
                     </div>
-                    <div class="my-2">
-                        <input class="form-control btn btn-success fs-5 fst-italic"type="submit" value="작성 완료" />
+                    
+                    <!-- 해시태그 보여주는 창 -->
+                    <div  class="my-2">
+                    	<ul id="hashtagList" class="p-0 nav"></ul>
                     </div>
                 </form>
+                <button id="btnCreate" class="btn btn-success">작성 완료</button>
             </div>
         </main>
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../js/post-create.js"></script>
 	</body>
 </html>

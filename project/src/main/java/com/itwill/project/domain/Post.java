@@ -1,11 +1,16 @@
 package com.itwill.project.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class Post {
 
@@ -20,5 +25,8 @@ public class Post {
     private String image_path;
     private Long view_count;
     private String nickname;
+    
+    //연수 코드 추가 - 해시태그 배열로 저장
+    private List<String> hashTag;
 
 }
