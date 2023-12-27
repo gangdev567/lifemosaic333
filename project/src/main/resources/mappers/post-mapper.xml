@@ -106,22 +106,32 @@
     </select>
     -->
     
+    
+    
+    <!-- 해시 태그 관련 sql문  -->
+    <!-- 동일한 해시태그가 있는지 검사 -->
     <select id="selectHashTag" resultType="com.itwill.project.domain.HashTag">
     	select tag_id
     	from hashtag
     	where tag_name = #{tagname}
     </select>
     
+    <!-- 해시태그 테이블에 태그 저장 -->
     <insert id="insertHashTag">
     	insert into hashtag (tag_name) values (#{tagname})
     </insert>
     
-
+	<!-- 태그 테이블과 포스트 테이블의 아이디들을 저장 -->
     <update id="insertsPostHashTag" parameterType="java.util.List">
-	<foreach item="arr" collection="hashTag" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
-		INTO post_hash
-		values ( #{post_id}, (select tag_id from hashtag where tag_name=#{arr}))
-	</foreach>
-</update>
+		<foreach item="arr" collection="hashTag" separator=" " open="INSERT ALL" close="SELECT * FROM DUAL">
+			INTO post_hash
+			values ( #{post_id}, (select tag_id from hashtag where tag_name=#{arr}))
+		</foreach>
+	</update>
+
+	<!-- 포스트-태그 테이블의 데이터 삭제 -->
+	<delete id="deletePostHash">
+		delete from post_hash where post_id=#{post_id}
+	</delete>
     
 </mapper>
