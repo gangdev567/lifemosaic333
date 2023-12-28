@@ -120,7 +120,7 @@
 						aria-describedby="inputGroup-sizing-default">
 				</div>
 				<div id="limitUserId">
-					<!-- 아이디는 변경 불가라는 이미지 띄우기 -->
+					<!-- 아이디는 변경 불가라는 문장 띄우기 -->
 				</div>
 				<hr>
 				<div class="input-group mb-3">
@@ -131,7 +131,7 @@
 
 				</div>
 				<div id="limitEmail">
-					<!-- 이메일은 변경 불가라는 이미지 띄우기 -->
+					<!-- 이메일은 변경 불가라는 문장 띄우기 -->
 				</div>
 				<hr>
 
@@ -162,17 +162,16 @@
 							
 				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
 				<form action="${updateImgPage}" method="post" enctype="multipart/form-data" >
+				
 				  		  <input class="form-control" type="file"  id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);">
-						 
 							<input  class="form-control" type="hidden" name="profile_url" id="profile_url"  value="${user.profile_url}">
 							<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-							<button type="submit" class="btn btn-secondary" style="margin-left: auto;">변경</button>
+							<button id="btnUpdateImg" name="btnUpdateImg" type="submit" class="btn btn-secondary disabled" style="float:left;">변경</button>
 				</form>
 				<c:url var="settingBasicImg" value="/setting/settingBasicImg" />
-				<form action="${settingBasicImg}"  >
-					
+				<form action="${settingBasicImg}"  >	
 					<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-					<button type="submit" class="btn btn-secondary"  style="margin-left: 10px;">기본 변경</button>
+					<button type="submit" class="btn btn-secondary"  style="float:right;">기본 변경</button>
 					
 				</form>
 
@@ -192,8 +191,7 @@
 
 			reader.onload = function(event) {
 				img.setAttribute("src", event.target.result);
-				img.setAttribute("class", "img-box");
-				document.querySelector("div#image_container").appendChild(img);
+				document.querySelector("button#btnUpdateImg").classList.remove("disabled");
 
 			};
 

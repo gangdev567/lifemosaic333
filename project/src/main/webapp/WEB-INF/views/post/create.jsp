@@ -13,62 +13,69 @@
           
     <style>
       .ck.ck-editor {
-        width: 90%; /* 에디터의 너비를 조정합니다. */
-        max-width: 800px; /* 최대 너비를 설정합니다. */
+        width: 100%; /* 에디터의 너비를 조정합니다. */
+        max-width: 100%; /* 최대 너비를 설정합니다. */
         margin: 0 auto;
-    }
+      }
 
-    .ck-editor__editable {
+      .ck-editor__editable {
         min-height: 300px; /* 최소 높이를 설정합니다. */
-    }
+      }
 
-    form {
+      form {
         text-align: center;
-    }
+      }
 
-    main {
+      main {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
-    }
+      }
 
-    .card {
+      .card {
         width: 90%; /* 카드의 너비를 조정합니다. */
         max-width: 800px; /* 최대 너비를 설정합니다. */
-    }
+        margin: auto; /* 가운데 정렬을 위한 추가 */
+      }
+
+      #editor {
+        height: 300px; /* 에디터 높이 설정 */
+        border: 1px solid #ced4da; /* 테두리 추가 */
+        padding: 5px; /* 내부 여백 추가 */
+      }
     </style>
 </head>
 <body>
     <main>
-            <div class="card p-2">
-                <c:url var="postCreatePage" value="/post/create" />
-                <form id="createForm" class="card-body" action="${postCreatePage}" method="post">
-                    <div class="my-2">
-                        <input class="form-control" type="text" name="title" placeholder="제목" autofocus required />
-                    </div>
-                    <div class="my-2">
-                        <textarea class="form-control" name="content" rows="5" required></textarea>
-                    </div>
+        <div class="card p-2">
+            <form id="createForm" class="card-body" action="${postCreatePage}" method="post">
+                <div class="my-2">
+                    <input class="form-control" type="text" name="title" placeholder="제목" autofocus required />
+                </div>
+                <div class="my-2">
+                    <div id="editor"></div> <!-- 에디터 div로 변경 -->
+                    <textarea id="editorTextarea" class="form-control d-none" name="content" rows="5" required></textarea>
+                </div>
                     
-                    <!-- 해시태그 입력 칸 -->
-                    <div>
-                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외" />
-                    </div>
+                <!-- 해시태그 입력 칸 -->
+                <div class="my-2">
+                    <input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외" />
+                </div>
                     
-                    <div class="d-none">
-                        <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly/>
-                    </div>
-                    <div class="d-none">
-                        <input class="form-control" type="number" name="sub_category_id" value="${cId}" readonly/>
-                    </div>
+                <div class="d-none">
+                    <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly/>
+                </div>
+                <div class="d-none">
+                    <input class="form-control" type="number" name="sub_category_id" value="${cId}" readonly/>
+                </div>
                     
-                    <!-- 해시태그 보여주는 창 -->
-                    <div  class="my-2">
-                    	<div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
-                    </div>
-                </form>
-                <button id="btnCreate" class="btn btn-success">작성 완료</button>
+                <!-- 해시태그 보여주는 창 -->
+                <div class="my-2">
+                    <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
+                </div>
+            </form>
+            <button id="btnCreate" class="btn btn-success">작성 완료</button>
         </div>
     </main>
 
