@@ -103,20 +103,6 @@ canvas {
 			</form>
 		</div>
 
-		<%-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 --%>
-		<%-- 내 댓글 목록 --%>
-		<div class="row mx-5 my-2">
-			<div class="col-10">
-				<%-- 댓글 입력창 --%>
-				<textarea class="form-control" id="ctext" placeholder="댓글 입력"></textarea>
-				<%-- 댓글 작성자 아이디 - TODO 로그인 사용자 아이디로 설정 --%>
-				<input class="d-none" id="writer" value="${signedInUser}" />
-			</div>
-			<div class="col-2">
-				<button class="btn btn-outline-success" id="btnRegisterComment">등록</button>
-			</div>
-		</div>
-
 		<div class="d-flex justify-content-center my-4">
 			<div
 				style="display: flex; flex-direction: column; align-items: center;">
