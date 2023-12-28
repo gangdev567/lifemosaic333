@@ -87,10 +87,10 @@
                 <%-- 게시글 내용 --%>
                 <input style="display: none;" class="hidden" id="post_id" type="number"  value="${post.post_id}" readonly />
             </div>
-           <div class="my-2">
-			    <label for="content" class="form-label"></label>
-			    <div class="form-control" id="content">${post.content}</div>
-			</div>
+            <div class="my-2">
+                <label for="content" class="form-label"></label>
+                <textarea class="form-control" id="content" rows="8" readonly>${post.content}</textarea>
+            </div>
         </form>
     </div>
 </main>
@@ -167,6 +167,7 @@
                                 data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
+                        
                         <div class="modal-body">
                             <!-- 수정할 댓글 아이디 -->
                             <input class="d-none" id="modalCommentId" />
