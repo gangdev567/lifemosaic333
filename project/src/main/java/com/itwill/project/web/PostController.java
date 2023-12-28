@@ -3,13 +3,17 @@ package com.itwill.project.web;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.project.domain.Criteria;
 import com.itwill.project.domain.Post;
@@ -81,16 +85,16 @@ public class PostController {
         model.addAttribute("cId", sub_category_id);
     }
     
-    @GetMapping("/create/")
+    @GetMapping("/create")
     public void create(Model model, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("create(sub_category_id = {})", sub_category_id);
         model.addAttribute("cId", sub_category_id);
     }
     
-    @PostMapping("/create/")
+    @PostMapping("/create")
     public String create(@ModelAttribute PostCreateDto dto, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("게시글 작성이에용");
-        
+
         postService.create(dto);
         
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
@@ -144,4 +148,23 @@ public class PostController {
 		model.addAttribute("searchKeyword", dto);
     }
     
+    @GetMapping("/checktag")
+    @ResponseBody
+    public ResponseEntity<Integer> checkHashTag(@RequestParam(name="tag") String tag){
+    	log.debug("selecttag : {}", tag);
+    	
+    	Integer result = postService.readHashtagName(tag);
+    	
+    	return ResponseEntity.ok(result);
+    }
+    
+    @GetMapping("/createtag")
+    @ResponseBody
+    public ResponseEntity<Integer> createTag(@RequestParam(name="tag") String tag){
+    	log.debug("createTag : {}", tag);
+    	
+    	Integer result = postService.createtHashTag(tag);
+    	
+    	return ResponseEntity.ok(result);
+    }
 }
