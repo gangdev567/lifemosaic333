@@ -96,8 +96,7 @@ canvas {
 
 			</form>
 		</div>
-
-	
+		
 		<div class="d-flex justify-content-center my-4">
 			<div
 				style="display: flex; flex-direction: column; align-items: center;">
