@@ -99,20 +99,22 @@
         
         comments.forEach((comment) => {
             
-            const commentcTime = new Date(comment.comment_created_time);
-            const commentTime = new Date(comment.comment_modified_time);
-            const formattedcTime = commentcTime.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', 
-                                                        hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            const formattedTime = commentTime.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', 
-                                                        hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const commentcTime = comment.comment_created_time;
+            const commentTime = comment.comment_modified_time;
+            const mdate = new Date(commentTime[0], commentTime[1] - 1, commentTime[3], commentTime[4], commentTime[5]);
+            const cdate = new Date(commentcTime[0], commentcTime[1] - 1, commentcTime[3], commentcTime[4], commentcTime[5]);
+            
+            const formattedmDate = formatDate(mdate);
+            const formattedcDate = formatDate(cdate);
+            
             
             html += `<div class="mx-5 my-2">
                         <input class="d-none" id="${comment.comment_id}"/>
                         <span>${comment.nickname}</span> 
-                        <small class=time>${formattedTime}</small>`;
-                if(commentcTime !== commentTime){
+                        <small class=time>${formattedmDate}</small>`;
+                if(formattedcDate !== formattedmDate){
 
-                html += `<small>*수정됨</small>`;
+                html += `<small> <strong> *수정됨 </strong> </small>`;
                 }
                    
             html += `<div style="float: right;">
@@ -243,6 +245,17 @@
              });
           });
         });
+    }
+    
+    function formatDate(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, '0');
+      const day = String(date.getDate()).padStart(2, '0');
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
+      const seconds = String(dateArray[6] / 1000000).padStart(2, '0');
+      
+      return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
     }
     
 

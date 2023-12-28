@@ -103,6 +103,20 @@ canvas {
 			</form>
 		</div>
 
+		<%-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 --%>
+		<%-- 내 댓글 목록 --%>
+		<div class="row mx-5 my-2">
+			<div class="col-10">
+				<%-- 댓글 입력창 --%>
+				<textarea class="form-control" id="ctext" placeholder="댓글 입력"></textarea>
+				<%-- 댓글 작성자 아이디 - TODO 로그인 사용자 아이디로 설정 --%>
+				<input class="d-none" id="writer" value="${signedInUser}" />
+			</div>
+			<div class="col-2">
+				<button class="btn btn-outline-success" id="btnRegisterComment">등록</button>
+			</div>
+		</div>
+
 		<div class="d-flex justify-content-center my-4">
 			<div
 				style="display: flex; flex-direction: column; align-items: center;">
@@ -126,7 +140,6 @@ canvas {
 
 		<div style="margin-top: 20px;">
 			<canvas id="donutChart"></canvas>
-		</div>
 		</div>
 
 
@@ -155,13 +168,6 @@ canvas {
 			</div>
 		</div>
 
-
-		<script src="../js/like.js"></script>
-		<script src="../js/bookmark.js"></script>
-		<script src="../js/time-details.js"></script>
-
-
-
 		<%-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 --%>
 		<div class="my-2" id="comments"></div>
 
@@ -169,13 +175,13 @@ canvas {
 	</div>
 	<div id=pageContainer></div>
 
-</body>
-
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
 	crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
 
 <script src="../js/like.js"></script>
 <script src="../js/bookmark.js"></script>
