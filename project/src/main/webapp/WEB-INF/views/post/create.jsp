@@ -38,7 +38,7 @@
                     
                     <!-- 해시태그 보여주는 창 -->
                     <div  class="my-2">
-                    	<div id="hashtagList" pattern="[A-Za-z0-9\s]+" class="d-flex gap-2 justify-content-start"></div>
+                    	<div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
                     </div>
                 </form>
                 <button id="btnCreate" class="btn btn-success">작성 완료</button>

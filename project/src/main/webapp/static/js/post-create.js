@@ -78,8 +78,8 @@
 	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
 		    <span class="px-1 tagValue">${tag}</span>
 		    <span class="btn-close btnDel"  data-id="${tag}"></span>
-		    </span>
-            <input class="d-none" name="hashTag" value="${tag}" />`
+            <input class="d-none" name="hashTag" value="${tag}" />
+		    </span>`
 	 	  
 	 	  //x에 클릭이벤트 리스너 등록하기
 	 	  const btnDelete = document.querySelectorAll('span.btnDel');

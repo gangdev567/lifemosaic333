@@ -69,6 +69,12 @@
                 <label for="content" class="form-label">내용</label>
                 <textarea class="form-control" id="content" rows="8" readonly>${post.content}</textarea>
             </div>
+            <!-- 해시태그 보여주기 -->
+            <div class="d-flex gap-2 justify-content-start">
+            	<c:forEach items="${tags }" var="tag">
+	            	<span class="px-3 py-1 text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">#${tag}</span>
+            	</c:forEach>
+            </div>
             <div class="my-4">
                 <label for="author" class="form-label">작성자</label>
                 <input class="form-control" id="author" type="text" value="${post.nickname}" readonly />
