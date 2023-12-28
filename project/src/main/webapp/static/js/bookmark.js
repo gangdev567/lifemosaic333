@@ -114,7 +114,8 @@
         const bookmarkCancel = document.querySelector('a#bookmarkCancel');
         
         // 좋아요 취소 버튼의 모양을 바꿈
-        bookmarkCancel.setAttribute('class','btn btn-warning fs-5 fw-bold');
+        bookmarkCancel.setAttribute('class','btn fs-5 fw-bold');
+        bookmarkCancel.setAttribute('style','background-color: #c0c0c0;')
         
         // 좋아요 버튼의 이벤트 리스너를 삭제
         bookmark.removeEventListener('click', bookmarkAdd);
@@ -135,7 +136,8 @@
         const bookmark = document.querySelector('a#bookmark');
         
         // 좋아요 취소 버튼의 모양을 바꿈
-        bookmark.setAttribute('class','btn btn-secondary fs-5 fw-bold');
+        bookmark.setAttribute('class','btn fs-5 fw-bold');
+        bookmark.setAttribute('style','background-color: #3498db;')
         
         // 좋아요 버튼의 이벤트 리스너를 삭제
         bookmarkCancel.removeEventListener('click', CancelBookmark);
