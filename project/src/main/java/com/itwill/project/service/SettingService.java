@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.itwill.project.domain.MyBookmarkListItemByPaging;
 import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
@@ -74,5 +75,18 @@ public class SettingService {
 		log.debug("@@@@@@@@@@@@@@@2페이징 시작");
 		return settingDao.selectByMyCommentByPaging(dto);
 		
+	}
+	public int selectBookmarkTotalPages(String user_id) {
+		int result = settingDao.selectBookmarkTotalPages(user_id);
+		log.debug("@@@@@@@@@@@@@@@@@@@@ 전체 댓글 수={}",result);
+		
+		return result;
+	}
+	
+	public List<MyBookmarkListItemByPaging> selectBookmarkByPaging(SettingPageDto dto){
+		
+		log.debug("@@@@@@@@  북마크 페이징 시작..");
+		
+		return settingDao.selectBookmarkByPaging(dto);
 	}
 }

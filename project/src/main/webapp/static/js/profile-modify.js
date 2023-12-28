@@ -103,14 +103,7 @@
 			}
         });
         
-        //이미지 파일 변경 버튼
-        
-        /*btnUpdateImg.addEventListener('click',()=>{
-			const profileImg = inputProfileImg.value;
-			
-			console.log(profileImg);
-		});*/
-    
+       
 
 	 
  });//end Document

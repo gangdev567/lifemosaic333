@@ -113,7 +113,7 @@ FROM (
 	 	SELECT *
 			FROM (
 			    SELECT 
-			    	ROWNUM as "row_num"
+			    	ROWNUM as "row_num",
 			        TO_CHAR(b.created_time, 'YYYY.MM.dd HH:mm') AS "bookmark_created_time",
 			        b.post_id,
 			        p.user_id AS "post_user_id",
@@ -126,7 +126,7 @@ FROM (
 			        sc.sub_category_name AS "post_sub_category_name", 
 			        p.view_count AS "post_view_count",
 			        COALESCE(pl.like_point, 0) AS "post_like_count",
-			        (SELECT COUNT(*) FROM comments WHERE post_id = p.post_id) AS "post_comment_count",
+			        (SELECT COUNT(*) FROM comments WHERE post_id = p.post_id) AS "post_comment_count"
 			        
 			    FROM 
 			        bookmark b
@@ -144,6 +144,6 @@ FROM (
 			        b.created_time DESC
 			)
 			WHERE 
-			    row_num BETWEEN #{startNum} AND #{endNum};
+			    "row_num" BETWEEN #{startNum} AND #{endNum}
 	 </select>
 	 </mapper>
