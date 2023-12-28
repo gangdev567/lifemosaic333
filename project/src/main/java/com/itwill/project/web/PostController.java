@@ -108,14 +108,24 @@ public class PostController {
         
         PostDetail post = postService.detail(post_id);
         model.addAttribute("post", post);
+        
+        //연수 코드 추가 - 해시태그 가져오기
+        List<String> list = postService.readHash(post_id);
+        model.addAttribute("tags", list);
     }
     
     @GetMapping("/modify")
     public void modify(Model model, @RequestParam(name = "post_id") Long post_id) {
         log.debug("게시글 입니다.");
         
+        //연수 코드 추가 - 해시태그 가져오기
+        List<String> list = postService.readHash(post_id);
+        model.addAttribute("tags", list);
+
+        
         PostDetail post = postService.detail(post_id);
         model.addAttribute("post", post);
+        
     }
     
     @PostMapping("/update")
@@ -132,6 +142,9 @@ public class PostController {
     @GetMapping("/delete")
     public String delete(@RequestParam(name = "post_id") Long post_id, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("delete(post_id = {})", post_id);
+        
+        postService.deletePostHash(post_id);
+        
         postService.delete(post_id);
         
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
@@ -164,6 +177,17 @@ public class PostController {
     	log.debug("createTag : {}", tag);
     	
     	Integer result = postService.createtHashTag(tag);
+    	
+    	return ResponseEntity.ok(result);
+    }
+    
+    //업데이트 하기 위해 전에 해시태그들 삭제
+    @GetMapping("/updatehash")
+    @ResponseBody
+    public ResponseEntity<Integer> updatehas(@RequestParam(name="postid") Long postid){
+    	log.debug("업데이트 포스트 아이디 : {}", postid);
+    	
+    	int result = postService.deletePostHash(postid);
     	
     	return ResponseEntity.ok(result);
     }

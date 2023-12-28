@@ -29,10 +29,14 @@ public interface PostDao {
 
     int viewCountIncrease(Long post_id);
 
+    //태그 관련 dao
     HashTag selectHashTag(String tagname);
     
     int insertHashTag(String tagname);
     
     int insertsPostHashTag(HashTag tag);
+    
     int deletePostHash(Long post_id);
+    
+    List<String> selectHashtagByPostid(Long post_id);
 }
