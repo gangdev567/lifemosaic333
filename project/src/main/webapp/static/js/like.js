@@ -315,8 +315,7 @@
         
         
     }
-    
-function switchLikeBtn() {
+    function switchLikeBtn() {
     const likeBtn = document.querySelector('button#likeBtn');
     const dislikeBtn = document.querySelector('button#dislikeBtn');
 
