@@ -41,34 +41,34 @@
 </head>
 <body>
     <main>
-        <div class="card p-2">
-            <c:url var="postCreatePage" value="/post/create" />
-            <form id="createForm" class="card-body" action="${postCreatePage}" method="post">
-                <div class="my-2">
-                    <input class="form-control" type="text" name="title" placeholder="제목" autofocus required />
-                </div>
-                <div class="my-2" id="editor" style="height: 400px;">
-                    <textarea class="form-control" name="content" id="editorTextarea" rows="5" required></textarea>
-                </div>
-
-                <!-- 해시태그 입력 칸 -->
-                <div>
-                    <input id="inputHashTag" class="form-control" type="text" placeholder="해시태그 입력" />
-                </div>
-
-                <div class="d-none">
-                    <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly/>
-                </div>
-                <div class="d-none">
-                    <input class="form-control" type="number" name="sub_category_id" value="${cId}" readonly/>
-                </div>
-
-                <!-- 해시태그 보여주는 창 -->
-                <div class="my-2">
-                    <ul id="hashtagList" class="p-0 nav"></ul>
-                </div>
+            <div class="card p-2">
+                <c:url var="postCreatePage" value="/post/create" />
+                <form id="createForm" class="card-body" action="${postCreatePage}" method="post">
+                    <div class="my-2">
+                        <input class="form-control" type="text" name="title" placeholder="제목" autofocus required />
+                    </div>
+                    <div class="my-2">
+                        <textarea class="form-control" name="content" rows="5" required></textarea>
+                    </div>
+                    
+                    <!-- 해시태그 입력 칸 -->
+                    <div>
+                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외" />
+                    </div>
+                    
+                    <div class="d-none">
+                        <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly/>
+                    </div>
+                    <div class="d-none">
+                        <input class="form-control" type="number" name="sub_category_id" value="${cId}" readonly/>
+                    </div>
+                    
+                    <!-- 해시태그 보여주는 창 -->
+                    <div  class="my-2">
+                    	<div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
+                    </div>
+                </form>
                 <button id="btnCreate" class="btn btn-success">작성 완료</button>
-            </form>
         </div>
     </main>
 
