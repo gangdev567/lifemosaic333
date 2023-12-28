@@ -188,7 +188,9 @@ canvas {
 <script>
         const signedInUser = `${signedInUser}`;
     </script>
-<script src="../js/comment.js"></script>
-<script src="../js/time.js"></script>
+    <script src="../js/comment.js"></script>
+    <script src="../js/time.js"></script>
+    <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
+
 </body>
 </html>
