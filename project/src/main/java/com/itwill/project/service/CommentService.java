@@ -46,4 +46,11 @@ public class CommentService {
         
         return result;
     }
+
+    public int delete(Long comment_id) {
+        
+        int result = commentDao.delete(comment_id);
+        
+        return result;
+    }
 }

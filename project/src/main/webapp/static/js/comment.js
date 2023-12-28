@@ -180,6 +180,7 @@
             
             addPageLinkEventListeners();
             addCommentModifyEventListeners();
+            addCommentDeleteEventListeners();
             
     } // end makeCommentElements
     
@@ -256,6 +257,25 @@
       const seconds = String(date.getSeconds()).padStart(2, '0');
       
       return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
+    
+    function addCommentDeleteEventListeners() {
+        const btnCommentDeleteElements = document.querySelectorAll('small.btnCommentDelete');
+        btnCommentDeleteElements.forEach(btn => {
+          btn.addEventListener('click', function() {
+            const comment_id = this.getAttribute('data-id');
+                console.log(comment_id);
+            const uri = `../api/comment/${comment_id}`
+                axios.put(uri)
+                .then((response) => {
+                    console.log(response);
+                    getAllComment();
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+          });
+        });
     }
     
 

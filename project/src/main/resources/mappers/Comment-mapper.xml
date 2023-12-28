@@ -33,4 +33,8 @@
         update comments set comment_content = #{comment_content}, comment_modified_time = systimestamp where comment_id = #{comment_id}
     </update>
     
+    <update id="delete">
+        update comments set comment_content = '삭제 된 댓글입니다.', comment_modified_time = systimestamp where comment_id = #{comment_id}
+    </update>
+    
 </mapper>
