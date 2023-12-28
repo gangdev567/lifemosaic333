@@ -43,76 +43,92 @@
 	<body>
     
   <div class="my-4 d-flex justify-content-center">
-    <%-- 게시판 돌아가기 및 북마크 버튼 --%>
-    <c:url var="returnList" value="/post/list/">
-        <c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
-    </c:url>
-    <a class="btn btn-primary fs-5 fw-bold me-2" href="${returnList}" style="background-color: #3498db;">
-        <i class="fas fa-arrow-left me-1"></i> <!-- 화살표 아이콘 -->
-        게시판 돌아가기
-    </a>
-    <a id="bookmark" class="fs-5 fw-bold btn btn-secondary" style="background-color: #3498db;">
-        <i class="fas fa-bookmark me-1"></i> <!-- 북마크 아이콘 -->
-        북마크
-    </a>
-</div>
+        <%-- 게시판 돌아가기 및 북마크 버튼 --%>
+        <c:url var="returnList" value="/post/list/">
+            <c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
+        </c:url>
+        <a class="btn fs-5 fw-bold me-2" href="${returnList}" style="background-color: #3498db;">
+            <i class="fas fa-arrow-left me-1"></i> <!-- 화살표 아이콘 -->
+            게시판 돌아가기
+        </a>
+        <a id="bookmark" class="fs-5 fw-bold btn" style="background-color: #3498db;">
+            <i class="fas fa-bookmark me-1"></i> <!-- 북마크 아이콘 -->
+            북마크
+        </a>
+    </div>
 
-<main class="my-4">
-    <div class="card">
-        <form class="card-body">
-            <div class="mb-3">
-               <div>
-                        <%-- 게시글 정보 --%>
-                        <i class="fas fa-user me-1"></i> <!-- 사용자 아이콘 -->
-                        ${post.nickname} <!-- 작성자 -->
-                        <span class="mx-2">|</span>
-                        <i class="far fa-thumbs-up me-1"></i> <!-- 좋아요 아이콘 -->
-                         포인트?? <!-- 포인트??-->
-                        <span class="mx-2">|</span>
-                        <i class="far fa-eye me-1"></i> <!-- 조회수 아이콘 -->
-                        ${post.view_count} <!-- 조회수 -->
-                        <span class="mx-2">|</span>
-                        <span class="fw-bold " id="time">${post.created_time}</span> <!-- 작성 시간 -->
+    <main class="my-4">
+        <div class="card">
+            <form class="card-body">
+                <div class="mb-3">
+                   <div>
+                            <%-- 게시글 정보 --%>
+                            <i class="fas fa-user me-1"></i> <!-- 사용자 아이콘 -->
+                            ${post.nickname} <!-- 작성자 -->
+                            <span class="mx-2">|</span>
+                            <i class="far fa-thumbs-up me-1"></i> <!-- 좋아요 아이콘 -->
+                             포인트?? <!-- 포인트??-->
+                            <span class="mx-2">|</span>
+                            <i class="far fa-eye me-1"></i> <!-- 조회수 아이콘 -->
+                            ${post.view_count} <!-- 조회수 -->
+                            <span class="mx-2">|</span>
+                            <span class="fw-bold " id="time">${post.created_time}</span> <!-- 작성 시간 -->
+                        </div>
+                    <h2 class="fw-bold mb-3 my-3">${post.title}</h2>
+                    <div class="d-flex justify-content-between">
+                        <div class="me-4">
+                           
+                        </div>
+                     
                     </div>
-                <h2 class="fw-bold mb-3 my-3">${post.title}</h2>
-                <div class="d-flex justify-content-between">
-                    <div class="me-4">
-                       
-                    </div>
-                 
+                </div>
+                <hr class="my-4">
+                <div class="my-2">
+                    <%-- 게시글 내용 --%>
+                    <input style="display: none;" class="hidden" id="post_id" type="number"  value="${post.post_id}" readonly />
+                </div>
+               <div class="my-2">
+    			    <label for="content" class="form-label"></label>
+    			    <div class="form-control" id="content">${post.content}</div>
+    			</div>
+            </form>
+        </div>
+    </main>
+
+    <div class="d-flex justify-content-center my-4">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <div style="margin-bottom: 20px;">
+                <%-- 좋아요 및 싫어요 버튼 --%>
+                <button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
+                    <i class="far fa-heart fa-2x"></i> 좋아요
+                </button>
+                <button class="btn btn-custom-dislike" id="dislikeBtn" name="dislikeBtn">
+                    <i class="far fa-sad-tear fa-2x"></i> 싫어요
+                </button>
+            </div>
+            <div id="like"></div>
+            <div style="margin-top: 20px;">
+                <%-- 차트 --%>
+                <canvas id="donutChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+					<div style="margin-top: 20px;">
+						<canvas id="donutChart"></canvas>
+					</div>
+				</div>
+				
+				<div class="card-footer">
+                    <%-- 작성자 아이디와 로그인 사용자 아이디가 같을 때만 [수정하기] 버튼을 보여줌. --%>
+                    <c:if test="${signedInUser eq post.user_id}">
+                        <c:url var="postmodify" value="/post/modify">
+                            <c:param name="post_id" value="${post.post_id}"></c:param>
+                        </c:url>
+                        <a class="btn btn-primary" href="${postmodify}">수정</a>
+                    </c:if>
                 </div>
             </div>
-            <hr class="my-4">
-            <div class="my-2">
-                <%-- 게시글 내용 --%>
-                <input style="display: none;" class="hidden" id="post_id" type="number"  value="${post.post_id}" readonly />
-            </div>
-           <div class="my-2">
-			    <label for="content" class="form-label"></label>
-			    <div class="form-control" id="content">${post.content}</div>
-			</div>
-        </form>
-    </div>
-</main>
-
-<div class="d-flex justify-content-center my-4">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-        <div style="margin-bottom: 20px;">
-            <%-- 좋아요 및 싫어요 버튼 --%>
-            <button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
-                <i class="far fa-heart fa-2x"></i> 좋아요
-            </button>
-            <button class="btn btn-custom-dislike" id="dislikeBtn" name="dislikeBtn">
-                <i class="far fa-sad-tear fa-2x"></i> 싫어요
-            </button>
-        </div>
-        <div id="like"></div>
-        <div style="margin-top: 20px;">
-            <%-- 차트 --%>
-            <canvas id="donutChart"></canvas>
-        </div>
-    </div>
-</div>
 
  <div class="card-footer d-flex justify-content-center">
         <%-- 수정 버튼 작성자와 로그인한 이용자가 같을때 보여주기--%>
@@ -123,9 +139,6 @@
             <a class="btn btn-primary" href="${postmodify}" style="background-color: #3498db;">수정</a>
         </c:if>
     </div>
-
-
-
 
             <%-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 --%>
             <%-- 내 댓글 목록 --%>
@@ -176,5 +189,4 @@
     <script src="../js/comment.js"></script>
     <script src="../js/time.js"></script>
 </body>
-
 </html>

@@ -99,11 +99,18 @@
         
         comments.forEach((comment) => {
             
+            const commentcTime = new Date(comment.comment_created_time);
+            const commentTime = new Date(comment.comment_modified_time);
+            const formattedcTime = commentcTime.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', 
+                                                        hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const formattedTime = commentTime.toLocaleString('ko-KR', { year: 'numeric', month: '2-digit', day: '2-digit', 
+                                                        hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            
             html += `<div class="mx-5 my-2">
                         <input class="d-none" id="${comment.comment_id}"/>
                         <span>${comment.nickname}</span> 
-                        <small class=time>${formattedDate}</small>`;
-                if(comment.comment_modified_time === comment.comment_created_time){
+                        <small class=time>${formattedTime}</small>`;
+                if(commentcTime !== commentTime){
 
                 html += `<small>*수정됨</small>`;
                 }
@@ -171,7 +178,6 @@
             
             addPageLinkEventListeners();
             addCommentModifyEventListeners();
-            time();
             
     } // end makeCommentElements
     
@@ -203,7 +209,7 @@
         btnCommentModifyElements.forEach(btn => {
           btn.addEventListener('click', function() {
             const comment_id = this.getAttribute('data-id');
-            const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${commentId}"]`);
+            const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${comment_id}"]`);
         
             // 수정할 댓글을 입력할 input 요소를 동적으로 생성하여 multiUseDiv에 추가
             multiUseDiv.innerHTML = `<textarea class="form-control" id="recommentText"placeholder="수정할 댓글 입력"></textarea>
@@ -239,48 +245,6 @@
         });
     }
     
-    function timeAgo(date) {
-          const now = new Date();
-          const created = new Date(date);
-        
-          const seconds = Math.floor((now - created) / 1000);
-          let interval = Math.floor(seconds / 31536000);
-        
-          if (interval >= 1) {
-            return `${interval}년 전`;
-          }
-          interval = Math.floor(seconds / 2592000);
-          if (interval >= 1) {
-            return `${interval}개월 전`;
-          }
-          interval = Math.floor(seconds / 86400);
-          if (interval >= 1) {
-            return `${interval}일 전`;
-          }
-          interval = Math.floor(seconds / 3600);
-          if (interval >= 1) {
-            return `${interval}시간 전`;
-          }
-          interval = Math.floor(seconds / 60);
-          if (interval >= 1) {
-            return `${interval}분 전`;
-          }
-          return `${Math.floor(seconds)}초 전`;
-        }
-
-        function time() {
-            const timeElements = document.querySelectorAll('.time');
-    
-            timeElements.forEach((timeElement) => {
-            const date = new Date(timeElement);
-            const formatter = new Intl.DateTimeFormat('ko-KR', { 
-              year: 'numeric', month: 'long', day: 'numeric', 
-              hour: 'numeric', minute: 'numeric', second: 'numeric' 
-            });
-            var formattedDate = formatter.format(date); 
-            });
-            
-        }
 
     
     
