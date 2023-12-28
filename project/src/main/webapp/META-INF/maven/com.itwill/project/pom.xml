@@ -21,6 +21,13 @@
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
 		<!-- 스프링의 다양한 컨텍스트 관련 확장 기능을 제공하는 라이브러리 -->
 		<!-- 캐싱 지원, JMS, Mail, 스케줄링, 태스크 진행, 템플릿 유틸리티-->
+		
+		<dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.13.0</version> <!-- Jackson 라이브러리 버전에 맞게 변경 -->
+        </dependency>
+        
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>

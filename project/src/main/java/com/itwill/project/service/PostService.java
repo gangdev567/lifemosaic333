@@ -3,6 +3,7 @@ package com.itwill.project.service;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.jdbc.core.metadata.PostgresCallMetaDataProvider;
 import org.springframework.stereotype.Service;
 
@@ -70,9 +71,6 @@ public class PostService {
         	
         	//HashTag 모델 설정 - 포스트 아이디, 태그이름들
         	HashTag tag = HashTag.builder().post_id(newPostId).hashTag(post.getHashTag()).build();
-        	for(String a :tag.getHashTag()) {
-        		log.debug("HashTag 의 해시태그 : {}",a);        		
-        	}
         	
         	//HashTag를 파라미터로 postHashtag 테이블에 insert하기
         	int cnt = postDao.insertsPostHashTag(tag);
@@ -84,23 +82,40 @@ public class PostService {
     
     public PostDetail detail(Long post_id) {
         log.debug("post_id = {}", post_id);
-        
+
         return postDao.selectById(post_id);
     }
+    
+    public List<String> readHash(Long post_id){
+        return postDao.selectHashtagByPostid(post_id);
+    }
 
+    
     public int update(PostModifyDto dto) {
         
         int result = postDao.update(dto.ToPost());
+        
         log.debug("update result = {}", result);
+        
+        
+        //해시태그가 존재하는지 체크
+        if(dto.getHashTag() != null) {
+        	
+        	log.debug("null이 아님 : {}", dto.getHashTag().size());
+        	
+        	//HashTag 모델 설정 - 포스트 아이디, 태그이름들
+        	HashTag tag = HashTag.builder().post_id(dto.getPost_id()).hashTag(dto.getHashTag()).build();
+        	
+        	//HashTag를 파라미터로 postHashtag 테이블에 insert하기
+        	postDao.insertsPostHashTag(tag);
+        }
+        
         
         return result;
     }
 
     public int delete(Long post_id) {
-    	// 연수 코드 추가 - 해시태그 먼저 삭제하기
-        int cnt = postDao.deletePostHash(post_id);
-    	log.debug("cnt : {}", cnt);
-        
+
         int result = postDao.delete(post_id);
         log.debug("delete result = {}", result);
         
@@ -114,6 +129,8 @@ public class PostService {
         
     }
     
+    
+    //기존테이블에 해시태그가 존재하는지 체크
     public Integer readHashtagName(String tagName) {
     	
     	HashTag result = postDao.selectHashTag(tagName);
@@ -125,8 +142,15 @@ public class PostService {
     	}
     }
     
+    //테이블에 해시태그 없으면 해시태그 저장
     public int createtHashTag(String tagname) {
     	int result = postDao.insertHashTag(tagname);
     	return result;
+    }
+    
+    //포스트해시태그 테이블에 태그 삭제하기
+    public int deletePostHash(Long post_id) {
+        int result = postDao.deletePostHash(post_id);
+        return result;
     }
 }

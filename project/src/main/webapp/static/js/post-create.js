@@ -13,24 +13,37 @@
 	//엔터 및 스페이스가 눌렸을 때 해시태그를 html 출력
 	 inputHash.addEventListener('keydown', function(e){
 		 //엔터키가 눌렸을 때
-		 if(e.keyCode === 13 || e.keyCode === 32){		 
-			 let hashValue = (inputHash.value).trim();
-			 console.log("1. input 글자 : ", hashValue);
+		 if(e.keyCode === 13 || e.keyCode === 32){
 			 
-			 if(hashValue !== ''){
+			// 특수문자를 허용하지 않을 정규식
+    		const regex = /[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gim;
+			 
+			 let hashValue = (inputHash.value).trim();	//앞 뒤 공백 제거
+		     hashValue = hashValue.replace(regex, '');  //특수문자 삭제
+			 
+			 console.log("1. input 글자 : ", hashValue);
+
+			 const liValue = document.querySelectorAll('span.tagValue');
+			 if(hashValue !== '' && liValue.length<5){
 					 //입력된 값 중복 확인하기
 					 //이미 입력된 태그를 다시 입력하면 input창을 초기화하고 함수 종료
-					 const liValue = document.querySelectorAll('span.tagValue');
 					 for(let item of liValue){
 						 if(hashValue === item.innerHTML	){
 							 console.log("2. 똑같은 글자 발견 : ", inputHash.value);
+							 alert("동일한 태그가 존재합니다.");
 					 		 inputHash.value = '';
 							 return;
 						 }
 					 }
 					 //html에 태그 출력
 					 htmlTagList(hashValue); 
-			 }			 
+			 }else if(hashValue === ''){
+				 alert('태그 내용을 확인해주세요.');
+			 }else{
+				 //5개 초과 시 입력할 수 없음.
+				 alert("태그는 5개만 입력 가능합니다.");
+			 }
+		 		inputHash.value = '';
 		 }
 	 });
 	 
@@ -58,27 +71,25 @@
 //---------------------------------------------------------------------------------------------	 
  //html에 태그 출력
  function htmlTagList(tag){
-	 	 let hashtagList = document.querySelector('ul#hashtagList');
+	 	 let hashtagList = document.querySelector('div#hashtagList');
 	 	 
 	 	 //해시태그 <ul>에 출력함
-		 hashtagList.innerHTML += 
-		 `<li id=${tag} class="nav-item me-4 mt-1">
-		 		<span class="tagValue me-1">${tag}</span>
-		 		<span class="btnDel" data-id="${tag}">x</span>
-                <input class="d-none" name="hashTag" value="${tag}" />
-	 	  </li>`;
+	 	  hashtagList.innerHTML += 
+	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
+		    <span class="px-1 tagValue">${tag}</span>
+		    <span class="btn-close btnDel"  data-id="${tag}"></span>
+            <input class="d-none" name="hashTag" value="${tag}" />
+		    </span>`
 	 	  
 	 	  //x에 클릭이벤트 리스너 등록하기
 	 	  const btnDelete = document.querySelectorAll('span.btnDel');
 	 	  for(let btnD of btnDelete){
 			   btnD.addEventListener('click', function(e){
-				   const aTag = 'li#'+ e.target.getAttribute('data-id');
-				   
+				   const aTag = 'span#'+ e.target.getAttribute('data-id');
 				   const cTag = document.querySelector(aTag);
 				   cTag.remove();
 			   })
 		   }
-		 
 		 //input 초기화
 		 inputHash.value = '';
  };
