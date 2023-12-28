@@ -232,7 +232,12 @@ canvas {
 <script>
         const signedInUser = `${signedInUser}`;
     </script>
+
 <script src="../js/comment.js"></script>
 <script src="../js/time-details.js"></script>
+
+
+
+
 </body>
 </html>
