@@ -114,7 +114,7 @@
         const bookmarkCancel = document.querySelector('a#bookmarkCancel');
         
         // 좋아요 취소 버튼의 모양을 바꿈
-        bookmarkCancel.setAttribute('class','btn btn-warnign fs-5 fw-bold');
+        bookmarkCancel.setAttribute('class','btn btn-warning fs-5 fw-bold');
         
         // 좋아요 버튼의 이벤트 리스너를 삭제
         bookmark.removeEventListener('click', bookmarkAdd);
