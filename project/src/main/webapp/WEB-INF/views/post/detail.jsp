@@ -156,12 +156,6 @@
                         id="btnRegisterComment">등록</button>
                 </div>
             </div>
-
- 
-        <script src="../js/like.js"></script>
-        <script src="../js/bookmark.js"></script>
-        <script src="../js/time-details.js"></script>
-        
         
 	</body>
 
@@ -183,7 +177,7 @@
 
     <script src="../js/like.js"></script>
     <script src="../js/bookmark.js"></script>
-        <script >
+    <script >
         const signedInUser = `${signedInUser}`;
     </script>
     <script src="../js/comment.js"></script>

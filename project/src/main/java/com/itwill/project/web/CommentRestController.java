@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itwill.project.domain.Comment;
 import com.itwill.project.domain.Criteria;
@@ -21,7 +19,6 @@ import com.itwill.project.dto.comment.CommentRegisterDto;
 import com.itwill.project.dto.comment.CommentUpdateDto;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.service.CommentService;
-import com.itwill.project.service.LikeService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
