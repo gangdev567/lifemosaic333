@@ -175,51 +175,66 @@
     } // likeCount end
     
     // 좋아요 HTML을 만드는 함수
-    function makeLikeElement(data) {
-        const likeDiv = document.querySelector('div#like');
+ function makeLikeElement(data) {
+    const likeDiv = document.querySelector('div#like');
+    
+    const likeIcon = '<i class="far fa-thumbs-up fa-3x"></i>'; 
+    const dislikeIcon = '<i class="far fa-thumbs-down fa-3x"></i>'; 
+    
+    const htmlStr = `
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
+            <span style="display: flex; align-items: center; margin-right: 20px;">
+                ${likeIcon}
+                <span style="margin-left: 10px;">${data.like_point}</span>
+            </span>
+            <span style="display: flex; align-items: center;">
+                <span style="margin-right: 20px;">${data.dislike_point}</span>
+                ${dislikeIcon}
+            </span>
+        </div>`;
         
-        
-        const htmlStr = `
-            <span id="like"value=${data.like_point}>좋아요 : ${data.like_point}</span>
-            <span id="dislike"value=${data.dislike_point}>싫어요 : ${data.dislike_point}</span>`;
-            
-        likeDiv.innerHTML = htmlStr;
-        
-        const like = data.like_point;
-        const dislike = data.dislike_point;
-        console.log(like, dislike);
-        var dataToChart = {
-            labels: ['좋아요', '싫어요'],
-            datasets: [
-                {
-                    data: [like, dislike], // 좋아요 수와 싫어요 수에 따른 비율
-                    backgroundColor: ['#36A2EB', '#FF6384'] // 좋아요는 파란색, 싫어요는 빨간색
-                }
-            ]
-        };
+    likeDiv.innerHTML = htmlStr;
 
-        // 차트 옵션
-        var options = {
-            responsive: true,
-            cutout: '70%', // 도넛의 두께를 조정합니다.
-            maintainAspectRatio: false, // 캔버스 크기를 유지하지 않도록 설정합니다.
-            legend: {
-                position: 'bottom'
-            },
-            title: {
-                display: true,
-                text: '좋아요 vs 싫어요'
+    const like = data.like_point; // 좋아요 수
+    const dislike = data.dislike_point; // 싫어요 수
+
+    const existingChart = Chart.getChart("donutChart"); // 이전 차트 가져오기
+    if (existingChart) {
+        existingChart.destroy(); // 이전 차트 제거
+    }
+
+    const dataToChart = {
+        labels: ['좋아요', '싫어요'],
+        datasets: [
+            {
+                data: [like, dislike],
+                backgroundColor: ['#36A2EB', '#FF6384'] // 파란색 - 좋아요, 빨간색 - 싫어요
             }
-        };
+        ]
+    };
 
-        // 도넛 차트 생성
-        var donutChart = new Chart(document.getElementById('donutChart'), {
-            type: 'doughnut',
-            data: dataToChart,
-            options: options
-        });
+    const options = {
+        responsive: true,
+        cutout: '70%',
+        maintainAspectRatio: false,
+        legend: {
+            display: false 
+        },
+        title: {
+            display: true,
+            text: '좋아요 vs 싫어요',
+            position: 'top' 
+        }
+    };
 
-    } //makeLikeElement end
+    const donutChart = new Chart(document.getElementById('donutChart'), {
+        type: 'doughnut',
+        data: dataToChart,
+        options: options
+    });
+}
+
+
     
     // POST_ID와 USER_ID를 보내서 GET방식으로 POST_LIKE_CHECK의 데이터를 가져오는 함수
     function postLikeCheck() {
@@ -301,78 +316,64 @@
         
     }
     
-    function switchLikeBtn() {
-        // 좋아요 버튼을 등록
-        const likeBtn = document.querySelector('button#likeBtn');
-        
-        // 좋아요 버튼의 아이디를 변경
-        likeBtn.setAttribute('id', 'likeCancelBtn');
-        
-        // 변경된 아이디로 좋아요 취소 버튼을 등록
-        const likeCancelBtn = document.querySelector('button#likeCancelBtn');
-        
-        // 좋아요 취소 버튼의 모양을 바꿈
-        likeCancelBtn.setAttribute('class','btn btn-secondary');
-        
-        // 좋아요 버튼의 이벤트 리스너를 삭제
+function switchLikeBtn() {
+    const likeBtn = document.querySelector('button#likeBtn');
+    const dislikeBtn = document.querySelector('button#dislikeBtn');
+
+    if (!likeBtn.classList.contains('btn-secondary')) {
+        likeBtn.classList.add('btn-secondary');
+        likeBtn.style.backgroundColor = '#36A2EB'; // 좋아요 버튼 배경색
+        likeBtn.innerHTML = '<i class="fas fa-heart fa-2x" style="color: pink;"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일
         likeBtn.removeEventListener('click', postLike);
+        likeBtn.addEventListener('click', postLikeCancel);
         
-        // 좋아요 취소 버튼의 이벤트 리스너를 등록
-        likeCancelBtn.addEventListener('click', postLikeCancel)
+        // 좋아요 버튼을 누르면 싫어요 버튼 비활성화
+        dislikeBtn.disabled = true;
     }
-    
-    function switchDislikeBtn() {
-        
-        // 싫어요 버튼에도 똑같은 코드를 반복
-        const dislikeBtn = document.querySelector('button#dislikeBtn');
-        
-        dislikeBtn.setAttribute('id', 'dislikeCancelBtn');
-        
-        const dislikeCancelBtn = document.querySelector('button#dislikeCancelBtn');
-        
-        dislikeCancelBtn.setAttribute('class','btn btn-secondary');
-        
+}
+
+function switchDislikeBtn() {
+    const dislikeBtn = document.querySelector('button#dislikeBtn');
+    const likeBtn = document.querySelector('button#likeBtn');
+
+    if (!dislikeBtn.classList.contains('btn-secondary')) {
+        dislikeBtn.classList.add('btn-secondary');
+        dislikeBtn.style.backgroundColor = '#FF6384'; // 싫어요 버튼 배경색
+        dislikeBtn.innerHTML = '<i class="fas fa-sad-tear fa-2x" style="color: red;"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일
         dislikeBtn.removeEventListener('click', postDislike);
+        dislikeBtn.addEventListener('click', postDislikeCancel);
         
-        dislikeCancelBtn.addEventListener('click', postDislikeCancel);
-        
+        // 싫어요 버튼을 누르면 좋아요 버튼 비활성화
+        likeBtn.disabled = true;
     }
-    
-        function returnLikeBtn() {
-        // 좋아요 취소 버튼을 등록
-        const likeCancelBtn = document.querySelector('button#likeCancelBtn');
-        
-        // 좋아요 취소 버튼의 아이디를 변경
-        likeCancelBtn.setAttribute('id', 'likeBtn');
-        
-        // 변경된 아이디로 좋아요 버튼을 등록
-        const likeBtn = document.querySelector('button#likeBtn');
-        
-        // 좋아요 버튼의 모양을 바꿈
-        likeBtn.setAttribute('class','btn btn-success');
-        
-        // 좋아요 취소 버튼의 이벤트 리스너를 삭제
-        likeCancelBtn.removeEventListener('click', postLikeCancel);
-        
-        // 좋아요 버튼의 이벤트 리스너를 등록
-        likeBtn.addEventListener('click', postLike);
-    }
-    
-    function returnDislikeBtn() {
-        
-        // 싫어요 버튼에도 똑같은 코드를 반복
-        const dislikeCancelBtn = document.querySelector('button#dislikeCancelBtn');
-        
-        dislikeCancelBtn.setAttribute('id', 'dislikeBtn');
-        
-        const dislikeBtn = document.querySelector('button#dislikeBtn');
-        
-        dislikeBtn.setAttribute('class','btn btn-danger');
-        
-        dislikeCancelBtn.removeEventListener('click', postDislikeCancel);
-        
-        dislikeBtn.addEventListener('click', postDislike);
-        
-    }
+}
+
+function returnLikeBtn() {
+    const likeBtn = document.querySelector('button#likeBtn');
+    const dislikeBtn = document.querySelector('button#dislikeBtn');
+
+    likeBtn.classList.remove('btn-secondary');
+    likeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
+    likeBtn.innerHTML = '<i class="far fa-heart fa-2x"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일 변경
+    likeBtn.removeEventListener('click', postLikeCancel);
+    likeBtn.addEventListener('click', postLike);
+
+    // 다시 좋아요 버튼으로 돌아가면 싫어요 버튼 활성화
+    dislikeBtn.disabled = false;
+}
+
+function returnDislikeBtn() {
+    const dislikeBtn = document.querySelector('button#dislikeBtn');
+    const likeBtn = document.querySelector('button#likeBtn');
+
+    dislikeBtn.classList.remove('btn-secondary');
+    dislikeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
+    dislikeBtn.innerHTML = '<i class="far fa-sad-tear fa-2x"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일 변경
+    dislikeBtn.removeEventListener('click', postDislikeCancel);
+    dislikeBtn.addEventListener('click', postDislike);
+
+    // 다시 싫어요 버튼으로 돌아가면 좋아요 버튼 활성화
+    likeBtn.disabled = false;
+}
     
  });
