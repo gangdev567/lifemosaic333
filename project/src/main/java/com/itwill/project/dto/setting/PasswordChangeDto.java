@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PasswordChangeDto {
-    private String user_id;         // 사용자의 ID
     private String currentPassword; // 현재 비밀번호
     private String newPassword;     // 새로운 비밀번호
 }

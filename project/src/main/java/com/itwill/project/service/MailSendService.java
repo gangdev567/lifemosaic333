@@ -6,14 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.itwill.project.domain.VerificationCode;
+import com.itwill.project.repository.UserManagementDao;
+import com.itwill.project.repository.VerificationCodeRepository;
 
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Component
+@Transactional
 public class MailSendService {
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+
+	@Autowired
+	private UserManagementDao userManagementDao;
+
+	@Autowired
+	private VerificationCodeRepository verificationCodeRepository; // 인증 코드를 저장하는 저장소
 
 	// 임시 비밀번호 이메일 전송
 	public void sendTempPasswordEmail(String email, String tempPassword) {
@@ -43,12 +58,28 @@ public class MailSendService {
 		}
 	}
 
-	// 이메일 인증 메서드 (예: 임시 비밀번호 또는 인증번호 발송)
-	public String joinEmail(String email) {
-		String tempPassword = generateRandomPassword(8);
-		sendTempPasswordEmail(email, tempPassword);
-		return tempPassword;
+
+
+
+	// 이메일 인증 메서드
+	public void sendVerificationEmail(String email, HttpSession session) {
+		String verificationCode = generateVerificationCode();
+		String content = "이메일 주소를 인증하려면 다음 링크를 클릭하세요: "
+			+ "<a href='http://localhost:8081/project/setting/verifyEmail?code=" + verificationCode + "&email=" + email
+			+ "'>이메일 인증</a>";
+
+		// 이메일 전송
+		mailSend("noreply@example.com", email, "이메일 인증", content);
+
+		// 인증 코드 저장
+		VerificationCode newCode = new VerificationCode(email, verificationCode);
+		verificationCodeRepository.save(newCode);
+
+		// 인증된 이메일 주소를 세션에 저장
+		session.setAttribute("verifiedEmail", email);
 	}
+
+	// VerificationCodeRepository와 VerificationCode 클래스는 추가 구현이 필요합니다.
 
 	// 임시 비밀번호 생성
 	private String generateRandomPassword(int length) {
@@ -62,5 +93,43 @@ public class MailSendService {
 		}
 
 		return sb.toString();
+	}
+
+	private String generateVerificationCode() {
+		// 인증 코드 길이
+		int length = 8;
+
+		// 사용할 문자 집합 (예: 대문자, 소문자, 숫자)
+		String charSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+		// StringBuilder를 사용하여 랜덤 문자열 생성
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < length; i++) {
+			int index = random.nextInt(charSet.length());
+			char randomChar = charSet.charAt(index);
+			sb.append(randomChar);
+		}
+
+		return sb.toString();
+	}
+
+	// 이메일 주소를 인증하고 임시 비밀번호를 전송하며, 임시 비밀번호를 반환하는 메서드
+	public String joinEmail(String email) {
+		// 임시 비밀번호 생성
+		String tempPassword = generateRandomPassword(8);
+
+		// 이메일 전송
+		sendTempPasswordEmail(email, tempPassword);
+
+		// 생성한 임시 비밀번호 반환
+		return tempPassword;
+	}
+
+	public void updateEmail(String user_id, String newEmail) {
+		log.debug("updateEmail 호출: user_id={}, newEmail={}", user_id, newEmail);
+		int result = userManagementDao.updateEmail(user_id, newEmail);
+		// 로그로 결과 확인
+		log.debug("updateEmail 결과: {}", result);
 	}
 }
