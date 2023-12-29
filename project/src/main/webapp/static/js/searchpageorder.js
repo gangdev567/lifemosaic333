@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', function(){
 		
 		btnSelectCategory.innerHTML = e.target.innerHTML;
 		
+		currentPage = 1;
+		
 		workPost();
 	};
 	

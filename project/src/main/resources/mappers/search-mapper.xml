@@ -28,8 +28,6 @@
 							upper(p.CONTENT) like upper(#{searchKeyword})
 					</when>
 					<when test='dto.search_category eq "a"'>
-							upper(u.user_id) like upper(#{searchKeyword})
-							or
 							upper(u.nickname) like upper(#{searchKeyword})
 					</when>
 				</choose>
