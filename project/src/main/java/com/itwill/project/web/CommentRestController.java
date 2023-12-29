@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.itwill.project.domain.Comment;
 import com.itwill.project.domain.Criteria;
+import com.itwill.project.domain.Recomment;
 import com.itwill.project.dto.comment.CommentRegisterDto;
 import com.itwill.project.dto.comment.CommentUpdateDto;
+import com.itwill.project.dto.comment.RecommentRegisterDto;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.service.CommentService;
 
@@ -86,6 +88,32 @@ public class CommentRestController {
     public ResponseEntity<Integer> deleteComment(@PathVariable Long comment_id) {
         log.debug("deleteCommentId = {}", comment_id);
         int result = commentService.delete(comment_id);
+        
+        return ResponseEntity.ok(result);
+    }
+    
+    @GetMapping("/recomment")
+    public ResponseEntity<List<Recomment>> getRecommentByCommentId (@RequestParam("comment_id") Long comment_id) {
+        log.debug("comment_id = {}", comment_id);
+        
+        List<Recomment> recomments = commentService.getRecomment(comment_id);
+        
+        return ResponseEntity.ok(recomments);
+    }
+    
+    @PostMapping("/recomment")
+    public ResponseEntity<Integer> registerRecomment(@RequestBody RecommentRegisterDto dto) {
+        log.debug("RecommentRegisterDto = {}", dto);
+        
+        int result = commentService.createRecomment(dto);
+        
+        return ResponseEntity.ok(result);
+    }
+    
+    @PutMapping("/recomment/{re_comment_id}")
+    public ResponseEntity<Integer> deleteRecomment(@PathVariable Long re_comment_id) {
+        log.debug("deleteCommentId = {}", re_comment_id);
+        int result = commentService.deleteRecomment(re_comment_id);
         
         return ResponseEntity.ok(result);
     }

@@ -20,4 +20,14 @@
         SELECT * FROM users WHERE user_id = #{user_id} AND password = #{password}
     </select>
 
+    <!-- 이메일을 통해 사용자 아이디 찾기 -->
+    <select id="findUserIdByEmail" resultType="string">
+        SELECT user_id FROM users WHERE email = #{email}
+    </select>
+
+    <!-- 이메일을 통해 사용자 비밀번호 초기화 -->
+    <update id="resetPasswordByEmail">
+        UPDATE users SET password = #{newPassword} WHERE email = #{email}
+    </update>
+
 </mapper>
