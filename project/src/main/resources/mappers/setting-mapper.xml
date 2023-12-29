@@ -112,15 +112,31 @@ FROM (
 	 <select id="selectBookmarkByPaging" resultType="MyBookmarkListItemByPaging">
 	 	SELECT *
 			FROM (
+			 select
+				"row_num",
+				"bookmark_created_time",
+				"post_id",
+				"post_user_id",
+				"profile_url",
+				"post_user_nickname",
+				"post_title",
+				"post_content",
+				 "post_time",
+				 "post_sub_category_id",
+				  "post_sub_category_name",
+				  "post_view_count", 
+				   "post_like_count",
+				  "post_comment_count"
+				  from (
 			    SELECT 
 			    	ROWNUM as "row_num",
 			        TO_CHAR(b.created_time, 'YYYY.MM.dd HH:mm') AS "bookmark_created_time",
-			        b.post_id,
+			        b.post_id as "post_id",
 			        p.user_id AS "post_user_id",
 			        u.profile_url AS "profile_url",
 			        u.nickname AS "post_user_nickname",
 			        p.title AS "post_title",
-			        CASE WHEN LENGTH(p.content) > 30 THEN SUBSTR(p.content, 0, 30) || ' ...' ELSE p.content END AS "post_content",
+			        CASE WHEN LENGTH(p.content) > 50 THEN SUBSTR(p.content, 0, 50) || ' ...' ELSE p.content END AS "post_content",
 			        TO_CHAR(p.modified_time, 'YYYY.MM.dd HH:mm') AS "post_time",
 			        p.sub_category_id AS "post_sub_category_id",
 			        sc.sub_category_name AS "post_sub_category_name", 
@@ -142,6 +158,7 @@ FROM (
 			        b.user_id = #{user_id}
 			    ORDER BY 
 			        b.created_time DESC
+			)
 			)
 			WHERE 
 			    "row_num" BETWEEN #{startNum} AND #{endNum}

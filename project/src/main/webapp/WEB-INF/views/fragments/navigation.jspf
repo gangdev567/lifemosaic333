@@ -106,7 +106,6 @@
                 <li>
                 	<c:url var="settingmyPostListPage" value="/setting/myPostList" />
                 	<a class="dropdown-item" href="${settingmyPostListPage}">내가 쓴 게시글</a></li>
-                <li><a class="dropdown-item" href="#">내가 참여한 게시글</a></li>
                 
                 	<c:url var="settingMyBookmarkPage" value="/setting/userMyBookmark"/>
                 <li><a class="dropdown-item" href="${settingMyBookmarkPage}">북마크</a></li>

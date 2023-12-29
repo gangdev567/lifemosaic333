@@ -255,7 +255,7 @@ public class SettingController {
 		 if(total != 0) {
 		 
 		 //한 페이지에 보여줄 게시물 수(일단 3개로,,)
-		 int size = 3;
+		 int size = 10;
 		 
 		 //전체 페이지 수 계산..
 		 int totalPages = (int) (Math.ceil((total * 1.0)/size));
@@ -266,7 +266,7 @@ public class SettingController {
 			int startNum = (currentPage - 1) * 3 +1;
 			log.debug("게시물 시작 번호 : {}", startNum);
 			//가져올 테이블 데이터의 시작 번호 
-			int endNum = (currentPage -1) * 3 +3;
+			int endNum = (currentPage -1) * 3 +size;
 			log.debug("게시물 끝 번호 : {}", endNum);
 			
 			SettingPageDto dto = SettingPageDto.builder().user_id(user_id).startNum(startNum).endNum(endNum).build();
@@ -284,7 +284,11 @@ public class SettingController {
 		 }
 		 model.addAttribute("bookmarkCount", total);
 		 
+		 //따라 다니는 메뉴를 만들기 위한 프로필 정보 보내기
 		 
+		 User user = userDao.selectByUserid(user_id);
+		// 2. 가져온 유저 정보 중, 프로필 경로를 세션에 저장
+		session.setAttribute("userProfileUrl", user.getProfile_url());
 		 
 	 }
 	 	

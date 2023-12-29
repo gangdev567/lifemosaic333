@@ -7,7 +7,7 @@
 	 body {
             margin: 10px;
             padding: 10px;
-            font-family: Arial, sans-serif;
+           font-family: 'Noto Sans KR', sans-serif;
             
         }
 
@@ -25,8 +25,7 @@
         }
 
         #left {
-            padding: 10px;
-            margin: 10px;
+           
         }
 
         #left,#right {
@@ -34,10 +33,14 @@
         }
 
         #center {
-            flex: 2; /* #center를 두 배 크기로 설정 */
-            padding:40px;
+            flex: 3; /* #center를 두 배 크기로 설정 */
+           
         }
-      
+      #aside {
+		    position: sticky;
+		    top: 100px;
+		    right: 300px;
+		}
 		.profileImg {
 		  width: 30px;
 		  height: 30px;
@@ -45,13 +48,23 @@
 		  object-fit: cover;
 		  align-items: left;
 		}
+		.profile{
+		width: 230px;
+		  height: 230px;
+		   border-radius: 70%;
+		  object-fit: cover;
+		  align-items: center;
+		}
+		
 	</style>
 	<head>
  		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
       	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 	</head>
 	<body>
 		<!-- 헤더 부분 -->
@@ -65,21 +78,24 @@
 			<%@ include file="../fragments/settingNavigation.jspf"%>
 			
 			</div>
-			
+			<div class="d-flex" >
+			  <div class="vr"></div>
+			</div>
 			<!-- div center -->
 			 <div id="center">
-                   <h2 class="text-center">
+		
+                   <span style="font-size:25px; margin-left:40px; font-weight:bold;">
             		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="30" height="30" x="0" y="0" viewBox="0 0 24 24" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><g data-name="Layer 2"><path fill="#987ef7" d="M17.5 1.25h-11A3.254 3.254 0 0 0 3.25 4.5V20a2.746 2.746 0 0 0 4.4 2.2l3.6-2.7a1.257 1.257 0 0 1 1.5 0l3.6 2.7a2.749 2.749 0 0 0 4.4-2.2V4.5a3.254 3.254 0 0 0-3.25-3.25z" opacity="1" data-original="#4285f4" class=""></path><path fill="#ffef20" d="M14.793 7.922h-1.1l-.545-1.274a1.251 1.251 0 0 0-2.3 0l-.546 1.274h-1.1a1.251 1.251 0 0 0-.884 2.135l.846.845-.412 1.652a1.249 1.249 0 0 0 1.832 1.388L12 13.136l1.41.806a1.25 1.25 0 0 0 1.833-1.388l-.412-1.654.846-.845a1.251 1.251 0 0 0-.884-2.135z" opacity="1" data-original="#afcbf9" class=""></path></g></g></svg>
             		 북마크(${bookmarkCount} 개의 게시물)
-                   </h2>
-                   <div style="border-top: 3px solid black;">
-                   </div>
+                   </span>
+                   
+                   <hr style="margin-top:27px;">
                    
                    <!-- 북마크 게시물들을 보여줄 부분 -->
                     <c:choose>
                     	<c:when test="${not empty bookmarkCount and bookmarkCount != 0 }">
                     	<c:forEach var="post" items="${bookmark}">
-                    <div id="bookmarkList" class="card " style="margin: 20px; border:none; background: #F3F1F5;">
+                    <div id="bookmarkList" class="card " style=" margin-left:40px; margin: 20px; width:800px; height:150px; float:center; ">
                         
                         <div style="margin-top:10px; margin-left: 10px; margin-right: 20px;">
                         	<c:url var="settingImgPage" value="/setting/settingImg"/>
@@ -95,7 +111,7 @@
                         </a>
                         <span class="mb-2 text-secondary" style="float: right; font-size: small; margin-right:10px;">작성일: ${post.post_time} </span>
                         <div>
-                       		 <span style="text-align: left; margin-top: 5px; margin-left: 30px;">
+                       		 <span style="text-align: left; margin-top: 5px; margin-left: 30px; font-size: 14px;">
                         		${post.post_content}</span>
                         
                         
@@ -109,9 +125,8 @@
                                     </svg>
                                     
                                     <span style="font-size: small;">${post.post_view_count } views</span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hand-thumbs-up" viewBox="0 0 16 16">
-                                        <path d="M8.864.046C7.908-.193 7.02.53 6.956 1.466c-.072 1.051-.23 2.016-.428 2.59-.125.36-.479 1.013-1.04 1.639-.557.623-1.282 1.178-2.131 1.41C2.685 7.288 2 7.87 2 8.72v4.001c0 .845.682 1.464 1.448 1.545 1.07.114 1.564.415 2.068.723l.048.03c.272.165.578.348.97.484.397.136.861.217 1.466.217h3.5c.937 0 1.599-.477 1.934-1.064a1.86 1.86 0 0 0 .254-.912c0-.152-.023-.312-.077-.464.201-.263.38-.578.488-.901.11-.33.172-.762.004-1.149.069-.13.12-.269.159-.403.077-.27.113-.568.113-.857 0-.288-.036-.585-.113-.856a2.144 2.144 0 0 0-.138-.362 1.9 1.9 0 0 0 .234-1.734c-.206-.592-.682-1.1-1.2-1.272-.847-.282-1.803-.276-2.516-.211a9.84 9.84 0 0 0-.443.05 9.365 9.365 0 0 0-.062-4.509A1.38 1.38 0 0 0 9.125.111zM11.5 14.721H8c-.51 0-.863-.069-1.14-.164-.281-.097-.506-.228-.776-.393l-.04-.024c-.555-.339-1.198-.731-2.49-.868-.333-.036-.554-.29-.554-.55V8.72c0-.254.226-.543.62-.65 1.095-.3 1.977-.996 2.614-1.708.635-.71 1.064-1.475 1.238-1.978.243-.7.407-1.768.482-2.85.025-.362.36-.594.667-.518l.262.066c.16.04.258.143.288.255a8.34 8.34 0 0 1-.145 4.725.5.5 0 0 0 .595.644l.003-.001.014-.003.058-.014a8.908 8.908 0 0 1 1.036-.157c.663-.06 1.457-.054 2.11.164.175.058.45.3.57.65.107.308.087.67-.266 1.022l-.353.353.353.354c.043.043.105.141.154.315.048.167.075.37.075.581 0 .212-.027.414-.075.582-.05.174-.111.272-.154.315l-.353.353.353.354c.047.047.109.177.005.488a2.224 2.224 0 0 1-.505.805l-.353.353.353.354c.006.005.041.05.041.17a.866.866 0 0 1-.121.416c-.165.288-.503.56-1.066.56z"/>
-                                      </svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><g id="_01_align_center" data-name="01 align center">
+                                    <path d="M23.821,11.181v0C22.943,9.261,19.5,3,12,3S1.057,9.261.179,11.181a1.969,1.969,0,0,0,0,1.64C1.057,14.739,4.5,21,12,21s10.943-6.261,11.821-8.181A1.968,1.968,0,0,0,23.821,11.181ZM12,19c-6.307,0-9.25-5.366-10-6.989C2.75,10.366,5.693,5,12,5c6.292,0,9.236,5.343,10,7C21.236,13.657,18.292,19,12,19Z"/><path d="M12,7a5,5,0,1,0,5,5A5.006,5.006,0,0,0,12,7Zm0,8a3,3,0,1,1,3-3A3,3,0,0,1,12,15Z"/></g></svg>
                                     
                                       <span style="font-size: small;"> ${post.post_like_count } likes</span>
                                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-left" viewBox="0 0 16 16">
@@ -125,6 +140,7 @@
                         </div>
                     </div>
 				</div>
+				<hr style="margin-left:5px;">
 			               </c:forEach>
                   			  
                     		<div class="d-flex justify-content-center" style="pading:10px; margin:20px;">
@@ -153,9 +169,14 @@
 		        
                </div>
                     <!-- div right -->
-                    <div id="right">
-			
+                    
+                   <!--  <div id="right">
+                     <div id="aside" style="">
+						  <c:url var="settingImgPage" value="/setting/settingImg" />
+							<img class="profile mx-auto" src="${settingImgPage}?fileName=${userProfileUrl}" name="profileImg" id="profileImg" alt="프로필 사진">
 					</div>
+			 
+					</div> -->
 		</div>
 		<script>
 		 function changeColor(element) {
@@ -166,6 +187,7 @@
 		        element.style.color = 'black'; // 마우스를 벗어났을 때 원래의 글씨 색상으로 복원
 		    }
 		</script>
+	
     
        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
