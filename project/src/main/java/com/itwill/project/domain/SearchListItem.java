@@ -1,6 +1,8 @@
 package com.itwill.project.domain;
 
 
+import java.time.LocalDateTime;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +20,7 @@ public class SearchListItem {
 	private String content;
 	private String nickname;
 	private String user_id;
+	private String profile;
 	private Long view_count;
 	private Long like_point;
 	private Long comment_cnt;

@@ -16,9 +16,11 @@ public class BestTopic {
 	private String sub_category_name;
 	private Long post_id;
 	private String title;
+	private Long view_count;
 	private Long like_point;
 	private Long comment_cnt;
 	private String user_id;
 	private String nickname;
 	private String profile_url;
+	private String created_time;
 }

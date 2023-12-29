@@ -16,7 +16,7 @@ img.topProfileUserImg {
 </style>
 
 
-	<div class="m-4" style="width: 12rem;">
+	<div class="m-0 p-1" style="width: 12rem; position : fixed; top : 50%; transform: translateY(-50%);">
 		  <div class="px-2 my-2" style="height:35px; text-align: center;">
               <c:url var="HallOfFame" value="/post/HallOfFame" ></c:url>
     		      <a style="color: black;" href="${HallOfFame}">
@@ -32,7 +32,6 @@ img.topProfileUserImg {
 		  
 		  <!-- 아이디 하나 div -->
 		    <div class="row row-cols-auto d-flex justify-content-between my-2">
-		    	<input id="user_id" value="${writer.user_id }" class="d-none"/>
 		    	<div class="col">
 		    	<c:url var="settingImgPage" value="/setting/settingImg" />
 		    	<img class ="topProfileUserImg" src="${settingImgPage}?fileName=${writer.profile_url }" />
