@@ -47,25 +47,63 @@
 		 }
 	 });
 	 
-	 //글 작성 폼 클릭 이벤트 리스너 등록
 	 btnFormCreate.addEventListener('click', async function() {
-		 const liValue = document.querySelectorAll('span.tagValue');
-		 for (let item of liValue) {
-			 //해시태그 테이블에 저장된 해시태그 있는지 검사 - select
-			 let result = await axios.get(`../post/checktag?tag=${item.innerHTML}`);
-			 
-			 //존재하지 않는다면 그 태그를 테이블에 저장
-			 if(result.data !== 1){
-					 console.log("4. 중복된 글자 없음 : ", item.innerHTML);
-				 	 await axios.get(`../post/createtag?tag=${item.innerHTML}`);
-				 	 
-			 }
-		 }
+    const liValue = document.querySelectorAll('span.tagValue');
+    let hasError = false;
 
-		 formCreate.action = 'create';
-		 formCreate.method = 'post';
-		 formCreate.submit();
-	 });
+    // 해시태그 저장하는 부분
+    for (let item of liValue) {
+        let result = await axios.get(`../post/checktag?tag=${item.innerHTML}`);
+
+        if (result.data !== 1) {
+            console.log("4. 중복된 글자 없음 : ", item.innerHTML);
+            await axios.get(`../post/createtag?tag=${item.innerHTML}`);
+        }
+    }
+
+    // 제목과 내용 유효성 검사
+    const titleValue = document.querySelector('input[name="title"]').value.trim();
+    const contentValue = document.querySelector('textarea[name="content"]').value.trim();
+    const titleError = document.querySelector('div#titleError');
+    const contentError = document.querySelector('div#contentError');
+
+    titleError.innerHTML = '';
+    contentError.innerHTML = '';
+
+if (titleValue === '' || titleValue.length < 5) {
+    titleError.innerHTML = `
+        <span class="flex items-center space-x-1 text-xs text-red-500">
+            <i class="fa-solid fa-triangle-exclamation fa-beat-fade" style="color: #ef0b0b;"></i>
+            <span style="color: #ef0b0b;">제목은 최소 5글자 이상 입력하세요.</span>
+        </span>
+    `;
+    titleError.style.textAlign = 'left';
+    hasError = true;
+} else {
+    titleError.innerHTML = '';
+}
+
+if (contentValue === '' || contentValue.length < 5) {
+    contentError.innerHTML = `
+        <span class="flex items-center space-x-1 text-xs text-red-500">
+            <i class="fa-solid fa-triangle-exclamation fa-beat-fade" style="color: #ef0b0b;"></i>
+            <span style="color: #ef0b0b;">내용은 최소 5글자 이상 입력하세요.</span>
+        </span>
+    `;
+    contentError.style.textAlign = 'left';
+    hasError = true;
+} else {
+    contentError.innerHTML = '';
+}
+
+
+    // 오류가 없으면 폼 제출
+    if (!hasError) {
+        formCreate.action = 'create';
+        formCreate.method = 'post';
+        formCreate.submit();
+    }
+});
      
      
 //---------------------------------------------------------------------------------------------	 
@@ -93,6 +131,16 @@
 		 //input 초기화
 		 inputHash.value = '';
  };
+ 
+
+    const cancelButton = document.querySelector('button#btnCancel');
+
+    cancelButton.addEventListener('click', function() {
+        if (confirm('정말로 취소하시겠습니까?')) {
+            window.history.back();
+        }
+    });
+
 
 
  });
