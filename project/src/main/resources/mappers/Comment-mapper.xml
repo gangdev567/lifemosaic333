@@ -25,6 +25,15 @@
         WHERE rnum BETWEEN #{commentStart} AND #{commentEnd}
     </select>
     
+    <select id="getRecomment" resultType="Recomment">
+        select r.*, u.nickname, rcl.like_point, rcl.dislike_point 
+            from re_comments r
+            join users u on r.user_id = u.user_id
+            join re_comment_like rcl on r.re_comment_id = rcl.re_comment_id
+            where r.comment_id = #{comment_id}
+            order by recomment_created_time
+    </select>
+    
     <insert id="insert">
         insert into comments (comment_content, user_id, post_id) values(#{comment_content}, #{user_id}, #{post_id})
     </insert>
@@ -35,6 +44,16 @@
     
     <update id="delete">
         update comments set comment_content = '삭제 된 댓글입니다.', comment_modified_time = systimestamp where comment_id = #{comment_id}
+    </update>
+    
+    <!-- 여기부터 리코멘트 -->
+    
+    <insert id="insertRecomment">
+        insert into re_comments (recomment_content, user_id, comment_id) values(#{recomment_content}, #{user_id}, #{comment_id})
+    </insert>
+    
+    <update id="deleteRecomment">
+        update re_comments set recomment_content = '삭제 된 댓글입니다.', recomment_modified_time = systimestamp where re_comment_id = #{re_comment_id}
     </update>
     
 </mapper>

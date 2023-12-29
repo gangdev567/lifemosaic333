@@ -19,7 +19,7 @@
                 if (response.data === 0) {
                     emptyComment();
                 } else {
-                    getAllComment();
+                    getAllComment();``
                 }
             }) 
             .catch((error) => {
@@ -133,7 +133,7 @@
                             <h6>${comment.comment_content}</h6>
                         </div>
                         <div>
-                            <small data-id="${comment.comment_id}"id="showRecomment">답글 보기 ▼</small>
+                            <small data-id="${comment.comment_id}"id="showRecomment" style="cursor: pointer;">답글 보기 ▼</small>
                         </div>
                         <div class="multiUseDiv" data-id="${comment.comment_id}"></div>
                     </div>
@@ -181,6 +181,7 @@
             addPageLinkEventListeners();
             addCommentModifyEventListeners();
             addCommentDeleteEventListeners();
+            addShowRecommentEventListeners();
             
     } // end makeCommentElements
     
@@ -264,7 +265,7 @@
         btnCommentDeleteElements.forEach(btn => {
           btn.addEventListener('click', function() {
             const comment_id = this.getAttribute('data-id');
-                console.log(comment_id);
+            console.log(comment_id);
             const uri = `../api/comment/${comment_id}`
                 axios.put(uri)
                 .then((response) => {
@@ -278,7 +279,164 @@
         });
     }
     
+    // 대댓글 버튼에 이벤트리스너 등록
+    function addShowRecommentEventListeners() {
+        const btnCommentShowRecommentElements = document.querySelectorAll('small#showRecomment')
+        
+        btnCommentShowRecommentElements.forEach(btn => {
+            
+            btn.addEventListener('click', ShowRecomment);
+        });
+    }
+    
+    function ShowRecomment(c_id) {
+                let comment_id;
+                if (this instanceof HTMLElement) {
+                  comment_id = this.getAttribute('data-id');
+                } else {
+                  // 예외 처리를 원하는 코드를 작성하세요
+                  comment_id = c_id;
+                }
+                console.log(comment_id);
+                
+                const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${comment_id}"]`);
+                console.log(multiUseDiv)
+                
+                axios.get('../api/comment/recomment', { params: {comment_id: comment_id} })
+                .then((response) => {
+                console.log(response);
+                
+                const recomments = response.data;
+                
+                let html = '';
+            
+                recomments.forEach((recomment) => {
+                    
+                const recommentcTime = recomment.recomment_created_time;
+                const recommentmTime = recomment.recomment_modified_time;
+                const mdate = new Date(recommentmTime[0], recommentmTime[1] - 1, recommentmTime[3], recommentmTime[4], recommentmTime[5]);
+                const cdate = new Date(recommentcTime[0], recommentcTime[1] - 1, recommentcTime[3], recommentcTime[4], recommentcTime[5]);
+                
+                const formattedmDate = formatDate(mdate);
+                const formattedcDate = formatDate(cdate);
+                
+                html += `<div class="mx-5 my-2">
+                            <input class="d-none" id="${recomment.re_comment_id}"/>
+                            <span>  ${recomment.nickname}</span> 
+                            <small class=time>${formattedmDate}</small>`;
+                    if(formattedcDate !== formattedmDate){
+    
+                    html += `<small> <strong> *수정됨 </strong> </small>`;
+                    }
+                       
+                html += `<div style="float: right;">
+                            <small id="commentLike" data-id="${recomment.re_comment_id}" style="cursor: pointer;">👍좋아요</small>
+                            <small>${recomment.like_point}</small>
+                            <small id="commentDisLike" data-id="${recomment.re_comment_id}" style="cursor: pointer;">👎싫어요</small>
+                            <small>${recomment.dislike_point}</small>`;
+                    if(signedInUser === recomment.user_id) {
+            
+                    html+= `<small class="btnRecommentDelete" data-id="${recomment.re_comment_id}" style="cursor: pointer;">삭제</small>`;
+                    }
+                        
+                html += `   </div>
+                            <div class="recommentContent" data-id="${recomment.re_comment_id}">
+                                <h6>${recomment.recomment_content}</h6>
+                            </div>
+                            </div>
+                            <hr />`;
+                }); 
+                html += `   <div class="row mx-5 my-2">
+                                <div class="col-10">
+                                <textarea class="form-control" id="rtext" placeholder="답글 입력"></textarea>
+                            </div>
+                            <div class="col-2">
+                                <button class="btnRegisterRecomment btn btn-outline-success" data-id="${comment_id}">등록</button>
+                            </div>
+                            </div>
+                            `                
+                multiUseDiv.innerHTML = html;
+                
+                const btnRegisterRecomment = document.querySelector(`button.btnRegisterRecomment[data-id="${comment_id}"]`);
+                btnRegisterRecomment.addEventListener('click', registerRecomment);
+                
+                const btnRecommentDelete = document.querySelectorAll('small.btnRecommentDelete')
+                btnRecommentDelete.forEach(btn => {
+                   btn.addEventListener('click', RecommentDelete);
+                });
+                
+                })
+                .catch((error) => {
+                console.log(error);
+                });
+                
+                switchRecommentBtn(comment_id);
+                
+    }
+    
+    function registerRecomment() {
+        const comment_id = this.getAttribute('data-id');
+        const rtext = document.querySelector('textarea#rtext').value;
+        const writer = document.querySelector('input#writer').value;
+        
+                // 댓글 내용이 비어 있는 지 체크.
+        if (rtext === '') {
+            alert('답글 내용을 입력하세요.');
+            return; // 이벤트 콜백 종료
+        }
 
+        const data = { comment_id, rtext, writer };
+        console.log(data);
+        
+        // POST 방식의 Ajax 요청을 보냄. 응답/실패 콜백을 등록.
+        axios.post('../api/comment/recomment', data) // post 방식의 Ajax 요청으로 data를 보냄.
+            .then((response) => {
+                console.log(response);
+                if (response.data === 1) {
+                    document.querySelector('textarea#rtext').value = '';
+                    ShowRecomment(comment_id);
+                }
+            }) 
+            .catch((error) => {
+                console.log(error);
+            });
+        
+    }
+    
+    function RecommentDelete() {
+        const re_comment_id = this.getAttribute('data-id');
+        const uri = `../api/comment/recomment/${re_comment_id}`
+                axios.put(uri)
+                .then((response) => {
+                    console.log(response);
+                    const recommentContent = document.querySelector(`div.recommentContent[data-id="${re_comment_id}"]`)
+                    recommentContent.innerHTML = '<h6>삭제 된 댓글입니다.</h6>'
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+    }
+    
+    // 답글 접기로 버튼 변경
+    function switchRecommentBtn(comment_id) {
+        const showRecomment = document.querySelector(`small#showRecomment[data-id="${comment_id}"]`);
+        console.log(showRecomment);
+        showRecomment.innerHTML = '답글 접기 ▲'
+        showRecomment.removeEventListener('click', ShowRecomment);
+        showRecomment.addEventListener('click', HideRecomment);
+    }
+    
+    // 답글 보기로 버튼 변경
+    function HideRecomment() {
+        const comment_id = this.getAttribute('data-id');
+        const showRecomment = document.querySelector(`small#showRecomment[data-id="${comment_id}"]`);
+        const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${comment_id}"]`);
+        multiUseDiv.innerHTML = '';
+        showRecomment.innerHTML = '답글 보기 ▼'
+        showRecomment.removeEventListener('click', HideRecomment);
+        showRecomment.addEventListener('click', ShowRecomment);
+    }
     
     
- });
+    
+});
