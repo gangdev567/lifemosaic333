@@ -25,7 +25,7 @@
 		<dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.0</version> <!-- Jackson 라이브러리 버전에 맞게 변경 -->
+            <version>2.16.0</version> <!-- Jackson 라이브러리 버전에 맞게 변경 -->
         </dependency>
         
 		<dependency>
