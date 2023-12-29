@@ -30,6 +30,18 @@ canvas {
 .btn-custom-like:hover, .btn-custom-dislike:hover {
 	transform: scale(1.1);
 }
+  .btn-custom-like,
+  .btn-custom-dislike {
+    padding: 8px 15px; /* 여백 조절 */
+    font-size: 12px; /* 글꼴 크기 조절 */
+  }
+
+  .btn-custom-like img,
+  .btn-custom-dislike img {
+    width: 20px; /* 이미지 너비 조절 */
+    height: 20px; /* 이미지 높이 조절 */
+    margin-right: 5px; /* 이미지와 텍스트 사이 여백 조절 */
+  }
 </style>
 </head>
 <body>
@@ -83,7 +95,7 @@ canvas {
 				</div>
 				<div class="my-2">
 					<label for="content" class="form-label"></label>
-					<div class="form-control" id="content">${post.content}</div>
+					<div class="form-control" id="content" style="height: 500px" >${post.content}</div>
 				</div>
 
 				<!-- 해시태그 보여주기 -->
@@ -96,19 +108,20 @@ canvas {
 
 			</form>
 		</div>
-
-	
+		
 		<div class="d-flex justify-content-center my-4">
 			<div
 				style="display: flex; flex-direction: column; align-items: center;">
 				<div style="margin-bottom: 20px;">
 					<%-- 좋아요 및 싫어요 버튼 --%>
 					<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
-						<i class="far fa-heart fa-2x"></i> 좋아요
+						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+						좋아요
 					</button>
 					<button class="btn btn-custom-dislike" id="dislikeBtn"
 						name="dislikeBtn">
-						<i class="far fa-sad-tear fa-2x"></i> 싫어요
+						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+						싫어요
 					</button>
 				</div>
 				<div id="like"></div>

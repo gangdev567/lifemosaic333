@@ -10,7 +10,7 @@
           <style>
                 .mainBorderBox{
                     display: grid;
-                    grid-template-columns: 1fr 2.5fr 2.5fr 1fr;
+                    grid-template-columns: 1.2fr 2.5fr 2.5fr 1fr;
                     grid-template-rows: 550px 400px 400px 400px 150px;
                     row-gap: 10px;
                     column-gap: 10px;
