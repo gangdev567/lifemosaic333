@@ -89,4 +89,6 @@ public class SettingService {
 		
 		return settingDao.selectBookmarkByPaging(dto);
 	}
+
+
 }
