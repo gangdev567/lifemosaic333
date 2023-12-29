@@ -114,6 +114,14 @@
     	where tag_name = #{tagname}
     </select>
     
+    <!-- 포스트에 해당하는 해시태그 가져오기 -->    
+    <select id="selectHashtagByPostid" resultType="String">
+		select h.tag_name as "hashTag"
+		from post_hash ph
+		left join hashtag h on ph.tag_id = h.tag_id 
+		where post_id=#{post_id}
+    </select>
+
     <!-- 해시태그 테이블에 태그 저장 -->
     <insert id="insertHashTag">
     	insert into hashtag (tag_name) values (#{tagname})

@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.project.domain.MyBookmarkListItemByPaging;
 import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.domain.User;
-import com.itwill.project.dto.setting.ArticlePage;
 import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.dto.setting.PasswordChangeDto;
 import com.itwill.project.service.ChangePasswordServiceImpl;
@@ -231,7 +231,11 @@ public class SettingController {
 			
 			//전체 페이지 수를 모델 객체에 추가해서 거기서 페이징 버튼 구현,,
 			model.addAttribute("pagesCount",totalPages);
+			
+			//현재 페이지에는 active 스타일을 넣기 위한 currentPage 객체 추가
 			model.addAttribute("currentPage",currentPage);
+			
+			//
 			model.addAttribute("comment",list);
 			}	
 			
@@ -239,6 +243,51 @@ public class SettingController {
 			
 			model.addAttribute("user",user);
 	 }
+	 
+	 //북마크 페이지
+	 @GetMapping("/userMyBookmark")
+	 public void showMyBookmark(Model model, @RequestParam(defaultValue = "1")int currentPage, HttpSession session) {
+		 String user_id = (String) session.getAttribute("signedInUser");
+		 
+		 //일단 전체 북마크 글들을 가져온다.
+		 int total = settingService.selectBookmarkTotalPages(user_id);
+		 
+		 if(total != 0) {
+		 
+		 //한 페이지에 보여줄 게시물 수(일단 3개로,,)
+		 int size = 3;
+		 
+		 //전체 페이지 수 계산..
+		 int totalPages = (int) (Math.ceil((total * 1.0)/size));
+		 
+		 log.debug("@@@@@@@@@@ 총 페이지 수={}",totalPages);
+		 
+		//가져올 테이블 데이터의 시작 번호 
+			int startNum = (currentPage - 1) * 3 +1;
+			log.debug("게시물 시작 번호 : {}", startNum);
+			//가져올 테이블 데이터의 시작 번호 
+			int endNum = (currentPage -1) * 3 +3;
+			log.debug("게시물 끝 번호 : {}", endNum);
+			
+			SettingPageDto dto = SettingPageDto.builder().user_id(user_id).startNum(startNum).endNum(endNum).build();
+			
+			List<MyBookmarkListItemByPaging> list = settingService.selectBookmarkByPaging(dto);
+			
+			//전체 페이지 수를 모델 객체에 추가해서 거기서 페이징 버튼 구현,,
+			model.addAttribute("pagesCount",totalPages);
+			
+			//현재 페이지에는 active 스타일을 넣기 위한 currentPage 객체 추가
+			model.addAttribute("currentPage",currentPage);
+			
+			// 페이지에 보여줄 북마크 게시물들
+			model.addAttribute("bookmark",list);
+		 }
+		 model.addAttribute("bookmarkCount", total);
+		 
+		 
+		 
+	 }
+	 	
   
 	
 }
