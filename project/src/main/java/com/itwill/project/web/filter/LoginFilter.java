@@ -15,30 +15,8 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 		throws IOException, ServletException {
 
-		HttpServletRequest httpRequest = (HttpServletRequest) request;
-		HttpServletResponse httpResponse = (HttpServletResponse) response;
-		HttpSession session = httpRequest.getSession(false);
-
-		String path = httpRequest.getRequestURI().substring(httpRequest.getContextPath().length());
-
-		// 파일이 uploads 디렉토리에 있거나, /setting/settingImg 경로에 대한 접근이면 필터링을 하지 않습니다.
-		if (isFileInUploadsDirectory(path) || path.startsWith("/setting/settingImg")) {
-			chain.doFilter(request, response);
-		} else if (path.equals("/") ||
-			path.startsWith("/user/signup") ||
-			path.startsWith("/user/signin") ||
-			path.startsWith("/img/") || // 이미지 폴더
-			path.startsWith("/css/") || // CSS 폴더
-			path.startsWith("/js/")) {  // JavaScript 폴더
-			chain.doFilter(request, response); // 필터링을 하지 않습니다.
-		} else {
-			boolean loggedIn = session != null && session.getAttribute("signedInUser") != null;
-			if (loggedIn) {
-				chain.doFilter(request, response);
-			} else {
-				httpResponse.sendRedirect(httpRequest.getContextPath() + "/user/signin"); // 로그인 페이지로 리디렉션
-			}
-		}
+		// 모든 요청을 필터링 없이 통과시킵니다.
+		chain.doFilter(request, response);
 	}
 
 	private boolean isFileInUploadsDirectory(String path) {

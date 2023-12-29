@@ -87,6 +87,9 @@
 						}
 					</script>
 				</form>
+				<div class="mt-3 text-center">
+					<a href="/project/" class="btn btn-secondary">홈으로</a>
+				</div>
             </div>
         </main>
     </div>
