@@ -315,64 +315,66 @@
         
         
     }
-    function switchLikeBtn() {
-    const likeBtn = document.querySelector('button#likeBtn');
-    const dislikeBtn = document.querySelector('button#dislikeBtn');
+// 좋아요 버튼을 활성화하고 싫어요 버튼을 비활성화하는 함수
+function switchLikeBtn() {
+    const likeBtn = document.querySelector('button#likeBtn'); // 좋아요 버튼 요소 가져오기
+    const dislikeBtn = document.querySelector('button#dislikeBtn'); // 싫어요 버튼 요소 가져오기
 
+    // 좋아요 버튼이 이미 활성화되어 있지 않다면
     if (!likeBtn.classList.contains('btn-secondary')) {
-        likeBtn.classList.add('btn-secondary');
-        likeBtn.style.backgroundColor = '#36A2EB'; // 좋아요 버튼 배경색
-        likeBtn.innerHTML = '<i class="fas fa-heart fa-2x" style="color: pink;"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일
-        likeBtn.removeEventListener('click', postLike);
-        likeBtn.addEventListener('click', postLikeCancel);
-        
-        // 좋아요 버튼을 누르면 싫어요 버튼 비활성화
-        dislikeBtn.disabled = true;
+        likeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
+        likeBtn.style.backgroundColor = '#36A2EB'; // 좋아요 버튼 배경색 변경
+        likeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933691.png" width="30" height="30" alt="" title="" class="img-small"> 좋아요'; // 아이콘과 텍스트 변경
+        likeBtn.removeEventListener('click', postLike); // 기존 이벤트 제거
+        likeBtn.addEventListener('click', postLikeCancel); // 새로운 이벤트 추가
+
+        dislikeBtn.disabled = true; // 싫어요 버튼 비활성화
     }
 }
 
+// 싫어요 버튼을 활성화하고 좋아요 버튼을 비활성화하는 함수
 function switchDislikeBtn() {
-    const dislikeBtn = document.querySelector('button#dislikeBtn');
-    const likeBtn = document.querySelector('button#likeBtn');
+    const dislikeBtn = document.querySelector('button#dislikeBtn'); // 싫어요 버튼 요소 가져오기
+    const likeBtn = document.querySelector('button#likeBtn'); // 좋아요 버튼 요소 가져오기
 
+    // 싫어요 버튼이 이미 활성화되어 있지 않다면
     if (!dislikeBtn.classList.contains('btn-secondary')) {
-        dislikeBtn.classList.add('btn-secondary');
-        dislikeBtn.style.backgroundColor = '#FF6384'; // 싫어요 버튼 배경색
-        dislikeBtn.innerHTML = '<i class="fas fa-sad-tear fa-2x" style="color: red;"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일
-        dislikeBtn.removeEventListener('click', postDislike);
-        dislikeBtn.addEventListener('click', postDislikeCancel);
-        
-        // 싫어요 버튼을 누르면 좋아요 버튼 비활성화
-        likeBtn.disabled = true;
+        dislikeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
+        dislikeBtn.style.backgroundColor = '#FF6384'; // 싫어요 버튼 배경색 변경
+        dislikeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933788.png" width="30" height="30" alt="" title="" class="img-small"> 싫어요'; // 아이콘과 텍스트 변경
+        dislikeBtn.removeEventListener('click', postDislike); // 기존 이벤트 제거
+        dislikeBtn.addEventListener('click', postDislikeCancel); // 새로운 이벤트 추가
+
+        likeBtn.disabled = true; // 좋아요 버튼 비활성화
     }
 }
 
+// 좋아요 버튼을 비활성화하고 원래 상태로 복원하는 함수
 function returnLikeBtn() {
-    const likeBtn = document.querySelector('button#likeBtn');
-    const dislikeBtn = document.querySelector('button#dislikeBtn');
+    const likeBtn = document.querySelector('button#likeBtn'); // 좋아요 버튼 요소 가져오기
+    const dislikeBtn = document.querySelector('button#dislikeBtn'); // 싫어요 버튼 요소 가져오기
 
-    likeBtn.classList.remove('btn-secondary');
+    likeBtn.classList.remove('btn-secondary'); // 버튼 스타일 원래대로 변경
     likeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
-    likeBtn.innerHTML = '<i class="far fa-heart fa-2x"></i> 좋아요'; // 좋아요 아이콘과 텍스트 스타일 변경
-    likeBtn.removeEventListener('click', postLikeCancel);
-    likeBtn.addEventListener('click', postLike);
+    likeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png" width="30" height="30" alt="" title="" class="img-small"> 좋아요'; // 아이콘과 텍스트 변경
+    likeBtn.removeEventListener('click', postLikeCancel); // 기존 이벤트 제거
+    likeBtn.addEventListener('click', postLike); // 새로운 이벤트 추가
 
-    // 다시 좋아요 버튼으로 돌아가면 싫어요 버튼 활성화
-    dislikeBtn.disabled = false;
+    dislikeBtn.disabled = false; // 싫어요 버튼 활성화
 }
 
+// 싫어요 버튼을 비활성화하고 원래 상태로 복원하는 함수
 function returnDislikeBtn() {
-    const dislikeBtn = document.querySelector('button#dislikeBtn');
-    const likeBtn = document.querySelector('button#likeBtn');
+    const dislikeBtn = document.querySelector('button#dislikeBtn'); // 싫어요 버튼 요소 가져오기
+    const likeBtn = document.querySelector('button#likeBtn'); // 좋아요 버튼 요소 가져오기
 
-    dislikeBtn.classList.remove('btn-secondary');
+    dislikeBtn.classList.remove('btn-secondary'); // 버튼 스타일 원래대로 변경
     dislikeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
-    dislikeBtn.innerHTML = '<i class="far fa-sad-tear fa-2x"></i> 싫어요'; // 싫어요 아이콘과 텍스트 스타일 변경
-    dislikeBtn.removeEventListener('click', postDislikeCancel);
-    dislikeBtn.addEventListener('click', postDislike);
+    dislikeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png" width="30" height="30" alt="" title="" class="img-small"> 싫어요'; // 아이콘과 텍스트 변경
+    dislikeBtn.removeEventListener('click', postDislikeCancel); // 기존 이벤트 제거
+    dislikeBtn.addEventListener('click', postDislike); // 새로운 이벤트 추가
 
-    // 다시 싫어요 버튼으로 돌아가면 좋아요 버튼 활성화
-    likeBtn.disabled = false;
+    likeBtn.disabled = false; // 좋아요 버튼 활성화
 }
-    
+
  });
