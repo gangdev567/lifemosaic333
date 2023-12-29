@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.Comment;
+import com.itwill.project.domain.Recomment;
 import com.itwill.project.dto.comment.CommentRegisterDto;
 import com.itwill.project.dto.comment.CommentUpdateDto;
+import com.itwill.project.dto.comment.RecommentRegisterDto;
 import com.itwill.project.repository.CommentDao;
 
 import lombok.RequiredArgsConstructor;
@@ -50,6 +52,27 @@ public class CommentService {
     public int delete(Long comment_id) {
         
         int result = commentDao.delete(comment_id);
+        
+        return result;
+    }
+
+    public List<Recomment> getRecomment(Long comment_id) {
+        
+        List<Recomment> recomments = commentDao.getRecomment(comment_id);
+        
+        return recomments;
+    }
+
+    public int createRecomment(RecommentRegisterDto dto) {
+        
+        int result = commentDao.insertRecomment(dto.toEntity());
+        
+        return result;
+    }
+
+    public int deleteRecomment(Long re_comment_id) {
+        
+        int result = commentDao.deleteRecomment(re_comment_id);
         
         return result;
     }
