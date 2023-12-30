@@ -9,8 +9,7 @@
 							s.sub_category_name, 
 							p.post_id, 
 							p.title, 
-							case when length(p.content) > 20 then substr(p.content,0,20) || ' ...'
-			                else p.content end as "content", 
+							p.content as "content", 
 			                u.nickname, 
 			                u.user_id,
 			                u.PROFILE_URL as "profile",

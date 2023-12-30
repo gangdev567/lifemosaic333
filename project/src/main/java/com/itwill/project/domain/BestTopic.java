@@ -1,5 +1,7 @@
 package com.itwill.project.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,4 +25,5 @@ public class BestTopic {
 	private String nickname;
 	private String profile_url;
 	private String created_time;
+	private List<String> hashTag;
 }
