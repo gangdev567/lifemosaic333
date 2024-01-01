@@ -8,8 +8,7 @@
 		select s.sub_category_id, 
 						s.sub_category_name, 
 						p.post_id, 
-						case when length(p.title) > 30 then substr(p.title,0,30) || ' ...'
-			                else p.title end as "title",
+						p.title,
 						to_number(nvl(pl.like_point,0)) as "like_point",
 						p.VIEW_COUNT,
 						count(c.post_id) as "comment_cnt",
@@ -33,15 +32,14 @@
 							u.profile_url,
 							p.VIEW_COUNT,
 							p.created_time
-		order by "like_point" desc fetch first 5 rows only
+		order by "like_point" desc, p.VIEW_COUNT desc fetch first 5 rows only
 	</select>
 	
 		<select id="selectCategoryBestTopic" resultType="com.itwill.project.domain.BestTopic">
 		select s.sub_category_id, 
 						s.sub_category_name, 
 						p.post_id, 
-						case when length(p.title) > 15 then substr(p.title,0,15) || ' ...'
-			                else p.title end as "title",
+						p.title,
 						to_number(nvl(pl.like_point,0)) as "like_point",
 						count(c.post_id) as "comment_cnt",
 						u.user_id,
@@ -66,7 +64,7 @@
 							u.profile_url,
 							p.created_time,
 							p.VIEW_COUNT
-		order by "like_point" desc fetch first 5 rows only
+		order by "like_point" desc, p.VIEW_COUNT desc fetch first 5 rows only
 		</select>
 
 </mapper>

@@ -107,7 +107,23 @@ public class UserService {
 	}
 
 	// 비밀번호 변경
-	public void updatePassword(String user_id, String newPassword) {
-		userManagementDao.updatePasswordByUserId(user_id, newPassword);
+	public void updateEmailByUserId(String userId, String newEmail) {
+		int result = userManagementDao.updateEmailByUserId(userId, newEmail);
+		if (result != 1) {
+			throw new RuntimeException("이메일 업데이트 실패: 사용자 ID = " + userId);
+		}
+		log.debug("이메일 업데이트 성공: 사용자 ID = {}, 새 이메일 = {}", userId, newEmail);
+	}
+
+	public boolean checkEmailExists(String email) {
+		return userManagementDao.checkEmailExists(email) > 0;
+	}
+
+	public void updatePassword(String userId, String newPassword) {
+		int result = userManagementDao.updatePasswordByUserId(userId, newPassword);
+		if (result != 1) {
+			throw new RuntimeException("비밀번호 업데이트 실패: 사용자 ID = " + userId);
+		}
+		log.debug("비밀번호 업데이트 성공: 사용자 ID = {}", userId);
 	}
 }

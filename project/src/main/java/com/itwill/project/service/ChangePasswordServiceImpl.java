@@ -22,14 +22,18 @@ public class ChangePasswordServiceImpl implements ChangePasswordService {
 
     @Override
     @Transactional
-    public boolean changePassword(PasswordChangeDto passwordChangeDto) {
+    public boolean changePassword(String user_id, PasswordChangeDto passwordChangeDto) {
         try {
-            String currentPassword = userManagementDao.getPasswordByUserId(passwordChangeDto.getUser_id());
+            // 데이터베이스에서 현재 비밀번호를 가져옵니다.
+            String currentPassword = userManagementDao.getPasswordByUserId(user_id);
+
+            // 현재 비밀번호와 입력된 현재 비밀번호를 비교합니다.
             if (!currentPassword.equals(passwordChangeDto.getCurrentPassword())) {
                 return false;
             }
 
-            int updateCount = userManagementDao.updatePasswordByUserId(passwordChangeDto.getUser_id(), passwordChangeDto.getNewPassword());
+            // 새로운 비밀번호로 업데이트합니다.
+            int updateCount = userManagementDao.updatePasswordByUserId(user_id, passwordChangeDto.getNewPassword());
             return updateCount > 0;
         } catch (Exception e) {
             log.error("비밀번호 변경 중 오류 발생", e);

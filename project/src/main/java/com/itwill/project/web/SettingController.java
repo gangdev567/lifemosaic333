@@ -1,6 +1,5 @@
 package com.itwill.project.web;
 
-import java.awt.PageAttributes.MediaType;
 import java.io.Console;
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,12 +9,14 @@ import java.nio.file.Files;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,13 +33,16 @@ import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.MyCommentListItemByPaging;
 import com.itwill.project.domain.SettingUser;
 import com.itwill.project.domain.User;
+import com.itwill.project.domain.VerificationCode;
 import com.itwill.project.dto.setting.FileUtil;
 import com.itwill.project.dto.setting.PasswordChangeDto;
+import com.itwill.project.repository.VerificationCodeRepository;
 import com.itwill.project.service.ChangePasswordServiceImpl;
 import com.itwill.project.dto.setting.SettingNicknameDto;
 import com.itwill.project.dto.setting.SettingPageDto;
 import com.itwill.project.dto.user.UserSignInDto;
 import com.itwill.project.repository.UserDao;
+import com.itwill.project.service.MailSendService;
 import com.itwill.project.service.SettingService;
 import com.itwill.project.service.UserService;
 
@@ -55,6 +59,11 @@ public class SettingController {
 	private final SettingService settingService;
 	private final ChangePasswordServiceImpl changePasswordService;
 	private final UserDao userDao;
+	private final UserService userService;
+	private final MailSendService mailSendService;
+	@Autowired
+	private VerificationCodeRepository verificationCodeRepository;
+
 	
 	@GetMapping("/userProfile")
 	public void userProfile(Model model, HttpSession session) {
@@ -87,32 +96,29 @@ public class SettingController {
 	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("비밀번호가 일치하지 않습니다.");
 	    }
 	}
-	
-	@PostMapping("/changePassword")
+
+	@PostMapping(value = "/changePassword", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> changePassword(HttpSession session, @RequestBody Map<String, String> payload) {
-	    String currentPassword = payload.get("currentPassword");
-	    String newPassword = payload.get("newPassword");
-	    String user_id = (String) session.getAttribute("signedInUser"); // 세션에서 사용자 ID 가져오기
+	public ResponseEntity<?> changePassword(HttpSession session, @RequestBody PasswordChangeDto passwordChangeDto) {
+		// 세션에서 사용자 ID를 가져옵니다.
+		String user_id = (String) session.getAttribute("signedInUser");
 
-	    // 현재 비밀번호가 맞는지 검증
-	    boolean isPasswordCorrect = changePasswordService.verifyCurrentPassword(user_id, currentPassword);
-	    if (!isPasswordCorrect) {
-	        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("현재 비밀번호가 올바르지 않습니다.");
-	    }
+		// 받은 요청의 본문 내용을 로깅합니다.
+		log.debug("Received password change request: {}", passwordChangeDto);
 
-	    // 새 비밀번호로 변경
-	    PasswordChangeDto passwordChangeDto = new PasswordChangeDto();
-	    passwordChangeDto.setUser_id(user_id);
-	    passwordChangeDto.setCurrentPassword(currentPassword);
-	    passwordChangeDto.setNewPassword(newPassword);
+		// 현재 비밀번호가 맞는지 검증합니다.
+		boolean isPasswordCorrect = changePasswordService.verifyCurrentPassword(user_id, passwordChangeDto.getCurrentPassword());
+		if (!isPasswordCorrect) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("현재 비밀번호가 올바르지 않습니다.");
+		}
 
-	    boolean isChanged = changePasswordService.changePassword(passwordChangeDto);
-	    if (isChanged) {
-	        return ResponseEntity.ok().body("비밀번호가 변경되었습니다.");
-	    } else {
-	        return ResponseEntity.badRequest().body("비밀번호 변경에 실패하였습니다.");
-	    }
+		// 새 비밀번호로 변경합니다.
+		boolean isChanged = changePasswordService.changePassword(user_id, passwordChangeDto);
+		if (isChanged) {
+			return ResponseEntity.ok().body("비밀번호가 변경되었습니다.");
+		} else {
+			return ResponseEntity.badRequest().body("비밀번호 변경에 실패하였습니다.");
+		}
 	}
 	
 	@GetMapping("/checkNickname")
@@ -283,6 +289,7 @@ public class SettingController {
 			model.addAttribute("bookmark",list);
 		 }
 		 model.addAttribute("bookmarkCount", total);
+<<<<<<< HEAD
 		 
 		 //따라 다니는 메뉴를 만들기 위한 프로필 정보 보내기
 		 
@@ -290,7 +297,51 @@ public class SettingController {
 		// 2. 가져온 유저 정보 중, 프로필 경로를 세션에 저장
 		session.setAttribute("userProfileUrl", user.getProfile_url());
 		 
+=======
+>>>>>>> main
 	 }
+
+	@PostMapping("/changeEmail")
+	public ResponseEntity<?> changeEmail(@RequestBody Map<String, String> body, HttpSession session) {
+		String newEmail = body.get("email");
+		if (userService.checkEmailExists(newEmail)) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("이미 존재하는 이메일입니다.");
+		}
+
+		String userId = (String) session.getAttribute("signedInUser");
+		if (userId == null) {
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("사용자 인증이 필요합니다.");
+		}
+
+		mailSendService.sendVerificationEmail(newEmail, session);
+
+		// 임시로 새 이메일을 세션에 저장
+		session.setAttribute("tempEmail", newEmail);
+		return ResponseEntity.ok("인증 이메일이 발송되었습니다. 메일을 확인해 주세요.");
+	}
+	@GetMapping("/verifyEmail")
+	public String verifyEmail(@RequestParam("code") String code, @RequestParam("email") String email, HttpSession session, Model model) {
+		VerificationCode storedCode = verificationCodeRepository.findByEmail(email);
+
+		if (storedCode != null && storedCode.getCode().equals(code)) {
+			String user_id = (String) session.getAttribute("signedInUser");
+			String verifiedEmail = (String) session.getAttribute("verifiedEmail");
+
+			if (user_id != null && verifiedEmail != null && verifiedEmail.equals(email)) {
+				userService.updateEmailByUserId(user_id, email);
+				model.addAttribute("message", "이메일 인증이 완료되었습니다.");
+			} else {
+				model.addAttribute("error", "인증 오류가 발생했습니다.");
+				return "setting/verificationFailure";
+			}
+
+			verificationCodeRepository.delete(storedCode); // 인증 코드 삭제
+			return "setting/verificationSuccess";
+		} else {
+			model.addAttribute("error", "유효하지 않은 인증 요청입니다.");
+			return "setting/verificationFailure";
+		}
+	}
 	 	
   
 	
