@@ -113,7 +113,7 @@ FROM (
 	 	SELECT *
 			FROM (
 			 select
-				"row_num",
+				ROWNUM as "row_num",
 				"bookmark_created_time",
 				"post_id",
 				"post_user_id",
@@ -129,7 +129,7 @@ FROM (
 				  "post_comment_count"
 				  from (
 			    SELECT 
-			    	ROWNUM as "row_num",
+			    	
 			        TO_CHAR(b.created_time, 'YYYY.MM.dd HH:mm') AS "bookmark_created_time",
 			        b.post_id as "post_id",
 			        p.user_id AS "post_user_id",

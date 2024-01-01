@@ -10,56 +10,8 @@
 			}
 	</style>
 		<div class="text-center">
-			<aside id="aside" class="lg:col-span-3 lg:pr-16">
-					<p class="text-center" style="font-size: 25px; font-weight:bold;"> 내 계정</p>
-					<hr >
-						<!-- 프로필 -->
-						 <c:url var="settingProfilePage" value="/setting/userProfile"/>
-						<p style="font-size: 17px; margin: 10px; padding: 10px;">
-						<a href="${settingProfilePage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-							<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve" width="20" height="20">
-							<g><circle cx="256" cy="128" r="128"/>
-							<path d="M256,298.667c-105.99,0.118-191.882,86.01-192,192C64,502.449,73.551,512,85.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C447.882,384.677,361.99,298.784,256,298.667z"/>
-							</g>
-							</svg>
-
-							프로필
-						</a></p>
-						
-						<!--  계정관리 -->
-						<c:url var="settingPasswordPage" value="/setting/userManagement"/>
-						<p style="font-size: 17px; margin: 10px; padding: 10px;">
-						<a href="${settingPasswordPage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-						
-						계정 관리
-						</a></p>
-
-						
-
-						
-						<!-- 내가 쓴 댓글 -->
-						<p style="font-size: 17px; margin: 10px; padding: 10px;">
-						<c:url var="viewMyCommentPage" value="/setting/userMyComment"/>
-						<a href="${viewMyCommentPage }" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-						
-						내가 쓴 댓글
-						</a></p>
-						
-						<!--  내가 쓴 게시글 -->
-						<c:url var="settingmyPostListPage" value="/setting/myPostList"/>
-						<p style="font-size: 17px; margin: 10px; padding: 10px;"><a href="${settingmyPostListPage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-						
-						내가 쓴 게시글
-						</a></p>
-						
-						
-						
-						<!-- 북마크 -->
-						<c:url var="settingMyBookmarkPage" value="/setting/userMyBookmark"/>
-						<p style="font-size: 17px; margin: 10px; padding: 10px;"><a href="${settingMyBookmarkPage}" class="link-secondary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover">
-						
-						북마크
-						</a></p>
-					</aside>
+			<div style="width:300px; height:400px; border-radius:4px; box-shadow: 2px 2px 3px 3px rgba(0, 0, 0, 0.1);">
+			 <p style="font-size:20px;">계정 관리</p>
+			</div>
 					</div>
 					

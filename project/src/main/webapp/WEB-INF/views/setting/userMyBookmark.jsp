@@ -7,7 +7,6 @@
 	 body {
             margin: 10px;
             padding: 10px;
-           font-family: 'Noto Sans KR', sans-serif;
             
         }
 
@@ -74,7 +73,7 @@
 		</div>
 		
 		<div id="content">
-			<div id="left">
+			<div id="left" style="float:center;">
 			<%@ include file="../fragments/settingNavigation.jspf"%>
 			
 			</div>
