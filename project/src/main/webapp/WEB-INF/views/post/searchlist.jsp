@@ -12,6 +12,11 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="./../css/main_navigation.css" />
+        <style>
+        	.dropdown-item:hover{
+        			background-color: #F3F1F5;
+        	}
+        </style>
 	</head>
 	
     <body>
@@ -29,7 +34,7 @@
  	   <!-- 메인 시작 -->
  	   <main>
  	   <div class="mx-5">
- 	   <div class="container-fluid w-50">
+ 	   <div class="container-fluid" style="width:889px;">
 			
 			<%-- div 1. 검색 키워드 보여주기 --%>
  	    	<div class="d-flex justify-content-start mb-5 mt-4"><h3>"<strong  id="keyword">${searchKeyword.keyword }</strong>" 검색 결과</h3></div>
@@ -91,6 +96,8 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="../js/time.js"></script>
         <script src="../js/searchpageorder.js"></script>
 	</body>
 </html>

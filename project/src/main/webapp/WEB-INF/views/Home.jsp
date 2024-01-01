@@ -10,7 +10,7 @@
           <style>
                 .mainBorderBox{
                     display: grid;
-                    grid-template-columns: 1fr 2.5fr 2.5fr 1fr;
+                    grid-template-columns: 1.2fr 2.5fr 2.5fr 1fr;
                     grid-template-rows: 550px 400px 400px 400px 150px;
                     row-gap: 10px;
                     column-gap: 10px;
@@ -102,5 +102,7 @@
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+        <script src="./js/time.js"></script>
 	</body>
 </html>

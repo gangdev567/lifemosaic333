@@ -30,4 +30,18 @@
         UPDATE users SET password = #{newPassword} WHERE email = #{email}
     </update>
 
+    <select id="checkEmailExists" resultType="int">
+        SELECT COUNT(*) FROM users WHERE email = #{email}
+    </select>
+
+    <update id="updateEmailByUserId">
+        UPDATE users SET email = #{newEmail} WHERE user_id = #{user_id}
+    </update>
+
+    <!-- 사용자 이메일 업데이트 -->
+    <update id="updateEmail" parameterType="map">
+        UPDATE users
+        SET email = #{newEmail}
+        WHERE user_id = #{user_id}
+    </update>
 </mapper>

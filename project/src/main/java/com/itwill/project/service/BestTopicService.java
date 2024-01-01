@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwill.project.domain.BestTopic;
 import com.itwill.project.repository.BestTopicDao;
+import com.itwill.project.repository.PostDao;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,14 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 public class BestTopicService {
 	private final BestTopicDao bestTopicDao;
+	private final PostDao postDao;
 	
 	public List<BestTopic> readAllBestTopic() {
 		List<BestTopic> list = bestTopicDao.selectAllBestTopic();
+		
+		for(BestTopic bt : list) {
+			bt.setHashTag(postDao.selectHashtagByPostid(bt.getPost_id()));			
+		}
 		
 		return list;
 	}
