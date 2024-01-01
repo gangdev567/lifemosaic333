@@ -108,8 +108,8 @@
     
     <!-- 해시 태그 관련 sql문  -->
     <!-- 동일한 해시태그가 있는지 검사 -->
-    <select id="selectHashTag" resultType="HashTag">
-    	select tag_id
+    <select id="selectHashTag" resultType="String">
+    	select tag_name
     	from hashtag
     	where tag_name = #{tagname}
     </select>

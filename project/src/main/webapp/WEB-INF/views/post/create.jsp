@@ -43,10 +43,10 @@
                 </div>
                 <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
                 <div class="mb-3">
-                    <button id="btnCreate" class="btn btn-primary me-2">등록</button>
-                    <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
                 </div>
             </form>
+                    <button id="btnCreate" class="btn btn-primary me-2">등록</button>
+                    <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
         </div>
     </div>
 </div>
