@@ -47,19 +47,9 @@
 		 }
 	 });
 	 
-	 btnFormCreate.addEventListener('click', async function() {
-    const liValue = document.querySelectorAll('span.tagValue');
+	 btnFormCreate.addEventListener('click', function() {
     let hasError = false;
 
-    // 해시태그 저장하는 부분
-    for (let item of liValue) {
-        let result = await axios.get(`../post/checktag?tag=${item.innerHTML}`);
-
-        if (result.data !== 1) {
-            console.log("4. 중복된 글자 없음 : ", item.innerHTML);
-            await axios.get(`../post/createtag?tag=${item.innerHTML}`);
-        }
-    }
 
     // 제목과 내용 유효성 검사
     const titleValue = document.querySelector('input[name="title"]').value.trim();

@@ -30,7 +30,7 @@ public interface PostDao {
     int viewCountIncrease(Long post_id);
 
     //태그 관련 dao
-    HashTag selectHashTag(String tagname);
+    String selectHashTag(String tagname);
     
     int insertHashTag(String tagname);
     

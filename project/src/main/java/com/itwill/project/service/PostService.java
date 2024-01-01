@@ -131,21 +131,20 @@ public class PostService {
     
     
     //기존테이블에 해시태그가 존재하는지 체크
-    public Integer readHashtagName(String tagName) {
+    public void readHashtagName(List<String> tags) {
     	
-    	HashTag result = postDao.selectHashTag(tagName);
-    	if(result != null) {
-    		return 1;
+    	log.debug("서비스에 들어온 태그들 : {} " , tags);
+    	
+    	for(String arr : tags) {
+        	log.debug("태그 리스트: {} " , arr);
+    		
+    		String result = postDao.selectHashTag(arr);
+
+    		if(result == null) {
+    			log.debug("저장될 태그: {} " , arr);
+    			postDao.insertHashTag(arr);
+    		}
     	}
-    	else {
-    		return 0;    		
-    	}
-    }
-    
-    //테이블에 해시태그 없으면 해시태그 저장
-    public int createtHashTag(String tagname) {
-    	int result = postDao.insertHashTag(tagname);
-    	return result;
     }
     
     //포스트해시태그 테이블에 태그 삭제하기
