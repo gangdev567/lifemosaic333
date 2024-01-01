@@ -18,8 +18,8 @@ public class Recomment {
     private Long re_comment_id;
     private String recomment_content;
     private String user_id;
-    private LocalDateTime recomment_created_time;
-    private LocalDateTime recomment_modified_time;
+    private String recomment_created_time;
+    private String recomment_modified_time;
     private String nickname;
     private Long like_point;
     private Long dislike_point;

@@ -12,8 +12,12 @@
           crossorigin="anonymous">
           
   <style>
+	
+	.ck-editor__editable {
+	    min-height: 320px;
+	}
+	</style>
       
-    </style>
 </head>
 
 <body>
@@ -28,7 +32,7 @@
 			</div>
 			<div class="mb-3">
 			    <label for="postContent" class="form-label">본문</label>
-			    <textarea id="postContent" class="form-control" name="content" rows="12" placeholder="내용을 입력해주세요." required></textarea>
+			    <textarea id="editor" class="form-control" name="content" rows="5" placeholder="내용을 입력해주세요." required></textarea>
 			    <div id="contentError"></div>
 			</div>
                 <div class="mb-3">
@@ -43,10 +47,10 @@
                 </div>
                 <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
                 <div class="mb-3">
-                    <button id="btnCreate" class="btn btn-primary me-2">등록</button>
-                    <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
                 </div>
             </form>
+                 <button id="btnCreate" class="btn btn-primary me-2">등록</button>
+                 <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
         </div>
     </div>
 </div>
@@ -56,9 +60,19 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    <script src="../ckeditor5/ckeditor.js"></script>
+    <script src="../ckeditor5/translations/ko.js"></script>
     <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
     <script src="../js/post-create.js"></script>
+    
+    <script>
+    ClassicEditor
+    .create( document.querySelector( 'textarea#editor' ))
+    .catch( error => {
+        console.error( error );
+    } );
+ 
+</script>
   
    
 
