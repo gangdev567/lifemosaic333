@@ -10,6 +10,15 @@
 	 
 	 const inputHash = document.querySelector('input#inputHashTag');
 	
+	
+	//---------------------------------------------------------------------------
+
+	
+	//---------------------------------------------------------------------------	
+	
+	
+	
+	
 	//엔터 및 스페이스가 눌렸을 때 해시태그를 html 출력
 	 inputHash.addEventListener('keydown', function(e){
 		 //엔터키가 눌렸을 때
@@ -103,7 +112,7 @@ if (contentValue === '' || contentValue.length < 5) {
 	 	 
 	 	 //해시태그 <ul>에 출력함
 	 	  hashtagList.innerHTML += 
-	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
+	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis rounded-pill" style="background-color : #F3F1F5">
 		    <span class="px-1 tagValue">${tag}</span>
 		    <span class="btn-close btnDel"  data-id="${tag}"></span>
             <input class="d-none" name="hashTag" value="${tag}" />

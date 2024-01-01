@@ -102,7 +102,7 @@ canvas {
 				<div class="d-flex gap-2 justify-content-start">
 					<c:forEach items="${tags }" var="tag">
 						<span
-							class="px-3 py-1 text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">#${tag}</span>
+							class="badge px-3 py-2 text-primary-emphasis rounded-pill"  style="background-color : #F3F1F5">#${tag}</span>
 					</c:forEach>
 				</div>
 

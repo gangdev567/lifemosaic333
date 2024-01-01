@@ -97,7 +97,7 @@
 	 	 
 	 	 //해시태그 <ul>에 출력함
 	 	  hashtagList.innerHTML += 
-	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
+	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis rounded-pill" style="background-color : #F3F1F5">
 		    <span class="px-1 tagValue">${tag}</span>
 		    <span class="btn-close btnDel"  data-id="${tag}"></span>
             <input class="d-none" name="hashTag" value="${tag}" />

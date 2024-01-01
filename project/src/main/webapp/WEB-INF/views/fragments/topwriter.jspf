@@ -4,7 +4,7 @@
 
 
 
-<div class="m-0 p-1" style="position: fixed;width: 180px; top: 50%; transform: translateY(-50%);">
+<div class="m-0 p-1" style="position: fixed;width: 180px; top: 30%; transform: translateY(-50%);">
 		<div class="py-2 border-bottom">
 			<c:url var="HallOfFame" value="/post/HallOfFame"></c:url>
 			<a class="text-decoration-none" style="color: black;" href="${HallOfFame}"> 
