@@ -152,4 +152,10 @@ public class PostService {
         int result = postDao.deletePostHash(post_id);
         return result;
     }
+    
+    public List<String> readTagList(String value) {
+        log.debug("서비스 실행 : {}", value);
+        List<String> taglist = postDao.selectTagList(value);
+        return taglist;
+    }
 }
