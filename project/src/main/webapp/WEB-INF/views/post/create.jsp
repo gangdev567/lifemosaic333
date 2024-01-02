@@ -64,7 +64,30 @@
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+    
     <script src="../js/post-create.js"></script>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                    // 에디터 값이 변경될 때마다 textarea에 값을 할당.
+                    const editorValue = editor.getData();
+                    document.querySelector('#editor').value = editorValue;
+
+                    // 로그에 에디터 값과 textarea 값 모두 출력.
+                    console.log('에디터 값:', editorValue);
+                    console.log('Textarea 값:', document.querySelector('#editor').value);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
     
 
   

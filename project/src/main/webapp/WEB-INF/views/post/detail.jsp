@@ -201,6 +201,33 @@ canvas {
 <script>
         const signedInUser = `${signedInUser}`;
     </script>
+    
+   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+	    document.getElementById('content').addEventListener('click', function(event) {
+	        const clickedElement = event.target.closest('a');
+
+	        // 클릭된 요소가 링크인지 확인
+	        if (clickedElement && clickedElement.getAttribute('href')) {
+	            event.preventDefault(); // 기존의 링크 이동 동작을 막음
+
+	            // 클릭된 요소의 href 속성값 추출
+	            const clickedUrl = clickedElement.getAttribute('href');
+	            console.log('클릭된 링크:', clickedUrl);
+
+	            // 클릭된 링크가 http:// 또는 https://로 시작하는지 확인
+	            if (clickedUrl.startsWith('http://') || clickedUrl.startsWith('https://')) {
+	                window.open(clickedUrl, '_blank'); // 새 창을 열어 링크 이동
+	            } else {
+	                // 프로젝트 경로와 상관없이 도메인만 추출하여 이동
+	                const domain = clickedUrl.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
+	                window.open('http://' + domain, '_blank'); // 새 창을 열어 도메인 이동
+	            }
+	        }
+	    });
+	});
+</script>
+    
 
 <script src="../js/comment.js"></script>
 <script src="../js/time-details.js"></script>
