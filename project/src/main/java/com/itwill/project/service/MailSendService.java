@@ -114,16 +114,16 @@ public class MailSendService {
 		return sb.toString();
 	}
 
-	// 이메일 주소를 인증하고 임시 비밀번호를 전송하며, 임시 비밀번호를 반환하는 메서드
 	public String joinEmail(String email) {
-		// 임시 비밀번호 생성
-		String tempPassword = generateRandomPassword(8);
+		// 이메일 인증 코드 생성
+		String verificationCode = generateVerificationCode();
 
-		// 이메일 전송
-		sendTempPasswordEmail(email, tempPassword);
+		// 이메일 인증 코드를 이메일로 전송
+		String content = "귀하의 이메일 인증 코드는 " + verificationCode + " 입니다.";
+		mailSend("noreply@example.com", email, "이메일 인증 코드", content);
 
-		// 생성한 임시 비밀번호 반환
-		return tempPassword;
+		// 생성한 이메일 인증 코드 반환
+		return verificationCode;
 	}
 
 	public void updateEmail(String user_id, String newEmail) {
