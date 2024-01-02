@@ -193,7 +193,22 @@ canvas {
                         <!-- 내 댓글 등록 -->
                         <div class="comment-container">
                             <div class="comment-input-wrapper">
-                                <input type="text" id="ctext" placeholder="댓글을 입력하세요" class="comment-input">
+                                 <c:choose>
+                                    <c:when test="${empty signedInUser}">
+                                        <div class="form-control" id="ctext">
+                                            댓글을 쓰려면 
+                                            <span>
+                                                <a href="/project/user/signin">
+                                                    <i class="fa fa-sign-in"></i> 로그인
+                                                </a>
+                                            </span>
+                                            이 필요합니다.
+                                        </div>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="text" id="ctext" placeholder="댓글을 입력하세요" class="comment-input">
+                                    </c:otherwise>
+                                </c:choose>
                                 <input class="d-none" id="writer" value="${signedInUser}">
                                 <button class="comment-button" id="btnRegisterComment">등록</button>
                             </div>
@@ -203,10 +218,7 @@ canvas {
                     </div>
                 </div>
             </div>
-
-		<%-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 --%>
-
-
+		<div class="my-2" id="comments"></div>
 
 	</main>
 	<div id=pageContainer></div>
