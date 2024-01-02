@@ -13,6 +13,7 @@
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_navigation.css" />
+<link rel="stylesheet" href="../css/detailWeeklyStyle.css" />
 <style>
 
 
@@ -221,10 +222,15 @@ canvas {
 		<div class="my-2" id="comments"></div>
 
 	</main>
-	<div id=pageContainer></div>
+	<div id=pageContainer>
+	</div>
     </div>
     <div class = "item">
+    <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
         <%@include file="../fragments/topwriter.jspf"%>
+        <div class="p-2"></div>
+	    <%@include file="../fragments/detail-weekly.jspf"%>
+    </div>
     </div>
 </div>
 
