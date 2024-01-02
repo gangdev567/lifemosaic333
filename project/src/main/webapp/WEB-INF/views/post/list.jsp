@@ -9,16 +9,23 @@
 		
 
 <style>
-
-    .aaaa {
+    
+    #list.container {
         display: grid;
         grid-template-columns: 3fr 1fr;
         
+    
     }
 	.post-title a:hover .hover-text {
-	    color: #007bff; 
-	    text-decoration: none; 
+	    color: #BFA2DB; 
+	    text-decoration: none;
+        transition-duration: 0.3s;
 	}
+    
+    #create:hover {
+        background-color: #F0D9FF;
+        transition-duration: 0.3s;
+    }
 
     body {
         background-color: #fff; 
@@ -35,7 +42,7 @@
         padding: 20px;
         border-radius: 8px;
         margin-bottom: 10px;
-        background-color: #f9f9f9;
+        background-color: #F3F1F5;
         transition: background-color 0.3s ease;
     }
 
@@ -89,10 +96,11 @@
         <div style="margin:100px"></div>
         
         
-<div class="d-flex justify-content-center">
-    <div class="col-10">
-        <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px; background-color: #F3F1F5;">
-            <div class="text-start me-3" style="font-size: 18px; font-weight: bold; max-width: 180px;">
+<div id="list" class="container">
+<div class="">
+    <div class="">
+        <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px;">
+            <div class="text-start me-3" style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
                 <c:choose>
                     <c:when test="${cId eq 11}">
                         <span>이거 내 잘못이야?</span>
@@ -104,7 +112,7 @@
                         <span>게임</span><br>
                     </c:when>
                     <c:when test="${cId eq 43}">
-                        <span>기타</span>
+                        <span>기타(악기 아님)</span>
                     </c:when>
                     <c:when test="${cId eq 21}">
                         <span>나 호구냐?</span><br>
@@ -113,40 +121,15 @@
                         <span>부럽지?</span><br>
                     </c:when>
                     <c:when test="${cId eq 51}">
-                        <span>자유게시판</span><br>
+                        <span>자유</span><br>
                     </c:when>
                 </c:choose>
-            </div>
-                <c:choose>
-                    <c:when test="${cId eq 11}">
-                        <img src="../../img/wrong.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                    <c:when test="${cId eq 41}">
-                        <img src="../../img/car.png" style="width: 210px; height: 100px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                    <c:when test="${cId eq 42}">
-                        <img src="../../img/game.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                    <c:when test="${cId eq 43}">
-                        <!-- 해당하는 이미지 지정 -->
-                    </c:when>
-                    <c:when test="${cId eq 21}">
-                        <img src="../../img/hogu.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                    <c:when test="${cId eq 31}">
-                        <img src="../../img/jealous.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                    <c:when test="${cId eq 51}">
-                        <img src="../../img/free.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
-                    </c:when>
-                </c:choose>
-            </div>
         </div>
     </div>
+    <hr style= "background: #7F7C82; height:3px; border:0;">
         
         
-        
-        
+    <div class="item"></div>
  
         
         
@@ -155,9 +138,8 @@
         
         
 
-<div class="aaaa">
  <div class="row justify-content-center">
-    <div class="col-lg-10">
+    <div class="">
         <div class="card-body my-2">
             <div class="post-list">
                 <ul class="post-items">
@@ -200,7 +182,7 @@
         <c:url var="createPage" value="/post/create">
             <c:param name="sub_category_id" value="${cId}"></c:param>
         </c:url>
-        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
+        <a id=create class="btn fs-5 fw-bold" href="${createPage}" style="border-color: #BFA2DB; border-width: 2px; margin-right: 10px;">
             <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
         </a>
     </div>

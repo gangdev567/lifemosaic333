@@ -178,19 +178,14 @@
  function makeLikeElement(data) {
     const likeDiv = document.querySelector('div#like');
     
-    const likeIcon = '<i class="far fa-thumbs-up fa-3x"></i>'; 
-    const dislikeIcon = '<i style= "transform: scaleX(-1);" class="far fa-thumbs-down fa-3x"></i>'; 
-    
     const htmlStr = `
-        <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
-            <span style="display: flex; align-items: center; margin-right: 20px;">
-                ${likeIcon}
-                <span style="margin-left: 10px;">${data.like_point}</span>
-            </span>
-            <span style="display: flex; align-items: center;">
-                <span style="margin-right: 10px;">${data.dislike_point}</span>
-                ${dislikeIcon}
-            </span>
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 0px;">
+            <div style="margin-right: 80px;">
+                <span style="margin-left: 10px;">${data.like_point}     </span>
+            </div>
+            <div>
+                <span style="margin-right: 10px;">     ${data.dislike_point}</span>
+            </div>
         </div>`;
         
     likeDiv.innerHTML = htmlStr;
@@ -208,7 +203,7 @@
         datasets: [
             {
                 data: [like, dislike],
-                backgroundColor: ['#36A2EB', '#FF6384'] // 파란색 - 좋아요, 빨간색 - 싫어요
+                backgroundColor: ['#F0D9FF', '#BFA2DB'] // 파란색 - 좋아요, 빨간색 - 싫어요
             }
         ]
     };
@@ -225,6 +220,7 @@
             text: '좋아요 vs 싫어요',
             position: 'top' 
         }
+        
     };
 
     const donutChart = new Chart(document.getElementById('donutChart'), {
@@ -323,7 +319,7 @@ function switchLikeBtn() {
     // 좋아요 버튼이 이미 활성화되어 있지 않다면
     if (!likeBtn.classList.contains('btn-secondary')) {
         likeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
-        likeBtn.style.backgroundColor = '#36A2EB'; // 좋아요 버튼 배경색 변경
+        likeBtn.style.backgroundColor = '#F0D9FF'; // 좋아요 버튼 배경색 변경
         likeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933691.png" width="30" height="30" alt="" title="" class="img-small"> 좋아요'; // 아이콘과 텍스트 변경
         likeBtn.removeEventListener('click', postLike); // 기존 이벤트 제거
         likeBtn.addEventListener('click', postLikeCancel); // 새로운 이벤트 추가
@@ -340,7 +336,7 @@ function switchDislikeBtn() {
     // 싫어요 버튼이 이미 활성화되어 있지 않다면
     if (!dislikeBtn.classList.contains('btn-secondary')) {
         dislikeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
-        dislikeBtn.style.backgroundColor = '#FF6384'; // 싫어요 버튼 배경색 변경
+        dislikeBtn.style.backgroundColor = '#BFA2DB'; // 싫어요 버튼 배경색 변경
         dislikeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933788.png" width="30" height="30" alt="" title="" class="img-small"> 싫어요'; // 아이콘과 텍스트 변경
         dislikeBtn.removeEventListener('click', postDislike); // 기존 이벤트 제거
         dislikeBtn.addEventListener('click', postDislikeCancel); // 새로운 이벤트 추가
