@@ -85,6 +85,70 @@
         <div style="margin:100px"></div>
         
         
+<div class="d-flex justify-content-center">
+    <div class="col-10">
+        <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px; background-color: #F3F1F5;">
+            <div class="text-start me-3" style="font-size: 18px; font-weight: bold; max-width: 180px;">
+                <c:choose>
+                    <c:when test="${cId eq 11}">
+                        <span>이거 내 잘못이야?</span>
+                    </c:when>
+                    <c:when test="${cId eq 41}">
+                        <span>차사고</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 42}">
+                        <span>게임</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 43}">
+                        <span>기타</span>
+                    </c:when>
+                    <c:when test="${cId eq 21}">
+                        <span>나 호구냐?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 31}">
+                        <span>부럽지?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 51}">
+                        <span>자유게시판</span><br>
+                    </c:when>
+                </c:choose>
+            </div>
+                <c:choose>
+                    <c:when test="${cId eq 11}">
+                        <img src="../../img/wrong.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 41}">
+                        <img src="../../img/car.png" style="width: 210px; height: 100px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 42}">
+                        <img src="../../img/game.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 43}">
+                        <!-- 해당하는 이미지 지정 -->
+                    </c:when>
+                    <c:when test="${cId eq 21}">
+                        <img src="../../img/hogu.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 31}">
+                        <img src="../../img/jealous.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 51}">
+                        <img src="../../img/free.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                </c:choose>
+            </div>
+        </div>
+    </div>
+        
+        
+        
+        
+ 
+        
+        
+        
+        
+        
         
    <div class="container">
     <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
