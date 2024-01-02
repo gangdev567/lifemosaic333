@@ -70,7 +70,7 @@ function getAllComment() {
 
         const post_id = document.querySelector('input#post_id').value;
 
-        const ctext = document.querySelector('textarea#ctext').value;
+        const ctext = document.querySelector('input#ctext').value;
 
         const writer = document.querySelector('input#writer').value;
         
@@ -94,7 +94,7 @@ function getAllComment() {
             .then((response) => {
                 console.log(response);
                 if (response.data === 1) {
-                    document.querySelector('textarea#ctext').value = '';
+                    document.querySelector('input#ctext').value = '';
                     getAllComment();
                 }
             }) 

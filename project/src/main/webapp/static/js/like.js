@@ -179,7 +179,7 @@
     const likeDiv = document.querySelector('div#like');
     
     const likeIcon = '<i class="far fa-thumbs-up fa-3x"></i>'; 
-    const dislikeIcon = '<i class="far fa-thumbs-down fa-3x"></i>'; 
+    const dislikeIcon = '<i style= "transform: scaleX(-1);" class="far fa-thumbs-down fa-3x"></i>'; 
     
     const htmlStr = `
         <div style="display: flex; justify-content: center; align-items: center; margin-top: 20px;">
@@ -188,7 +188,7 @@
                 <span style="margin-left: 10px;">${data.like_point}</span>
             </span>
             <span style="display: flex; align-items: center;">
-                <span style="margin-right: 20px;">${data.dislike_point}</span>
+                <span style="margin-right: 10px;">${data.dislike_point}</span>
                 ${dislikeIcon}
             </span>
         </div>`;

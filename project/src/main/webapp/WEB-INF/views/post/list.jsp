@@ -7,14 +7,14 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-            rel="stylesheet" 
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-            crossorigin="anonymous">
-        <link rel="stylesheet" href="../../css/main_navigation.css" />
+
 <style>
 
-
+    .aaaa {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        
+    }
 	.post-title a:hover .hover-text {
 	    color: #007bff; 
 	    text-decoration: none; 
@@ -72,7 +72,11 @@
         color: #777;
     }
 </style>
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/main_navigation.css" />
 
 	</head>
 	<body>
@@ -150,17 +154,8 @@
         
         
         
-   <div class="container">
-    <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
-        <c:url var="createPage" value="/post/create">
-            <c:param name="sub_category_id" value="${cId}"></c:param>
-        </c:url>
-        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
-            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
-        </a>
-    </div>
-</div>
 
+<div class="aaaa">
  <div class="row justify-content-center">
     <div class="col-lg-10">
         <div class="card-body my-2">
@@ -200,7 +195,16 @@
     </div>
 </div>
 
-
+<div class="container">
+    <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
+        <c:url var="createPage" value="/post/create">
+            <c:param name="sub_category_id" value="${cId}"></c:param>
+        </c:url>
+        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
+            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
+        </a>
+    </div>
+</div>
 
           
         
@@ -235,26 +239,18 @@
     </c:if>
   </ul>
 </nav>
-        
+</div>
  
     
 
-    
-    <form id="moveForm" method="get">   
-        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-        <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-        <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
-        <input type="hidden" name="type" value="${pageMaker.cri.type}">    
-    </form>
         
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/1306328925.js"
          crossorigin="anonymous"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-                
-        <script src="../../js/page.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
         <script src="../../js/time.js"></script>
         
 	</body>
