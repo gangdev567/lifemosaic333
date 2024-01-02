@@ -44,7 +44,12 @@
                     
                     <!-- 해시태그 입력 칸 -->
                     <div>
-                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외" />
+                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#특수문자 제외" list="searchOptions"/>
+<!-- 자동완성 기능 ------------------------------------------------------------------------ -->                    	
+                    <datalist id="searchOptions">
+                    	<option value="키워드 준비 중 ..." />
+                    </datalist>
+<!-- ------------------------------------------------------------------------------------------ -->
                     </div>
                     <!-- 해시태그 보여주는 창 -->
                     <div  class="my-2">
