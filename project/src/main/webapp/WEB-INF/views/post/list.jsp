@@ -9,10 +9,22 @@
 
 
 <style>
-#list.container {
-	display: grid;
-	grid-template-columns: 3fr 1fr;
-}
+    #list.container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        gap: 30px;
+    }
+    }
+	.post-title a:hover .hover-text {
+	    color: #BFA2DB; 
+	    text-decoration: none;
+        transition-duration: 0.3s;
+	}
+    
+    #create:hover {
+        background-color: #F0D9FF;
+        transition-duration: 0.3s;
+    }
 
 .post-title a:hover .hover-text {
 	color: #BFA2DB;
@@ -59,6 +71,7 @@ body {
 	color: #333;
 }
 
+<<<<<<< HEAD
 .post-title {
 	margin: 8px 0;
 	font-size: 1.1em;
@@ -71,79 +84,74 @@ body {
 	transition: color 0.3s ease;
 }
 
-.post-created-time {
-	font-size: 1em; /* 시간 폰트를 좀 더 크게 변경 */
-	font-weight: bold; /* 시간 폰트를 굵게 변경 */
-	color: #777;
-}
+    .post-created-time {
+        font-size: 1em; /* 시간 폰트를 좀 더 크게 변경 */
+        font-weight: bold; /* 시간 폰트를 굵게 변경 */
+        color: #777;
+    }
+    
+      /* 페이지 버튼의 숫자 색상을 진한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link span {
+    color: #6a0d98; /* 진한 보라색으로 숫자 색상을 지정합니다. */
+  }
+
+  /* 활성화된 페이지 버튼의 배경색을 연한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link.active {
+    background-color: #e0c3ff; /* 연한 보라색 배경색을 지정합니다. */
+    border-color: #e0c3ff; /* 선택된 페이지 버튼의 테두리 색상을 지정합니다. */
+  }
+    
 </style>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="../../css/main_navigation.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/main_navigation.css" />
+        <link rel="stylesheet" href="../../css/detailWeeklyStyle.css" />
 
-</head>
-<body>
+	</head>
+	<body>
+	
+		    <!-- 내비게이션 include 시 경로 및 겹치는 div 만들어줘야 함 -->
+        <div class="container-fluid d-flex justify-content-center">
+            <c:url var="imgPath" value="/img/logo.png" />
+            <%@ include file="../fragments/navigation.jspf" %>
+        </div>
+        <div style="margin:100px"></div>
+        
+        
+<div id="list" class="container">
+<div class="item">
+        <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px;">
+            <div class="text-start me-3" style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
+                <c:choose>
+                    <c:when test="${cId eq 11}">
+                        <span>이거 내 잘못이야?</span>
+                    </c:when>
+                    <c:when test="${cId eq 41}">
+                        <span>차사고</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 42}">
+                        <span>게임</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 43}">
+                        <span>기타(악기 아님)</span>
+                    </c:when>
+                    <c:when test="${cId eq 21}">
+                        <span>나 호구냐?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 31}">
+                        <span>부럽지?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 51}">
+                        <span>자유</span><br>
+                    </c:when>
+                </c:choose>
+        </div>
+    </div>
+    <hr style= "background: #7F7C82; height:3px; border:0;">
 
-	<!-- 내비게이션 include 시 경로 및 겹치는 div 만들어줘야 함 -->
-	<div class="container-fluid d-flex justify-content-center">
-		<c:url var="imgPath" value="/img/logo.png" />
-		<%@ include file="../fragments/navigation.jspf"%>
-	</div>
-	<div style="margin: 100px"></div>
-
-
-	<div id="list" class="container">
-		<div class="">
-			<div class="">
-				<div
-					class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3"
-					style="height: 70px;">
-					<div class="text-start me-3"
-						style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
-						<c:choose>
-							<c:when test="${cId eq 11}">
-								<span>이거 내 잘못이야?</span>
-							</c:when>
-							<c:when test="${cId eq 41}">
-								<span>차사고</span>
-								<br>
-							</c:when>
-							<c:when test="${cId eq 42}">
-								<span>게임</span>
-								<br>
-							</c:when>
-							<c:when test="${cId eq 43}">
-								<span>기타(악기 아님)</span>
-							</c:when>
-							<c:when test="${cId eq 21}">
-								<span>나 호구냐?</span>
-								<br>
-							</c:when>
-							<c:when test="${cId eq 31}">
-								<span>부럽지?</span>
-								<br>
-							</c:when>
-							<c:when test="${cId eq 51}">
-								<span>자유</span>
-								<br>
-							</c:when>
-						</c:choose>
-					</div>
-				</div>
-				<hr style="background: #7F7C82; height: 3px; border: 0;">
-
-
-				<div class="item"></div>
-
-
-
-
-
-
-
+	<div class="item"></div>
 
 				<div class="row justify-content-center">
 					<div class="">
@@ -238,7 +246,6 @@ body {
 			</div>
 
 		</div>
-	</div>
 	<footer>
 		<div class="item"><%@include file="../fragments/footer.jspf"%></div>
 	</footer>

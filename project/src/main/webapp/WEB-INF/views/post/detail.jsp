@@ -162,17 +162,12 @@ canvas {
 
 									<%-- 좋아요 및 싫어요 버튼 --%>
 									<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
-										<img
-											src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png "
-											width="30" height="30" alt="" title="좋아요" class="img-small">
+										<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="좋아요" class="img-small">
 										좋아요
 									</button>
 
-									<button class="btn btn-custom-dislike" id="dislikeBtn"
-										name="dislikeBtn">
-										<img
-											src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png "
-											width="30" height="30" alt="" title="싫어요" class="img-small">
+									<button class="btn btn-custom-dislike" id="dislikeBtn" name="dislikeBtn">
+										<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="싫어요" class="img-small">
 										싫어요
 									</button>
 
@@ -207,8 +202,7 @@ canvas {
 											</div>
 										</c:when>
 										<c:otherwise>
-											<input type="text" id="ctext" placeholder="댓글을 입력하세요"
-												class="comment-input">
+											<input type="text" id="ctext" placeholder="댓글을 입력하세요" class="comment-input">
 										</c:otherwise>
 									</c:choose>
 									<input class="d-none" id="writer" value="${signedInUser}">
@@ -226,8 +220,7 @@ canvas {
 			<div id=pageContainer></div>
 		</div>
 		<div class="item">
-			<div
-				style="position: fixed; width: 250px; top: 50%; transform: translateY(-50%);">
+			<div style="position: fixed; width: 250px; top: 50%; transform: translateY(-50%);">
 				<%@include file="../fragments/topwriter.jspf"%>
 				<div class="p-2"></div>
 				<%@include file="../fragments/detail-weekly.jspf"%>
@@ -258,8 +251,30 @@ canvas {
 	<script src="../js/comment.js"></script>
 	<script src="../js/time-details.js"></script>
 
+ <script>
+   document.addEventListener('DOMContentLoaded', function() {
+	    document.getElementById('content').addEventListener('click', function(event) {
+	        const clickedElement = event.target.closest('a');
 
+	        // 클릭된 요소가 링크인지 확인
+	        if (clickedElement && clickedElement.getAttribute('href')) {
+	            event.preventDefault(); // 기존의 링크 이동 동작을 막음
 
+	            // 클릭된 요소의 href 속성값 추출
+	            const clickedUrl = clickedElement.getAttribute('href');
+	            console.log('클릭된 링크:', clickedUrl);
 
+	            // 클릭된 링크가 http:// 또는 https://로 시작하는지 확인
+	            if (clickedUrl.startsWith('http://') || clickedUrl.startsWith('https://')) {
+	                window.open(clickedUrl, '_blank'); // 새 창을 열어 링크 이동
+	            } else {
+	                // 프로젝트 경로와 상관없이 도메인만 추출하여 이동
+	                const domain = clickedUrl.replace(/^(?:https?:\/\/)?(?:www\.)?/i, '');
+	                window.open('http://' + domain, '_blank'); // 새 창을 열어 도메인 이동
+	            }
+	        }
+	    });
+	});
+</script>
 </body>
 </html>

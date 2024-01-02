@@ -2,22 +2,18 @@ package com.itwill.project.web;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwill.project.domain.BestTopic;
 import com.itwill.project.domain.Criteria;
-import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.domain.SearchOrderList;
 import com.itwill.project.domain.TopWriter;
@@ -89,6 +85,17 @@ public class PostController {
         
         model.addAttribute("pageMaker", pageMake);
         model.addAttribute("cId", sub_category_id);
+        
+        List<TopWriter> writerList = writerService.readTopWriter();
+        log.debug("Top Writer list: {}", writerList);
+        model.addAttribute("writer", writerList);
+        
+        //모든 포스트 목록 가져오기
+        List<BestTopic> bestAllTopicList = bestTopicService.readAllBestTopic(10);
+        log.debug("Best All Topic list : {} " ,bestAllTopicList);        
+        model.addAttribute("allTopic", bestAllTopicList);
+        
+        
     }
     
     @GetMapping("/create")
@@ -102,8 +109,7 @@ public class PostController {
         log.debug("게시글 작성이에용");
 
         // 1.1 수정 코드
-        if(dto.getUser_id() != null &&  dto.getHashTag() != null){
-        	log.debug("태그가 null이 아니다 : {}", dto.getHashTag());
+        if(dto.getUser_id() != null) {
         	postService.readHashtagName(dto.getHashTag());        	
         }
         
@@ -134,6 +140,7 @@ public class PostController {
         List<BestTopic> bestAllTopicList = bestTopicService.readAllBestTopic(10);
         log.debug("Best All Topic list : {} " ,bestAllTopicList);        
         model.addAttribute("allTopic", bestAllTopicList);
+        
     }
     
     @GetMapping("/modify")
