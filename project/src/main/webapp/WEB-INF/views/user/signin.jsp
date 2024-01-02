@@ -12,54 +12,60 @@
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
 <div class="container-fluid">
-    <c:set var="title" value="로그인" />
-    <%@ include file="../fragments/title.jspf" %>
 
-    <main class="my-2">
-        <div class="my-2 card card-body">
+    <!-- 로그인 폼이 중앙에 위치하도록 Flexbox를 사용 -->
+    <main class="d-flex justify-content-center align-items-center vh-100">
+        <div class="card p-4 w-100" style="max-width: 400px;"> <!-- 카드 너비 최대값 설정 -->
             <!-- 로그인 폼 -->
             <form method="post">
                 <!-- 로그인 실패 메시지 -->
                 <c:if test="${not empty param.result && param.result eq 'f'}">
-                    <div class="text-danger">아이디와 패스워드를 확인하세요...</div>
+                    <div class="alert alert-danger">아이디와 패스워드를 확인하세요...</div>
                 </c:if>
 
                 <!-- 아이디 입력 필드 -->
-                <div class="my-2">
+                <div class="mb-3">
                     <input type="text" class="form-control"
                            name="user_id" placeholder="아이디" required autofocus />
                 </div>
 
                 <!-- 비밀번호 입력 필드 -->
-                <div class="my-2">
+                <div class="mb-3">
                     <input type="password" class="form-control"
                            name="password" placeholder="비밀번호" required />
                 </div>
 
                 <!-- 로그인 버튼 -->
-                <div class="my-2">
-                    <input type="submit" class="form-control btn btn-success"
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-success w-100"
                            value="로그인" />
                 </div>
 
                 <!-- 회원가입 링크 -->
-                <div class="text-center">
-                    <a href="<c:url value='/user/signup'/>" class="text-secondary">회원가입</a>
+                <div class="mb-3 text-center">
+                    <a href="<c:url value='/user/signup'/>" class="link-secondary">회원가입</a>
                 </div>
             </form>
+
+            <!-- 아이디 찾기 링크 -->
+            <div class="text-center mb-3">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#findUserIdModal">아이디 찾기</a>
+            </div>
+
+            <!-- 비밀번호 찾기 링크 -->
+            <div class="text-center">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#findPasswordModal">비밀번호 찾기</a>
+            </div>
+
 
             <!-- 홈으로 이동 버튼 -->
             <div class="mt-3 text-center">
                 <a href="/project/" class="btn btn-secondary">홈으로</a>
             </div>
-
-
-
-            <!-- 아이디 찾기 링크 -->
-            <a href="#" data-bs-toggle="modal" data-bs-target="#findUserIdModal">아이디 찾기</a>
 
             <!-- 아이디 찾기 모달 -->
             <div class="modal fade" id="findUserIdModal" tabindex="-1" aria-labelledby="findUserIdModalLabel" aria-hidden="true">
@@ -83,9 +89,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 비밀번호 찾기 링크 -->
-            <a href="#" data-bs-toggle="modal" data-bs-target="#findPasswordModal">비밀번호 찾기</a>
 
             <!-- 비밀번호 찾기 모달 -->
             <div class="modal fade" id="findPasswordModal" tabindex="-1" aria-labelledby="findPasswordModalLabel" aria-hidden="true">
