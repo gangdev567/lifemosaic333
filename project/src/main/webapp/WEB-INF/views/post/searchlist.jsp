@@ -12,10 +12,22 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="./../css/main_navigation.css" />
+        <link rel="stylesheet" href="../css/detailWeeklyStyle.css" />
         <style>
         	.dropdown-item:hover{
         			background-color: #F3F1F5;
         	}
+            #search.container {
+                display: grid;
+                grid-template-columns: 3fr 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+            .item:nth-child(1) {
+                grid-column-start: 1;
+                grid-column-end: 2;
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
         </style>
 	</head>
 	
@@ -32,9 +44,12 @@
  	   
  	   
  	   <!-- 메인 시작 -->
+    <div id="search" class="container">
+        <div class="item">
+       
  	   <main>
  	   <div class="mx-3">
- 	   <div class="container-fluid" style="width:889px;">
+ 	   <div class="container-fluid">
 			
 			<%-- div 1. 검색 키워드 보여주기 --%>
  	    	<div class="d-flex justify-content-start mb-3 mt-4 px-3"><h3>"<strong  id="keyword">${searchKeyword.keyword }</strong>" 검색 결과</h3></div>
@@ -86,8 +101,17 @@
  	   <div id="pageTemplate">
  	   </div>
  	   </div>
-			
        </main>
+       </div>
+        <div class=item>
+            <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
+                <%@include file="../fragments/topwriter.jspf"%>
+                <div class="p-2"></div>
+                <%@include file="../fragments/detail-weekly.jspf"%>
+            </div>
+        </div>
+        <div></div>
+	</div>
        
 		
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
