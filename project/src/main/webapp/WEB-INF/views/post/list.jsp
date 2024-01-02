@@ -89,6 +89,9 @@
         <div style="margin:100px"></div>
         
         
+        
+        
+        
 <div class="d-flex justify-content-center">
     <div class="col-10">
         <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px; background-color: #F3F1F5;">
@@ -200,9 +203,9 @@
         <c:url var="createPage" value="/post/create">
             <c:param name="sub_category_id" value="${cId}"></c:param>
         </c:url>
-        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
-            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
-        </a>
+        <a id="writeButton" class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
+			   <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
+		</a>
     </div>
 </div>
 
@@ -252,6 +255,15 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
         <script src="../../js/time.js"></script>
+        <script>
+    document.getElementById('writeButton').addEventListener('click', function(event) {
+        if (!"${signedInUser}") { // signedInUser가 null인 경우
+            event.preventDefault(); // 기존 링크 동작 막음
+            alert('글 쓰기는 로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+            window.location.href = '/project/user/signin'; // 로그인 페이지로 이동
+        }
+    });
+</script>
         
         
 	</body>
