@@ -10,35 +10,17 @@
           <style>
                 .mainBorderBox{
                     display: grid;
-                    grid-template-columns: 1.2fr 2.5fr 2.5fr 1fr;
-                    grid-template-rows: 550px 400px 400px 400px 150px;
-                    row-gap: 10px;
-                    column-gap: 10px;
+                    grid-template-columns: 1.5fr 1.5fr 1fr;
+                    grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr; 
                  }
+                 
                  .item:nth-child(1) {
-                    grid-column-start: 1;
-                    grid-column-end: 2;
-                    grid-row-start: 1;
-                    grid-row-end: 5;
-                 }
-                 .item:nth-child(2) {
-                    grid-column-start: 2;
-                    grid-column-end: 4;
-                    grid-row-start: 1;
-                    grid-row-end: 2;
-                 }
-                 .item:nth-child(4) {
-                    grid-column-start: 4;
-                    grid-column-end: 5;
-                    grid-row-start: 1;
-                    grid-row-end: 5;
-                 }
-                 .item:nth-child(10) {
-                    grid-column-start: 1;
-                    grid-column-end: 5;
-                    grid-row-start: 5;
-                    grid-row-end: 6;
-                 }
+                        grid-column-start: 1;
+                        grid-column-end: 3;
+                        grid-row-start: 1;
+                        grid-row-end: 2;
+                    }
+                 
                  .gridHeader {
                     display: grid;
                     grid-template-columns: repeat(6, 1fr);
@@ -66,32 +48,48 @@
                     <div class="outerDiv">
                         <div class="container mainBorderBox">
                             <div class="item">
-                            	<%@include file="./fragments/topwriter.jspf"  %>
-                            </div>
-                            <div class="item">
                             	<%@ include file="./fragments/main/maintopicbest.jspf" %>
                             </div>
+
+                            <div class="item"><%-- 오른쪽 사이드 바 : 사용 안함 --%>
+                            	<%@include file="./fragments/topwriter.jspf"  %>
+                            </div>
+                            
                             <div class="item">
                             	<%@ include file="./fragments/main/fault.jspf" %>
                             </div>
-                            <div class="item"></div><%-- 오른쪽 사이드 바 : 사용 안함 --%>
+                            
                             <div class="item">
 								<%@ include file="./fragments/main/idiot.jspf" %>
 							</div>
+                            
+                            <div class="item"></div>
+
                             <div class="item">
 								<%@ include file="./fragments/main/envy.jspf"  %>
 							</div>
+
                             <div class="item">
                             	<%@ include file="./fragments/main/caraccident.jspf" %>
 							</div>
+                            
+                            <div class="item"></div>
+                            
                             <div class="item">
                             	<%@ include file="./fragments/main/gameaccident.jspf" %>
                             </div>
+                            
                             <div class="item">
                             	<%@ include file="./fragments/main/etcaccident.jspf" %>
                             </div>
-                            <div class="item"><%@include file="./fragments/footer.jspf" %></div>
+                            
+                            <div class="item"></div>
+                            
+
+                            <div class="item">
+                            </div>    
                         </div>
+                            <div class="item"><%@include file="./fragments/footer.jspf" %></div>
                     </div>
 				</main>
             </body>
