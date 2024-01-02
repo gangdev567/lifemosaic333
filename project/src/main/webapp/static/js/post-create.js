@@ -10,6 +10,15 @@
 	 
 	 const inputHash = document.querySelector('input#inputHashTag');
 	
+	
+	//---------------------------------------------------------------------------
+
+	
+	//---------------------------------------------------------------------------	
+	
+	
+	
+	
 	//엔터 및 스페이스가 눌렸을 때 해시태그를 html 출력
 	 inputHash.addEventListener('keydown', function(e){
 		 //엔터키가 눌렸을 때
@@ -47,19 +56,9 @@
 		 }
 	 });
 	 
-	 btnFormCreate.addEventListener('click', async function() {
-    const liValue = document.querySelectorAll('span.tagValue');
+	 btnFormCreate.addEventListener('click', function() {
     let hasError = false;
 
-    // 해시태그 저장하는 부분
-    for (let item of liValue) {
-        let result = await axios.get(`../post/checktag?tag=${item.innerHTML}`);
-
-        if (result.data !== 1) {
-            console.log("4. 중복된 글자 없음 : ", item.innerHTML);
-            await axios.get(`../post/createtag?tag=${item.innerHTML}`);
-        }
-    }
 
     // 제목과 내용 유효성 검사
     const titleValue = document.querySelector('input[name="title"]').value.trim();
@@ -113,7 +112,7 @@ if (contentValue === '' || contentValue.length < 5) {
 	 	 
 	 	 //해시태그 <ul>에 출력함
 	 	  hashtagList.innerHTML += 
-	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
+	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis rounded-pill" style="background-color : #F3F1F5">
 		    <span class="px-1 tagValue">${tag}</span>
 		    <span class="btn-close btnDel"  data-id="${tag}"></span>
             <input class="d-none" name="hashTag" value="${tag}" />
