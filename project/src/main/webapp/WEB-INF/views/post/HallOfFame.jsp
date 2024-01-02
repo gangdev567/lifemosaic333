@@ -7,6 +7,9 @@
 		<title>life mosaic</title>
         
         <style>
+            html {
+            height: 100%;
+            }
             .container {
                 width: 220px; height: 310px;
                 transition: all 0.1s;
@@ -15,7 +18,7 @@
                 width: 220px; height: 310px;
                 background-image: url("../img/profile.jpg");
                 background-size: cover;
-            }
+                }
         </style>
         
 	</head>
@@ -30,4 +33,5 @@
     
     <script src="../js/hall-of-fame.js">
     </script>
+
 </html>
