@@ -158,7 +158,4 @@ document.addEventListener('DOMContentLoaded', function() {
 			window.history.back();
 		}
 	});
-
-
-
 });

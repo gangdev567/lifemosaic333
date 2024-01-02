@@ -65,12 +65,6 @@ option:hover,  .active{
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
-    <script src="../js/post-create.js"></script>
-  
-   
-
-   
-
-   
+    <script src="../js/post-create.js"></script> 
 </body>
 </html>
