@@ -78,6 +78,22 @@
         font-weight: bold; /* 시간 폰트를 굵게 변경 */
         color: #777;
     }
+    
+     /* 페이지 버튼의 숫자 색상을 진한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link span {
+    color: #6a0d98; /* 진한 보라색으로 숫자 색상을 지정합니다. */
+  }
+
+  /* 활성화된 페이지 버튼의 배경색을 연한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link.active {
+    background-color: #e0c3ff; /* 연한 보라색 배경색을 지정합니다. */
+    border-color: #e0c3ff; /* 선택된 페이지 버튼의 테두리 색상을 지정합니다. */
+  }
+    
+    
+
+    
+    
 </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -126,6 +142,7 @@
                 </c:choose>
         </div>
     </div>
+    
     <hr style= "background: #7F7C82; height:3px; border:0;">
         
         
@@ -190,7 +207,7 @@
 
           
         
-       <nav aria-label="Page navigation example">
+  <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
     <!-- 이전 페이지 버튼 -->
     <c:if test="${pageMaker.prev}">
@@ -201,13 +218,24 @@
 
     <!-- 각 번호 페이지 버튼 -->
     <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-      <li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+      <li class="page-item">
         <c:choose>
           <c:when test="${pageMaker.cri.pageNum == num}">
+
+            <a class="page-link active" href="?sub_category_id=${cId}&pageNo=${num}">
+              <span>${num}</span>
+            </a>
+          </c:when>
+          <c:otherwise>
+            <a class="page-link" href="?sub_category_id=${cId}&pageNo=${num}">
+              <span>${num}</span>
+            </a>
+
             <span style="color: #7F7C82" class="page-link disabled">${num}</span>
           </c:when>
           <c:otherwise>
             <a style="color: #BFA2DB" class="page-link" href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
+
           </c:otherwise>
         </c:choose>
       </li>
@@ -221,6 +249,7 @@
     </c:if>
   </ul>
 </nav>
+
 </div>
 <div class="item">
     <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
@@ -230,6 +259,7 @@
     </div>
 </div>
 </div>
+
  
     
 
@@ -242,6 +272,16 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
         <script src="../../js/time.js"></script>
+        
+               <script>
+    document.getElementById('create').addEventListener('click', function(event) {
+        if (!"${signedInUser}") { // signedInUser가 null인 경우
+            event.preventDefault(); // 기존 링크 동작 막음
+            alert('글 쓰기는 로그인이 필요합니다. 로그인 페이지로 이동합니다.');
+            window.location.href = '/project/user/signin'; // 로그인 페이지로 이동
+        }
+    });
+</script>
         
 	</body>
 </html>
