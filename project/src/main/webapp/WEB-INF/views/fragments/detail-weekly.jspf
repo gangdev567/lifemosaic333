@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="jakarta.tags.core"%>
 
-<div class="m-0 p-1" style="position: fixed;width: 180px; top: 55%; transform: translateY(-50%);">
+<div class="m-0 p-1">
 	<div class="py-2 border-bottom">
 		<strong>Weekly Best</strong>
 	</div>

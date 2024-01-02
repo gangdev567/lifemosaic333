@@ -226,8 +226,11 @@ canvas {
 	</div>
     </div>
     <div class = "item">
+    <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
         <%@include file="../fragments/topwriter.jspf"%>
+        <div class="p-2"></div>
 	    <%@include file="../fragments/detail-weekly.jspf"%>
+    </div>
     </div>
 </div>
 
