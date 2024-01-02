@@ -78,7 +78,7 @@ public class SettingService {
 	}
 	public int selectBookmarkTotalPages(String user_id) {
 		int result = settingDao.selectBookmarkTotalPages(user_id);
-		log.debug("@@@@@@@@@@@@@@@@@@@@ 전체 댓글 수={}",result);
+		log.debug("@@@@@@@@@@@@@@@@@@@@ 전체 북마크 수={}",result);
 		
 		return result;
 	}
