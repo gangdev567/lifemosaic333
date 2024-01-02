@@ -12,10 +12,8 @@
           crossorigin="anonymous">
           
   <style>
-	
 	.ck-editor__editable {
 	    min-height: 320px;
-	}
 	</style>
       
 </head>
@@ -37,10 +35,13 @@
 			</div>
                 <div class="mb-3">
                     <label for="inputHashTag" class="form-label">태그 - 내용을 대표하는 태그 5개 정도 입력해주세요.</label>
-                    <input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외">
-                    	
-                    		<div id="autocompleteList"></div>
-                    		
+                    <input id="inputHashTag" class="form-control" type="text" placeholder="#특수문자 제외" list="searchOptions">
+<!-- 자동완성 기능 ------------------------------------------------------------------------ -->                    	
+                    <datalist id="searchOptions">
+                    	<option value="키워드 준비 중 ..." />
+                    </datalist>
+<!-- ------------------------------------------------------------------------------------------ -->
+
                 </div>
                 <div class="d-none">
                     <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly>
@@ -67,6 +68,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
     
     <script src="../js/post-create.js"></script>
+<<<<<<< HEAD
     
     <script>
     document.addEventListener('DOMContentLoaded', function () {
@@ -89,12 +91,8 @@
     });
 </script>
     
+=======
+>>>>>>> 0487a76412f18e40b375e09c23144c5ba177ae45
 
-  
-   
-
-   
-
-   
 </body>
 </html>
