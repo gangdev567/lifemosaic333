@@ -113,8 +113,8 @@
         
         
 <div id="list" class="container">
-<div class="">
-    <div class="">
+<div>
+    <div>
         <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px;">
             <div class="text-start me-3" style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
                 <c:choose>
