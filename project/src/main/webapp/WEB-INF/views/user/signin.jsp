@@ -31,10 +31,10 @@
             </c:if>
 
         <!-- 아이디 입력 필드 -->
-        <input type="text" class="form-control" name="user_id" placeholder="아이디" required autofocus style="background-color: #F3F1F5;" />
+        <input type="text" class="form-control" name="user_id" placeholder="아이디" required autofocus />
 
         <!-- 비밀번호 입력 필드 -->
-        <input type="password" class="form-control" name="password" placeholder="비밀번호" required style="background-color: #F3F1F5;" />
+        <input type="password" class="form-control" name="password" placeholder="비밀번호" required />
 
         <!-- 로그인 버튼 -->
         <button type="submit" class="btn btn-primary w-100">로그인</button>
