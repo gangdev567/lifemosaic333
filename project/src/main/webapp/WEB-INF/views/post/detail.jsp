@@ -143,7 +143,7 @@ canvas {
 				</div>
 				<div class="my-2">
 					<label for="content" class="form-label"></label>
-					<textarea class="form-control" id="content" style="height: 500px; border: none;">${post.content}</textarea>
+					<div class="form-control" id="content" style="height: 500px; border: none;">${post.content}</div>
 				</div>
                 
                 <hr>
@@ -247,8 +247,11 @@ canvas {
 <script>
         const signedInUser = `${signedInUser}`;
     </script>
-    
-   <script>
+
+<script src="../js/comment.js"></script>
+<script src="../js/time-details.js"></script>
+
+ <script>
    document.addEventListener('DOMContentLoaded', function() {
 	    document.getElementById('content').addEventListener('click', function(event) {
 	        const clickedElement = event.target.closest('a');
@@ -273,10 +276,6 @@ canvas {
 	    });
 	});
 </script>
-    
-
-<script src="../js/comment.js"></script>
-<script src="../js/time-details.js"></script>
 
 
 
