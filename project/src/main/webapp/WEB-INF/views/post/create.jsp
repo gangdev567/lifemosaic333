@@ -12,10 +12,10 @@
           crossorigin="anonymous">
           
   <style>
-option:hover,  .active{
-  background-color: #F3F1F5;
-}
-    </style>
+	.ck-editor__editable {
+	    min-height: 320px;
+	</style>
+      
 </head>
 
 <body>
@@ -30,7 +30,7 @@ option:hover,  .active{
 			</div>
 			<div class="mb-3">
 			    <label for="postContent" class="form-label">본문</label>
-			    <textarea id="postContent" class="form-control" name="content" rows="12" placeholder="내용을 입력해주세요." required></textarea>
+			    <textarea id="editor" class="form-control" name="content" rows="5" placeholder="내용을 입력해주세요." required></textarea>
 			    <div id="contentError"></div>
 			</div>
                 <div class="mb-3">
@@ -41,6 +41,7 @@ option:hover,  .active{
                     	<option value="키워드 준비 중 ..." />
                     </datalist>
 <!-- ------------------------------------------------------------------------------------------ -->
+
                 </div>
                 <div class="d-none">
                     <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly>
@@ -52,8 +53,8 @@ option:hover,  .active{
                 <div class="mb-3">
                 </div>
             </form>
-                    <button id="btnCreate" class="btn btn-primary me-2">등록</button>
-                    <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
+                 <button id="btnCreate" class="btn btn-primary me-2">등록</button>
+                 <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
         </div>
     </div>
 </div>
@@ -63,8 +64,8 @@ option:hover,  .active{
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
     <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
-    <script src="../js/post-create.js"></script> 
+    <script src="../js/post-create.js"></script>
+
 </body>
 </html>
