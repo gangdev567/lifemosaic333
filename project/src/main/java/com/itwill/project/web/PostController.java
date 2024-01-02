@@ -177,7 +177,17 @@ public class PostController {
 			dto.setOrderStatus("upto");
 			dto.setSubcategory(0L);
 		}
-		
+
 		model.addAttribute("searchKeyword", dto);
-    }
+	}
+
+	@GetMapping("/readtaglist")
+	@ResponseBody
+	public ResponseEntity<List<String>> readAlltag(@RequestParam(name = "value") String value) {
+		log.debug("컨트롤러 실행 : {}", value);
+		List<String> list = postService.readTagList(value);
+
+		return ResponseEntity.ok(list);
+	}
+
 }

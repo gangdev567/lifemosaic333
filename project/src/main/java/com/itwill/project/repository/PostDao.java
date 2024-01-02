@@ -39,4 +39,6 @@ public interface PostDao {
     int deletePostHash(Long post_id);
     
     List<String> selectHashtagByPostid(Long post_id);
+    
+    List<String> selectTagList(String value);
 }
