@@ -13,8 +13,8 @@
     #list.container {
         display: grid;
         grid-template-columns: 3fr 1fr;
-        
-    
+        gap: 30px;
+    }
     }
 	.post-title a:hover .hover-text {
 	    color: #BFA2DB; 
@@ -100,6 +100,7 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="../../css/main_navigation.css" />
+        <link rel="stylesheet" href="../../css/detailWeeklyStyle.css" />
 
 	</head>
 	<body>
@@ -113,8 +114,12 @@
         
         
 <div id="list" class="container">
+<<<<<<< HEAD
 <div>
     <div>
+=======
+<div class="item">
+>>>>>>> b34ce5a558283f6a1d3a14a24a5e6b39ccb242fc
         <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px;">
             <div class="text-start me-3" style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
                 <c:choose>
@@ -221,6 +226,7 @@
       <li class="page-item">
         <c:choose>
           <c:when test="${pageMaker.cri.pageNum == num}">
+
             <a class="page-link active" href="?sub_category_id=${cId}&pageNo=${num}">
               <span>${num}</span>
             </a>
@@ -229,6 +235,12 @@
             <a class="page-link" href="?sub_category_id=${cId}&pageNo=${num}">
               <span>${num}</span>
             </a>
+
+            <span style="color: #7F7C82" class="page-link disabled">${num}</span>
+          </c:when>
+          <c:otherwise>
+            <a style="color: #BFA2DB" class="page-link" href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
+
           </c:otherwise>
         </c:choose>
       </li>
@@ -242,6 +254,17 @@
     </c:if>
   </ul>
 </nav>
+
+</div>
+<div class="item">
+    <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
+            <%@include file="../fragments/topwriter.jspf"%>
+            <div class="p-2"></div>
+            <%@include file="../fragments/detail-weekly.jspf"%>
+    </div>
+</div>
+</div>
+
  
     
 
