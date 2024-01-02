@@ -89,6 +89,17 @@ public class PostController {
         
         model.addAttribute("pageMaker", pageMake);
         model.addAttribute("cId", sub_category_id);
+        
+        List<TopWriter> writerList = writerService.readTopWriter();
+        log.debug("Top Writer list: {}", writerList);
+        model.addAttribute("writer", writerList);
+        
+        //모든 포스트 목록 가져오기
+        List<BestTopic> bestAllTopicList = bestTopicService.readAllBestTopic(10);
+        log.debug("Best All Topic list : {} " ,bestAllTopicList);        
+        model.addAttribute("allTopic", bestAllTopicList);
+        
+        
     }
     
     @GetMapping("/create")
