@@ -12,108 +12,85 @@
           rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../css/styles.css">
+    <link href="../css/login-style.css" rel="stylesheet">
+
 </head>
 <body>
-<div class="container-fluid">
+<div class="login-container" style="width: 500px; height: 500px;">
+    <a href="/project/">
+    <!-- 로고 이미지 추가 -->
+    <img src="../img/logo.png" alt="로고 이미지" style="max-width: 100%; max-height: 100px; margin-left: 30px;" />
+    </a>
+    <!-- 여백 추가 -->
+    <div style="margin-bottom: 20px;"></div>
+    <!-- 로그인 폼 -->
+    <form method="post">
+            <!-- 로그인 실패 메시지 -->
+            <c:if test="${not empty param.result && param.result eq 'f'}">
+                <div class="alert alert-danger">아이디와 패스워드를 확인하세요...</div>
+            </c:if>
 
-    <!-- 로그인 폼이 중앙에 위치하도록 Flexbox를 사용 -->
-    <main class="d-flex justify-content-center align-items-center vh-100">
-        <div class="card p-4 w-100" style="max-width: 400px;"> <!-- 카드 너비 최대값 설정 -->
-            <!-- 로그인 폼 -->
-            <form method="post">
-                <!-- 로그인 실패 메시지 -->
-                <c:if test="${not empty param.result && param.result eq 'f'}">
-                    <div class="alert alert-danger">아이디와 패스워드를 확인하세요...</div>
-                </c:if>
+        <!-- 아이디 입력 필드 -->
+        <input type="text" class="form-control" name="user_id" placeholder="아이디" required autofocus style="background-color: #F3F1F5;" />
 
-                <!-- 아이디 입력 필드 -->
-                <div class="mb-3">
-                    <input type="text" class="form-control"
-                           name="user_id" placeholder="아이디" required autofocus />
-                </div>
+        <!-- 비밀번호 입력 필드 -->
+        <input type="password" class="form-control" name="password" placeholder="비밀번호" required style="background-color: #F3F1F5;" />
 
-                <!-- 비밀번호 입력 필드 -->
-                <div class="mb-3">
-                    <input type="password" class="form-control"
-                           name="password" placeholder="비밀번호" required />
-                </div>
+        <!-- 로그인 버튼 -->
+        <button type="submit" class="btn btn-primary w-100">로그인</button>
+    </form>
+        <div class="login-links text-center">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#findUserIdModal">아이디 찾기</a> |
+            <a href="#" data-bs-toggle="modal" data-bs-target="#findPasswordModal">비밀번호 찾기</a> |
+            <a href="<c:url value='/user/signup'/>">회원가입</a>
+        </div>
+    </div>
+</div>
 
-                <!-- 로그인 버튼 -->
-                <div class="mb-3">
-                    <input type="submit" class="btn btn-success w-100"
-                           value="로그인" />
-                </div>
-
-                <!-- 회원가입 링크 -->
-                <div class="mb-3 text-center">
-                    <a href="<c:url value='/user/signup'/>" class="link-secondary">회원가입</a>
-                </div>
-            </form>
-
-            <!-- 아이디 찾기 링크 -->
-            <div class="text-center mb-3">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#findUserIdModal">아이디 찾기</a>
+<!-- 아이디 찾기 모달 -->
+<div class="modal fade" id="findUserIdModal" tabindex="-1" aria-labelledby="findUserIdModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="findUserIdModalLabel">아이디 찾기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
-            <!-- 비밀번호 찾기 링크 -->
-            <div class="text-center">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#findPasswordModal">비밀번호 찾기</a>
-            </div>
-
-
-            <!-- 홈으로 이동 버튼 -->
-            <div class="mt-3 text-center">
-                <a href="/project/" class="btn btn-secondary">홈으로</a>
-            </div>
-
-            <!-- 아이디 찾기 모달 -->
-            <div class="modal fade" id="findUserIdModal" tabindex="-1" aria-labelledby="findUserIdModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="findUserIdModalLabel">아이디 찾기</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="findUserIdForm">
-                                <div class="mb-3">
-                                    <label for="userIdEmail" class="col-form-label">이메일:</label>
-                                    <input type="email" class="form-control" id="userIdEmail" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">전송</button>
-                                </div>
-                            </form>
-                        </div>
+            <div class="modal-body">
+                <form id="findUserIdForm">
+                    <div class="mb-3">
+                        <label for="userIdEmail" class="col-form-label">이메일:</label>
+                        <input type="email" class="form-control" id="userIdEmail" required style="background-color: #F3F1F5;">
                     </div>
-                </div>
-            </div>
-
-            <!-- 비밀번호 찾기 모달 -->
-            <div class="modal fade" id="findPasswordModal" tabindex="-1" aria-labelledby="findPasswordModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="findPasswordModalLabel">비밀번호 찾기</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form id="findPasswordForm">
-                                <div class="mb-3">
-                                    <label for="email" class="col-form-label">이메일:</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-primary">전송</button>
-                                </div>
-                            </form>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">전송</button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </main>
+    </div>
+</div>
+
+<!-- 비밀번호 찾기 모달 -->
+<div class="modal fade" id="findPasswordModal" tabindex="-1" aria-labelledby="findPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="findPasswordModalLabel">비밀번호 찾기</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="findPasswordForm">
+                    <div class="mb-3">
+                        <label for="email" class="col-form-label">이메일:</label>
+                        <input type="email" class="form-control" id="email" required style="background-color: #F3F1F5;">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">전송</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Bootstrap Bundle with Popper -->
