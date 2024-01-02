@@ -99,7 +99,8 @@ public class PostController {
         log.debug("게시글 작성이에용");
 
         // 1.1 수정 코드
-        if(dto.getUser_id() != null) {
+        if(dto.getUser_id() != null &&  dto.getHashTag() != null){
+        	log.debug("태그가 null이 아니다 : {}", dto.getHashTag());
         	postService.readHashtagName(dto.getHashTag());        	
         }
         
