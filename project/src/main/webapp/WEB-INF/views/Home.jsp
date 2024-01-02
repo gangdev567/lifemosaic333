@@ -52,7 +52,9 @@
                             </div>
 
                             <div class="item"><%-- 오른쪽 사이드 바 : 사용 안함 --%>
-                            	<%@include file="./fragments/topwriter.jspf"  %>
+                            	    <div  style="position: fixed;width: 250px; top: 30%; transform: translateY(-50%);">
+	                            		<%@include file="./fragments/topwriter.jspf"  %>
+	                            	</div>
                             </div>
                             
                             <div class="item">

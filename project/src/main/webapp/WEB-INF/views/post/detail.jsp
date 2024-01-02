@@ -13,6 +13,7 @@
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
 <link rel="stylesheet" href="../css/main_navigation.css" />
+<link rel="stylesheet" href="../css/detailWeeklyStyle.css" />
 <style>
 
 
@@ -39,7 +40,7 @@
   padding: 5px 15px;
   border: none;
   border-radius: 10px;
-  
+  white-space: nowrap;
   
   cursor: pointer;
 }
@@ -51,7 +52,7 @@
 
 /* 캔버스 요소의 최대 너비 설정 */
 canvas {
-    max-width: 200px;
+    max-width: 150px;
 }
 
 /* 좋아요, 싫어요 버튼 스타일링 */
@@ -142,7 +143,7 @@ canvas {
 				</div>
 				<div class="my-2">
 					<label for="content" class="form-label"></label>
-					<div class="form-control" id="content" style="height: 500px; border: none;">${post.content}</div>
+					<textarea class="form-control" id="content" style="height: 500px; border: none;">${post.content}</textarea>
 				</div>
                 
                 <hr>
@@ -158,22 +159,22 @@ canvas {
         		<div class="d-flex justify-content-center my-4">
         			<div
         				style="display: flex; flex-direction: column; align-items: center;">
-        				<div style="margin-bottom: 20px;">
+        				<div style="margin-bottom: 0px;">
                         
         					<%-- 좋아요 및 싫어요 버튼 --%>
         					<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
-        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="좋아요" class="img-small">
         						좋아요
         					</button>
                             
         					<button class="btn btn-custom-dislike" id="dislikeBtn"
         						name="dislikeBtn">
-        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="싫어요" class="img-small">
         						싫어요
         					</button>
                             
         				</div>
-        				<div id="like"></div>
+        				<div id="like" style="height: 10px;"></div>
         				<div style="margin-top: 20px;">
         					<%-- 차트 --%>
         					<canvas id="donutChart"></canvas>
@@ -210,7 +211,7 @@ canvas {
                                     </c:otherwise>
                                 </c:choose>
                                 <input class="d-none" id="writer" value="${signedInUser}">
-                                <button class="comment-button" id="btnRegisterComment">등록</button>
+                                <button style=""class="comment-button" id="btnRegisterComment">등록</button>
                             </div>
                         </div>
                         <!-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 -->
@@ -221,10 +222,15 @@ canvas {
 		<div class="my-2" id="comments"></div>
 
 	</main>
-	<div id=pageContainer></div>
+	<div id=pageContainer>
+	</div>
     </div>
     <div class = "item">
+    <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
         <%@include file="../fragments/topwriter.jspf"%>
+        <div class="p-2"></div>
+	    <%@include file="../fragments/detail-weekly.jspf"%>
+    </div>
     </div>
 </div>
 
