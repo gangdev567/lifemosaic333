@@ -151,7 +151,22 @@ canvas {
 		<div class="row mx-5 my-2">
 			<div class="col-10">
 				<%-- 댓글 입력창 --%>
+				<c:choose>
+				    <c:when test="${empty signedInUser}">
+				        <div class="form-control" id="ctext">
+				            댓글을 쓰려면 
+				            <span>
+				                <a href="/project/user/signin">
+				                    <i class="fa fa-sign-in"></i> 로그인
+				                </a>
+				            </span>
+				            이 필요합니다.
+				        </div>
+				    </c:when>
+				    <c:otherwise>
 				        <textarea class="form-control" id="ctext" placeholder="댓글을 입력해주세요."></textarea>
+				    </c:otherwise>
+				</c:choose>
 				<%-- 댓글 작성자 아이디 - TODO 로그인 사용자 아이디로 설정 --%>
 				<input class="d-none" id="writer" value="${signedInUser}" />
 			</div>

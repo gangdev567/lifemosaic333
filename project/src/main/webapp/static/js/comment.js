@@ -121,7 +121,7 @@ function getAllComment() {
 
         html += `<div class="mx-5 my-2">
                     <input class="d-none" id="${comment.comment_id}"/>
-                    <span>${comment.nickname}</span> 
+                     <span id="commentNickname">${comment.nickname}</span>  
                     <small class=time>${formattedmDate}</small>`;
         if (formattedcDate !== formattedmDate) {
             html += `<small> <strong> *수정됨 </strong> </small>`;
@@ -214,67 +214,105 @@ function getAllComment() {
         });
     } //end addPageLinkEventListeners
     
-    function addCommentModifyEventListeners() {
-        const btnCommentModifyElements = document.querySelectorAll('small.btnCommentModify');
-        btnCommentModifyElements.forEach(btn => {
-          btn.addEventListener('click', function() {
+ /**
+ * 각 댓글에 대한 수정 기능을 활성화하는 함수.
+ * 수정 버튼을 클릭하면 해당 댓글을 수정할 수 있는 입력창을 동적으로 생성,
+ * 수정된 내용을 서버로 전송.
+ */
+function addCommentModifyEventListeners() {
+    // 모든 댓글 수정 버튼 요소를 가져옴.
+    const btnCommentModifyElements = document.querySelectorAll('small.btnCommentModify');
+
+    // 각 수정 버튼에 이벤트 리스너를 등록.
+    btnCommentModifyElements.forEach(btn => {
+        btn.addEventListener('click', function() {
+            // 수정할 댓글의 ID를 가져옴.
             const comment_id = this.getAttribute('data-id');
+            // 해당 댓글의 수정 입력창을 포함한 div 요소를 가져옴.
             const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${comment_id}"]`);
-        
-            // 수정할 댓글을 입력할 input 요소를 동적으로 생성하여 multiUseDiv에 추가
-            multiUseDiv.innerHTML = `<textarea class="form-control" id="recommentText"placeholder="수정할 댓글 입력"></textarea>
-                                    <button class="btn btn-outline-success" id="btnRegisterRecomment">등록</button>`
-            
-            // 수정된 댓글 저장 버튼 클릭 이벤트 처리
+
+            // 수정할 댓글을 입력할 textarea와 등록 버튼을 생성하여 div에 추가.
+            multiUseDiv.innerHTML = `<textarea class="form-control" id="recommentText" placeholder="수정할 댓글 입력"></textarea>
+                                      <button class="btn btn-outline-success" id="btnRegisterRecomment">등록</button>`;
+
+            // 수정된 댓글 저장 버튼 클릭 이벤트를 처리.
             const btnRegisterRecomment = document.querySelector('button#btnRegisterRecomment');
             btnRegisterRecomment.addEventListener('click', function() {
-
+                // 수정된 댓글 내용을 가져옴.
                 const ctext = document.querySelector('textarea#recommentText').value;
 
-        
-        // 댓글 내용이 비어 있는 지 체크.
+                // 댓글 내용이 비어 있는지 확인합니다.
                 if (ctext === '') {
                     alert('댓글 내용을 입력하세요.');
-                    return; // 이벤트 콜백 종료
+                    return; // 함수 종료
                 }
 
-                const data = { comment_id, ctext };
-                console.log(data);
-              
-                axios.put('../api/comment/update', data)
-                .then((response) => {
-                    console.log(response);
-                    getAllComment();
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
-              
-             });
-          });
+                // 사용자에게 수정 여부.
+                const confirmModify = confirm('정말 수정하시겠습니까?');
+
+                // 사용자가 확인을 누르면 수정된 댓글을 서버로 전송.
+                if (confirmModify) {
+                    const data = { comment_id, ctext };
+                    console.log(data);
+
+                    // 댓글 수정 요청을 서버로 전송.
+                    axios.put('../api/comment/update', data)
+                        .then((response) => {
+                            console.log(response);
+                            // 모든 댓글을 다시 불러옴.
+                            getAllComment();
+                        })
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                }
+            });
         });
-    }
+    });
+}
     
 
     
-    function addCommentDeleteEventListeners() {
-        const btnCommentDeleteElements = document.querySelectorAll('small.btnCommentDelete');
-        btnCommentDeleteElements.forEach(btn => {
-          btn.addEventListener('click', function() {
-            const comment_id = this.getAttribute('data-id');
-            console.log(comment_id);
-            const uri = `../api/comment/${comment_id}`
-                axios.put(uri)
-                .then((response) => {
-                    console.log(response);
-                    getAllComment();
-                })
-                .catch((error) => {
-                    console.log(error);
-                });
+ // 댓글 삭제 이벤트 리스너 등록 함수
+function addCommentDeleteEventListeners() {
+  // 모든 댓글 삭제 버튼 요소 가져오기
+  const btnCommentDeleteElements = document.querySelectorAll('small.btnCommentDelete');
+  
+  // 각 삭제 버튼에 대해 이벤트 리스너 등록
+  btnCommentDeleteElements.forEach(btn => {
+    btn.addEventListener('click', function() {
+      // 클릭한 삭제 버튼에 대한 댓글 ID 가져오기
+      const comment_id = this.getAttribute('data-id');
+      console.log(comment_id);
+
+      // 확인 메시지 표시
+      const confirmDelete = confirm('정말 삭제하시겠습니까?');
+
+      if (confirmDelete) {
+        const uri = `../api/comment/${comment_id}`;
+      
+        // 댓글 삭제 요청 보내기
+        axios.put(uri)
+          .then((response) => {
+            console.log(response);
+            getAllComment();
+
+            // 댓글 삭제 후 닉네임을 '알 수 없음'으로 변경
+            const nickname = document.querySelector(`span#commentNickname`);
+            if (nickname) {
+              nickname.innerText = '알 수 없음';
+            }
+
+            // 삭제된 댓글의 삭제 버튼 숨기기
+            this.style.display = 'none';
+          })
+          .catch((error) => {
+            console.log(error);
           });
-        });
-    }
+      }
+    });
+  });
+}
     
     // 대댓글 버튼에 이벤트리스너 등록
     function addShowRecommentEventListeners() {
@@ -425,7 +463,7 @@ function RecommentDelete() {
   const confirmDelete = confirm('정말로 댓글을 삭제하시겠습니까?'); // 삭제하기 전에 사용자에게 확인
   
   if (confirmDelete) {
-    axios.put(uri, { user_id: '알 수 없음' }) // 해당 댓글의 닉네임을 '알 수 없음'으로 변경하여 서버에 전달
+    axios.put(uri) 
       .then((response) => {
         console.log(response);
         const recommentContent = document.querySelector(`div.recommentContent[data-id="${re_comment_id}"]`);

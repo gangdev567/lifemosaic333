@@ -60,19 +60,10 @@
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
             crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../ckeditor5/ckeditor.js"></script>
-    <script src="../ckeditor5/translations/ko.js"></script>
     <script src="https://kit.fontawesome.com/1306328925.js" crossorigin="anonymous"></script>
     <script src="../js/post-create.js"></script>
     
-    <script>
-    ClassicEditor
-    .create( document.querySelector( 'textarea#editor' ))
-    .catch( error => {
-        console.error( error );
-    } );
- 
-</script>
+
   
    
 
