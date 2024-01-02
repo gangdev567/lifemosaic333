@@ -14,8 +14,8 @@ public class Comment {
     private String comment_content;
     private String user_id;
     private Long post_id;
-    private LocalDateTime comment_created_time;
-    private LocalDateTime comment_modified_time;
+    private String comment_created_time;
+    private String comment_modified_time;
     private String nickname;
     private Long like_point;
     private Long dislike_point;
