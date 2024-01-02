@@ -28,19 +28,19 @@ img.topProfileUserImg {
 	  	  <!-- 아이디 리스트 div -->
 		  <div class="px-3">
 		  
-	  	<c:forEach var="writer" items="${writer }">
+	  	<c:forEach var="writer" items="${writer}">
 		  
 		  <!-- 아이디 하나 div -->
 		    <div class="row row-cols-auto d-flex justify-content-between my-2">
 		    	<div class="col">
 		    	<c:url var="settingImgPage" value="/setting/settingImg" />
-		    	<img class ="topProfileUserImg" src="${settingImgPage}?fileName=${writer.profile_url }" />
+		    	<img class ="topProfileUserImg" src="${settingImgPage}?fileName=${writer.profile_url}" />
 		    	<!-- ./images/${writer.profile_url} -->
 		    	<span  class="align-middle fw-bold" style="font-size:10px;">${writer.nickname }</span>
 		    	</div>
 		    	<div class="col">
 		    		<span class="align-middle">🌟</span>
-	    			<span class="text-secondary"  style="font-size:8px;">${writer.cnt }</span>
+	    			<span class="text-secondary"  style="font-size:8px;">${writer.cnt}</span>
     			</div>
 	    	</div>
 	    	
