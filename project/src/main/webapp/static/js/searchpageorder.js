@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			) {
 
 				htmlStr += `
-                <div class="border-bottom py-2 mb-2">
+                <div class="border-bottom px-2 pb-3 my-2">
                     <div class="text-body-secondary d-flex mb-1">
                         
                         <div class="d-flex flex-fill align-items-center">
@@ -200,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function() {
                  
                  	<!-- 서브 카테고리 -->
 					 <div class="mt-1" style="font-size:12px;">
-					 <a class="rounded fw-semibold text-decoration-none px-2" style="font-size:12px; color : #BFA2DB; background-color: #F3F1F5;" href="../post/list/?sub_category_id=${searchData[i - 1].sub_category_id }">${searchData[i - 1].sub_category_name }</a>
+					 <a class="rounded fw-semibold text-decoration-none px-2" style="font-size:12px; color : #AB49A0; background-color: #F3F1F5;" href="../post/list/?sub_category_id=${searchData[i - 1].sub_category_id }">${searchData[i - 1].sub_category_name }</a>
 					`
 			
 					for(let h of searchData[i - 1].hashTag){

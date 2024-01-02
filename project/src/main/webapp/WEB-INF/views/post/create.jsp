@@ -38,6 +38,9 @@
                 <div class="mb-3">
                     <label for="inputHashTag" class="form-label">태그 - 내용을 대표하는 태그 5개 정도 입력해주세요.</label>
                     <input id="inputHashTag" class="form-control" type="text" placeholder="#해시태그 입력  #5개 등록 가능 #특수문자 제외">
+                    	
+                    		<div id="autocompleteList"></div>
+                    		
                 </div>
                 <div class="d-none">
                     <input class="form-control" type="text" name="user_id" value="${signedInUser}" readonly>

@@ -9,7 +9,7 @@
 	<!-- 타이틀 -->
     <div style="height: 70px; background-color: #F3F1F5;" class="d-flex align-items-center justify-content-between rounded-4  m-2 ps-3 pe-4">
         <div style="font-size:18px;font-weight: bold;max-width:180px;'" class="py-2 px-4">WEEKLY BEST</div>
-        <img src="./img/weeklybest.png" width="200px" height="110px" style="margin-bottom: 41px; margin-right:41px;"/> 
+        <img src="./img/weeklybest.png" width="180px" height="110px" style="margin-bottom: 41px; margin-right:41px;"/> 
     </div>
 
 
