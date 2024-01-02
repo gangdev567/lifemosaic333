@@ -19,11 +19,13 @@ import com.itwill.project.domain.Criteria;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.domain.SearchOrderList;
+import com.itwill.project.domain.TopWriter;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
 import com.itwill.project.dto.post.PostModifyDto;
 import com.itwill.project.service.PostService;
+import com.itwill.project.service.WriterService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 
     private final PostService postService;
+    private final WriterService writerService;
     
     @GetMapping("/HallOfFame") 
     public void HallOfFame() {
@@ -118,6 +121,11 @@ public class PostController {
         //연수 코드 추가 - 해시태그 가져오기
         List<String> list = postService.readHash(post_id);
         model.addAttribute("tags", list);
+        
+        List<TopWriter> writerList = writerService.readTopWriter();
+        log.debug("Top Writer list: {}", writerList);
+        model.addAttribute("writer", writerList);
+        
     }
     
     @GetMapping("/modify")
@@ -169,7 +177,17 @@ public class PostController {
 			dto.setOrderStatus("upto");
 			dto.setSubcategory(0L);
 		}
-		
+
 		model.addAttribute("searchKeyword", dto);
-    }
+	}
+
+	@GetMapping("/readtaglist")
+	@ResponseBody
+	public ResponseEntity<List<String>> readAlltag(@RequestParam(name = "value") String value) {
+		log.debug("컨트롤러 실행 : {}", value);
+		List<String> list = postService.readTagList(value);
+
+		return ResponseEntity.ok(list);
+	}
+
 }

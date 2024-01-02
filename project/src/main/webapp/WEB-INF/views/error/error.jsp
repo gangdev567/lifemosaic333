@@ -184,7 +184,7 @@
 <body>
    <div class="notfound">
     <a href="/project">
-        <img src="./img/logo.png" alt="로고 이미지"/>
+        <img src="../img/logo.png" alt="로고 이미지"/>
     </a>
     <div class="notfound-404">
         <h1>404. That’s an error.</h1>

@@ -7,14 +7,14 @@
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
 		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
-            rel="stylesheet" 
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
-            crossorigin="anonymous">
-        <link rel="stylesheet" href="../../css/main_navigation.css" />
+
 <style>
 
-
+    .aaaa {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+        
+    }
 	.post-title a:hover .hover-text {
 	    color: #007bff; 
 	    text-decoration: none; 
@@ -72,7 +72,11 @@
         color: #777;
     }
 </style>
-
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="../../css/main_navigation.css" />
 
 	</head>
 	<body>
@@ -85,18 +89,73 @@
         <div style="margin:100px"></div>
         
         
-        
-   <div class="container">
-    <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
-        <c:url var="createPage" value="/post/create">
-            <c:param name="sub_category_id" value="${cId}"></c:param>
-        </c:url>
-        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
-            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
-        </a>
+<div class="d-flex justify-content-center">
+    <div class="col-10">
+        <div class="d-flex align-items-center justify-content-between rounded-4 p-3 my-3" style="height: 70px; background-color: #F3F1F5;">
+            <div class="text-start me-3" style="font-size: 18px; font-weight: bold; max-width: 180px;">
+                <c:choose>
+                    <c:when test="${cId eq 11}">
+                        <span>이거 내 잘못이야?</span>
+                    </c:when>
+                    <c:when test="${cId eq 41}">
+                        <span>차사고</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 42}">
+                        <span>게임</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 43}">
+                        <span>기타</span>
+                    </c:when>
+                    <c:when test="${cId eq 21}">
+                        <span>나 호구냐?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 31}">
+                        <span>부럽지?</span><br>
+                    </c:when>
+                    <c:when test="${cId eq 51}">
+                        <span>자유게시판</span><br>
+                    </c:when>
+                </c:choose>
+            </div>
+                <c:choose>
+                    <c:when test="${cId eq 11}">
+                        <img src="../../img/wrong.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 41}">
+                        <img src="../../img/car.png" style="width: 210px; height: 100px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 42}">
+                        <img src="../../img/game.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 43}">
+                        <!-- 해당하는 이미지 지정 -->
+                    </c:when>
+                    <c:when test="${cId eq 21}">
+                        <img src="../../img/hogu.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 31}">
+                        <img src="../../img/jealous.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                    <c:when test="${cId eq 51}">
+                        <img src="../../img/free.jpg" style="width: 320px; height: 170px; margin-bottom: 41px; margin-right:41px;">
+                    </c:when>
+                </c:choose>
+            </div>
+        </div>
     </div>
-</div>
+        
+        
+        
+        
+ 
+        
+        
+        
+        
+        
+        
 
+<div class="aaaa">
  <div class="row justify-content-center">
     <div class="col-lg-10">
         <div class="card-body my-2">
@@ -136,7 +195,16 @@
     </div>
 </div>
 
-
+<div class="container">
+    <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
+        <c:url var="createPage" value="/post/create">
+            <c:param name="sub_category_id" value="${cId}"></c:param>
+        </c:url>
+        <a class="btn btn-primary fs-5 fw-bold" href="${createPage}" style="margin-right: 10px;">
+            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
+        </a>
+    </div>
+</div>
 
           
         
@@ -171,26 +239,18 @@
     </c:if>
   </ul>
 </nav>
-        
+</div>
  
     
 
-    
-    <form id="moveForm" method="get">   
-        <input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
-        <input type="hidden" name="amount" value="${pageMaker.cri.amount}">
-        <input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">  
-        <input type="hidden" name="type" value="${pageMaker.cri.type}">    
-    </form>
         
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
         <script src="https://kit.fontawesome.com/1306328925.js"
          crossorigin="anonymous"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-                
-        <script src="../../js/page.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
         <script src="../../js/time.js"></script>
         
 	</body>

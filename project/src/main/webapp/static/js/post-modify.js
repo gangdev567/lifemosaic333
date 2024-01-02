@@ -24,6 +24,32 @@
     //해시관련
     const inputHash = document.querySelector('input#inputHashTag');
     
+	// 검색된 값과 관련된 키워드 가져오기 ---------------------------
+	const taglistOption = document.querySelector('datalist#searchOptions');
+
+	inputHash.addEventListener('input', function() {
+		const val = (inputHash.value).trim();
+		if (val !== '') {
+			optionTagList(val);
+		}
+	});
+
+	async function optionTagList(value) {
+		let htmlStr = '';
+		const response = await axios.get(`../post/readtaglist?value=${value}`);
+console.log(response.data);
+		if(response.data.length === 1 && value === response.data[0]){
+			taglistOption.innerHTML = '';
+		}else{
+			for (let a of response.data) {
+				htmlStr += `<option value="${a}" />`;
+			}
+			taglistOption.innerHTML = htmlStr;			
+		}
+	}
+
+	//---------------------------------------------------------------------------	
+    
     for(let b of a){
 		htmlTagList(b);
 	}
