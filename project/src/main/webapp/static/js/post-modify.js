@@ -39,30 +39,12 @@
     });
     
     // 수정완료 번트에 클릭 이벤트 리스너를 등록.
-    btnUpdate.addEventListener('click', async function() {
+    btnUpdate.addEventListener('click', function() {
         // 제목, 내용이 비어있는 지 체크:
         if (inputTitle.value === '' || textareaContent.value === '') {
             alert('제목과 내용을 반드시 입력해야 합니다.');
             return; // 함수를 종료한다.
         }
-        
-        //기존해시태그 삭제
-        console.log("ㅍ스트 아이디", postid);
-        await axios.get(`../post/updatehash?postid=${postid}`);
-        
-        
-		 const liValue = document.querySelectorAll('span.tagValue');
-		 for (let item of liValue) {
-			 //해시태그 테이블에 저장된 해시태그 있는지 검사 - select
-			 let result = await axios.get(`../post/checktag?tag=${item.innerHTML}`);
-			 
-			 //존재하지 않는다면 그 태그를 테이블에 저장
-			 if(result.data !== 1){
-					 console.log("4. 중복된 글자 없음 : ", item.innerHTML);
-				 	 await axios.get(`../post/createtag?tag=${item.innerHTML}`);
-				 	 
-			 }
-		 }
 			
             form.action = 'update'; // 폼(양식)을 제출(submit)할 요청 주소. 기본값은 현재 URL.
             form.method = 'post'; // 폼 요청 방식(get/post). 기본값은 'get'.
@@ -115,7 +97,7 @@
 	 	 
 	 	 //해시태그 <ul>에 출력함
 	 	  hashtagList.innerHTML += 
-	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">
+	 	  `<span id=${tag} class="badge d-flex p-2 align-items-center text-primary-emphasis rounded-pill" style="background-color : #F3F1F5">
 		    <span class="px-1 tagValue">${tag}</span>
 		    <span class="btn-close btnDel"  data-id="${tag}"></span>
             <input class="d-none" name="hashTag" value="${tag}" />

@@ -12,6 +12,11 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
         <link rel="stylesheet" href="./../css/main_navigation.css" />
+        <style>
+        	.dropdown-item:hover{
+        			background-color: #F3F1F5;
+        	}
+        </style>
 	</head>
 	
     <body>
@@ -23,21 +28,21 @@
 	   		<c:url var="imgPath" value="../img/logo.png" />
 	         <%@ include file="../fragments/navigation.jspf" %>
 	   </div>
-	   <div style="margin:110px"></div>
+	   <div style="margin:140px"></div>
  	   
  	   
  	   <!-- 메인 시작 -->
  	   <main>
- 	   <div class="mx-5">
+ 	   <div class="mx-3">
  	   <div class="container-fluid" style="width:889px;">
 			
 			<%-- div 1. 검색 키워드 보여주기 --%>
- 	    	<div class="d-flex justify-content-start mb-5 mt-4"><h3>"<strong  id="keyword">${searchKeyword.keyword }</strong>" 검색 결과</h3></div>
+ 	    	<div class="d-flex justify-content-start mb-3 mt-4 px-3"><h3>"<strong  id="keyword">${searchKeyword.keyword }</strong>" 검색 결과</h3></div>
  	    	<div id="search_category" class= "d-none">${searchKeyword.search_category }</div>
  	   		
  	   		
  	   		<%-- div 2. 카테고리 및 정렬 --%>
- 	   		<div class="d-flex justify-content-between">
+ 	   		<div class="d-flex justify-content-between rounded-4 mb-4 p-3" style="background-color: #F3F1F5;">
 				<div>
 					<div class="dropdown">
 						<button id="btnSelectCategory" class="px-2 py-1 btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" >전체</button>
@@ -64,8 +69,6 @@
 					</button>
 				</div>
  	   		</div>
- 	   		
- 	   		<hr/>
  	   
  	   		<!-- 자바 스크립트로 받기 -->
 			<!-- 검색된 게시글 출력 -->

@@ -10,7 +10,7 @@
           crossorigin="anonymous">
     <link href="../css/myPostListStyle.css" rel="stylesheet"> <!-- "내가 쓴 게시글" 스타일시트 적용 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="../js/passwordChange.js"></script>
+
 </head>
 <body>
     <div id="top" class="mb-3">
@@ -31,6 +31,9 @@
                     <input type="password" class="form-control" id="currentPassword" name="currentPassword" required>
                 </div>
                 <button type="button" class="btn btn-primary mb-3" id="verifyCurrentPasswordButton">확인</button>
+                <div id="messageBox1">
+                    <!-- 서버로부터의 응답 메시지가 여기에 표시됩니다 -->
+                </div>
                 <div class="mb-3">
                     <label for="newPassword" class="form-label">새 비밀번호:</label>
                     <input type="password" class="form-control" id="newPassword" name="newPassword" required>
@@ -38,10 +41,23 @@
                 <div class="mb-3">
                     <label for="confirmPassword" class="form-label">비밀번호 확인:</label>
                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        (비밀번호는 8~16자의 영문 대/소문자, 숫자, 특수문자를 포함해야 합니다)
+                    </small>
                 </div>
                 <button type="button" class="btn btn-primary" id="changePasswordButton">비밀번호 변경</button>
             </form>
-            <div id="messageBox">
+            <div id="messageBox2">
+                <!-- 서버로부터의 응답 메시지가 여기에 표시됩니다 -->
+            </div>
+            <form id="emailChangeForm" class="my-3">
+                <div class="mb-3">
+                    <label for="newEmail" class="form-label">새 이메일:</label>
+                    <input type="email" class="form-control" id="newEmail" name="newEmail" required>
+                </div>
+                <button type="button" class="btn btn-primary" id="changeEmailButton">이메일 변경</button>
+            </form>
+            <div id="emailChangeMessage">
                 <!-- 서버로부터의 응답 메시지가 여기에 표시됩니다 -->
             </div>
         </div>
@@ -53,5 +69,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
             crossorigin="anonymous"></script>
+    <script src="../js/passwordChange.js"></script>
+    <script src="../js/changeEmail.js"></script>
 </body>
 </html>

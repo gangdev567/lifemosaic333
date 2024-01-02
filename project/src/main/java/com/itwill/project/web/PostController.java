@@ -19,11 +19,13 @@ import com.itwill.project.domain.Criteria;
 import com.itwill.project.domain.Post;
 import com.itwill.project.domain.PostDetail;
 import com.itwill.project.domain.SearchOrderList;
+import com.itwill.project.domain.TopWriter;
 import com.itwill.project.dto.post.PageMakerDto;
 import com.itwill.project.dto.post.PostCreateDto;
 import com.itwill.project.dto.post.PostListItemDto;
 import com.itwill.project.dto.post.PostModifyDto;
 import com.itwill.project.service.PostService;
+import com.itwill.project.service.WriterService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 public class PostController {
 
     private final PostService postService;
+    private final WriterService writerService;
     
     @GetMapping("/HallOfFame") 
     public void HallOfFame() {
@@ -95,6 +98,12 @@ public class PostController {
     public String create(@ModelAttribute PostCreateDto dto, @RequestParam(name = "sub_category_id") Long sub_category_id) {
         log.debug("게시글 작성이에용");
 
+        // 1.1 수정 코드
+        if(dto.getUser_id() != null) {
+        	postService.readHashtagName(dto.getHashTag());        	
+        }
+        
+    	//포스트 테이블에 포스트 저장
         postService.create(dto);
         
         return "redirect:/post/list/?sub_category_id=" + sub_category_id;
@@ -112,6 +121,11 @@ public class PostController {
         //연수 코드 추가 - 해시태그 가져오기
         List<String> list = postService.readHash(post_id);
         model.addAttribute("tags", list);
+        
+        List<TopWriter> writerList = writerService.readTopWriter();
+        log.debug("Top Writer list: {}", writerList);
+        model.addAttribute("writer", writerList);
+        
     }
     
     @GetMapping("/modify")
@@ -132,6 +146,12 @@ public class PostController {
     public String modify(@ModelAttribute PostModifyDto dto) {
         log.debug("dto = {}", dto);
         
+        //1.1 수정 코드
+        //업데이트 하기 전에 해시태그 삭제
+    	postService.deletePostHash(dto.getPost_id());
+
+    	postService.readHashtagName(dto.getHashTag());
+    	
         Long post_id = dto.getPost_id();
         
         postService.update(dto);
@@ -159,36 +179,5 @@ public class PostController {
 		}
 		
 		model.addAttribute("searchKeyword", dto);
-    }
-    
-    @GetMapping("/checktag")
-    @ResponseBody
-    public ResponseEntity<Integer> checkHashTag(@RequestParam(name="tag") String tag){
-    	log.debug("selecttag : {}", tag);
-    	
-    	Integer result = postService.readHashtagName(tag);
-    	
-    	return ResponseEntity.ok(result);
-    }
-    
-    @GetMapping("/createtag")
-    @ResponseBody
-    public ResponseEntity<Integer> createTag(@RequestParam(name="tag") String tag){
-    	log.debug("createTag : {}", tag);
-    	
-    	Integer result = postService.createtHashTag(tag);
-    	
-    	return ResponseEntity.ok(result);
-    }
-    
-    //업데이트 하기 위해 전에 해시태그들 삭제
-    @GetMapping("/updatehash")
-    @ResponseBody
-    public ResponseEntity<Integer> updatehas(@RequestParam(name="postid") Long postid){
-    	log.debug("업데이트 포스트 아이디 : {}", postid);
-    	
-    	int result = postService.deletePostHash(postid);
-    	
-    	return ResponseEntity.ok(result);
     }
 }

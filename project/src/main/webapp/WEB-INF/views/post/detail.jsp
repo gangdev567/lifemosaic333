@@ -12,32 +12,71 @@
 	rel="stylesheet"
 	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
 	crossorigin="anonymous">
-
+<link rel="stylesheet" href="../css/main_navigation.css" />
 <style>
+
+
+.comment-container {
+  display: inline-block;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  padding: 10px;
+}
+
+.comment-input-wrapper {
+  display: flex;
+}
+
+.comment-input {
+  flex: 1;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 10px;
+}
+
+.comment-button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  
+  
+  cursor: pointer;
+}
+
+#bookmark:hover, #modify:hover, #btnRegisterComment:hover {
+    background-color: #F0D9FF;
+    transition: all 0.3s ease;
+}
+
 /* 캔버스 요소의 최대 너비 설정 */
 canvas {
-	max-width: 200px;
+    max-width: 200px;
 }
 
 /* 좋아요, 싫어요 버튼 스타일링 */
+#main.container {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 30px;
+}
+
 .btn-custom-like, .btn-custom-dislike {
-	font-size: 1.5rem;
-	padding: 10px 20px;
-	transition: all 0.3s ease;
+    font-size: 1.5rem;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
 }
 
 /* 좋아요, 싫어요 버튼에 마우스 호버 시 스타일 변경 */
 .btn-custom-like:hover, .btn-custom-dislike:hover {
-	transform: scale(1.1);
+    transform: scale(1.1);
 }
-  .btn-custom-like,
-  .btn-custom-dislike {
+.btn-custom-like,  .btn-custom-dislike {
     padding: 8px 15px; /* 여백 조절 */
     font-size: 12px; /* 글꼴 크기 조절 */
   }
 
-  .btn-custom-like img,
-  .btn-custom-dislike img {
+  .btn-custom-like img,  .btn-custom-dislike img {
     width: 20px; /* 이미지 너비 조절 */
     height: 20px; /* 이미지 높이 조절 */
     margin-right: 5px; /* 이미지와 텍스트 사이 여백 조절 */
@@ -46,23 +85,19 @@ canvas {
 </head>
 <body>
 
-	<div class="my-4 d-flex justify-content-center">
-		<%-- 게시판 돌아가기 및 북마크 버튼 --%>
-		<c:url var="returnList" value="/post/list/">
-			<c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
-		</c:url>
-		<a class="btn fs-5 fw-bold me-2" href="${returnList}"
-			style="background-color: #3498db;"> <i
-			class="fas fa-arrow-left me-1"></i> <!-- 화살표 아이콘 --> 게시판 돌아가기
-		</a> <a id="bookmark" class="fs-5 fw-bold btn"
-			style="background-color: #3498db;"> <i
-			class="fas fa-bookmark me-1"></i> <!-- 북마크 아이콘 --> 북마크
-		</a>
-	</div>
 
+    <header>
+        <c:url var="imgPath" value="../img/logo.png" />
+        <%@ include file="../fragments/navigation.jspf" %>
+        <div style="margin:110px"></div>
+    </header>
+            
+<!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
+<div id=main class="container">
+    <div class="item">
 	<main class="my-4">
 		<div class="card">
-			<form class="card-body">
+			<div class="card-body">
 				<div class="mb-3">
 					<div>
 						<%-- 게시글 정보 --%>
@@ -70,16 +105,28 @@ canvas {
 						<!-- 사용자 아이콘 -->
 						${post.nickname}
 						<!-- 작성자 -->
-						<span class="mx-2">|</span> <i class="far fa-thumbs-up me-1"></i>
-						<!-- 좋아요 아이콘 -->
-						포인트??
-						<!-- 포인트??-->
 						<span class="mx-2">|</span> <i class="far fa-eye me-1"></i>
 						<!-- 조회수 아이콘 -->
 						${post.view_count}
 						<!-- 조회수 -->
 						<span class="mx-2">|</span> <span class="fw-bold " id="time">${post.created_time}</span>
 						<!-- 작성 시간 -->
+                            <a id="bookmark" class="fs-5 fw-bold btn"
+                                style="border-color: #F0D9FF; border-width: 3px; 
+                                padding: 3px 10px 3px 12px; float: right;"> 
+                                <i class="fas fa-bookmark me-1" 
+                                style="margin-left: auto; margin-right: auto;"></i> <!-- 북마크 아이콘 -->
+                            </a>
+                            <div style="float: right">
+                                <%-- 수정 버튼 작성자와 로그인한 이용자가 같을때 보여주기--%>
+                                <c:if test="${signedInUser eq post.user_id}">
+                                    <c:url var="postmodify" value="/post/modify">
+                                        <c:param name="post_id" value="${post.post_id}"></c:param>
+                                    </c:url>
+                                    <a id="modify" class="btn" href="${postmodify}"
+                                        style="border-color: #F0D9FF; border-width: 3px; margin-right: 10px; font-color: #7F7C82;">게시글 수정</a>
+                                </c:if>
+                           </div>
 					</div>
 					<h2 class="fw-bold mb-3 my-3">${post.title}</h2>
 					<div class="d-flex justify-content-between">
@@ -95,140 +142,79 @@ canvas {
 				</div>
 				<div class="my-2">
 					<label for="content" class="form-label"></label>
-					<div class="form-control" id="content" style="height: 500px" >${post.content}</div>
+					<div class="form-control" id="content" style="height: 500px; border: none;">${post.content}</div>
 				</div>
-
+                
+                <hr>
 				<!-- 해시태그 보여주기 -->
 				<div class="d-flex gap-2 justify-content-start">
 					<c:forEach items="${tags }" var="tag">
 						<span
-							class="px-3 py-1 text-primary-emphasis bg-light-subtle rounded-pill border  border-dark-subtle">#${tag}</span>
+							class="badge px-3 py-2 text-primary-emphasis rounded-pill"  style="background-color : #F3F1F5">#${tag}</span>
 					</c:forEach>
 				</div>
-
-			</form>
-		</div>
-		
-		<div class="d-flex justify-content-center my-4">
-			<div
-				style="display: flex; flex-direction: column; align-items: center;">
-				<div style="margin-bottom: 20px;">
-					<%-- 좋아요 및 싫어요 버튼 --%>
-					<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
-						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
-						좋아요
-					</button>
-					<button class="btn btn-custom-dislike" id="dislikeBtn"
-						name="dislikeBtn">
-						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
-						싫어요
-					</button>
-				</div>
-				<div id="like"></div>
-				<div style="margin-top: 20px;">
-					<%-- 차트 --%>
-					<canvas id="donutChart"></canvas>
-				</div>
+                
+                
+        		<div class="d-flex justify-content-center my-4">
+        			<div
+        				style="display: flex; flex-direction: column; align-items: center;">
+        				<div style="margin-bottom: 20px;">
+                        
+        					<%-- 좋아요 및 싫어요 버튼 --%>
+        					<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
+        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+        						좋아요
+        					</button>
+                            
+        					<button class="btn btn-custom-dislike" id="dislikeBtn"
+        						name="dislikeBtn">
+        						<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="" class="img-small">
+        						싫어요
+        					</button>
+                            
+        				</div>
+        				<div id="like"></div>
+        				<div style="margin-top: 20px;">
+        					<%-- 차트 --%>
+        					<canvas id="donutChart"></canvas>
+        				</div>
+        			</div>
+        		</div>
 			</div>
 		</div>
-
-		<div style="margin-top: 20px;">
-			<canvas id="donutChart"></canvas>
-		</div>
-
-
-		<div class="card-footer d-flex justify-content-center">
-			<%-- 수정 버튼 작성자와 로그인한 이용자가 같을때 보여주기--%>
-			<c:if test="${signedInUser eq post.user_id}">
-				<c:url var="postmodify" value="/post/modify">
-					<c:param name="post_id" value="${post.post_id}"></c:param>
-				</c:url>
-				<a class="btn btn-primary" href="${postmodify}"
-					style="background-color: #3498db;">수정</a>
-			</c:if>
-		</div>
+		
 
 		<%-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 --%>
 		<%-- 내 댓글 목록 --%>
-		<div class="row mx-5 my-2">
-			<div class="col-10">
-				<%-- 댓글 입력창 --%>
-				<textarea class="form-control" id="ctext" placeholder="댓글 입력"></textarea>
-				<%-- 댓글 작성자 아이디 - TODO 로그인 사용자 아이디로 설정 --%>
-				<input class="d-none" id="writer" value="${signedInUser}" />
-			</div>
-			<div class="col-2">
-				<button class="btn btn-outline-success" id="btnRegisterComment">등록</button>
-			</div>
-		</div>
-
-		<%-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 --%>
-		<div class="my-2" id="comments"></div>
-
-
-				<div class="my-2 card">
-                <div class="card-header d-inline-flex gap-1">
-                    <!-- collapse(접기/펼치기) 기능 버튼 -->
-                    <button class="btn btn-secondary" id="btnToggleComment">댓글 보기</button>
-                </div>
+            <div class="my-2 card">
                 <!-- 댓글 토글 버튼에 의해서 접기/펼치기를 할 영역 -->
-                <div class="card-body collapse" id="collapseComments">
+                <div class="card-body " id="Comments">
                     <div class="card card-body">
                         <!-- 내 댓글 등록 -->
-                        <div class="row my-2">
-                            <div class="col-10">
-                                <!-- 댓글 입력 창 -->
-                                <textarea class="form-control"
-                                    id="comment_content" placeholder="댓글 입력"></textarea>
-                                <!-- 댓글 작성자 아이디 - 로그인 사용자 아이디로 설정 -->
-                                <input class="d-none" id="writer" value="${signedInUser}" />
-                            </div>
-                            <div class="col-2">
-                                <button class="btn btn-outline-success" 
-                                    id="btnRegisterComment">등록</button>
+                        <div class="comment-container">
+                            <div class="comment-input-wrapper">
+                                <input type="text" id="ctext" placeholder="댓글을 입력하세요" class="comment-input">
+                                <input class="d-none" id="writer" value="${signedInUser}">
+                                <button class="comment-button" id="btnRegisterComment">등록</button>
                             </div>
                         </div>
-                        
                         <!-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 -->
                         <div class="my-2" id="comments"></div>
                     </div>
                 </div>
             </div>
-            
-            <!-- 댓글 업데이트 모달(다이얼로그) -->
-            <div id="commentModal" class="modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="btn-close"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"></button>
-                        </div>
-                        
-                        <div class="modal-body">
-                            <!-- 수정할 댓글 아이디 -->
-                            <input class="d-none" id="modalCommentId" />
-                            <!-- 댓글 입력 -->
-                            <textarea class="form-control" id="modalCommentText"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button"
-                                class="btn btn-secondary"
-                                data-bs-dismiss="modal">취소</button>
-                            <button id="btnUpdateComment" type="button"
-                                class="btn btn-primary">변경 내용 저장</button>
-                        </div>
-                    </div>
-                </div>
-            </div> <!-- end modal -->
-  
-  
-		
+
+		<%-- 포스트에 달려 있는 댓글 목록을 보여줄 영역 --%>
+
+
 
 	</main>
 	<div id=pageContainer></div>
-
+    </div>
+    <div class = "item">
+        <%@include file="../fragments/topwriter.jspf"%>
+    </div>
+</div>
 
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

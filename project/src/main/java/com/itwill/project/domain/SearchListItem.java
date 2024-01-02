@@ -2,6 +2,7 @@ package com.itwill.project.domain;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,5 +26,7 @@ public class SearchListItem {
 	private Long like_point;
 	private Long comment_cnt;
 	private String created_time;
+	
+    private List<String> hashTag;
 
 }
