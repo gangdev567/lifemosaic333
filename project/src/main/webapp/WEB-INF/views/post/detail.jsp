@@ -19,7 +19,7 @@
 	display: inline-block;
 	border-radius: 20px;
 	border: 2px solid #ccc;
-	padding: 10px;
+	padding: 9px;
 }
 
 .comment-input-wrapper {
