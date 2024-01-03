@@ -17,6 +17,7 @@ public class Comment {
     private String comment_created_time;
     private String comment_modified_time;
     private String nickname;
+    private String profile_url;
     private Long like_point;
     private Long dislike_point;
 }

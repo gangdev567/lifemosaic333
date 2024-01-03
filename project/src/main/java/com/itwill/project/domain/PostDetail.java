@@ -20,5 +20,6 @@ public class PostDetail {
     private String image_path;
     private Long view_count;
     private String nickname;
+    private String profile_url;
     
 }

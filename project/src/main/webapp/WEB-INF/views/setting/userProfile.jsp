@@ -1,91 +1,88 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+         pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
-	<style>
-	
-	 
-        body {
-            margin: 10px;
-            padding: 10px;
-            
-        }
+<style>
 
-        #top {
-            padding: 20px;
-            margin: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        #content {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px;
-            margin-top:50px;
-            
-        }
 
-        #left, #center, #right {
-            padding: 10px;
-            margin: 10px;
-        }
+   
 
-        #left, #right {
-            flex: 1;
-        }
+    #top {
+        padding: 20px;
+        margin: 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        #center {
-            flex: 3; /* #center를 세 배 크기로 설정 */
-            align-items: center;
-        }
-	
-		 #navigation {
-            font-size: 20px;
-            font-weight: bold;
-        }
+    #content {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px;
+        margin-top: 50px;
 
-        .menu-item {
-            margin-top: 10px;
-            align-items: center;
-        }
-		.img-box {
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-    
-}
-.image_container{
-	width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-}
+    }
 
-.profileImg {
-  width: 150px;
-  height: 150px;
-  object-fit: cover;
-  
-}
-#btnUpdateImg:hover {
+    #left, #center, #right {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    #left, #right {
+        flex: 1;
+    }
+
+    #center {
+        flex: 3; /* #center를 세 배 크기로 설정 */
+        align-items: center;
+    }
+
+    #navigation {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .menu-item {
+        margin-top: 10px;
+        align-items: center;
+    }
+
+    .img-box {
+        width: 150px;
+        height: 150px;
+        border-radius: 70%;
+        overflow: hidden;
+
+    }
+
+    .image_container {
+        width: 150px;
+        height: 150px;
+        border-radius: 70%;
+        overflow: hidden;
+    }
+
+    .profileImg {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+
+    }
+
+    #btnUpdateImg:hover {
         background-color: #6c757d; /* 원하는 색상으로 변경 */
     }
- 
-	</style>
-	<head>
- 		<meta charset="UTF-8">
-		<title>lifeMosaic</title>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
-      	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
-	</head>
-	<body>
-		
-		 	
-
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>lifeMosaic</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+          crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/main_navigation.css" />
+</head>
 	<div class="container-fluid">
 		<div id="content">
 			<div id="left">
@@ -139,10 +136,10 @@
 				<div style="margin-left:40px; margin-top:25px;"  >
 					<label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">아이디</label>
 				
-					<input type="text" class="form-control" id="user_id" name="user_id"
+					<input type="text" class="form-control" id="user_name" name="user_name"
 						value="${user.user_id }" style="width:400px;">
 				</div>
-				<div id="limitUserId" style="font-size:12px;margin-left:40px; margin-top:3px;">
+				<div id="limitUserId" style="font-size:12px; margin-left:40px; margin-top:3px;">
 					<!-- 아이디는 변경 불가라는 문장 띄우기 -->
 				</div>
 				
@@ -158,65 +155,75 @@
 				
 
 
-				<!-- 닉네임 변경 -->
-					<div style="margin-left:40px; margin-top:25px;">
-					<label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">닉네임</label>
-						<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-						<div class="input-group" style="width:400px;">
-						 <input class="form-control" name="nickname" id="nickname" type="text"	value="${user.nickname }"  >
-						<button  type="button" class="btn"	style="background-color:#BFA2DB;"name="btnCheckNickname" id="btnCheckNickname">
-							<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" x="0" y="0" viewBox="0 0 507.506 507.506" style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g><path d="M163.865 436.934a54.228 54.228 0 0 1-38.4-15.915L9.369 304.966c-12.492-12.496-12.492-32.752 0-45.248 12.496-12.492 32.752-12.492 45.248 0l109.248 109.248L452.889 79.942c12.496-12.492 32.752-12.492 45.248 0 12.492 12.496 12.492 32.752 0 45.248L202.265 421.019a54.228 54.228 0 0 1-38.4 15.915z" fill="#ffffff" opacity="1" data-original="#000000"></path></g></svg>
-						</button>
-						</div>
-					</div>
-					<div class="d-grid gap-2 d-md-flex justify-content-md-end">
-						<button class="btn btn-secondary " name="btnUpdateNickname" id="btnUpdateNickname"
-						 type="submit" style=" width:100px; font-size:13px; font-weight:bold; border:none; margin-right:100px; background-color:#610C9F;">
-						 저장</button>
-					</div>
-				</form>
-			</div>
-			</div>
-			
-			
-			<div id="right">
-				 <%@ include file="../fragments/homeNavigation.jspf"%>
-		</div>
-		
-		
-		
-		</div>
-		<div id="footer">
-		 <%@ include file="../fragments/footer.jspf"%>
-		</div>
-		
-	</div>
+         
 
-	<script>
-		var img = null;
-		function setThumbnail(event) {
-			var reader = new FileReader();
-			if (!img) {
-				img = document.createElement("img");
+            <!-- 닉네임 변경 -->
+            <div style="margin-left:40px; margin-top:25px;">
+                <label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">닉네임</label>
+                <input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
+                <div class="input-group" style="width:400px;">
+                    <input class="form-control" name="nickname" id="nickname" type="text" value="${user.nickname }">
+                    <button type="button" class="btn" style="background-color:#BFA2DB;" name="btnCheckNickname"
+                            id="btnCheckNickname">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+                             width="16" height="16" x="0" y="0" viewBox="0 0 507.506 507.506"
+                             style="enable-background:new 0 0 512 512" xml:space="preserve" class=""><g>
+                            <path d="M163.865 436.934a54.228 54.228 0 0 1-38.4-15.915L9.369 304.966c-12.492-12.496-12.492-32.752 0-45.248 12.496-12.492 32.752-12.492 45.248 0l109.248 109.248L452.889 79.942c12.496-12.492 32.752-12.492 45.248 0 12.492 12.496 12.492 32.752 0 45.248L202.265 421.019a54.228 54.228 0 0 1-38.4 15.915z"
+                                  fill="#ffffff" opacity="1" data-original="#000000"></path>
+                        </g></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-secondary " name="btnUpdateNickname" id="btnUpdateNickname"
+                        type="submit"
+                        style=" width:100px; font-size:13px; font-weight:bold; border:none; margin-right:100px; background-color:#610C9F;">
+                    저장
+                </button>
+            </div>
+         
+        </div>
+    </div>
 
-			}
 
-			reader.onload = function(event) {
-				img.setAttribute("src", event.target.result);
-				document.querySelector("button#btnUpdateImg").classList.remove("disabled");
+    <div id="right">
+        <%@ include file="../fragments/homeNavigation.jspf" %>
+    </div>
 
-			};
 
-			reader.readAsDataURL(event.target.files[0]);
-		}
-	</script>
-	
-						  	
-    	
-       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
-       integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-       <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-		<script src="../js/profile-modify.js"></script>
-		
-	</body>
+</div>
+<div id="footer">
+    <%@ include file="../fragments/footer.jspf" %>
+</div>
+
+</div>
+
+<script>
+    var img = null;
+
+    function setThumbnail(event) {
+        var reader = new FileReader();
+        if (!img) {
+            img = document.createElement("img");
+
+        }
+
+        reader.onload = function (event) {
+            img.setAttribute("src", event.target.result);
+            document.querySelector("button#btnUpdateImg").classList.remove("disabled");
+
+        };
+
+        reader.readAsDataURL(event.target.files[0]);
+    }
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="../js/profile-modify.js"></script>
+
+</body>
 </html>

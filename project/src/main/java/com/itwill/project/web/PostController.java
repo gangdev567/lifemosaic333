@@ -109,7 +109,7 @@ public class PostController {
         log.debug("게시글 작성이에용");
 
         // 1.1 수정 코드
-        if(dto.getUser_id() != null) {
+        if(dto.getUser_id() != null && dto.getHashTag() != null) {
         	postService.readHashtagName(dto.getHashTag());        	
         }
         
@@ -136,6 +136,11 @@ public class PostController {
         log.debug("Top Writer list: {}", writerList);
         model.addAttribute("writer", writerList);
         
+        //모든 포스트 목록 가져오기
+        List<BestTopic> bestAllTopicList = bestTopicService.readAllBestTopic(10);
+        log.debug("Best All Topic list : {} " ,bestAllTopicList);        
+        model.addAttribute("allTopic", bestAllTopicList);
+        
     }
     
     @GetMapping("/modify")
@@ -160,7 +165,9 @@ public class PostController {
         //업데이트 하기 전에 해시태그 삭제
     	postService.deletePostHash(dto.getPost_id());
 
+    	if(dto.getHashTag() != null) {
     	postService.readHashtagName(dto.getHashTag());
+    	}
     	
         Long post_id = dto.getPost_id();
         
