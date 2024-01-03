@@ -29,7 +29,7 @@
 	<select id="selectBySubCategoryIdOrderByDesc" resultType="Post">
 SELECT *
 FROM (
-    SELECT rownum as rnum, sub_query.*, pl.like_point, cc.comment_count, u.profile_url
+    SELECT rownum as rnum, sub_query.*, pl.like_point, COALESCE(cc.comment_count, 0) AS comment_count, u.profile_url
     FROM (
         SELECT p.*, u.NICKNAME
         FROM posts p
