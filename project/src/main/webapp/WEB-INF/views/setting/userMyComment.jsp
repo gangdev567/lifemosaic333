@@ -4,16 +4,11 @@
 <!DOCTYPE html>
 <html>
 	<style>
-	@font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-}
+
 	 body {
             margin: 10px;
             padding: 10px;
-            font-family: 'Pretendard-Regular';
+           
         }
 
         #top {
@@ -54,9 +49,11 @@
 	<head>
  		<meta charset="UTF-8">
 		<title>LifeMosaic</title>
+		     
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
       	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-		        <link rel="stylesheet" href="../css/main_navigation.css" />
+      	
+      	   <link rel="stylesheet" href="../css/main_navigation.css" />
 	</head>
 	<body>
 		

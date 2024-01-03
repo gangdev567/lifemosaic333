@@ -58,9 +58,8 @@
 		<title>Insert title here</title>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
       	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+		
+		<link rel="stylesheet" href="../css/main_navigation.css" />
 	</head>
 	<body>
 		
@@ -77,7 +76,7 @@
 			 <div id="center" style="padding-left:10px; padding-right:10px;">
 					
                   <div style="height: 70px; margin-left :30px; margin-right:30px; background-color: #F3F1F5;" class="d-flex align-items-center justify-content-between rounded-4  m-2 ps-3 pe-4">
-       				 <div style="font-size:18px;font-weight: bold; max-width:180px; margin-left:10px;" class="px-7">스트랩(${bookmarkCount} POSTS)</div>
+       				 <div style="font-size:18px;font-weight: bold; max-width:180px; margin-left:10px;" class="px-7">스크랩(${bookmarkCount} POSTS)</div>
        				 <img alt="북마크 이미지" src="../img/mybookmark.png" style="height:150px; width:150px; margin-top:40px; margin-bottom:93px; margin-right:20px;">
     
                   </div>
