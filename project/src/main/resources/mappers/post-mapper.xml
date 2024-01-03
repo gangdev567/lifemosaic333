@@ -27,23 +27,30 @@
 	</select>
 
 	<select id="selectBySubCategoryIdOrderByDesc" resultType="Post">
-		SELECT *
-		FROM
-		(
-		SELECT rownum as rnum, sub_query.*
-		FROM
-		(
-		SELECT posts.*, users.NICKNAME
-		FROM posts
-		INNER JOIN users ON posts.user_id = users.user_id
-		where sub_category_id = #{subCategoryId}
-		ORDER BY post_id DESC
-		) sub_query
-		WHERE rownum <![CDATA[ <= ]]>
-		#{pageEnd}
-		)
-		WHERE rnum <![CDATA[ >= ]]>
-		#{pageStart}
+SELECT *
+FROM (
+    SELECT rownum as rnum, sub_query.*, pl.like_point, cc.comment_count, u.profile_url
+    FROM (
+        SELECT p.*, u.NICKNAME
+        FROM posts p
+        INNER JOIN users u ON p.user_id = u.user_id
+        WHERE sub_category_id = 11
+        ORDER BY post_id DESC
+    ) sub_query
+    LEFT JOIN (
+        SELECT post_id, SUM(like_point) AS like_point
+        FROM post_like
+        GROUP BY post_id
+    ) pl ON sub_query.post_id = pl.post_id
+    LEFT JOIN (
+        SELECT post_id, COUNT(*) AS comment_count
+        FROM comments
+        GROUP BY post_id
+    ) cc ON sub_query.post_id = cc.post_id
+    INNER JOIN users u ON sub_query.user_id = u.user_id
+) 
+WHERE rnum <![CDATA[ <= ]]> #{pageEnd}
+  AND rnum <![CDATA[ >= ]]> #{pageStart}
 	</select>
 
 	<select id="postCount" resultType="java.lang.Long">
