@@ -37,7 +37,7 @@
 	 <body>
 			
 			<!-- 메뉴바 -->
-			<c:url var="imgPath" value="./img/logo2.png" />
+			<c:url var="imgPath" value="./img/logo.png" />
 			<%@ include file="./fragments/navigation.jspf" %>
             
             <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->

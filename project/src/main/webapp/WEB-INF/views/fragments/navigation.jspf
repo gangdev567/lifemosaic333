@@ -9,7 +9,7 @@
           <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
  			  <c:url var="homePage" value="/" />
               <a href="${homePage }" class="d-flex align-items-center mb-2 mb-lg-0">
-              <img class="me-3" src="${imgPath}" alt="라이프 모자이크 로고" style="width: 120px; height: 33px"/>
+              <img class="me-3" src="${imgPath}" alt="라이프 모자이크 로고" style="width: 135px; height: 30px"/>
             </a>
             
             
