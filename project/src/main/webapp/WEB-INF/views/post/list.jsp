@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
 
 <style>
-    
     #list.container {
         display: grid;
         grid-template-columns: 3fr 1fr;
@@ -27,57 +26,81 @@
         transition-duration: 0.3s;
     }
 
-    body {
-        background-color: #fff; 
-    }
+.post-title a:hover .hover-text {
+	color: #BFA2DB;
+	text-decoration: none;
+	transition-duration: 0.3s;
+}
 
-    .post-items {
-        list-style-type: none;
-        padding: 0;
-    }
+#create:hover {
+	background-color: #F0D9FF;
+	transition-duration: 0.3s;
+}
 
-    .post-item {
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-        background-color: #F3F1F5;
-        transition: background-color 0.3s ease;
-    }
+body {
+	background-color: #fff;
+}
 
-    .post-details {
-        flex: 1;
-    }
+.post-items {
+	list-style-type: none;
+	padding: 0;
+}
 
-    .post-info {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.post-item {
+	display: flex;
+	align-items: center;
+	padding: 20px;
+	border-radius: 8px;
+	margin-bottom: 10px;
+	background-color: #F3F1F5;
+	transition: background-color 0.3s ease;
+}
 
-    .post-nickname {
-        font-weight: bold;
-        color: #333;
-    }
+.post-details {
+	flex: 1;
+}
 
-    .post-title {
-        margin: 8px 0;
-        font-size: 1.1em;
-        font-weight: bold; /* 글 목록 리스트를 굵게 변경 */
-    }
+.post-info {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
 
-    .post-link {
-        color: #007bff;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
+.post-nickname {
+	font-weight: bold;
+	color: #333;
+}
+
+<<<<<<< HEAD
+.post-title {
+	margin: 8px 0;
+	font-size: 1.1em;
+	font-weight: bold; /* 글 목록 리스트를 굵게 변경 */
+}
+
+.post-link {
+	color: #007bff;
+	text-decoration: none;
+	transition: color 0.3s ease;
+}
 
     .post-created-time {
         font-size: 1em; /* 시간 폰트를 좀 더 크게 변경 */
         font-weight: bold; /* 시간 폰트를 굵게 변경 */
         color: #777;
     }
+    
+      /* 페이지 버튼의 숫자 색상을 진한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link span {
+    color: #6a0d98; /* 진한 보라색으로 숫자 색상을 지정합니다. */
+  }
+
+  /* 활성화된 페이지 버튼의 배경색을 연한 보라색으로 변경합니다. */
+  .pagination .page-item .page-link.active {
+    background-color: #e0c3ff; /* 연한 보라색 배경색을 지정합니다. */
+    border-color: #e0c3ff; /* 선택된 페이지 버튼의 테두리 색상을 지정합니다. */
+  }
+    
 </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -127,16 +150,6 @@
         </div>
     </div>
     <hr style= "background: #7F7C82; height:3px; border:0;">
-        
-        
-    <div class="item"></div>
- 
-        
-        
-        
-        
-        
-        
 
  <div class="row justify-content-center">
     <div class="">
@@ -152,11 +165,11 @@
                                 <div class="d-flex flex-fill align-items-center">
                                     <%-- 프로필 이미지 --%>
                                     <c:url var="settingImgPage" value="/setting/settingImg" />
-                                    <img src="${settingImgPage}?fileName=${p.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 20px; height: 20px; border: 1px solid lightgray;"/>
+                                    <img src="${settingImgPage}?fileName=${p.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 40px; height: 40px; border: 1px solid lightgray;"/>
                                     
                                     <div class="fw-semibold" style="font-size:12px;">
                                         <%-- 닉네임 --%>
-                                        <span>${p.nickname }</span>
+                                        <span style="font-size: 130%;">${p.nickname }</span>
                                         
                                         <%-- 작성 시간 --%>
                                         <span class="mx-1"> · </span>
@@ -215,71 +228,84 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="mt-3 d-flex justify-content-start"> <!-- 위에 여백을 주기 위한 마진 추가 -->
-        <c:url var="createPage" value="/post/create">
-            <c:param name="sub_category_id" value="${cId}"></c:param>
-        </c:url>
-        <a id=create class="btn fs-5 fw-bold" href="${createPage}" style="border-color: #BFA2DB; border-width: 2px; margin-right: 10px;">
-            <i class="fas fa-pencil-alt me-2"></i>글 쓰기 
-        </a>
-    </div>
-</div>
+	<div class="item"></div>
 
-          
-        
-       <nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <!-- 이전 페이지 버튼 -->
-    <c:if test="${pageMaker.prev}">
-      <li class="page-item">
-        <a class="page-link" href="?sub_category_id=${cId}&pageNo=${pageMaker.startPage-1}">Previous</a>
-      </li>
-    </c:if>
 
-    <!-- 각 번호 페이지 버튼 -->
-    <c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-      <li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
-        <c:choose>
-          <c:when test="${pageMaker.cri.pageNum == num}">
-            <span style="color: #7F7C82" class="page-link disabled">${num}</span>
-          </c:when>
-          <c:otherwise>
-            <a style="color: #BFA2DB" class="page-link" href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
-          </c:otherwise>
-        </c:choose>
-      </li>
-    </c:forEach>
 
-    <!-- 다음 페이지 버튼 -->
-    <c:if test="${pageMaker.next}">
-      <li class="page-item">
-        <a class="page-link" href="?sub_category_id=${cId}&pageNo=${pageMaker.endPage + 1}">Next</a>
-      </li>
-    </c:if>
-  </ul>
-</nav>
-</div>
-<div class="item">
-    <div  style="position: fixed;width: 250px; top: 50%; transform: translateY(-50%);">
-            <%@include file="../fragments/topwriter.jspf"%>
-            <div class="p-2"></div>
-            <%@include file="../fragments/detail-weekly.jspf"%>
-    </div>
-</div>
-</div>
- 
-    
+				<div class="container">
+					<div class="mt-3 d-flex justify-content-start">
+						<!-- 위에 여백을 주기 위한 마진 추가 -->
+						<c:url var="createPage" value="/post/create">
+							<c:param name="sub_category_id" value="${cId}"></c:param>
+						</c:url>
+						<a id=create class="btn fs-5 fw-bold" href="${createPage}"
+							style="border-color: #BFA2DB; border-width: 2px; margin-right: 10px;">
+							<i class="fas fa-pencil-alt me-2"></i>글 쓰기
+						</a>
+					</div>
+				</div>
 
-        
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-                crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/1306328925.js"
-         crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-        <script src="../../js/time.js"></script>
-        
-	</body>
+
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<!-- 이전 페이지 버튼 -->
+						<c:if test="${pageMaker.prev}">
+							<li class="page-item"><a class="page-link"
+								href="?sub_category_id=${cId}&pageNo=${pageMaker.startPage-1}">Previous</a>
+							</li>
+						</c:if>
+
+						<!-- 각 번호 페이지 버튼 -->
+						<c:forEach var="num" begin="${pageMaker.startPage}"
+							end="${pageMaker.endPage}">
+							<li
+								class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+								<c:choose>
+									<c:when test="${pageMaker.cri.pageNum == num}">
+										<span class="page-link disabled">${num}</span>
+									</c:when>
+									<c:otherwise>
+										<a class="page-link"
+											href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
+									</c:otherwise>
+								</c:choose>
+							</li>
+						</c:forEach>
+
+						<!-- 다음 페이지 버튼 -->
+						<c:if test="${pageMaker.next}">
+							<li class="page-item"><a class="page-link"
+								href="?sub_category_id=${cId}&pageNo=${pageMaker.endPage + 1}">Next</a>
+							</li>
+						</c:if>
+					</ul>
+				</nav>
+			</div>
+            <div class="item">
+                <div style="position: fixed; width: 250px; top: 50%; transform: translateY(-50%);">
+                    <%@include file="../fragments/topwriter.jspf"%>
+                <div class="p-2"></div>
+                    <%@include file="../fragments/detail-weekly.jspf"%>
+            </div>
+        </div>
+		</div>
+	<footer>
+		<div class="item"><%@include file="../fragments/footer.jspf"%></div>
+	</footer>
+
+
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+		crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/1306328925.js"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+	<script src="../../js/time.js"></script>
+
+</body>
 </html>
