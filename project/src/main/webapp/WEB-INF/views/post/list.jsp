@@ -89,7 +89,7 @@
     background-color: #e0c3ff; /* 연한 보라색 배경색을 지정합니다. */
     border-color: #e0c3ff; /* 선택된 페이지 버튼의 테두리 색상을 지정합니다. */
   }
-    
+
 </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -142,6 +142,9 @@
         
         
     <div class="item"></div>
+   
+        
+        
  
         
         
