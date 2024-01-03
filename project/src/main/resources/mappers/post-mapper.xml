@@ -34,7 +34,7 @@ FROM (
         SELECT p.*, u.NICKNAME
         FROM posts p
         INNER JOIN users u ON p.user_id = u.user_id
-        WHERE sub_category_id = 11
+        WHERE sub_category_id = #{subCategoryId}
         ORDER BY post_id DESC
     ) sub_query
     LEFT JOIN (
