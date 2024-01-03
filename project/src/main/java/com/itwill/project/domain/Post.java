@@ -25,7 +25,9 @@ public class Post {
     private String image_path;
     private Long view_count;
     private String nickname;
-    
+    private String profile_url;
+    private Long like_point;
+    private Long comment_count;
     //연수 코드 추가 - 해시태그 배열로 저장
     private List<String> hashTag;
 
