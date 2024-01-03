@@ -115,7 +115,7 @@
         
         // 좋아요 취소 버튼의 모양을 바꿈
         bookmarkCancel.setAttribute('class','btn fs-5 fw-bold');
-        bookmarkCancel.setAttribute('style','background-color: #c0c0c0;')
+        bookmarkCancel.setAttribute('style','border-color: #F0D9FF; background-color: #F0D9FF; border-width: 3px; padding: 3px 10px 3px 12px; float: right;')
         
         // 좋아요 버튼의 이벤트 리스너를 삭제
         bookmark.removeEventListener('click', bookmarkAdd);
@@ -137,7 +137,7 @@
         
         // 좋아요 취소 버튼의 모양을 바꿈
         bookmark.setAttribute('class','btn fs-5 fw-bold');
-        bookmark.setAttribute('style','background-color: #3498db;')
+        bookmark.setAttribute('style','border-color: #F0D9FF; border-width: 3px; padding: 3px 10px 3px 12px; float: right;')
         
         // 좋아요 버튼의 이벤트 리스너를 삭제
         bookmarkCancel.removeEventListener('click', CancelBookmark);

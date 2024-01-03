@@ -32,7 +32,7 @@
 							u.profile_url,
 							p.VIEW_COUNT,
 							p.created_time
-		order by "like_point" desc, p.VIEW_COUNT desc fetch first 5 rows only
+		order by "like_point" desc, p.VIEW_COUNT desc fetch first #{rank} rows only
 	</select>
 	
 		<select id="selectCategoryBestTopic" resultType="com.itwill.project.domain.BestTopic">

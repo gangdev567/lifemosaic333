@@ -18,8 +18,8 @@ public class BestTopicService {
 	private final BestTopicDao bestTopicDao;
 	private final PostDao postDao;
 	
-	public List<BestTopic> readAllBestTopic() {
-		List<BestTopic> list = bestTopicDao.selectAllBestTopic();
+	public List<BestTopic> readAllBestTopic(int rank) {
+		List<BestTopic> list = bestTopicDao.selectAllBestTopic(rank);
 		
 		for(BestTopic bt : list) {
 			bt.setHashTag(postDao.selectHashtagByPostid(bt.getPost_id()));			
