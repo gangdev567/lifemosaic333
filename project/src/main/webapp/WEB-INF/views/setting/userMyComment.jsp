@@ -4,10 +4,16 @@
 <!DOCTYPE html>
 <html>
 	<style>
+	@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
 	 body {
             margin: 10px;
             padding: 10px;
-            
+            font-family: 'Pretendard-Regular';
         }
 
         #top {
@@ -55,7 +61,7 @@
 	<body>
 		
 		<div id="content">
-			<!--  네비게이션 바 부분 -->
+			
 			<div id="left">
 				<%@ include file="../fragments/settingNavigation.jspf"%>
 			</div>
@@ -74,7 +80,7 @@
               
               <hr style="margin-top:27px;">
               
-		<!-- 댓글 목록 보여줄 부분 -->
+		
 			<c:choose>
                 <c:when test="${not empty commentLength and commentLength != 0}">
 			<c:forEach var="post" items="${comment}">
@@ -129,7 +135,7 @@
 			</div>
 				<hr style="margin-left:5px;">
 			</c:forEach>
-						<!--페이지네이션 부분-->
+						
 						<div class="d-flex justify-content-center" style="pading:10px; margin:20px;">
 						<nav class="pagination pagination-sm" style="background-color: #F3F1F5;">
 						    <c:forEach var="pageNumber" begin="1" end="${pagesCount}">
@@ -143,11 +149,10 @@
 						    </c:forEach>
 						</nav>
 						</div>
-						<!-- ------------ -->
+					
 			</c:when>
 			<c:otherwise>
 				
-				<h1 class="text-center"> 
 				<div class="d-flex justify-content-center" style="margin-top:30px;">
 		         <video  width="50" height="50" preload="none"  style="padding-bottom:10px; background: transparent  url('https://cdn-icons-png.flaticon.com/512/7158/7158908.png') 50% 50% / fit no-repeat;"  autoplay="autoplay" loop="true" muted="muted" playsinline="">
 		              <source src="https://cdn-icons-mp4.flaticon.com/512/7158/7158908.mp4" type="video/mp4">

@@ -6,11 +6,7 @@
 <style>
 
 
-    body {
-        margin: 10px;
-        padding: 10px;
-
-    }
+   
 
     #top {
         padding: 20px;
@@ -85,8 +81,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
           rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
           crossorigin="anonymous">
-
-
+	<link rel="stylesheet" href="../css/main_navigation.css" />
+</head>
 	<div class="container-fluid">
 		<div id="content">
 			<div id="left">
@@ -185,7 +181,7 @@
                     저장
                 </button>
             </div>
-            </form>
+         
         </div>
     </div>
 
