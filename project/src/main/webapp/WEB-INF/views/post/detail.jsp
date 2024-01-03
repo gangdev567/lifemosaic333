@@ -100,7 +100,8 @@ canvas {
 						<div class="mb-3">
 							<div>
 								<%-- 게시글 정보 --%>
-								<i class="fas fa-user me-1"></i>
+								<c:url var="settingImgPage" value="/setting/settingImg" />
+                                <img src="${settingImgPage}?fileName=${post.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
 								<!-- 사용자 아이콘 -->
 								${post.nickname}
 								<!-- 작성자 -->

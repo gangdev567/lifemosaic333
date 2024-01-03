@@ -65,7 +65,8 @@ WHERE rnum <![CDATA[ <= ]]> #{pageEnd}
 
 	<!-- POSTS 테이블에서 아이디(PK)로 검색 -->
 	<select id="selectById" resultType="PostDetail">
-		SELECT posts.*, users.NICKNAME FROM posts
+		SELECT posts.*, users.NICKNAME, users.profile_url 
+        FROM posts
 		INNER JOIN users ON
 		posts.user_id = users.user_id
 		where post_id = #{post_id}
