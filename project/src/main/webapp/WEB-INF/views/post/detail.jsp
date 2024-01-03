@@ -19,7 +19,7 @@
 	display: inline-block;
 	border-radius: 20px;
 	border: 2px solid #ccc;
-	padding: 9px;
+	padding: 10px;
 }
 
 .comment-input-wrapper {
@@ -146,10 +146,9 @@ canvas {
 							<input style="display: none;" class="hidden" id="post_id"
 								type="number" value="${post.post_id}" readonly />
 						</div>
-						<div class="my-2 grow-wrap">
-							<label for="content" class="form-label"></label>
-							<textarea class="form-control" id="content"
-								style="height: 500px; border: none; resize: none;" readonly >${post.content}</textarea>
+						<div class="my-4 grow-wrap" style="height: 400px; border: none;">
+						    <label for="content" class="form-label"></label>
+						    <div class="form-control" id="content" style="height: 600px; border: none;">${post.content}</div>
 						</div>
 
 						<hr>
