@@ -139,10 +139,10 @@
 				<div style="margin-left:40px; margin-top:25px;"  >
 					<label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">아이디</label>
 				
-					<input type="text" class="form-control" id="user_id" name="user_id"
+					<input type="text" class="form-control" id="user_name" name="user_name"
 						value="${user.user_id }" style="width:400px;">
 				</div>
-				<div id="limitUserId" style="font-size:12px;margin-left:40px; margin-top:3px;">
+				<div id="limitUserId" style="font-size:12px; margin-left:40px; margin-top:3px;">
 					<!-- 아이디는 변경 불가라는 문장 띄우기 -->
 				</div>
 				
