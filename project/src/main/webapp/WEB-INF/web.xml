@@ -17,7 +17,7 @@
   </filter>
   <filter-mapping>
     <filter-name>loginFilter</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/post/create</url-pattern>
   </filter-mapping>
 
   <servlet>

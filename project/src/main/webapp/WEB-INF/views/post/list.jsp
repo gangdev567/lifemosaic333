@@ -305,7 +305,8 @@ body {
 		<div class="item"><%@include file="../fragments/footer.jspf"%></div>
 	</footer>
 
-
+	<!-- 페이지 하단에 loginModal.jsp 포함 -->
+	<%@ include file="../user/loginModal.jsp" %>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
