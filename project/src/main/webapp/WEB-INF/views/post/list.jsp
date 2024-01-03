@@ -21,6 +21,12 @@
         transition-duration: 0.3s;
 	}
     
+    #title.title:hover {
+        color: #938F94; 
+        text-decoration: none;
+        transition-duration: 0.3s;
+    }
+    
     #create:hover {
         background-color: #F0D9FF;
         transition-duration: 0.3s;
@@ -165,7 +171,7 @@ body {
                                 <div class="d-flex flex-fill align-items-center">
                                     <%-- 프로필 이미지 --%>
                                     <c:url var="settingImgPage" value="/setting/settingImg" />
-                                    <img src="${settingImgPage}?fileName=${p.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 40px; height: 40px; border: 1px solid lightgray;"/>
+                                    <img src="${settingImgPage}?fileName=${p.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
                                     
                                     <div class="fw-semibold" style="font-size:12px;">
                                         <%-- 닉네임 --%>
@@ -188,7 +194,7 @@ body {
                                                     <path d="M12,7a5,5,0,1,0,5,5A5.006,5.006,0,0,0,12,7Zm0,8a3,3,0,1,1,3-3A3,3,0,0,1,12,15Z" />
                                                 </g>
                                             </svg>
-                                        ${p.view_count }
+                                        ${p.view_count } views
                                     </span>
             
                                     <!-- 좋아요수 -->
@@ -196,7 +202,7 @@ body {
                                             id="Outline" viewBox="0 0 24 24" width="13" height="13">
                                                 <path
                                                 d="M22.773,7.721A4.994,4.994,0,0,0,19,6H15.011l.336-2.041A3.037,3.037,0,0,0,9.626,2.122L7.712,6H5a5.006,5.006,0,0,0-5,5v5a5.006,5.006,0,0,0,5,5H18.3a5.024,5.024,0,0,0,4.951-4.3l.705-5A5,5,0,0,0,22.773,7.721ZM2,16V11A3,3,0,0,1,5,8H7V19H5A3,3,0,0,1,2,16Zm19.971-4.581-.706,5A3.012,3.012,0,0,1,18.3,19H9V7.734a1,1,0,0,0,.23-.292l2.189-4.435A1.07,1.07,0,0,1,13.141,2.8a1.024,1.024,0,0,1,.233.84l-.528,3.2A1,1,0,0,0,13.833,8H19a3,3,0,0,1,2.971,3.419Z" /></svg>
-                                        ${p.like_point }
+                                        ${p.like_point } likes
                                     </span>
             
             
@@ -206,7 +212,7 @@ body {
                                             height="13">
                                                 <path
                                                 d="M12.009,23.665c-.476,0-.955-.168-1.337-.507l-3.748-3.157h-2.923c-2.206,0-4-1.794-4-4V4C0,1.794,1.794,0,4,0H20c2.206,0,4,1.794,4,4v12c0,2.206-1.794,4-4,4h-2.852l-3.847,3.18c-.362,.322-.825,.484-1.293,.484ZM4,2c-1.103,0-2,.897-2,2v12c0,1.103,.897,2,2,2h3.289c.236,0,.464,.083,.645,.235l4.047,3.41,4.17-3.416c.18-.148,.405-.229,.638-.229h3.212c1.103,0,2-.897,2-2V4c0-1.103-.897-2-2-2H4Z" /></svg>
-                                        ${p.comment_count}
+                                        ${p.comment_count} comments
                                     </span>
                                 </div>
                             </div>
@@ -217,7 +223,7 @@ body {
                                 <c:url var="postDetails" value="/post/detail">
                                     <c:param name="post_id" value="${p.post_id}" />
                                 </c:url>
-                                <a class="nav-link text-truncate" style="" href="${postDetails }">${p.title }</a>
+                                <a id=title class="nav-link text-truncate title" style="" href="${postDetails }">${p.title }</a>
                             </div>
                             <div class="tagDiv" data-id="${p.post_id}"></div>
                         </div>
