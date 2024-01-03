@@ -18,6 +18,7 @@ public class Recomment {
     private Long re_comment_id;
     private String recomment_content;
     private String user_id;
+    private String profile_url;
     private String recomment_created_time;
     private String recomment_modified_time;
     private String nickname;
