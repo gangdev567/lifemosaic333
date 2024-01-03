@@ -146,10 +146,10 @@ canvas {
 							<input style="display: none;" class="hidden" id="post_id"
 								type="number" value="${post.post_id}" readonly />
 						</div>
-						<div class="my-2">
+						<div class="my-2 grow-wrap">
 							<label for="content" class="form-label"></label>
 							<textarea class="form-control" id="content"
-								style="height: 500px; border: none;">${post.content}</textarea>
+								style="height: 500px; border: none; resize: none;" readonly >${post.content}</textarea>
 						</div>
 
 						<hr>
@@ -157,7 +157,7 @@ canvas {
 						<div class="d-flex gap-2 justify-content-start">
 							<c:forEach items="${tags }" var="tag">
 								<span class="badge px-3 py-2 text-primary-emphasis rounded-pill"
-									style="background-color: #F3F1F5">#${tag}</span>
+									style="background-color: #F3F1F5 ">#${tag}</span>
 							</c:forEach>
 						</div>
 
@@ -257,7 +257,7 @@ canvas {
 
 	<script src="../js/comment.js"></script>
 	<script src="../js/time-details.js"></script>
-
+    <script src="../js/textarea.js"></script>
  <script>
    document.addEventListener('DOMContentLoaded', function() {
 	    document.getElementById('content').addEventListener('click', function(event) {
