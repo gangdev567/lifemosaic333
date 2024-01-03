@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+	pageEncoding="UTF-8" trimDirectiveWhitespaces="true"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
+
 	<head>
 		<meta charset="UTF-8">
 		<title>Life mosaic</title>
@@ -51,56 +52,62 @@
                             	<%@ include file="./fragments/main/maintopicbest.jspf" %>
                             </div>
 
-                            <div class="item"><%-- 오른쪽 사이드 바 : 사용 안함 --%>
-                            	<%@include file="./fragments/topwriter.jspf"  %>
-                            </div>
-                            
-                            <div class="item">
-                            	<%@ include file="./fragments/main/fault.jspf" %>
-                            </div>
-                            
-                            <div class="item">
-								<%@ include file="./fragments/main/idiot.jspf" %>
-							</div>
-                            
-                            <div class="item"></div>
 
-                            <div class="item">
-								<%@ include file="./fragments/main/envy.jspf"  %>
-							</div>
+				<div class="item">
+					<%-- 오른쪽 사이드 바 : 사용 안함 --%>
+					<div
+						style="position: fixed; width: 250px; top: 30%; transform: translateY(-50%);">
+						<%@include file="./fragments/topwriter.jspf"%>
+					</div>
+				</div>
 
-                            <div class="item">
-                            	<%@ include file="./fragments/main/caraccident.jspf" %>
-							</div>
-                            
-                            <div class="item"></div>
-                            
-                            <div class="item">
-                            	<%@ include file="./fragments/main/gameaccident.jspf" %>
-                            </div>
-                            
-                            <div class="item">
-                            	<%@ include file="./fragments/main/etcaccident.jspf" %>
-                            </div>
-                            
-                            <div class="item"></div>
-                            
+				<div class="item">
+					<%@ include file="./fragments/main/fault.jspf"%>
+				</div>
 
-                            <div class="item">
-                            </div>    
-                        </div>
-                            <div class="item"><%@include file="./fragments/footer.jspf" %></div>
-                    </div>
-				</main>
-            </body>
+				<div class="item">
+					<%@ include file="./fragments/main/idiot.jspf"%>
+				</div>
+
+				<div class="item"></div>
+
+				<div class="item">
+					<%@ include file="./fragments/main/envy.jspf"%>
+				</div>
+
+				<div class="item">
+					<%@ include file="./fragments/main/caraccident.jspf"%>
+				</div>
+
+				<div class="item"></div>
+
+				<div class="item">
+					<%@ include file="./fragments/main/gameaccident.jspf"%>
+				</div>
+
+				<div class="item">
+					<%@ include file="./fragments/main/etcaccident.jspf"%>
+				</div>
+
+				<div class="item"></div>
 
 
-		
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
-                integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
-                crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-        <script src="./js/time.js"></script>
-	</body>
+				<div class="item"></div>
+			</div>
+			<div class="item"><%@include file="./fragments/footer.jspf"%></div>
+		</div>
+	</main>
+</body>
+
+
+
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+	crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="./js/time.js"></script>
+</body>
 </html>

@@ -53,9 +53,6 @@
 						<c:param name="sub_category_id" value="51"></c:param>
 				</c:url> 
               	<a href="${freeBoard}" class="nav-link px-2 link-body-emphasis">자유게시판</a></li>
-              <li>
-              	<c:url var="totallist" value="/post/totallist" />
-              	<a href="${totallist}" class="nav-link px-2 link-body-emphasis">전체게시판(임시, 추후 삭제)</a></li>
             </ul>
     
     
