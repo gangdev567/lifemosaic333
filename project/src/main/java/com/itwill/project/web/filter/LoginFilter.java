@@ -15,14 +15,25 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 		throws IOException, ServletException {
 
-		// 모든 요청을 필터링 없이 통과시킵니다.
-		chain.doFilter(request, response);
-	}
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
+		HttpServletResponse httpResponse = (HttpServletResponse) response;
+		HttpSession session = httpRequest.getSession(false);
+		// AJAX 요청 감지
+		boolean isAjaxRequest = "XMLHttpRequest".equals(httpRequest.getHeader("X-Requested-With"));
 
-	private boolean isFileInUploadsDirectory(String path) {
-		// 절대 경로를 사용하여 파일의 존재 여부를 확인합니다.
-		File file = new File("C:\\uploads", path);
-		return file.exists() && !file.isDirectory(); // 파일이 존재하고 디렉토리가 아니어야 합니다.
+		if (session == null || session.getAttribute("signedInUser") == null) {
+			if (isAjaxRequest) {
+				// AJAX 요청에 대해 401 상태 코드 반환
+				httpResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "로그인이 필요합니다.");
+				return;
+			} else {
+				// 기존 리디렉션 로직: 로그인 페이지로 리디렉트
+				httpResponse.sendRedirect(httpRequest.getContextPath() + "/project/user/signin");
+				return;
+			}
+		}
+		// 로그인 상태라면 요청을 계속 진행합니다.
+		chain.doFilter(request, response);
 	}
 
 	@Override

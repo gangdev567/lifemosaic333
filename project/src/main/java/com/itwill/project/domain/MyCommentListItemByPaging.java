@@ -18,6 +18,7 @@ public class MyCommentListItemByPaging {
 	private String post_user_profile_url;
 	private String post_nickname;
 	private String post_subcategory;
+	private long post_subcategory_id;
 	private long post_id;
 	private String comment_content;
 	private String comment_created_time;

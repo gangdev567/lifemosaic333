@@ -1,96 +1,48 @@
-body {
-    margin: 10px;
-    padding: 10px;
+ body {
+            margin: 10px;
+            padding: 10px;
+            
+        }
 
-}
+        #top {
+            padding: 20px;
+            margin: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+         #content {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            margin-top:50px;
+        }
+		  #left, #center, #right {
+            padding: 10px;
+            margin: 10px;
+        }
+		
+       
 
-#top {
-    padding: 20px;
-    margin: 25px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#content {
-    display: flex;
-    justify-content: flex-start; /* 자식 요소들을 왼쪽 정렬 */
-    padding: 20px;
-    margin-top:50px;
-}
+        #left,#right {
+            flex: 1;
+        }
 
-#left, .d-flex, #center {
-    margin-right: 15px; /* 각 요소의 오른쪽 마진 설정 */
-}
-
-#left {
-    flex: 0 0 200px; /* #left의 너비를 200px로 고정 */
-}
-
-.d-flex {
-    position: relative; /* .vr의 절대 위치를 위한 상대 위치 설정 */
-    flex: 0 0 2px; /* 경계선의 너비를 2px로 고정 */
-    height: 100%; /* 경계선의 높이를 부모 요소와 같게 설정 */
-}
-
-.d-flex > .vr {
-    flex: 0 0 2px; /* 경계선의 너비를 2px로 고정하고, 확장/축소를 방지 */
-    background-color: #000000; /* 경계선 색상을 검은색으로 설정 */
-    height: calc(100% - 40px); /* 상단과 하단에서 20px씩 제외한 높이로 설정 */
-}
-
-#right {
-    order: 3; /* #right를 맨 끝으로 이동 */
-    flex: 0 0 250px; /* #right의 너비를 250px로 고정 */
-}
-
-#center {
-    flex-grow: 1; /* 사용 가능한 나머지 공간을 채움 */
-    flex-shrink: 1; /* 화면이 축소될 때 크기가 줄어들도록 허용 */
-    flex-basis: auto; /* 컨텐츠에 따라 기본 크기 설정 */
-}
-
-#left {
-    flex: 1; /* #left의 크기를 유지 */
-    order: 0; /* #left가 가장 먼저 오도록 설정 */
-}
-
-#navigation {
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.menu-item {
-    margin-top: 10px;
-    align-items: center;
-}
-.img-box {
-    width: 150px;
-    height: 150px;
-    border-radius: 70%;
-    overflow: hidden;
-
-}
-.image_container{
-    width: 150px;
-    height: 150px;
-    border-radius: 70%;
-    overflow: hidden;
-}
-
-.profileImg {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-
-}
-#btnUpdateImg:hover {
-    background-color: #6c757d; /* 원하는 색상으로 변경 */
-}
-
-/* 입력칸의 최대 너비를 설정합니다. */
-.form-control {
-    max-width: 400px; /* 입력칸의 최대 너비를 400px로 설정 */
-}
-#footer .d-flex {
-    background-color: #ffffff; /* 원하는 푸터의 배경색으로 설정하세요 */
-}
+        #center {
+            flex: 3; /* #center를 두 배 크기로 설정 */
+           
+        }
+      #aside {
+		    position: sticky;
+		    top: 100px;
+		    right: 300px;
+		}
+		.profileImg {
+		  width: 25px;
+		  height: 25px;
+		   border-radius: 70%;
+		  object-fit: cover;
+		  align-items: left;
+		}
+		
+		
