@@ -3,54 +3,55 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Life mosaic</title>
 
-<style>
-.mainBorderBox {
-	display: grid;
-	grid-template-columns: 1.5fr 1.5fr 1fr;
-	grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr;
-}
+	<head>
+		<meta charset="UTF-8">
+		<title>Life mosaic</title>
+		
+          <style>
+                .mainBorderBox{
+                    display: grid;
+                    grid-template-columns: 1.5fr 1.5fr 1fr;
+                    grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr; 
+                 }
+                 
+                 .item:nth-child(1) {
+                        grid-column-start: 1;
+                        grid-column-end: 3;
+                        grid-row-start: 1;
+                        grid-row-end: 2;
+                    }
+                 
+                 .gridHeader {
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                 }
+         </style>
+        
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
+            rel="stylesheet" 
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="./css/main_navigation.css" />
+	</head>
+	 <body>
+			
+			<!-- 메뉴바 -->
+			<c:url var="imgPath" value="./img/logo2.png" />
+			<%@ include file="./fragments/navigation.jspf" %>
+            
+            <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
+            <div style="margin:110px"></div>
+             
+             
+             <!-- 베스트 게시글 및 TopWriter 보여주기 -->
+   		 	 <main>
+                    <div class="outerDiv">
+                        <div class="container mainBorderBox">
+                            <div class="item">
+                            	<%@ include file="./fragments/main/maintopicbest.jspf" %>
+                            </div>
 
-.item:nth-child(1) {
-	grid-column-start: 1;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 2;
-}
-
-.gridHeader {
-	display: grid;
-	grid-template-columns: repeat(6, 1fr);
-}
-</style>
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous">
-<link rel="stylesheet" href="./css/main_navigation.css" />
-</head>
-<body>
-
-	<!-- 메뉴바 -->
-	<c:url var="imgPath" value="./img/logo.png" />
-	<%@ include file="./fragments/navigation.jspf"%>
-
-	<!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
-	<div style="margin: 110px"></div>
-
-
-	<!-- 베스트 게시글 및 TopWriter 보여주기 -->
-	<main>
-		<div class="outerDiv">
-			<div class="container mainBorderBox">
-				<div class="item">
-					<%@ include file="./fragments/main/maintopicbest.jspf"%>
-				</div>
 
 				<div class="item">
 					<%-- 오른쪽 사이드 바 : 사용 안함 --%>
