@@ -24,7 +24,7 @@
     <!-- 여백 추가 -->
     <div style="margin-bottom: 20px;"></div>
     <!-- 로그인 폼 -->
-    <form method="post">
+    <form method="post" action="/project/user/signin">
             <!-- 로그인 실패 메시지 -->
             <c:if test="${not empty param.result && param.result eq 'f'}">
                 <div class="alert alert-danger">아이디와 패스워드를 확인하세요...</div>
@@ -36,6 +36,8 @@
         <!-- 비밀번호 입력 필드 -->
         <input type="password" class="form-control" name="password" placeholder="비밀번호" required />
 
+        <!-- 현재 페이지 URL을 저장하는 hidden input 필드 -->
+        <input type="hidden" name="preLoginUrl" id="preLoginUrl">
         <!-- 로그인 버튼 -->
         <button type="submit" class="btn btn-primary w-100">로그인</button>
     </form>
@@ -184,6 +186,20 @@
             });
         } else {
             console.error('아이디 찾기 모달의 닫기 버튼을 찾을 수 없습니다.');
+        }
+    });
+</script>
+<script>
+    // 로그인 페이지의 JavaScript 코드
+    document.addEventListener('DOMContentLoaded', function() {
+        // 세션 스토리지에서 preLoginUrl 값을 읽어옴
+        let preLoginUrl = sessionStorage.getItem('preLoginUrl');
+        if (preLoginUrl) {
+            // hidden input 필드에 preLoginUrl 값을 설정
+            let preLoginUrlInput = document.getElementById('preLoginUrl');
+            if (preLoginUrlInput) {
+                preLoginUrlInput.value = preLoginUrl;
+            }
         }
     });
 </script>

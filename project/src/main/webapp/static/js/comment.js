@@ -115,13 +115,17 @@ function getAllComment() {
     comments.forEach((comment) => {
         const mdate = new Date(comment.comment_created_time);
         const cdate = new Date(comment.comment_modified_time);
+        const memberPostListPage = `/project/member/memberPostList?nickname=${comment.nickname}`
 
         const formattedmDate = timeAgo(mdate);
         const formattedcDate = timeAgo(cdate);
-
+        const settingImgPage = '/project/setting/settingImg'
         html += `<div class="mx-5 my-2">
                     <input class="d-none" id="${comment.comment_id}"/>
-                     <span id="commentNickname">${comment.nickname}</span>  
+                    <img src="${settingImgPage}?fileName=${comment.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
+                    <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+                    <span id="commentNickname">${comment.nickname}</span>
+                    </a>  
                     <small class=time>${formattedmDate}</small>`;
         if (formattedcDate !== formattedmDate) {
             html += `<small> <strong> *수정됨 </strong> </small>`;
@@ -139,7 +143,7 @@ function getAllComment() {
 
         html += `</div>
                     <div>
-                        <h6>${comment.comment_content}</h6>
+                        <h6><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp${comment.comment_content}<br>&nbsp</h6>
                     </div>
                     <div>
                         <small data-id="${comment.comment_id}"id="showRecomment" style="cursor: pointer;">답글 보기 ▼</small>
@@ -354,10 +358,15 @@ function addCommentDeleteEventListeners() {
 		        // 댓글의 생성 시간과 수정 시간을 '몇 분 전', '몇 시간 전'과 같은 형식으로 변환.
 		        const formattedmDate = timeAgo(recommentcTime);
 		        const formattedcDate = timeAgo(recommentmTime);
+		        const settingImgPage = '/project/setting/settingImg'
+		        const memberPostListPage = `/project/member/memberPostList?nickname=${recomment.nickname}`
                 
                 html += `<div class="mx-5 my-2">
                             <input class="d-none" id="${recomment.re_comment_id}"/>
-                            <span id="nickname">  ${recomment.nickname}</span> 
+                            <img src="${settingImgPage}?fileName=${recomment.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
+                            <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+                            <span id="nickname">  ${recomment.nickname}</span>
+                            </a>
                             <small class=time>${formattedmDate}</small>`;
                     if(formattedcDate !== formattedmDate){
     
@@ -374,9 +383,10 @@ function addCommentDeleteEventListeners() {
                     html+= `<small class="btnRecommentDelete" data-id="${recomment.re_comment_id}" style="cursor: pointer;">삭제</small>`;
                     }
                         
-                html += `   </div>
+                html += `
+                            </div>
                             <div class="recommentContent" data-id="${recomment.re_comment_id}">
-                                <h6>${recomment.recomment_content}</h6>
+                                <h6><br>${recomment.recomment_content}</h6>
                             </div>
                             </div>
                             <hr />`;

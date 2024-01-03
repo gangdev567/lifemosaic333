@@ -5,6 +5,7 @@ import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwill.project.domain.User;
@@ -31,10 +33,22 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/user")
+@SessionAttributes("preLoginUrl") // 세션에 preLoginUrl을 저장하기 위해 사용
 public class UserController {
 
 	private final UserService userService;
 	private final MailSendService mailSendService;
+
+	@GetMapping("/checkLoginStatus")
+	public ResponseEntity<?> checkLoginStatus(HttpSession session) {
+		if (session != null && session.getAttribute("signedInUser") != null) {
+			// 로그인 상태인 경우
+			return ResponseEntity.ok().build();
+		} else {
+			// 로그인 상태가 아닌 경우
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+		}
+	}
 
 	// 회원가입 페이지 렌더링
 	@GetMapping("/signup")
@@ -59,22 +73,37 @@ public class UserController {
 	// 로그인 처리
 	@PostMapping("/signin")
 	public String signin(@ModelAttribute UserSignInDto dto, HttpSession session,
-		@RequestParam(name = "target", defaultValue = "") String target) throws UnsupportedEncodingException {
-		log.debug("POST - signin(dto={} session={}, target={}", dto, session, target);
+		@RequestParam(required = false) String preLoginUrl,
+		RedirectAttributes redirectAttributes) {
+		log.debug("POST - signin(dto={} session={}", dto, session);
+		log.debug("Received preLoginUrl: {}", preLoginUrl);
 
 		Map<String, Object> userData = userService.read(dto);
 		User user = (User) userData.get("user");
 
 		if (user != null) {
+			log.debug("Login successful. Redirecting to: {}", preLoginUrl != null ? preLoginUrl : "/");
+			// 임시 비밀번호인 경우 비밀번호 변경 페이지로 리다이렉트
 			if ((Boolean) userData.get("isTemporaryPassword")) {
 				return "redirect:/user/changePassword";
 			}
 
+			// 세션에 사용자 정보 설정
 			session.setAttribute("signedInUser", user.getUser_id());
 			session.setAttribute("userProfileUrl", user.getProfile_url());
-			return (target.equals("")) ? "redirect:/" : "redirect:" + target;
+
+			// 로그인 전 페이지로 리다이렉트
+			log.debug("preLoginUrl: {}", preLoginUrl);
+			if (preLoginUrl != null && !preLoginUrl.isEmpty()) {
+				return "redirect:" + preLoginUrl;
+			} else {
+				return "redirect:/"; // preLoginUrl이 없으면 홈 페이지로 리다이렉트
+			}
 		} else {
-			return "redirect:/user/signin?result=f&target=" + URLEncoder.encode(target, "UTF-8");
+			// 로그인 실패 시, 로그인 페이지로 리다이렉트하고 실패 메시지 표시
+			log.debug("Login failed. Redirecting to login page.");
+			redirectAttributes.addFlashAttribute("loginFailed", true);
+			return "redirect:/user/signin";
 		}
 	}
 
