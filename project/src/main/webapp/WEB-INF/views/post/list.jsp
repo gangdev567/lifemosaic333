@@ -175,8 +175,13 @@ body {
                                     
                                     <div class="fw-semibold" style="font-size:12px;">
                                         <%-- 닉네임 --%>
-                                        <span style="font-size: 130%;">${p.nickname }</span>
                                         
+                                        <c:url var="memberPostListPage" value="/member/memberPostList">
+                                            <c:param name='nickname' value='${p.nickname }'/>
+                                        </c:url>
+                                        <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+                                        <span style="font-size: 130%;">${p.nickname }</span>
+                                        </a>
                                         <%-- 작성 시간 --%>
                                         <span class="mx-1"> · </span>
                                         <span class="time">${p.created_time }</span>

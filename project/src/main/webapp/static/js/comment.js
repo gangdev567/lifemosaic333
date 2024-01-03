@@ -115,6 +115,7 @@ function getAllComment() {
     comments.forEach((comment) => {
         const mdate = new Date(comment.comment_created_time);
         const cdate = new Date(comment.comment_modified_time);
+        const memberPostListPage = `/project/member/memberPostList?nickname=${comment.nickname}`
 
         const formattedmDate = timeAgo(mdate);
         const formattedcDate = timeAgo(cdate);
@@ -122,7 +123,9 @@ function getAllComment() {
         html += `<div class="mx-5 my-2">
                     <input class="d-none" id="${comment.comment_id}"/>
                     <img src="${settingImgPage}?fileName=${comment.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
-                    <span id="commentNickname">${comment.nickname}</span>  
+                    <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+                    <span id="commentNickname">${comment.nickname}</span>
+                    </a>  
                     <small class=time>${formattedmDate}</small>`;
         if (formattedcDate !== formattedmDate) {
             html += `<small> <strong> *수정됨 </strong> </small>`;
@@ -356,11 +359,14 @@ function addCommentDeleteEventListeners() {
 		        const formattedmDate = timeAgo(recommentcTime);
 		        const formattedcDate = timeAgo(recommentmTime);
 		        const settingImgPage = '/project/setting/settingImg'
+		        const memberPostListPage = `/project/member/memberPostList?nickname=${recomment.nickname}`
                 
                 html += `<div class="mx-5 my-2">
                             <input class="d-none" id="${recomment.re_comment_id}"/>
                             <img src="${settingImgPage}?fileName=${recomment.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
-                            <span id="nickname">  ${recomment.nickname}</span> 
+                            <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+                            <span id="nickname">  ${recomment.nickname}</span>
+                            </a>
                             <small class=time>${formattedmDate}</small>`;
                     if(formattedcDate !== formattedmDate){
     

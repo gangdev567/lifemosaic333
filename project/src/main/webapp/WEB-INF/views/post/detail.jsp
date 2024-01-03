@@ -103,7 +103,13 @@ canvas {
 								<c:url var="settingImgPage" value="/setting/settingImg" />
                                 <img src="${settingImgPage}?fileName=${post.profile_url }" alt="profile" class="me-2 rounded-circle" style="width: 25px; height: 25px; border: 1px solid lightgray;"/>
 								<!-- 사용자 아이콘 -->
-								${post.nickname}
+                                
+                                <c:url var="memberPostListPage" value="/member/memberPostList">
+                                    <c:param name='nickname' value='${post.nickname }'/>
+                                </c:url>
+                                <a href="${memberPostListPage}" style="text-decoration:none; color:black;">
+								    ${post.nickname}
+                                </a>
 								<!-- 작성자 -->
 								<span class="mx-2">|</span> <i class="far fa-eye me-1"></i>
 								<!-- 조회수 아이콘 -->
