@@ -161,7 +161,7 @@ body {
                         <div class="border-bottom py-2">
                             <%-- 첫 번째 줄 --%>
                             <div class="text-body-secondary d-flex mb-1">
-                                
+                                <input id="post_id" class="d-none" value="${p.post_id }"/>
                                 <div class="d-flex flex-fill align-items-center">
                                     <%-- 프로필 이미지 --%>
                                     <c:url var="settingImgPage" value="/setting/settingImg" />
@@ -213,13 +213,13 @@ body {
             
             
                             <!-- 두 번째 줄/ 게시글 제목 -->
-                            <div class="fw-bold py-1">
+                            <div class="fw-bold py-1" style="font-size: 110%; margin: 15px;">
                                 <c:url var="postDetails" value="/post/detail">
                                     <c:param name="post_id" value="${p.post_id}" />
                                 </c:url>
-                                <a class="nav-link text-truncate" style="max-width:250px" href="${postDetails }">${p.title }</a>
+                                <a class="nav-link text-truncate" style="" href="${postDetails }">${p.title }</a>
                             </div>
-            
+                            <div class="tagDiv" data-id="${p.post_id}"></div>
                         </div>
                     </c:forEach>
                 </ul>
@@ -304,8 +304,9 @@ body {
 		crossorigin="anonymous"></script>
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 	<script src="../../js/time.js"></script>
+    <script src="../../js/hashtag.js"></script>
 
 </body>
 </html>
