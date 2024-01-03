@@ -14,7 +14,7 @@
         FROM (
           SELECT ROWNUM AS rnum, sub.*
           FROM (
-            SELECT c.*, u.nickname, cl.like_point, cl.dislike_point
+            SELECT c.*, u.nickname, u.profile_url, cl.like_point, cl.dislike_point
             FROM comments c
             JOIN users u ON c.user_id = u.user_id
             JOIN comment_like cl ON c.comment_id = cl.comment_id
@@ -26,7 +26,7 @@
     </select>
     
     <select id="getRecomment" resultType="Recomment">
-        select r.*, u.nickname, rcl.like_point, rcl.dislike_point 
+        select r.*, u.nickname, u.profile_url, rcl.like_point, rcl.dislike_point 
             from re_comments r
             join users u on r.user_id = u.user_id
             join re_comment_like rcl on r.re_comment_id = rcl.re_comment_id

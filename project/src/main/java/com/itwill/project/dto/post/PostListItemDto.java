@@ -22,6 +22,9 @@ public class PostListItemDto {
     private String image_path;
     private Long view_count;
     private String nickname;
+    private String profile_url;
+    private Long like_point;
+    private Long comment_count;
     
     public static PostListItemDto fromEntity(Post post) {
         
@@ -35,6 +38,9 @@ public class PostListItemDto {
                 .image_path(post.getImage_path())
                 .view_count(post.getView_count())
                 .nickname(post.getNickname())
+                .profile_url(post.getProfile_url())
+                .like_point(post.getLike_point())
+                .comment_count(post.getComment_count())
                 .build();
     }
 }

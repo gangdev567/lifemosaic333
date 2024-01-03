@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MemberPagePageDto {
+public class MemberPostPageDto {
 	private String nickname;
 	private int startNum;
 	private int endNum;
