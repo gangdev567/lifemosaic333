@@ -7,8 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <title>계정 관리</title>
+           
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           crossorigin="anonymous">
+          <link rel="stylesheet" href="../css/main_navigation.css" />
     <link href="../css/user-management-style.css" rel="stylesheet"> <!-- "내가 쓴 게시글" 스타일시트 적용 -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
