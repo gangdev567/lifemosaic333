@@ -224,46 +224,58 @@ function getAllComment() {
  * 수정된 내용을 서버로 전송.
  */
 function addCommentModifyEventListeners() {
-    // 모든 댓글 수정 버튼 요소를 가져옴.
     const btnCommentModifyElements = document.querySelectorAll('small.btnCommentModify');
 
-    // 각 수정 버튼에 이벤트 리스너를 등록.
     btnCommentModifyElements.forEach(btn => {
         btn.addEventListener('click', function() {
-            // 수정할 댓글의 ID를 가져옴.
             const comment_id = this.getAttribute('data-id');
-            // 해당 댓글의 수정 입력창을 포함한 div 요소를 가져옴.
             const multiUseDiv = document.querySelector(`div.multiUseDiv[data-id="${comment_id}"]`);
+
+            // 이미 수정 중인 댓글인 경우
+            const editingComments = document.querySelectorAll('small.editingComment');
+            if (editingComments.length > 0) {
+                alert('수정 중인 댓글이 있습니다.');
+                return;
+            }
+
+            // 해당 댓글의 수정 버튼을 '수정 중' 클래스로 변경
+            btn.classList.add('editingComment');
 
             // 수정할 댓글을 입력할 textarea와 등록 버튼을 생성하여 div에 추가.
             multiUseDiv.innerHTML = `<textarea class="form-control" id="recommentText" placeholder="수정할 댓글 입력"></textarea>
+                                      <button class="btn btn-outline-danger" id="btnCancelRecomment">수정 취소</button>
                                       <button class="btn btn-outline-success" id="btnRegisterRecomment">등록</button>`;
+
+            // 수정 취소 버튼 클릭 이벤트를 처리.
+            const btnCancelRecomment = document.querySelector('button#btnCancelRecomment');
+            btnCancelRecomment.addEventListener('click', function() {
+                // 해당 댓글의 '수정 중' 클래스 삭제
+                btn.classList.remove('editingComment');
+                multiUseDiv.innerHTML = ''; // 수정 입력창 숨기기
+            });
 
             // 수정된 댓글 저장 버튼 클릭 이벤트를 처리.
             const btnRegisterRecomment = document.querySelector('button#btnRegisterRecomment');
             btnRegisterRecomment.addEventListener('click', function() {
-                // 수정된 댓글 내용을 가져옴.
+                // 해당 댓글의 '수정 중' 클래스 삭제
+                btn.classList.remove('editingComment');
+
                 const ctext = document.querySelector('textarea#recommentText').value;
 
-                // 댓글 내용이 비어 있는지 확인합니다.
                 if (ctext === '') {
                     alert('댓글 내용을 입력하세요.');
-                    return; // 함수 종료
+                    return;
                 }
 
-                // 사용자에게 수정 여부.
                 const confirmModify = confirm('정말 수정하시겠습니까?');
 
-                // 사용자가 확인을 누르면 수정된 댓글을 서버로 전송.
                 if (confirmModify) {
                     const data = { comment_id, ctext };
                     console.log(data);
 
-                    // 댓글 수정 요청을 서버로 전송.
                     axios.put('../api/comment/update', data)
                         .then((response) => {
                             console.log(response);
-                            // 모든 댓글을 다시 불러옴.
                             getAllComment();
                         })
                         .catch((error) => {
@@ -274,7 +286,6 @@ function addCommentModifyEventListeners() {
         });
     });
 }
-    
 
     
  // 댓글 삭제 이벤트 리스너 등록 함수
@@ -296,19 +307,14 @@ function addCommentDeleteEventListeners() {
         const uri = `../api/comment/${comment_id}`;
       
         // 댓글 삭제 요청 보내기
-        axios.put(uri)
+        axios.delete(uri)
           .then((response) => {
             console.log(response);
             getAllComment();
 
-            // 댓글 삭제 후 닉네임을 '알 수 없음'으로 변경
-            const nickname = document.querySelector(`span#commentNickname`);
-            if (nickname) {
-              nickname.innerText = '알 수 없음';
-            }
+            
 
-            // 삭제된 댓글의 삭제 버튼 숨기기
-            this.style.display = 'none';
+            
           })
           .catch((error) => {
             console.log(error);
@@ -380,7 +386,8 @@ function addCommentDeleteEventListeners() {
                             <small>${recomment.dislike_point}</small>`;
                     if(signedInUser === recomment.user_id) {
             
-                    html+= `<small class="btnRecommentDelete" data-id="${recomment.re_comment_id}" style="cursor: pointer;">삭제</small>`;
+                    html+= `<small class="btnRecommentDelete" data-id="${recomment.re_comment_id}" data-cid="${comment_id}" style="cursor: pointer;">삭제</small>
+                    		<small class="btnRecommentModify" data-id="${recomment.re_comment_id}" data-cid="${comment_id}" style="cursor: pointer;">수정</small>`;
                     }
                         
                 html += `
@@ -388,7 +395,9 @@ function addCommentDeleteEventListeners() {
                             <div class="recommentContent" data-id="${recomment.re_comment_id}">
                                 <h6><br>${recomment.recomment_content}</h6>
                             </div>
+      
                             </div>
+                            <div class="multiDiv" data-id="${recomment.re_comment_id}"></div>
                             <hr />`;
                 }); 
                 html += `   <div class="row mx-5 my-2">
@@ -405,7 +414,12 @@ function addCommentDeleteEventListeners() {
                 const btnRegisterRecomment = document.querySelector(`button.btnRegisterRecomment[data-id="${comment_id}"]`);
                 btnRegisterRecomment.addEventListener('click', registerRecomment);
                 
-                const btnRecommentDelete = document.querySelectorAll('small.btnRecommentDelete')
+                const btnRecommetModify = document.querySelectorAll(`small.btnRecommentModify[data-cid="${comment_id}"]`);
+                btnRecommetModify.forEach(btn => {
+					btn.addEventListener('click', RecommentModify)
+				});
+                
+                const btnRecommentDelete = document.querySelectorAll(`small.btnRecommentDelete[data-cid="${comment_id}"]`)
                 btnRecommentDelete.forEach(btn => {
                    btn.addEventListener('click', RecommentDelete);
                 });
@@ -465,35 +479,96 @@ function registerRecomment() {
         });
 }
     
-// 댓글 삭제 함수
 function RecommentDelete() {
-  const re_comment_id = this.getAttribute('data-id'); // 삭제할 댓글의 ID를 가져옴
-  const uri = `../api/comment/recomment/${re_comment_id}`; // 삭제할 댓글에 대한 API 엔드포인트 URI
-  
-  const confirmDelete = confirm('정말로 댓글을 삭제하시겠습니까?'); // 삭제하기 전에 사용자에게 확인
-  
-  if (confirmDelete) {
-    axios.put(uri) 
-      .then((response) => {
-        console.log(response);
-        const recommentContent = document.querySelector(`div.recommentContent[data-id="${re_comment_id}"]`);
-        recommentContent.innerHTML = '<h6>삭제된 댓글입니다.</h6>'; // 댓글 내용을 '삭제된 댓글입니다.'로 변경
-        
-        const nickname = document.querySelector(`span#nickname`);
-        if (nickname) {
-          nickname.innerText = '알 수 없음'; // 해당 댓글의 닉네임을 화면에도 '알 수 없음'으로 변경
+    const re_comment_id = this.getAttribute('data-id'); // 삭제할 대댓글의 ID를 가져옴
+    const uri = `../api/comment/recomment/${re_comment_id}`; // 삭제할 대댓글에 대한 API 엔드포인트 URI
+    
+    const confirmDelete = confirm('정말로 대댓글을 삭제하시겠습니까?'); // 삭제하기 전에 사용자에게 확인
+    
+    if (confirmDelete) {
+        axios.delete(uri) 
+            .then((response) => {
+                console.log(response);
+                const comment_id = this.getAttribute('data-cid'); // 대댓글이 속한 댓글의 ID
+                ShowRecomment(comment_id); // 대댓글이 속한 댓글의 ID를 인자로 대댓글 목록을 다시 불러오는 함수 호출
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+}
+
+function RecommentModify() {
+    let isEditing = false;
+
+    const re_comment_id = this.getAttribute('data-id');
+    const comment_id = this.getAttribute('data-cid');
+
+    const parentDiv = document.querySelector(`.multiDiv[data-id="${re_comment_id}"]`);
+
+    // 수정 중인 댓글이 있는지 확인하고, 있다면 창을 닫도록 처리
+    const existingEditing = parentDiv.querySelector('.comment-edit');
+    if (existingEditing) {
+        parentDiv.removeChild(existingEditing);
+        return;
+    }
+
+    const editDiv = document.createElement('div'); 
+    editDiv.classList.add('comment-edit'); 
+
+    const textareaHTML = `<textarea class="form-control" id="rtext" placeholder="대댓글 수정입력"></textarea>`;
+    const buttonHTML = `<button class="btn btn-outline-danger" id="btnCancelRecomment">수정 취소</button>
+                        <button class="btn btn-outline-success" id="btnRegisterRecomment">등록</button>`;
+    editDiv.innerHTML = textareaHTML + buttonHTML; 
+
+    // 수정된 대댓글 저장 버튼 클릭 이벤트를 처리.
+    const btnRegisterRecomment = editDiv.querySelector(`#btnRegisterRecomment`);
+    btnRegisterRecomment.addEventListener('click', function() {
+        // 수정 중인지 확인하고, 이미 수정 중이라면 알림을 표시하고 반환
+        if (isEditing) {
+            alert('이미 댓글 수정 중입니다.');
+            return;
         }
-        
-        // 해당 댓글의 삭제 버튼을 찾아 숨김
-        const deleteButton = document.querySelector(`span.btnRecommentDelete[data-id="${re_comment_id}"]`);
-        if (deleteButton) {
-          deleteButton.style.display = 'none'; // 삭제된 댓글의 삭제 버튼 숨김
+
+        isEditing = true; // 수정 중 상태로 변경
+
+        const rtext = editDiv.querySelector(`#rtext`).value;
+
+        if (rtext === '') {
+            alert('대댓글 내용을 입력하세요.');
+            isEditing = false; // 수정 취소 상태로 변경
+            return;
         }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+
+        const confirmModify = confirm('정말 수정하시겠습니까?');
+
+        if (confirmModify) {
+            const data = { re_comment_id, rtext };
+            console.log(data);
+
+            axios.put(`../api/comment/recomment/${re_comment_id}`, data)
+                .then((response) => {
+                    console.log(response);
+                    parentDiv.removeChild(editDiv); // 수정 입력창 제거
+                    ShowRecomment(comment_id);
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    isEditing = false; // 수정 완료 후 상태 변경
+                });
+        }
+    });
+
+    // 수정 취소 버튼 클릭 이벤트를 처리.
+    const btnCancelRecomment = editDiv.querySelector(`#btnCancelRecomment`);
+    btnCancelRecomment.addEventListener('click', function() {
+        parentDiv.removeChild(editDiv); // 수정 입력창 제거
+        isEditing = false; // 수정 중 상태를 false로 변경
+    });
+
+    parentDiv.appendChild(editDiv); // 수정 입력창을 해당 대댓글 아래에 추가
 }
     
     // 답글 접기로 버튼 변경

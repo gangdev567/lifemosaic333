@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +14,21 @@
           
   <style>
 	.ck-editor__editable {
-	    min-height: 320px;
+	    min-height: 400px;
 	</style>
       
 </head>
 
 <body>
-<div class="container-fluid">
+
+<!-- 메뉴바 -->
+			<c:url var="imgPath" value="../img/logo.png" />
+			<%@ include file="../fragments/navigation.jspf" %>
+            
+            <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
+            <div style="margin:150px"></div>
+            
+<div class="container-fluid my-3">
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <form id="createForm" action="${postCreatePage}" method="post" class="border p-4 rounded" >

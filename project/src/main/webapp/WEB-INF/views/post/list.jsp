@@ -77,7 +77,7 @@ body {
 	color: #333;
 }
 
-<<<<<<< HEAD
+
 .post-title {
 	margin: 8px 0;
 	font-size: 1.1em;
@@ -106,7 +106,7 @@ body {
     background-color: #e0c3ff; /* 연한 보라색 배경색을 지정합니다. */
     border-color: #e0c3ff; /* 선택된 페이지 버튼의 테두리 색상을 지정합니다. */
   }
-    
+
 </style>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" 
             rel="stylesheet" 
@@ -156,6 +156,21 @@ body {
         </div>
     </div>
     <hr style= "background: #7F7C82; height:3px; border:0;">
+
+        
+        
+    <div class="item"></div>
+   
+        
+        
+ 
+        
+        
+        
+        
+        
+        
+
 
  <div class="row justify-content-center">
     <div class="">
