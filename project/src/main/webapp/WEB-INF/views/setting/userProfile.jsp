@@ -86,89 +86,80 @@
           rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
           crossorigin="anonymous">
 
-</head>
-<body>
+
+	<div class="container-fluid">
+		<div id="content">
+			<div id="left">
+				<%@ include file="../fragments/settingNavigation.jspf"%>
+				
+			</div>
+			
+			<div class="d-flex " >
+			  <div class="vr"></div>
+			</div>
+			<div id="center" style="padding-left:10px; padding-right:10px;">
+			
+				
+				<div style="height: 70px; margin-left :30px; margin-right:30px; background-color: #F3F1F5;" class="d-flex align-items-center justify-content-between rounded-4  m-2 ps-3 pe-4">
+       				 <div style="font-size:18px;font-weight: bold; max-width:180px; margin-left:10px;" class="px-7">프로필</div>
+       				 <img alt="프로필 페이지 이미지" src="../img/userProfile.png" style="height:150px; width:150px; margin-top:40px; margin-bottom:101px; margin-right:20px;">
+    
+                  </div>
+                 <!-- 프로필 이미지 변경 영역 -->
+                 
+    
+					<div class="my-2 card" style="border:none; padding-top:30px; margin-left:100px; ">
+					<div style="width: 155px; height: 155px; border-radius: 70%; background-color:#7F7C82; display: flex; justify-content: center; align-items: center;">
+						<div class="my-2 img-box mx-auto" >
+							<c:url var="settingImgPage" value="/setting/settingImg" />
+							<img class="profileImg mx-auto" src="${settingImgPage}?fileName=${user.profile_url}" name="profileImg" id="profileImg" alt="프로필 사진">
+						</div>
+					</div>		
+				<c:url var="updateImgPage" value="/setting/updateImg"></c:url>
+				<form action="${updateImgPage}" method="post" enctype="multipart/form-data" >
+				
+				  		  <input class="form-control form-control-sm" style="margin-top:20px; width:400px;" type="file"  id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);">
+							<input  class="form-control" type="hidden" name="profile_url" id="profile_url"  value="${user.profile_url}">
+							<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
+							<div  style="margin-top:20px;">
+							<button id="btnUpdateImg" name="btnUpdateImg" type="submit" class="btn btn-secondary disabled" style=" font-size:13px; font-weight:bold;border:none;float:left; background-color:#713ABE; margin-right:10px; width:90px;">변경</button>
+				</form>
+				<c:url var="settingBasicImg" value="/setting/settingBasicImg" />
+				<form action="${settingBasicImg}"  >	
+					<input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
+					<button type="submit" class="btn btn-secondary" style=" font-size:13px; font-weight:bold;  border:none; background-color:#610C9F;">기본 변경</button>
+					
+				</form>
+				</div>
+
+					</div>
+			
+			<!-- 닉네임 변경 영역 -->
+				<div id="registerNickname" style="margin-top:60px; margin-left:60px;"  >
+				
+				<div style="margin-left:40px; margin-top:25px;"  >
+					<label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">아이디</label>
+				
+					<input type="text" class="form-control" id="user_name" name="user_name"
+						value="${user.user_id }" style="width:400px;">
+				</div>
+				<div id="limitUserId" style="font-size:12px; margin-left:40px; margin-top:3px;">
+					<!-- 아이디는 변경 불가라는 문장 띄우기 -->
+				</div>
+				
+				<div style="margin-left:40px; margin-top:25px;">
+					<label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">이메일</label>
+					<input class="form-control" id="email" type="text" name="email"
+						value="${user.email }" style="width:400px;">
+
+				</div>
+				<div id="limitEmail" style="font-size:12px;margin-left:40px; margin-top:3px;">
+					<!-- 이메일은 변경 불가라는 문장 띄우기 -->
+				</div>
+				
 
 
-<div class="container-fluid">
-    <div id="content">
-        <div id="left">
-            <%@ include file="../fragments/settingNavigation.jspf" %>
-
-        </div>
-
-        <div class="d-flex ">
-            <div class="vr"></div>
-        </div>
-        <div id="center" style="padding-left:10px; padding-right:10px;">
-
-
-            <div style="height: 70px; margin-left :30px; margin-right:30px; background-color: #F3F1F5;"
-                 class="d-flex align-items-center justify-content-between rounded-4  m-2 ps-3 pe-4">
-                <div style="font-size:18px;font-weight: bold; max-width:180px; margin-left:10px;" class="px-7">프로필</div>
-                <img alt="프로필 페이지 이미지" src="../img/userProfile.png"
-                     style="height:150px; width:150px; margin-top:40px; margin-bottom:101px; margin-right:20px;">
-            </div>
-            <!-- 프로필 이미지 변경 영역 -->
-
-
-            <div class="my-2 card" style="border:none; padding-top:30px; margin-left:100px; ">
-                <div style="width: 155px; height: 155px; border-radius: 70%; background-color:#7F7C82; display: flex; justify-content: center; align-items: center;">
-                    <div class="my-2 img-box mx-auto">
-                        <c:url var="settingImgPage" value="/setting/settingImg"/>
-                        <img class="profileImg mx-auto" src="${settingImgPage}?fileName=${user.profile_url}"
-                             name="profileImg" id="profileImg" alt="프로필 사진">
-                    </div>
-                </div>
-                <c:url var="updateImgPage" value="/setting/updateImg"></c:url>
-                <form action="${updateImgPage}" method="post" enctype="multipart/form-data">
-
-                    <input class="form-control form-control-sm" style="margin-top:20px; width:400px;" type="file"
-                           id="profile" name="profile" accept="image/*" onchange="setThumbnail(event);">
-                    <input class="form-control" type="hidden" name="profile_url" id="profile_url"
-                           value="${user.profile_url}">
-                    <input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-                    <div style="margin-top:20px;">
-                        <button id="btnUpdateImg" name="btnUpdateImg" type="submit" class="btn btn-secondary disabled"
-                                style=" font-size:13px; font-weight:bold;border:none;float:left; background-color:#713ABE; margin-right:10px; width:90px;">
-                            변경
-                        </button>
-                </form>
-                <c:url var="settingBasicImg" value="/setting/settingBasicImg"/>
-                <form action="${settingBasicImg}">
-                    <input type="hidden" name="user_id" id="user_id" value="${user.user_id}">
-                    <button type="submit" class="btn btn-secondary"
-                            style=" font-size:13px; font-weight:bold;  border:none; background-color:#610C9F;">기본 변경
-                    </button>
-
-                </form>
-            </div>
-
-        </div>
-
-        <!-- 닉네임 변경 영역 -->
-        <div id="registerNickname" style="margin-top:60px; margin-left:60px;">
-
-            <div style="margin-left:40px; margin-top:25px;">
-                <label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">아이디</label>
-
-                <input type="text" class="form-control" id="user_id" name="user_id"
-                       value="${user.user_id }" style="width:400px;">
-            </div>
-            <div id="limitUserId" style="font-size:12px;margin-left:40px; margin-top:3px;">
-                <!-- 아이디는 변경 불가라는 문장 띄우기 -->
-            </div>
-
-            <div style="margin-left:40px; margin-top:25px;">
-                <label style="font-size:15px; font-weight:bold; color:#7F7C82; margin-bottom:5px;">이메일</label>
-                <input class="form-control" id="email" type="text" name="email"
-                       value="${user.email }" style="width:400px;">
-
-            </div>
-            <div id="limitEmail" style="font-size:12px;margin-left:40px; margin-top:3px;">
-                <!-- 이메일은 변경 불가라는 문장 띄우기 -->
-            </div>
-
+         
 
             <!-- 닉네임 변경 -->
             <div style="margin-left:40px; margin-top:25px;">

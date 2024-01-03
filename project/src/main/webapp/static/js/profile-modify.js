@@ -14,7 +14,7 @@
 	 
 	 const inputProfileImg = document.querySelector('input#profile');
 	 
-	const inputUserId = document.querySelector('input#user_id');
+	const inputUserId = document.querySelector('input#user_name');
 	
 	const inputEmail = document.querySelector('input#email');
 	
@@ -29,13 +29,15 @@
 	 //아이디와 이메일은 변경 불가능.
 	inputUserId.addEventListener('click', ()=> {
 	
-		       limitUserId.innerHTML = '* 아이디는 변경하실 수 없습니다.';
+		       limitUserId.innerHTML = '* 아이디는 계정 관리 페이지에서 해주세요';
             limitUserId.classList.add('text-danger');
             limitUserId.classList.add('fw-bold');
             
 	});
+	
+	
 	inputEmail.addEventListener('click', ()=>{
-		limitEmail.innerHTML = '* 이메일은 변경하실 수 없습니다.';
+		limitEmail.innerHTML = '* 이메일은 계정 관리 페이지에서 해주세요.';
 		limitEmail.classList.add('text-danger');
 		limitEmail.classList.add('fw-bold');
 		

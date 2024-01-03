@@ -25,6 +25,7 @@
 		<typeAlias type="com.itwill.project.domain.MyCommentListItem" alias="MyCommentListItem" />
 		<typeAlias type="com.itwill.project.domain.MyCommentListItemByPaging" alias="MyCommentListItemByPaging"/>
 		<typeAlias type="com.itwill.project.domain.MyBookmarkListItemByPaging" alias="MyBookmarkListItemByPaging"/>
+		<typeAlias type="com.itwill.project.domain.MemberPostListItem" alias="MemberPostListItem"/>
     </typeAliases>
     
     
