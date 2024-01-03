@@ -148,7 +148,8 @@ canvas {
 						</div>
 						<div class="my-4 grow-wrap" style="height: 400px; border: none;">
 						    <label for="content" class="form-label"></label>
-						    <div class="form-control" id="content" style="height: 600px; border: none;">${post.content}</div>
+						    <div class="form-control" id="content" style="border: none;">${post.content}</div>
+                            <div id="youtube-video"></div>
 						</div>
 
 						<hr>
