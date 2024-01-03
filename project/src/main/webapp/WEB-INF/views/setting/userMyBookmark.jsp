@@ -96,7 +96,12 @@
                         <div style=" margin-left: 10px; margin-right: 20px;">
                         	<c:url var="settingImgPage" value="/setting/settingImg"/>
                             <img class="profileImg mx-auto" src="${settingImgPage}?fileName=${post.profile_url}" name="profileImg" id="profileImg" alt="프로필 사진"> 
-                             <span class="mb-2 text-sencondary" style="font-weight:bolder; font-size: small;">${post.post_user_nickname}</span>
+                            <c:url var="memberPostListPage" value="/member/memberPostList">
+								<c:param name='nickname'  value='${post.post_user_nickname}'/>
+							</c:url>
+							<a href="${memberPostListPage }" style="text-decoration:none; color:black;">
+                             <span class="mb-2 text-sencondary" style="font-weight:bolder; font-size: small;"  onmouseover="changeColor(this)" onmouseout="restoreColor(this)">${post.post_user_nickname}</span>
+							</a>
                              <span class="mb-2 text-secondary" style="text-align: right; font-size: small; margin:10px; "> ${post.post_time} </span>
                         </div>
                         <div style="margin:5px;" >

@@ -216,7 +216,7 @@ public class SettingController {
 			int total = myCommentList.size();
 			
 			// size : 한 화면에 보여질 게시물 수(일단 3개로 해보장,,)
-			 int size =3;
+			 int size =10;
 			 
 			//전체 페이지 수
 			int totalPages = (int) (Math.ceil((total * 1.0)/size));
