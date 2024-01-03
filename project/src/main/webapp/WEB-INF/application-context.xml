@@ -34,7 +34,7 @@
         <!-- hikariConfig.setDriverClassName(""); -->
         <property name="driverClassName" value="oracle.jdbc.OracleDriver" />
         <!-- 192.168.20.26 -->
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe" />
+        <property name="jdbcUrl" value="jdbc:oracle:thin:@192.168.20.26:1521:xe" />
         <property name="username" value="scott" />
         <property name="password" value="tiger" />
     </bean>
