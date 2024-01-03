@@ -35,7 +35,8 @@
         }
 
         #center {
-            flex: 3; /* #center를 두 배 크기로 설정 */
+            flex: 2; /* #center를 두 배 크기로 설정 */
+            margin-left:270px;
            
         }
    
@@ -56,17 +57,17 @@
       	rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
 	</head>
+	<link rel="stylesheet" href="../css/main_navigation.css" />
+<link rel="stylesheet" href="../css/detailWeeklyStyle.css" />
 	<body>
 		<div id="top">
 		<!-- 메뉴바 -->
-			<c:url var="imgPath" value="../img/logo2.png" />
+			<c:url var="imgPath" value="../img/logo.png" />
 			<%@ include file="../fragments/navigation.jspf" %>
 		</div>
 		
 		<div id="content">
-			<div id="left">
 			
-			</div>
 			<!--회원의  프로필과 닉네임 가져오기.. -->
 			<div id="center">
 			<!-- 회원의 정보들 설정 -->
@@ -165,7 +166,11 @@
 			</div>
 			
 			<div id="right">
-			
+			<div style="position: fixed; width: 250px; top: 50%; transform: translateY(-50%);">
+				<%@include file="../fragments/topwriter.jspf"%>
+				<div class="p-2"></div>
+				<%@include file="../fragments/detail-weekly.jspf"%>
+			</div>
 			</div>
 		</div>
     <div id="footer">
