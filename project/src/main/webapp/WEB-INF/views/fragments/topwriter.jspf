@@ -17,7 +17,11 @@
 	            <div>
 	            	<c:url var="settingImgPage" value="/setting/settingImg" />
 					<img class="topProfileUserImg me-1" src="${settingImgPage}?fileName=${writer.profile_url }" />
-	                <span class="align-middle fw-medium text-truncate d-inline-block" style="max-width: 120px;">${writer.nickname }</span>
+
+					<a href="##" style="text-decoration:none; color:black;">
+	                <span class="align-middle fw-medium text-truncate d-inline-block" style="max-width: 90px;">${writer.nickname }</span>
+	               	</a>
+
 	            </div>
 	            <div>
 	                <span class="align-middle me-1">

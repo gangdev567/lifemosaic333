@@ -64,7 +64,7 @@
 				
 			   
 			   <div style="height: 70px; margin-left :30px; margin-right:30px; background-color: #F3F1F5;" class="d-flex align-items-center justify-content-between rounded-4  m-2 ps-3 pe-4">
-       				 <div style="font-size:18px; font-weight: bold; max-width:250px; margin-left:10px;" class="px-7">내가 쓴 댓글 (${commentLength} COMMENTS)</div>
+       				 <div style="font-size:18px; font-weight: bold; max-width:350px; margin-left:10px;" class="px-13">내가 쓴 댓글 (${commentLength} COMMENTS)</div>
        				 <img alt="댓글 페이지 이미지" src="../img/userMyComment.png" style="height:200px; width:200px; margin-top:40px; margin-bottom:79px; margin-right:20px;">
     
               </div>
