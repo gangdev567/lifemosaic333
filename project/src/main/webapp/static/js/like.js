@@ -316,11 +316,16 @@ function switchLikeBtn() {
     const likeBtn = document.querySelector('button#likeBtn'); // 좋아요 버튼 요소 가져오기
     const dislikeBtn = document.querySelector('button#dislikeBtn'); // 싫어요 버튼 요소 가져오기
 
+
     // 좋아요 버튼이 이미 활성화되어 있지 않다면
     if (!likeBtn.classList.contains('btn-secondary')) {
         likeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
         likeBtn.style.backgroundColor = '#F0D9FF'; // 좋아요 버튼 배경색 변경
+        likeBtn.style.border = 'none';
+        dislikeBtn.style.border = 'none';
+        
         likeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933691.png" width="30" height="30" alt="" title="" class="img-small"> 좋아요'; // 아이콘과 텍스트 변경
+        likeBtn.style.color = '#7F7C82';
         likeBtn.removeEventListener('click', postLike); // 기존 이벤트 제거
         likeBtn.addEventListener('click', postLikeCancel); // 새로운 이벤트 추가
 
@@ -337,6 +342,8 @@ function switchDislikeBtn() {
     if (!dislikeBtn.classList.contains('btn-secondary')) {
         dislikeBtn.classList.add('btn-secondary'); // 버튼 스타일 변경
         dislikeBtn.style.backgroundColor = '#BFA2DB'; // 싫어요 버튼 배경색 변경
+        dislikeBtn.style.border = 'none';
+        likeBtn.style.border = 'none';
         dislikeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933788.png" width="30" height="30" alt="" title="" class="img-small"> 싫어요'; // 아이콘과 텍스트 변경
         dislikeBtn.removeEventListener('click', postDislike); // 기존 이벤트 제거
         dislikeBtn.addEventListener('click', postDislikeCancel); // 새로운 이벤트 추가
@@ -352,6 +359,7 @@ function returnLikeBtn() {
 
     likeBtn.classList.remove('btn-secondary'); // 버튼 스타일 원래대로 변경
     likeBtn.style.backgroundColor = ''; // 원래 버튼 배경색으로
+    likeBtn.style.color = 'black';
     likeBtn.innerHTML = '<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png" width="30" height="30" alt="" title="" class="img-small"> 좋아요'; // 아이콘과 텍스트 변경
     likeBtn.removeEventListener('click', postLikeCancel); // 기존 이벤트 제거
     likeBtn.addEventListener('click', postLike); // 새로운 이벤트 추가
