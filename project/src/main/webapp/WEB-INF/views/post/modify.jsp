@@ -75,8 +75,8 @@
                 </div>
                 <div style="display: flex; justify-content: center;">
                     <c:if test="${post.user_id eq signedInUser}">
-						<button class="btn me-2" id="btnUpdate" type="submit" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #F0D9FF">수정</button>
-                        <button class="btn" id="btnDelete" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">삭제</button>
+						<button type="button" class="btn me-2" id="btnUpdate" type="submit" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #F0D9FF">수정</button>
+                        <button type="button" class="btn" id="btnDelete" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">삭제</button>
                     </c:if>
                 </div>
             </form>
@@ -120,12 +120,5 @@
 			</c:forEach>
 		<script>const postid = ${post.post_id}</script>              
         <script src="../js/post-modify.js"></script>
-        <script>
-        document.addEventListener('keydown', function(event) {
-             if ((event.keyCode || event.which) === 13) {
-                  event.preventDefault();
-                    }
-               }, true);
-</script>
     </body>
 </html>
