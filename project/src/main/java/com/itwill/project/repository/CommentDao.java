@@ -26,4 +26,6 @@ public interface CommentDao {
 
     int deleteRecomment(@Param("re_comment_id")Long re_comment_id);
     
+    int updateRecomment(Recomment recomment);
+    
 }

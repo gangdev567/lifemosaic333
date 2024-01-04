@@ -11,6 +11,7 @@ import com.itwill.project.domain.SettingUser;
 import com.itwill.project.dto.setting.SettingNicknameDto;
 import com.itwill.project.dto.setting.SettingPageDto;
 import com.itwill.project.dto.setting.SettingProfileImgDto;
+import com.itwill.project.repository.PostDao;
 import com.itwill.project.repository.SettingDao;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 
 public class SettingService {
 	private final SettingDao settingDao;
-	
+	private final PostDao postDao;
 	
 	public SettingUser read(String user_id) {
 		SettingUser user = settingDao.selectBySettingUser(user_id);
@@ -89,6 +90,16 @@ public class SettingService {
 		
 		return settingDao.selectBookmarkByPaging(dto);
 	}
+	
+	//해시 태그 가져오기
+	//해시태그들 가져오기
+	
+		public List<String> selectPostHashtag(Long post_id){
+			
+			log.debug("해시태그들 가져오기");
+			
+			return postDao.selectHashtagByPostid(post_id);
+		}
 
 
 }

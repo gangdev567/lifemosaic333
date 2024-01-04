@@ -9,6 +9,7 @@ import com.itwill.project.domain.Recomment;
 import com.itwill.project.dto.comment.CommentRegisterDto;
 import com.itwill.project.dto.comment.CommentUpdateDto;
 import com.itwill.project.dto.comment.RecommentRegisterDto;
+import com.itwill.project.dto.comment.RecommentUpdateDto;
 import com.itwill.project.repository.CommentDao;
 
 import lombok.RequiredArgsConstructor;
@@ -75,5 +76,11 @@ public class CommentService {
         int result = commentDao.deleteRecomment(re_comment_id);
         
         return result;
+    }
+    
+    public int updateRecomment(RecommentUpdateDto dto) {
+    	int result = commentDao.updateRecomment(dto.toEntity());
+    	
+    	return result;
     }
 }

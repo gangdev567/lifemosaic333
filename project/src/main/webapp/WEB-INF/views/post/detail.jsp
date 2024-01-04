@@ -57,6 +57,7 @@ canvas {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	gap: 30px;
+	
 }
 
 .btn-custom-like, .btn-custom-dislike {
@@ -146,10 +147,10 @@ canvas {
 							<input style="display: none;" class="hidden" id="post_id"
 								type="number" value="${post.post_id}" readonly />
 						</div>
-						<div class="my-2">
-							<label for="content" class="form-label"></label>
-							<textarea class="form-control" id="content"
-								style="height: 500px; border: none;">${post.content}</textarea>
+						<div class="my-4 grow-wrap" style="height: 400px; border: none;">
+						    <label for="content" class="form-label"></label>
+						    <div class="form-control" id="content" style="border: none;">${post.content}</div>
+                            <div id="youtube-video"></div>
 						</div>
 
 						<hr>
@@ -157,7 +158,7 @@ canvas {
 						<div class="d-flex gap-2 justify-content-start">
 							<c:forEach items="${tags }" var="tag">
 								<span class="badge px-3 py-2 text-primary-emphasis rounded-pill"
-									style="background-color: #F3F1F5">#${tag}</span>
+									style="background-color: #F3F1F5 ">#${tag}</span>
 							</c:forEach>
 						</div>
 
@@ -168,7 +169,7 @@ canvas {
 								<div style="margin-bottom: 0px;">
 
 									<%-- 좋아요 및 싫어요 버튼 --%>
-									<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
+									<button class="btn btn-custom-like" id="likeBtn" name="likeBtn" >
 										<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="좋아요" class="img-small">
 										좋아요
 									</button>
@@ -257,7 +258,7 @@ canvas {
 
 	<script src="../js/comment.js"></script>
 	<script src="../js/time-details.js"></script>
-
+    <script src="../js/textarea.js"></script>
  <script>
    document.addEventListener('DOMContentLoaded', function() {
 	    document.getElementById('content').addEventListener('click', function(event) {

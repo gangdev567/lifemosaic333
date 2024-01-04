@@ -12,72 +12,95 @@
             integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" 
             crossorigin="anonymous">
     </head>
+    
+      <style>
+	.ck-editor__editable {
+	    min-height: 450px;
+	</style>
     <body>
     
-        <div>
-        
-        <main class="my-2">
-            <div class="card">
-                <form class="card-body" id="postModifyform">
-                    <div class="my-2">
-                        <c:url var="returnList" value="/post/list/" >
-                            <c:param name="sub_category_id" value="${post.sub_category_id}"></c:param>
-                        </c:url>
-                        <a class="btn btn-primary fs-5 fw-bold" href="${returnList}">게시판 돌아가기</a>
-                    </div>
-                    <div class="my-2">
-                        <input class="d-none" id="sub_category_id" name="sub_category_id" value="${post.sub_category_id}" />
-                        <label for="post_id" class="form-label">번호</label> 
-                        <input class="form-control" id="post_id" name="post_id"
-                            type="number" value="${post.post_id}" readonly />
-                    </div>
-                    <div class="my-2">
-                        <label for="title" class="form-label">제목</label>
-                        <input class="form-control" id="title" name="title"
-                            type="text" value="${post.title}"/>
-                    </div>
-                    <div class="my-2">
-                        <label for="content" class="form-label">내용</label>
-                        <textarea class="form-control" id="content" name="content"
-                            rows="5" cols="80" >${post.content}</textarea>
-                    </div>
-                    
-                    <!-- 해시태그 입력 칸 -->
-                    <div>
-                    	<input id="inputHashTag" class="form-control" type="text" placeholder="#특수문자 제외" list="searchOptions"/>
-<!-- 자동완성 기능 ------------------------------------------------------------------------ -->                    	
-                    <datalist id="searchOptions">
-                    	<option value="키워드 준비 중 ..." />
-                    </datalist>
-<!-- ------------------------------------------------------------------------------------------ -->
-                    </div>
-                    <!-- 해시태그 보여주는 창 -->
-                    <div  class="my-2">
-                    	<div id="hashtagList" class="d-flex gap-2 justify-content-start">
-                    	</div>
-                    </div>
-                    
-                    <div class="my-2">
-                        <label for="author" class="form-label">작성자</label>
-                        <input class="form-control" id="nickname"
-                            type="text" value="${post.nickname}" readonly />
-                    </div>
-                </form>
-                </div>
-                <div class="card-footer">
-                    <c:if test="${post.user_id eq signedInUser}">
-                    <button class="btn btn-danger" id="btnDelete">삭제</button>
-                    <button class="btn btn-success" id="btnUpdate" type="submit">수정완료</button>
-                    </c:if>
+    <c:url var="imgPath" value="../img/logo.png" />
+			<%@ include file="../fragments/navigation.jspf" %>
+            
+            <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
+            <div style="margin:150px"></div>
+            
+            
+<div class="container-fluid my-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <form id="postModifyform" class="border p-4 rounded">
+             <div style="display: none;">
+                <input class="d-none" id="sub_category_id" name="sub_category_id" value="${post.sub_category_id}" />
+                <label for="post_id" class="form-label d-none">번호</label> 
+                <input class="form-control" id="post_id" name="post_id" type="number" value="${post.post_id}" readonly />
+            </div>
+                <div class="mb-3">
+                    <label for="title" class="form-label">제목</label>
+                    <input id="title" class="form-control" type="text" name="title" value="${post.title}">
+                    <div id="titleError"></div>
                 </div>
                 
-        </main>
+                <div class="mb-3">
+                    <label for="content" class="form-label">본문</label>
+                    <textarea id="editor" class="form-control" name="content" rows="5">${post.content}</textarea>
+                    <div id="contentError"></div>
+                </div>
+                
+                <div class="mb-3">
+                    <input id="inputHashTag" class="form-control" type="text" placeholder="#특수문자 제외" list="searchOptions">
+                    <!-- 자동완성 기능 -->
+                    <datalist id="searchOptions">
+                        <option value="키워드 준비 중 ..." />
+                    </datalist>
+                    <!-- -->
+                </div>
+                
+                <!-- 해시태그 보여주는 창 -->
+                <div class="my-2">
+                    <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
+                </div>
+                
+            </form>
+                <div class="card-footer">
+                    <c:if test="${post.user_id eq signedInUser}">
+                        <button class="btn btn-outline-primary" id="btnDelete">삭제</button>
+						<button class="btn btn-outline-success" id="btnUpdate" type="submit">수정완료</button>
+                    </c:if>
+                </div>
+        </div>
     </div>
+</div>
+                
         
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
                 integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" 
                 crossorigin="anonymous"></script>
        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+       <script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/ckeditor.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/40.2.0/classic/translations/ko.js"></script>
+    
+    
+ <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // 에디터 값이 변경될 때마다 에디터 값 가져오기
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .then(editor => {
+                editor.model.document.on('change:data', () => {
+                    // 에디터 값이 변경될 때마다 에디터 값 가져오기
+                    const editorValue = editor.getData();
+                    console.log('에디터 값:', editorValue);
+
+                    // 'editor' ID를 가진 textarea에 에디터 값 할당
+                    document.querySelector('#editor').value = editorValue;
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+</script>
 		<script>let a=[];</script>
 			<c:forEach items="${tags }" var="tag">
 				<script>a.push('${tag}');</script>
