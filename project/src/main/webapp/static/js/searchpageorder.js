@@ -130,9 +130,14 @@ document.addEventListener('DOMContentLoaded', function() {
 		let htmlStr = '';
 
 		if (searchData.length == 0) {
-			htmlStr += `<div class="my-3 ms-2">
+			htmlStr += `
+			<div class="my-3 ms-2">
 			<div class="my-2">
-			<h4>검색 결과가 없습니다.</h4></div></div>`;
+			<h4>검색 결과가 없습니다.</h4>
+			</div>
+			</div>
+			<div style="margin-top : 500px"></div>
+			`;
 		} else {
 			for (
 				let i = count_per_page * (pageNumber - 1) + 1;
