@@ -114,6 +114,13 @@
             });
     });
 </script>
+        <script>
+        document.addEventListener('keydown', function(event) {
+             if ((event.keyCode || event.which) === 13) {
+                  event.preventDefault();
+                    }
+               }, true);
+        </script>
     
 
 </body>

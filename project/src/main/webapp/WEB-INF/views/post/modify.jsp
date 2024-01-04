@@ -120,5 +120,12 @@
 			</c:forEach>
 		<script>const postid = ${post.post_id}</script>              
         <script src="../js/post-modify.js"></script>
+        <script>
+        document.addEventListener('keydown', function(event) {
+             if ((event.keyCode || event.which) === 13) {
+                  event.preventDefault();
+                    }
+               }, true);
+</script>
     </body>
 </html>
