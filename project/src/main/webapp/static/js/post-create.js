@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	const inputHash = document.querySelector('input#inputHashTag');
 
 
-	// 검색된 값과 관련된 키워드 가져오기 ---------------------------
+	// 해시태그 입력창의 글자가 들어간 키워드 가져오기 ---------------------------
 	const taglistOption = document.querySelector('datalist#searchOptions');
 
 	inputHash.addEventListener('input', function() {
@@ -21,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		}
 	});
 
+	
+	//비동기 방식으로 데이터 가져와 html 출력
 	async function optionTagList(value) {
 		let htmlStr = '';
 		const response = await axios.get(`../post/readtaglist?value=${value}`);
@@ -51,6 +53,12 @@ document.addEventListener('DOMContentLoaded', function() {
 			console.log("1. input 글자 : ", hashValue);
 
 			const liValue = document.querySelectorAll('span.tagValue');
+			
+			if(hashValue.length >=11){
+				alert("10글자 이내로 작성 가능합니다.");
+				return;
+			}
+			
 			if (hashValue !== '' && liValue.length < 5) {
 				//입력된 값 중복 확인하기
 				//이미 입력된 태그를 다시 입력하면 input창을 초기화하고 함수 종료
@@ -77,7 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	btnFormCreate.addEventListener('click', function() {
 		let hasError = false;
-
 
 		// 제목과 내용 유효성 검사
 		const titleValue = document.querySelector('input[name="title"]').value.trim();
