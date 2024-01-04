@@ -74,13 +74,6 @@
 				<button type="submit" id="btnRegister" class="btn btn-success form-control">회원가입</button>
 			</div>
 
-			<!-- 아이디 찾기, 비밀번호 찾기 링크 -->
-			<div class="signup-links text-center">
-				<a href="/project/user/login">로그인</a> |
-				<a href="/project/user/findId">아이디 찾기</a> |
-				<a href="/project/user/findPassword">비밀번호 찾기</a>
-			</div>
-
 			<input type="hidden" name="email" id="combinedEmail">
 		</form>
 	</div>
