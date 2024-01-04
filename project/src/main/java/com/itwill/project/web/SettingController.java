@@ -28,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.itwill.project.domain.MemberPostListItem;
 import com.itwill.project.domain.MyBookmarkListItemByPaging;
 import com.itwill.project.domain.MyCommentListItem;
 import com.itwill.project.domain.MyCommentListItemByPaging;
@@ -241,7 +242,18 @@ public class SettingController {
 			//현재 페이지에는 active 스타일을 넣기 위한 currentPage 객체 추가
 			model.addAttribute("currentPage",currentPage);
 			
-			//
+			//게시물들에 있는 해시태그값들 가져오기(for문을 통해서 있는 리스트에만 해시태그값을 넣어준다..
+			for(MyCommentListItemByPaging post : list) {
+				
+				Long post_id =  post.getPost_id();
+				
+				List<String> hashtags = settingService.selectPostHashtag(post_id);
+				
+				if(hashtags != null) {
+					post.setHashTag(hashtags);
+					log.debug("@@@@@@@@@@@@해시태그={}",hashtags);
+				}
+			}
 			model.addAttribute("comment",list);
 			}	
 			
@@ -278,6 +290,19 @@ public class SettingController {
 			SettingPageDto dto = SettingPageDto.builder().user_id(user_id).startNum(startNum).endNum(endNum).build();
 			
 			List<MyBookmarkListItemByPaging> list = settingService.selectBookmarkByPaging(dto);
+			
+			//게시물들에 있는 해시태그값들 가져오기(for문을 통해서 있는 리스트에만 해시태그값을 넣어준다..
+			for(MyBookmarkListItemByPaging post : list) {
+				
+				Long post_id =  post.getPost_id();
+				
+				List<String> hashtags = settingService.selectPostHashtag(post_id);
+				
+				if(hashtags != null) {
+					post.setHashTag(hashtags);
+					log.debug("@@@@@@@@@@@@해시태그={}",hashtags);
+				}
+			}
 			
 			//전체 페이지 수를 모델 객체에 추가해서 거기서 페이징 버튼 구현,,
 			model.addAttribute("pagesCount",totalPages);

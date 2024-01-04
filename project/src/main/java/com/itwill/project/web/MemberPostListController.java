@@ -75,6 +75,7 @@ public class MemberPostListController {
 			
 			List<MemberPostListItem> list = memberService.selectMemberPostList(dto);
 			
+			//4.게시물들에 있는 해시태그값들 가져오기(for문을 통해서 있는 리스트에만 해시태그값을 넣어준다..
 			for(MemberPostListItem post : list) {
 				int post_id_int = post.getPost_id();
 				
@@ -90,7 +91,6 @@ public class MemberPostListController {
 			
 			model.addAttribute("post", list);
 			
-			//4.게시물들에 있는 해시태그값들 가져오기(for문을 통해서 있는 리스트에만 해시태그값을 넣어준다..
 			
 			
 		}

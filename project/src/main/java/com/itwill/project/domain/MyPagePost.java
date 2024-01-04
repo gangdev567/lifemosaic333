@@ -1,6 +1,7 @@
 package com.itwill.project.domain;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +26,6 @@ public class MyPagePost {
     private Long view_count;       // VIEW_COUNT 컬럼, NUMBER(10,0)
     private Long comment_count;
     private Long like_point;
+    
+    private List<String> hashTag;
 }
