@@ -22,6 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
       figureElement.innerHTML = iframeHtml;
     }
   }
+
   const wrapperDiv = document.querySelector('.my-4.grow-wrap');
   const contentDiv = document.querySelector('#content');
 
@@ -33,4 +34,5 @@ document.addEventListener('DOMContentLoaded', function() {
     wrapperDiv.style.height = contentDiv.offsetHeight + 'px';
   });
   
-  });
+});
+
