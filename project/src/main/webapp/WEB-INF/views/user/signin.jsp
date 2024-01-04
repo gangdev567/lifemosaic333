@@ -26,9 +26,9 @@
     <!-- 로그인 폼 -->
     <form method="post" action="/project/user/signin">
             <!-- 로그인 실패 메시지 -->
-            <c:if test="${not empty param.result && param.result eq 'f'}">
-                <div class="alert alert-danger">아이디와 패스워드를 확인하세요...</div>
-            </c:if>
+        <c:if test="${not empty loginFailedMessage}">
+            <div class="alert alert-danger">${loginFailedMessage}</div>
+        </c:if>
 
         <!-- 아이디 입력 필드 -->
         <input type="text" class="form-control" name="user_id" placeholder="아이디" required autofocus />
