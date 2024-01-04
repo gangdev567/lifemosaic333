@@ -22,4 +22,15 @@ document.addEventListener('DOMContentLoaded', function() {
       figureElement.innerHTML = iframeHtml;
     }
   }
-});
+  const wrapperDiv = document.querySelector('.my-4.grow-wrap');
+  const contentDiv = document.querySelector('#content');
+
+  // 페이지 로드 시 처음에 DIV의 높이를 CONTENT의 높이로 설정합니다.
+  wrapperDiv.style.height = contentDiv.offsetHeight + 'px';
+
+  // CONTENT의 내용이 변경될 때마다 DIV의 높이를 동적으로 조정합니다.
+  contentDiv.addEventListener('input', function() {
+    wrapperDiv.style.height = contentDiv.offsetHeight + 'px';
+  });
+  
+  });
