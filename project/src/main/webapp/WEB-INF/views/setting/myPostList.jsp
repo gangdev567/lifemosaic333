@@ -110,7 +110,7 @@
                         </a>
                         
                         <div>
-                       		  <span style="text-align: left; margin-top: 5px; margin-left: 30px; font-size: 14px; max-width:500px" class="d-inline-block text-truncate">${post.content}</span>
+                       		  <span style="text-align: left; margin-top: 5px; margin-left: 30px; font-size: 14px;  overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap; word-break:break-all;width: 450px; height: 20px;" class="d-inline-block text-truncate">${post.content}</span>
                         
                         
                         <div style="margin-left: 10px; margin-top: 10px;">
@@ -120,6 +120,16 @@
 		                            	<a href="${categoryListPage}" style="text-decoration:none;">
                             				<span class="badge mb-2" style=" margin-left:13px; color : #AB49A0; background-color: #F3F1F5;">${post.sub_category_name }</span>
 		                            	</a>
+		                            	
+		                            	<c:choose>
+		                            		<c:when test="${not empty post.hashTag }">
+				                            	<c:forEach var="hashTag" items="${post.hashTag }">
+				                            		<span style="margin-left:3px; font-size:13px; color:#49108B;"> #${hashTag }</span>
+				                            	</c:forEach>	
+		                            		
+		                            		</c:when>
+		                            	
+		                            	</c:choose>
                                 <div style="margin-right: 10px; float:inline-end;">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16"><g id="_01_align_center" data-name="01 align center">
                                     <path d="M23.821,11.181v0C22.943,9.261,19.5,3,12,3S1.057,9.261.179,11.181a1.969,1.969,0,0,0,0,1.64C1.057,14.739,4.5,21,12,21s10.943-6.261,11.821-8.181A1.968,1.968,0,0,0,23.821,11.181ZM12,19c-6.307,0-9.25-5.366-10-6.989C2.75,10.366,5.693,5,12,5c6.292,0,9.236,5.343,10,7C21.236,13.657,18.292,19,12,19Z"/><path d="M12,7a5,5,0,1,0,5,5A5.006,5.006,0,0,0,12,7Zm0,8a3,3,0,1,1,3-3A3,3,0,0,1,12,15Z"/></g></svg>
@@ -140,23 +150,7 @@
 				</div>
 				<hr style="margin-left:5px;">
 			               </c:forEach>
-                  			  <!--  
-                    		<div class="d-flex justify-content-center" style="pading:10px; margin:20px;">
-								<nav>
-									<ul class="pagination pagination-sm" style="background-color: #F3F1F5;">
-										<c:forEach var="pageNumber" begin="1" end="${pagesCount }">
-											<c:url var="settingMyBookmarkPage" value="/setting/userMyBookmark"/>
-											<li class="page-item ${pageNumber == currentPage ? 'active' :'' }" style="display: inline;" >
-												<a class="page-link" href="${settingMyBookmarkPage}?currentPage=${pageNumber}"  
-												style="color: ${pageNumber == currentPage ? 'white' : '#7F7C82'}; /* active일 때 글자색을 원하는 색상으로 설정 */ background-color: ${pageNumber == currentPage ? '#BFA2DB' : '#F3F1F5'}; /* active일 때 배경색을 원하는 색상으로 설정 */ border-color: #F3F1F5;">
-												${pageNumber}	
-												</a>
-											</li>
-										</c:forEach>
-									</ul>
-								</nav>
-                    		</div>
-						-->
+                  		
 						
 		         </c:when>
 		         
