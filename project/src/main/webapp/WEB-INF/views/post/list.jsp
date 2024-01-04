@@ -14,7 +14,7 @@
         grid-template-columns: 3fr 1fr;
         gap: 30px;
     }
-    }
+    
 	.post-title a:hover .hover-text {
 	    color: #BFA2DB; 
 	    text-decoration: none;
@@ -28,7 +28,6 @@
     }
     
     #create:hover {
-        background-color: #F0D9FF;
         transition-duration: 0.3s;
     }
 
@@ -39,8 +38,9 @@
 }
 
 #create:hover {
-	background-color: #F0D9FF;
+	backround-color:white;
 	transition-duration: 0.3s;
+	
 }
 
 body {
@@ -154,6 +154,16 @@ body {
                     </c:when>
                 </c:choose>
         </div>
+                <!-- 위에 여백을 주기 위한 마진 추가 -->
+                <div style="float:end">
+						<c:url var="createPage" value="/post/create">
+							<c:param name="sub_category_id" value="${cId}"></c:param>
+						</c:url>
+						<a id="create" class="btn fs-6 fw-bold" href="${createPage}"
+							style="border-color: #711DB0; border-width: 2px; margin-right: 10px;">
+							<i class="fas fa-pencil-alt me-2"></i>글 쓰기
+						</a>
+						</div>
     </div>
     <hr style= "background: #7F7C82; height:3px; border:0;">
 
@@ -172,8 +182,8 @@ body {
         
 
 
- <div class="row justify-content-center">
-    <div class="">
+ <div class="row justify-content-center" >
+    <div>
         <div class="card-body my-2">
             <div class="post-list">
                 <ul class="post-items">
@@ -258,23 +268,12 @@ body {
 
 
 
-				<div class="container">
-					<div class="mt-3 d-flex justify-content-start">
-						<!-- 위에 여백을 주기 위한 마진 추가 -->
-						<c:url var="createPage" value="/post/create">
-							<c:param name="sub_category_id" value="${cId}"></c:param>
-						</c:url>
-						<a id=create class="btn fs-5 fw-bold" href="${createPage}"
-							style="border-color: #BFA2DB; border-width: 2px; margin-right: 10px;">
-							<i class="fas fa-pencil-alt me-2"></i>글 쓰기
-						</a>
-					</div>
-				</div>
+			
 
 
 
-				<nav aria-label="Page navigation example">
-					<ul class="pagination justify-content-center">
+				<nav aria-label="Page navigation example" >
+					<ul class="pagination justify-content-center" >
 						<!-- 이전 페이지 버튼 -->
 						<c:if test="${pageMaker.prev}">
 							<li class="page-item"><a class="page-link"
@@ -285,15 +284,14 @@ body {
 						<!-- 각 번호 페이지 버튼 -->
 						<c:forEach var="num" begin="${pageMaker.startPage}"
 							end="${pageMaker.endPage}">
-							<li
-								class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}">
+							<li class="page-item ${pageMaker.cri.pageNum == num ? 'active' : ''}" >
 								<c:choose>
 									<c:when test="${pageMaker.cri.pageNum == num}">
-										<span class="page-link disabled">${num}</span>
+										<span class="page-link disabled" >${num}</span>
 									</c:when>
 									<c:otherwise>
 										<a class="page-link"
-											href="?sub_category_id=${cId}&pageNo=${num}">${num}</a>
+											href="?sub_category_id=${cId}&pageNo=${num}" style="color:#711DB0;">${num}</a>
 									</c:otherwise>
 								</c:choose>
 							</li>

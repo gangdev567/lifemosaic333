@@ -25,7 +25,10 @@
                             
                             <div class="fw-semibold" style="font-size:12px;">
                                 <%-- 닉네임 --%>
-                                <span>${car.nickname }</span>
+	                            <c:url var="memberPostListPage" value="/member/memberPostList">
+									<c:param name='nickname' value='${car.nickname }'/>
+								</c:url>
+                                <span><a href="${memberPostListPage}" style="text-decoration:none" class="text-body-secondary" >${car.nickname }</a></span>
                                 
                                 <%-- 작성 시간 --%>
                                 <span class="mx-1"> · </span>

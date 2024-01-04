@@ -57,6 +57,7 @@ canvas {
 	display: grid;
 	grid-template-columns: 3fr 1fr;
 	gap: 30px;
+	
 }
 
 .btn-custom-like, .btn-custom-dislike {
@@ -170,7 +171,7 @@ canvas {
 								<div style="margin-bottom: 0px;">
 
 									<%-- 좋아요 및 싫어요 버튼 --%>
-									<button class="btn btn-custom-like" id="likeBtn" name="likeBtn">
+									<button class="btn btn-custom-like" id="likeBtn" name="likeBtn" >
 										<img src="https://cdn-icons-png.flaticon.com/512/1933/1933511.png " width="30" height="30" alt="" title="좋아요" class="img-small">
 										좋아요
 									</button>

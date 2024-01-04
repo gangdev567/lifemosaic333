@@ -102,7 +102,7 @@ public class UserController {
 		} else {
 			// 로그인 실패 시, 로그인 페이지로 리다이렉트하고 실패 메시지 표시
 			log.debug("Login failed. Redirecting to login page.");
-			redirectAttributes.addFlashAttribute("loginFailed", true);
+			redirectAttributes.addFlashAttribute("loginFailedMessage", "아이디와 패스워드를 확인하세요...");
 			return "redirect:/user/signin";
 		}
 	}

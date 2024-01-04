@@ -1,5 +1,7 @@
 package com.itwill.project.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,4 +26,6 @@ public class MyCommentListItemByPaging {
 	private String comment_created_time;
 	private long post_like_count;
 	private long comment_count;
+	
+	private List<String> hashTag;
 }
