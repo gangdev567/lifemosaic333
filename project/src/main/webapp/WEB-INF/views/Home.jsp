@@ -59,8 +59,13 @@
 						style="position: fixed; width: 250px; top: 30%; transform: translateY(-50%);">
 						<%@include file="./fragments/topwriter.jspf"%>
 					</div>
+					<div>
+					<a href="https://www.naver.com/">
+						<img src="./img/광고.png"  style="position: fixed; margin-left:30px; margin-top:250px; width:200px; height:250px; border:1px solid #E5E1DA;">
+					</a>
 				</div>
-
+				</div>
+				
 				<div class="item">
 					<%@ include file="./fragments/main/fault.jspf"%>
 				</div>
