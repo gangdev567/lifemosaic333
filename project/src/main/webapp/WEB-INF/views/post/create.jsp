@@ -74,8 +74,8 @@
                 <div class="mb-3">
                 </div>
                 <div style="display: flex; justify-content: center;">
-                    <button id="btnCreate" class="btn me-2" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #BFA2DB">등록</button>
-                    <button id="btnCancel" class="btn" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">취소</button>
+                    <button type="button" id="btnCreate" class="btn me-2" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #BFA2DB">등록</button>
+                    <button type="button" id="btnCancel" class="btn" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">취소</button>
                 </div>
             </form>
         </div>
@@ -114,13 +114,6 @@
             });
     });
 </script>
-        <script>
-        document.addEventListener('keydown', function(event) {
-             if ((event.keyCode || event.which) === 13) {
-                  event.preventDefault();
-                    }
-               }, true);
-        </script>
     
 
 </body>
