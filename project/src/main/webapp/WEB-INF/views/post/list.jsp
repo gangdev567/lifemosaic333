@@ -26,10 +26,6 @@
         text-decoration: none;
         transition-duration: 0.3s;
     }
-    
-    #create:hover {
-        transition-duration: 0.3s;
-    }
 
 .post-title a:hover .hover-text {
 	color: #BFA2DB;
@@ -37,11 +33,11 @@
 	transition-duration: 0.3s;
 }
 
-#create:hover {
-	backround-color:white;
-	transition-duration: 0.3s;
+    #create:hover {
+        background-color: #F0D9FF;
+        transition-duration: 0.3s;
 	
-}
+    }
 
 body {
 	background-color: #fff;

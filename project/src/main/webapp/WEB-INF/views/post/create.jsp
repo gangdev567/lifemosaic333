@@ -15,7 +15,20 @@
   <style>
 	.ck-editor__editable {
 	    min-height: 400px;
+        }
+    #create.container {
+        display: grid;
+    }
+    #btnCreate:hover {
+        background-color: #BFA2DB;
+    }
+    #btnCancel:hover {
+        background-color: #7F7C82;
+        color: white;
+    }
+    
 	</style>
+    <link rel="stylesheet" href="../css/main_navigation.css" />
 </head>
 
 <body>
@@ -26,11 +39,11 @@
             
             <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
             <div style="margin:150px"></div>
-            
+<div id="create" class=container>
 <div class="container-fluid my-3">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <form id="createForm" action="${postCreatePage}" method="post" class="border p-4 rounded" >
+        <div class="">
+            <form id="createForm" action="${postCreatePage}" method="post" class="border border-2 border-dark-subtle p-4 rounded">
               <div class="mb-3">
 			    <label for="postTitle" class="form-label">제목</label>
 			    <input id="postTitle" class="form-control" type="text" name="title" placeholder="제목을 입력해주세요." autofocus required>
@@ -60,11 +73,14 @@
                 <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
                 <div class="mb-3">
                 </div>
+                <div style="display: flex; justify-content: center;">
+                    <button id="btnCreate" class="btn me-2" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #BFA2DB">등록</button>
+                    <button id="btnCancel" class="btn" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">취소</button>
+                </div>
             </form>
-                 <button id="btnCreate" class="btn btn-primary me-2">등록</button>
-                 <button id="btnCancel" class="btn btn-outline-secondary text-dark">취소</button>
         </div>
     </div>
+</div>
 </div>
 
     
@@ -98,6 +114,13 @@
             });
     });
 </script>
+        <script>
+        document.addEventListener('keydown', function(event) {
+             if ((event.keyCode || event.which) === 13) {
+                  event.preventDefault();
+                    }
+               }, true);
+        </script>
     
 
 </body>

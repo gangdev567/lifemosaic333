@@ -14,9 +14,22 @@
     </head>
     
       <style>
-	.ck-editor__editable {
-	    min-height: 450px;
+	   .ck-editor__editable {
+	        min-height: 450px;
+        }
+        #modify.container {
+            display: grid;
+        }
+        #btnUpdate:hover {
+            background-color: #F0D9FF;
+        }
+        #btnDelete:hover {
+            background-color: #7F7C82;
+            color: white;
+        }
+    
 	</style>
+    <link rel="stylesheet" href="../css/main_navigation.css" />
     <body>
     
     <c:url var="imgPath" value="../img/logo.png" />
@@ -25,11 +38,11 @@
             <!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
             <div style="margin:150px"></div>
             
-            
+<div id=modify class="container">
 <div class="container-fluid my-3">
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <form id="postModifyform" class="border p-4 rounded">
+            <form id="postModifyform" class="border border-2 border-dark-subtle p-4 rounded">
              <div style="display: none;">
                 <input class="d-none" id="sub_category_id" name="sub_category_id" value="${post.sub_category_id}" />
                 <label for="post_id" class="form-label d-none">번호</label> 
@@ -60,16 +73,16 @@
                 <div class="my-2">
                     <div id="hashtagList" class="d-flex gap-2 justify-content-start"></div>
                 </div>
-                
-            </form>
-                <div class="card-footer">
+                <div style="display: flex; justify-content: center;">
                     <c:if test="${post.user_id eq signedInUser}">
-                        <button class="btn btn-outline-primary" id="btnDelete">삭제</button>
-						<button class="btn btn-outline-success" id="btnUpdate" type="submit">수정완료</button>
+						<button class="btn me-2" id="btnUpdate" type="submit" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #F0D9FF">수정</button>
+                        <button class="btn" id="btnDelete" style="font-size: 120%; padding: 10px 25px 8px 25px; border-color: #7F7C82">삭제</button>
                     </c:if>
                 </div>
+            </form>
         </div>
     </div>
+</div>
 </div>
                 
         
@@ -107,5 +120,12 @@
 			</c:forEach>
 		<script>const postid = ${post.post_id}</script>              
         <script src="../js/post-modify.js"></script>
+        <script>
+        document.addEventListener('keydown', function(event) {
+             if ((event.keyCode || event.which) === 13) {
+                  event.preventDefault();
+                    }
+               }, true);
+</script>
     </body>
 </html>
