@@ -95,6 +95,31 @@ canvas {
 	<!-- 메뉴바랑 겹치기 않기 위해 빈 공간 생성 -->
 	<div id=main class="container">
 		<div class="item">
+        <div class="text-start me-3" style="font-size: 32px; font-weight: bold; padding: 16px 40px;">
+                <c:choose>
+                    <c:when test="${post.sub_category_id eq 11}">
+                        <span>이거 내 잘못이야?</span>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 41}">
+                        <span>차사고</span><br>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 42}">
+                        <span>게임</span><br>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 43}">
+                        <span>기타(악기 아님)</span>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 21}">
+                        <span>나 호구냐?</span><br>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 31}">
+                        <span>부럽지?</span><br>
+                    </c:when>
+                    <c:when test="${post.sub_category_id eq 51}">
+                        <span>자유</span><br>
+                    </c:when>
+                </c:choose>
+        </div>
 			<main class="my-4">
 				<div class="card">
 					<div class="card-body">
