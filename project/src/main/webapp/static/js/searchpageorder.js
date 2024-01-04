@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <img src="../setting/settingImg?fileName=${searchData[i - 1].profile }" alt="profile" class="me-2 rounded-circle" style="width: 20px; height: 20px; border: 1px solid lightgray;"/>
 
                             <div class="fw-semibold" style="font-size:12px;">
-                                <span>${searchData[i - 1].nickname }</span>
+                                <a href="../member/memberPostList?nickname=${searchData[i - 1].nickname }" style="text-decoration:none" class="text-body-secondary" ><span>${searchData[i - 1].nickname }</span></a>
                                 
                                 <span class="mx-1"> · </span>
                                 <span class="time">${searchData[i - 1].created_time }</span>

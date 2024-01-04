@@ -22,7 +22,7 @@
 						<c:param name='nickname' value='${writer.nickname }'/>
 					</c:url>
 					<a href="${memberPostListPage}" style="text-decoration:none; color:black;">
-	                <span class="align-middle fw-medium text-truncate d-inline-block" style="max-width: 90px;">${writer.nickname }</span>
+	                <span class="align-middle fw-medium text-truncate d-inline-block" style="max-width: 130px;">${writer.nickname }</span>
 	               	</a>
 
 	            </div>
