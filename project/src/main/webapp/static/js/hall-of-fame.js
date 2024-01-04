@@ -20,4 +20,7 @@
             container.style = 'transition-duration: 1.5s'
         })
     })
+    
+    const curtain = document.getElementById('curtain');
+    curtain.classList.add('open');
  })
