@@ -5,12 +5,14 @@
 
  document.addEventListener('DOMContentLoaded', function(){
      
-        const container = document.querySelector('.container');
+        const container = document.querySelectorAll('.cardContainer');
         container.addEventListener('mousemove', function(e) {
         let x = e.offsetX;
         let y = e.offsetY;
+        console.log(x, y);
         let rotateY = -1/5 * x + 20;
         let rotateX = 4/30 * y - 20;
+
         container.style = `transform :
         perspective(350px) 
         rotateY(${rotateY}deg)
@@ -20,7 +22,4 @@
             container.style = 'transition-duration: 1.5s'
         })
     })
-    
-    const curtain = document.getElementById('curtain');
-    curtain.classList.add('open');
  })

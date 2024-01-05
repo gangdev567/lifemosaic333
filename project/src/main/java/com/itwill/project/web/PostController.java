@@ -39,8 +39,13 @@ public class PostController {
     private final BestTopicService bestTopicService;
     
     @GetMapping("/HallOfFame") 
-    public void HallOfFame() {
+    public void HallOfFame(Model model) {
         log.debug("HallOfFame()");
+        
+        List<TopWriter> writerList = writerService.readTopWriter();
+        log.debug("Top Writer list: {}", writerList);
+        model.addAttribute("writer", writerList);
+        
     }
     
     @GetMapping("/totallist")
