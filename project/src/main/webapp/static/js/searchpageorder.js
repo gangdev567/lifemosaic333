@@ -193,13 +193,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
     
     
-                    <!-- 두 번째 줄/ 게시글 제목 -->
+                    <!-- 두 번째 줄/ 게시글 제목, 내용 -->
                     <div class="my-2">
                         <a class="fw-bold nav-link text-truncate"  href="detail?post_id=${searchData[i - 1].post_id}">${searchData[i - 1].title }</a>
                     </div>
                     
-                    <div class="my-2">
-                    	<a class="nav-link text-truncate fw-medium "  style="max-width:580px" href="detail?post_id=${searchData[i - 1].post_id}">${searchData[i - 1].content }</a>
+                    <div class="my-2"">
+                     <span style="overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap; word-break:break-all;max-width:580px;height: 20px;font-size:14px;" class=" my-1 d-inline-block text-truncate">${searchData[i - 1].content }</span>
                     </div>
                  
                  
@@ -215,6 +215,10 @@ document.addEventListener('DOMContentLoaded', function() {
 			htmlStr +=`</div>
                 </div>
                 <!-- 게시글 1개 종료 태그 -->`;
+			}
+			
+			if(searchData.length <3){
+				htmlStr += '<div style="margin-top : 350px;"></div>';
 			}
 		}
 
