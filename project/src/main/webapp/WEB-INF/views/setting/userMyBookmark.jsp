@@ -171,7 +171,7 @@
 		         </c:when>
 		         
 		         <c:otherwise>
-		         <div class="d-flex justify-content-center" style="margin-top:30px;">
+		         <div class="d-flex justify-content-center" style="margin-top:30px; margin-bottom:200px;">
 		         <video  width="50" height="50" preload="none"  style="padding-bottom:10px; background: transparent  url('https://cdn-icons-png.flaticon.com/512/7158/7158908.png') 50% 50% / fit no-repeat;"  autoplay="autoplay" loop="true" muted="muted" playsinline="">
 		              <source src="https://cdn-icons-mp4.flaticon.com/512/7158/7158908.mp4" type="video/mp4">
 		          </video>

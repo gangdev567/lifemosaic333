@@ -58,7 +58,7 @@
 					<div
 						style="position: fixed; width: 250px; top: 30%; transform: translateY(-50%);">
 						<%@include file="./fragments/topwriter.jspf"%>
-					<a href="https://www.naver.com/">
+					<a href="http://192.168.20.21:8081/ohdogcat/">
 						<img src="./img/광고.png"  style="position: fixed;  margin-top:20px; width:255px; height:320px; border:1px solid #E5E1DA;">
 					</a>
 					</div>
